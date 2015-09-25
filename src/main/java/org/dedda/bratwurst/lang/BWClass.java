@@ -5,5 +5,5 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class Class {
+public class BWClass {
 }

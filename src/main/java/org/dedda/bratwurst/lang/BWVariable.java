@@ -5,11 +5,11 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class Variable<T> {
+public class BWVariable<T> {
 
     private String name;
 
-    private Variable() {
+    private BWVariable() {
 
     }
 
