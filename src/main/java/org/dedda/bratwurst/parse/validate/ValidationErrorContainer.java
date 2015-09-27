@@ -20,6 +20,13 @@ public class ValidationErrorContainer {
         this.errors.add(error);
     }
 
+    public void addErrors(final ValidationErrorContainer container) {
+        List<ValidationError> errors = container.getErrors();
+        for (ValidationError error : errors) {
+            addError(error);
+        }
+    }
+
     public List<ValidationError> getErrors() {
         return this.errors;
     }

@@ -82,4 +82,8 @@ public class BaseValidator {
     protected void error(final String type, final String message) {
         this.errorContainer.addError(new ValidationError(type, message));
     }
+
+    protected void errors(final ValidationErrorContainer container) {
+        this.errorContainer.addErrors(container);
+    }
 }

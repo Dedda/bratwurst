@@ -1,4 +1,4 @@
-package org.dedda.bratwurst.lang.action;
+package org.dedda.bratwurst.lang.instruction;
 
 import org.dedda.bratwurst.lang.BWExpression;
 
@@ -7,8 +7,6 @@ import org.dedda.bratwurst.lang.BWExpression;
  *
  * @author dedda
  */
-public interface Action {
-
-    void act(BWExpression... parameters);
+public interface Instruction {
 
 }

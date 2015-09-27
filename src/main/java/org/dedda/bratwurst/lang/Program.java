@@ -1,6 +1,6 @@
 package org.dedda.bratwurst.lang;
 
-import org.dedda.bratwurst.lang.action.Action;
+import org.dedda.bratwurst.lang.instruction.Instruction;
 
 import java.util.List;
 
@@ -14,6 +14,6 @@ public class Program {
     private List<BWClass> bwClasses;
     private List<BWVariable> variables;
 
-    private List<Action> actions;
+    private List<Instruction> instructions;
 
 }

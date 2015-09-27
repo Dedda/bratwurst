@@ -11,6 +11,8 @@ public class ClassValidator extends BaseValidator {
         int brackets = 0;
         int squareBrackets;
         int curlyBrackets = 0;
+        int ifs = 0;
+        int loops = 0;
         boolean isNamed = false;
         boolean inClass = false;
         boolean inFunction = false;
@@ -57,6 +59,12 @@ public class ClassValidator extends BaseValidator {
                     return false;
                 }
                 continue;
+            }
+            if (trimmed.startsWith("?")) {
+                if (!new ConditionValidator().validateHead(trimmed)) {
+                    error("loop syntax", "invalid loop head");
+                    return false;
+                }
             }
             error("class syntax", "unexpected text '" + trimmed + "'");
         }
