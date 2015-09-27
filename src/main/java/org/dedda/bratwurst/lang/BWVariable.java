@@ -5,11 +5,11 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class BWVariable<T> {
+public abstract class BWVariable<T> implements BWExpression {
 
     private String name;
 
-    private BWVariable() {
+    protected BWVariable() {
 
     }
 
