@@ -1,0 +1,19 @@
+Klasse:
+
+#[
+  (CALL_ME_MAYBE) <-- ersteTestKlasse
+  (eineZahl) <-- 123
+  ~{
+    (CALL_ME_MAYBE) <-- addition
+    (ergebnis) <-- a + b
+    ergebnis -->
+  }
+]
+
+Objekt instanziieren:
+
+(objekt) <-- [ersteTestKlasse]
+
+Funktion aufrufen:
+
+objekt{addition} @ a <-- 3 & b <-- 4

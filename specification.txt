@@ -11,3 +11,5 @@
 >...<                   Text ausgeben. Die übergebene Variable wird als ASCII-Zeichen ausgegeben
 ?(...)>>...<<...|       Bedingung. Falls die Variable in den Klammern ungleich 0 evaluiert, wird der erste Block ausgeführt. Ansonsten der zweite
 /(...)...\              Wiederhole den Block so lange, bis der ausdruck nach dem '/' in der ersten Zeile zu 0 evaluiert
++ - * /                 Grundrechenarten
+... -->                 Rückgabewert einer Funktion
