@@ -7,10 +7,21 @@ package org.dedda.bratwurst.lang;
  */
 public abstract class BWVariable<T> implements BWExpression {
 
-    private String name;
+    protected String name;
+    protected T value;
+    protected String type = "null";
 
-    protected BWVariable() {
-
+    public BWVariable(String name) {
+        this.name = name;
     }
 
+    public BWVariable(String name, T value, String type) {
+        this.name = name;
+        this.value = value;
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

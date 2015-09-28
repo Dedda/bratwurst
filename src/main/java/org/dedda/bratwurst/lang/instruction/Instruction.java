@@ -1,6 +1,6 @@
 package org.dedda.bratwurst.lang.instruction;
 
-import org.dedda.bratwurst.lang.BWExpression;
+import org.dedda.bratwurst.lang.Program;
 
 /**
  * Created by dedda on 9/25/15.
@@ -8,5 +8,7 @@ import org.dedda.bratwurst.lang.BWExpression;
  * @author dedda
  */
 public interface Instruction {
+
+    void run();
 
 }

@@ -10,7 +10,14 @@ public class BaseValidator {
     protected ValidationErrorContainer errorContainer = new ValidationErrorContainer();
 
     public boolean isEvaluable(String expression) {
-        return true;
+        String trimmed = expression.trim();
+        if (trimmed.matches("(\\w+)")) {
+            return true;
+        }
+        if (isCorrectFunctionCall(trimmed)) {
+            return true;
+        }
+        return false;
     }
 
     public ValidationErrorContainer getErrorContainer() {
@@ -26,7 +33,7 @@ public class BaseValidator {
     }
 
     public boolean isCorrectFunctionCall(final String call) {
-        String split[] = call.split(" ");
+        String split[] = call.trim().split(" ");
         if (!split[0].matches("(\\w+)(\\{)(\\w+)(\\})")) {
             errorContainer.addError(new ValidationError("function call syntax", "not a function call!"));
             return false;

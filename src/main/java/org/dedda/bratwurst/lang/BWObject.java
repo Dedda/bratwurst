@@ -18,4 +18,13 @@ public class BWObject {
         this.variables = variables;
         this.functions = functions;
     }
+
+    public BWClass getBwClass() {
+        return bwClass;
+    }
+
+    public boolean isInt() {
+        return false;
+    }
+
 }

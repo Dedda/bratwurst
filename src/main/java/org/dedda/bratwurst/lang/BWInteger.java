@@ -7,10 +7,12 @@ package org.dedda.bratwurst.lang;
  */
 public class BWInteger extends BWVariable<Integer> {
 
-    private int value;
+    public BWInteger(String name) {
+        super(name);
+    }
 
-    public BWInteger(final int value) {
-        this.value = value;
+    public BWInteger(String name, Integer value) {
+        super(name, value, "integer");
     }
 
     public Object getValue() {

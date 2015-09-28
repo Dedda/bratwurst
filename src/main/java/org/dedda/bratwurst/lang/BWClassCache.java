@@ -13,6 +13,7 @@ public class BWClassCache {
 
     public BWClassCache() {
         classes = new HashMap<>();
+        registerClass(new BWClass("integer"));
     }
 
     public void registerClass(BWClass bwClass) {
