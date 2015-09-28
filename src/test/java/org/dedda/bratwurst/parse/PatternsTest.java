@@ -37,6 +37,12 @@ public class PatternsTest {
                 {VARIABLE_DECLARATION, "(test) <-- test{test} @ test <-- 2 & test <-- 3", true},
                 {VARIABLE_DECLARATION, "(test) <-- [test]", true},
                 {INCLUDE, "%test.bw%", true},
+                {PRINT, ">td<", true},
+                {CONDITION_HEAD, "?(test)>>", true},
+                {CONDITION_SEPARATOR, "<<", true},
+                {CONDITION_END, "|", true},
+                {LOOP_HEAD, "/(test)", true},
+                {LOOP_END, "\\", true},
         });
     }
 
