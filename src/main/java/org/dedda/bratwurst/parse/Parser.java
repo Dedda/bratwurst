@@ -1,12 +1,17 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.Program;
+import org.dedda.bratwurst.lang.instruction.Print;
+import org.dedda.bratwurst.lang.instruction.RegisterClass;
+import org.dedda.bratwurst.lang.instruction.VariableDeclaration;
 
-import java.awt.Point;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
+import static org.dedda.bratwurst.parse.Patterns.PRINT;
+import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
 
 /**
  * Created by dedda on 9/25/15.
@@ -19,7 +24,7 @@ public class Parser {
     private Program program;
 
     public Parser(File sourceFile) {
-        this(sourceFile, new Program());
+        this(sourceFile, Program.getInstance());
     }
 
     public Parser(File sourceFile, Program program) {
@@ -28,7 +33,7 @@ public class Parser {
     }
 
     public Program parse() {
-        String sourceCode = null;
+        String sourceCode;
         try {
             sourceCode = getFileContents(this.sourceFile);
         } catch (IOException e) {
@@ -38,7 +43,27 @@ public class Parser {
         int currentLine = 0;
         String lines[] = sourceCode.split("\n");
         while (currentLine < lines.length) {
-
+            String line = lines[currentLine];
+            if (line.matches(Patterns.CLASS_BEGIN)) {
+                int end = getClassEndLine(lines, currentLine);
+                BWClass bwClass = new BWClassParser().parseClass(lines, currentLine);
+                RegisterClass instruction = new RegisterClass(bwClass);
+                Program.getInstance().addInstruction(instruction);
+                currentLine = end + 1;
+                continue;
+            }
+            if (line.matches(VARIABLE_DECLARATION)) {
+                VariableDeclaration declaration = new BWVariableParser().parseDeclaration(line);
+                Program.getInstance().addInstruction(declaration);
+                currentLine++;
+                continue;
+            }
+            if (line.matches(PRINT)) {
+                Print print = new PrintParser().parse(line);
+                Program.getInstance().addInstruction(print);
+                currentLine++;
+                continue;
+            }
         }
         return this.program;
     }
@@ -97,10 +122,6 @@ public class Parser {
 
     public boolean isFunctionDeclaration(final String line) {
         return false;
-    }
-
-    public Point findClassClosing(final int line, final int offset) {
-        return new Point(0, 0);
     }
 
 }
