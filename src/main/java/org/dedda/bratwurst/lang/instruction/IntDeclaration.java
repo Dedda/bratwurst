@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.lang.instruction;
 
 import org.dedda.bratwurst.lang.BWInteger;
+import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.Program;
 
 /**
@@ -16,6 +17,6 @@ public class IntDeclaration extends VariableDeclaration<Integer> {
 
     @Override
     public void run() {
-        Program.getInstance().registerVariable(new BWInteger(variableName, value));
+        Program.getInstance().registerVariable(new BWVariable(variableName, new BWInteger(value)));
     }
 }

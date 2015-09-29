@@ -1,6 +1,6 @@
 package org.dedda.bratwurst.lang.instruction;
 
-import org.dedda.bratwurst.lang.BWObject;
+import org.dedda.bratwurst.lang.object.BWObject;
 
 /**
  * Created by dedda on 9/28/15.
@@ -15,7 +15,7 @@ public class MathOperator {
         this.operator = operator;
     }
 
-    public Object apply(final BWObject left, final BWObject right) {
+    public BWObject apply(final BWObject left, final BWObject right) {
         if (!(left.getBwClass().getName().equals("integer") && right.getBwClass().getName().equals("integer"))) {
             return null;
         }

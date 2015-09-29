@@ -1,6 +1,7 @@
-package org.dedda.bratwurst.lang;
+package org.dedda.bratwurst.lang.cache;
 
-import com.sun.org.apache.xpath.internal.operations.Variable;
+import org.dedda.bratwurst.lang.object.BWObject;
+import org.dedda.bratwurst.lang.BWVariable;
 
 import java.util.HashMap;
 

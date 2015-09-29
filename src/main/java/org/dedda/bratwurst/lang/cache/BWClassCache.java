@@ -1,4 +1,6 @@
-package org.dedda.bratwurst.lang;
+package org.dedda.bratwurst.lang.cache;
+
+import org.dedda.bratwurst.lang.BWClass;
 
 import java.util.HashMap;
 

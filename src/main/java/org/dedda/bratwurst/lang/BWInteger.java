@@ -1,25 +1,22 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.lang.object.BWObject;
+
 /**
  * Created by dedda on 9/25/15.
  *
  * @author dedda
  */
-public class BWInteger extends BWVariable<Integer> {
+public class BWInteger extends BWObject {
 
-    public BWInteger(String name) {
-        super(name);
+    private int value;
+
+    public BWInteger(final int value) {
+        super(new BWClass("integer"));
+        this.value = value;
     }
 
-    public BWInteger(String name, Integer value) {
-        super(name, value, "integer");
-    }
-
-    public Object getValue() {
-        return value;
-    }
-
-    public int getIntValue() {
+    public int getValue() {
         return value;
     }
 

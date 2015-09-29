@@ -1,10 +1,10 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.lang.cache.BWClassCache;
 import org.dedda.bratwurst.lang.instruction.Instruction;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by dedda on 9/25/15.

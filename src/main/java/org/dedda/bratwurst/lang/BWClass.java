@@ -1,5 +1,9 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.lang.instruction.Instruction;
+import org.dedda.bratwurst.lang.object.BWFunction;
+import org.dedda.bratwurst.lang.object.BWObject;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,8 +15,7 @@ import java.util.List;
 public class BWClass {
 
     private String name;
-    private List<BWVariable> variables;
-    private List<BWFunction> functions;
+    private List<Instruction> instructions;
 
     public BWClass() {
         this(null);
@@ -27,9 +30,8 @@ public class BWClass {
     }
 
     public BWObject instantiate() {
-        HashMap<String, BWVariable> variables = new HashMap<>();
-        HashMap<String, BWFunction> functions = new HashMap<>();
-        BWObject object = new BWObject(this, variables, functions);
+        BWObject object = new BWObject(this);
+        
         return object;
     }
 
