@@ -1,0 +1,36 @@
+==>
+#[
+    (CALL_ME_MAYBE) <-- Point
+    (x) <-- 0
+    (y) <-- 0
+    ~{
+        (CALL_ME_MAYBE) <-- setX
+        (x) <-- newX
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- setY
+        (y) <-- newY
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- setLocation
+        (x) <-- newX
+        (y) <-- newY
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- getX
+        x -->
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- getY
+        y -->
+    }
+]
+(point1) <-- [Point]
+point1{setX} @ newX <-- 65
+point1{setY} @ newY <-- 66
+>point1{getX}<
+>point1{getY}<
+point1{setLocation} @ newX <-- 67 & newY <-- 68
+>point1{getX}<
+>point1{getY}<
+<==

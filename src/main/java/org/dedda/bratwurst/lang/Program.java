@@ -42,7 +42,9 @@ public class Program {
         this.instructions.add(instruction);
     }
 
-
+    public void run() {
+        instructions.stream().forEachOrdered(i -> i.run());
+    }
 
     private static Program instance = null;
 
