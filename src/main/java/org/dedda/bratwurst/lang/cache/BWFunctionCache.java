@@ -1,6 +1,6 @@
 package org.dedda.bratwurst.lang.cache;
 
-import org.dedda.bratwurst.lang.object.BWFunction;
+import org.dedda.bratwurst.lang.function.BWFunction;
 
 import java.util.HashMap;
 

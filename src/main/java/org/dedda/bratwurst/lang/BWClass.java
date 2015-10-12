@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class BWClass {
 
-    private String name;
-    private List<Instruction> instructions;
+    private String name = "";
+    private List<Instruction> instructions = null;
 
     public BWClass() {
         this(null);
@@ -27,6 +27,18 @@ public class BWClass {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Instruction> getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(List<Instruction> instructions) {
+        this.instructions = instructions;
     }
 
     public BWObject instantiate() {

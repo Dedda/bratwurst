@@ -23,6 +23,8 @@ public class Patterns {
     public static final String CLASS_INSTANTIATION = "\\[(\\w+)\\]$";
     public static final String VARIABLE_DECLARATION = "^\\((\\w+)\\) <-- ((\\w+)|(" + FUNCTION_CALL + ")|(" + CLASS_INSTANTIATION + "))$";
 
+    public static final String NAMING = "^\\(CALL_ME_MAYBE\\) <-- \\w+$";
+
     public static final String INCLUDE = "^%(\\w+[\\w\\.]+)%$";
 
     public static final String PRINT = "^>([^>].*[^<])<$";
