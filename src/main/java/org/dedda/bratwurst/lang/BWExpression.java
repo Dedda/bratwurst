@@ -1,9 +1,7 @@
 package org.dedda.bratwurst.lang;
 
-import org.dedda.bratwurst.lang.object.BWObject;
-
 /**
- * Created by dedda on 9/25/15.
+ * Created by dedda on 13.10.15.
  *
  * @author dedda
  */

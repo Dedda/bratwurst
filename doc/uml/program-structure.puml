@@ -13,21 +13,33 @@ class BWVariable {
 class BWObject {
     - bwClass : BWClass
     - variables : BWVariable
+    - functions : BWFunction
 }
+
+class BWInteger
 
 class BWClass {
     - name : String
-    - functions : List<BWFunction>
+    - functionPrototypes : List<AbstractFunction>
+}
+
+abstract class AbstractFunction {
+    + {abstract} run()
 }
 
 class BWFunction {
     - name : String
+    --
+    + run()
 }
 
 class Program {
     - functions : List<BWFunction>
     - classes : List<BWClass>
     - variables : List<BWVariable>
+    - expressions : List<BWExpression>
+    --
+    + run()
 }
 
 
@@ -35,12 +47,15 @@ BWObject "n" --> "1" BWClass : has class >
 BWObject "1" *-- "n" BWVariable : > consists of
 BWObject "1" *-- "n" BWFunction : > consists of
 BWVariable "n" *-- "1" BWObject : > has value
-BWClass "1" <-- "n" BWFunction : > has prototypes
+BWClass "1" <-- "n" AbstractFunction : > has prototypes
 Program "1" --> "n" BWClass : > has registered
 Program "1" --> "n" BWFunction : > has registered
-Program "1" --> "n" BWVariable : > has registered
+Program "1" -left-> "n" BWVariable : > has registered
+BWInteger --|> BWObject
 
-BWFunction <|-- BWExpression
+
+AbstractFunction <|-- BWExpression
+BWFunction <|-- AbstractFunction
 Program "1" --* "n" BWExpression : > consists of
 
 @enduml

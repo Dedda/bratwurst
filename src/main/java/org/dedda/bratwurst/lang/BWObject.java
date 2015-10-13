@@ -5,13 +5,16 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class BWInteger extends BWObject {
+public class BWObject {
 
-    private int value;
+    private BWClass bwClass;
 
-    @Override
+    public BWClass getBwClass() {
+        return bwClass;
+    }
+
     public int getIntValue() {
-        return value;
+        return 0;
     }
 
 }
