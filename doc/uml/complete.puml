@@ -1,5 +1,70 @@
 @startuml
 
+abstract class AbstractFunction {
+    - name : String
+    - scope : String
+    + createFunction() : BWFunction
+    + createObjectFunction(BWObject) : BWObjectFunction
+}
+class AbstractVariable {
+    - name : String
+    - toEvaluate : BWExpression
+    + getVariable()
+}
+class BWClass {
+    - name : String
+    - functions : AbstractFunction[]
+    + BWObject : createInstance()
+}
+interface BWExpression {
+    + getValue() : BWObject
+    + getIntValue() : int
+    + getValueType() : String
+}
+interface BWInstruction {
+    + run(Scope)
+}
+class BWFunction {
+}
+class BWInteger {
+    - value : int
+}
+class BWObject {
+    - bwClass : BWClass
+    - variables : BWVariable[]
+    - functions : BWFunction[]
+    + callFunction(String) : BWObject
+}
+class BWObjectFunction {
+    - object : BWObject
+}
+class BWVariable {
+    - name : String
+    - value : BWObject
+    + getValue() : BWObject
+    + getIntValue() : int
+}
+class Calculation {
+    - leftSide : BWExpression
+    - rightSide : BWExpression
+}
+class Condition {
+    - toEvaluate : BWExpression
+    - trueInstructions : BWInstruction[]
+    - falseInstructions : BWInstruction[]
+}
+class Exit {
+}
+class Loop {
+    - toEvaluate : BWExpression
+    - instructions : BWInstruction[]
+}
+class PrintChar {
+    - charValue : int
+}
+class PrintVariable {
+    - variableName : String
+}
 class Program {
     - {static} instance : Program
     - functions : BWFunction[]
@@ -12,91 +77,14 @@ class Program {
     + callFunction(String)
     + run()
 }
-
 class Scope {
     - currentObject : BWObject
+    - arguments : BWVariable[]
     + isInObject()
 }
-
-interface BWInstruction {
-    + run(Scope)
-}
-
-interface BWExpression {
-    + getValue() : BWObject
-    + getIntValue() : int
-    + getValueType() : String
-}
-
-abstract class AbstractFunction {
-    - name : String
-    - scope : String
-    + createFunction() : BWFunction
-    + createObjectFunction(BWObject) : BWObjectFunction
-}
-
-class BWFunction {
-}
-
-class BWObjectFunction {
-    - object : BWObject
-}
-
-class BWClass {
-    - name : String
-    - functions : AbstractFunction[]
-    + BWObject : createInstance()
-}
-
-class BWObject {
-    - bwClass : BWClass
-    - variables : BWVariable[]
-    - functions : BWFunction[]
-    + callFunction(String) : BWObject
-}
-
-class BWVariable {
-    - name : String
-    - value : BWObject
-    + getValue() : BWObject
-    + getIntValue() : int
-}
-
-class BWInteger {
-    - value : int
-}
-
 class VariableDeclaration {
     - variableName : String
     - targetValue : BWExpression
-}
-
-class PrintVariable {
-    - variableName : String
-}
-
-class PrintChar {
-    - charValue : int
-}
-
-class Calculation {
-    - leftSide : BWExpression
-    - rightSide : BWExpression
-}
-
-class Exit {
-
-}
-
-class Condition {
-    - toEvaluate : BWExpression
-    - trueInstructions : BWInstruction[]
-    - falseInstructions : BWInstruction[]
-}
-
-class Loop {
-    - toEvaluate : BWExpression
-    - instructions : BWInstruction[]
 }
 
 Program --> BWFunction
@@ -105,6 +93,7 @@ Program --> BWVariable
 Program --> BWInstruction
 
 Scope --> BWObject
+Scope --> BWVariable
 
 BWClass --> AbstractFunction
 
@@ -115,7 +104,6 @@ BWObject --> BWVariable
 BWVariable --> BWObject
 
 VariableDeclaration --> BWExpression
-ObjectVariableDeclaration --> BWObject
 
 Calculation --> BWExpression
 
@@ -129,7 +117,8 @@ BWExpression ..|> BWInstruction
 AbstractFunction ..|> BWExpression
 BWFunction --|> AbstractFunction
 BWObjectFunction --|> BWFunction
-BWVariable ..|> BWExpression
+AbstractVariable ..|> BWExpression
+BWVariable --|> AbstractVariable
 BWInteger --|> BWVariable
 
 Calculation ..|> BWExpression
