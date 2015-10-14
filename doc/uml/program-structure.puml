@@ -1,5 +1,9 @@
 @startuml
 
+interface BWInstruction {
+    + run(Scope)
+}
+
 interface BWExpression {
     getValue() : BWObject
     getIntValue() : int
@@ -14,9 +18,12 @@ class BWObject {
     - bwClass : BWClass
     - variables : BWVariable
     - functions : BWFunction
+    + callFunction(String) : BWObject
 }
 
-class BWInteger
+class BWInteger {
+    - value : int
+}
 
 class BWClass {
     - name : String
@@ -34,11 +41,14 @@ class BWFunction {
 }
 
 class Program {
+    - {static} instance : Program
     - functions : List<BWFunction>
     - classes : List<BWClass>
     - variables : List<BWVariable>
     - expressions : List<BWExpression>
     --
+    - Program()
+    + {static} getInstance() : Program
     + run()
 }
 
@@ -53,9 +63,9 @@ Program "1" --> "n" BWFunction : > has registered
 Program "1" -left-> "n" BWVariable : > has registered
 BWInteger --|> BWObject
 
-
-AbstractFunction <|-- BWExpression
-BWFunction <|-- AbstractFunction
+BWExpression ..|> BWInstruction
+AbstractFunction ..|> BWExpression
+BWFunction --|> AbstractFunction
 Program "1" --* "n" BWExpression : > consists of
 
 @enduml

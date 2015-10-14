@@ -1,0 +1,79 @@
+@startuml
+
+interface BWInstruction {
+    + run()
+}
+
+interface BWExpression {
+    + getValue() : BWObject
+    + getIntValue() : int
+    + getValueType() : String
+}
+
+abstract class AbstractFunction {
+
+}
+
+class BWFunction {
+    - name : String
+    - instructions : BWInstruction[]
+    + run()
+}
+
+class BWObjectFunction {
+    - object : BWObject
+}
+
+class VariableDeclaration {
+    - variableName : String
+    - targetValue : BWExpression
+}
+
+class PrintVariable {
+    - variableName : String
+}
+
+class PrintChar {
+    - charValue : int
+}
+
+class Calculation {
+    - leftSide : BWExpression
+    - rightSide : BWExpression
+}
+
+class Exit {
+
+}
+
+class Condition {
+    - toEvaluate : BWExpression
+    - trueInstructions : BWInstruction[]
+    - falseInstructions : BWInstruction[]
+}
+
+class Loop {
+    - toEvaluate : BWExpression
+    - instructions : BWInstruction[]
+}
+
+BWExpression ..|> BWInstruction
+AbstractFunction ..|> BWExpression
+Calculation ..|> BWExpression
+Calculation --> BWExpression
+BWFunction --|> AbstractFunction
+BWObjectFunction --|> BWFunction
+VariableDeclaration ..|> BWInstruction
+PrintVariable ..|> BWInstruction
+PrintChar ..|> BWInstruction
+Exit ..|> BWInstruction
+Condition ..|> BWInstruction
+Loop ..|> BWInstruction
+
+BWFunction --> BWInstruction
+Condition --> BWExpression
+Condition --> BWInstruction
+Loop --> BWExpression
+Loop --> BWInstruction
+
+@enduml

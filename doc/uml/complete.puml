@@ -1,0 +1,144 @@
+@startuml
+
+class Program {
+    - {static} instance : Program
+    - functions : BWFunction[]
+    - classes : BWClass[]
+    - variables : BWVariable[]
+    - instructions : BWInstruction[]
+    --
+    - Program()
+    + {static} getInstance() : Program
+    + callFunction(String)
+    + run()
+}
+
+class Scope {
+    - currentObject : BWObject
+    + isInObject()
+}
+
+interface BWInstruction {
+    + run(Scope)
+}
+
+interface BWExpression {
+    + getValue() : BWObject
+    + getIntValue() : int
+    + getValueType() : String
+}
+
+abstract class AbstractFunction {
+    - name : String
+    - scope : String
+    + createFunction() : BWFunction
+    + createObjectFunction(BWObject) : BWObjectFunction
+}
+
+class BWFunction {
+}
+
+class BWObjectFunction {
+    - object : BWObject
+}
+
+class BWClass {
+    - name : String
+    - functions : AbstractFunction[]
+    + BWObject : createInstance()
+}
+
+class BWObject {
+    - bwClass : BWClass
+    - variables : BWVariable[]
+    - functions : BWFunction[]
+    + callFunction(String) : BWObject
+}
+
+class BWVariable {
+    - name : String
+    - value : BWObject
+    + getValue() : BWObject
+    + getIntValue() : int
+}
+
+class BWInteger {
+    - value : int
+}
+
+class VariableDeclaration {
+    - variableName : String
+    - targetValue : BWExpression
+}
+
+class PrintVariable {
+    - variableName : String
+}
+
+class PrintChar {
+    - charValue : int
+}
+
+class Calculation {
+    - leftSide : BWExpression
+    - rightSide : BWExpression
+}
+
+class Exit {
+
+}
+
+class Condition {
+    - toEvaluate : BWExpression
+    - trueInstructions : BWInstruction[]
+    - falseInstructions : BWInstruction[]
+}
+
+class Loop {
+    - toEvaluate : BWExpression
+    - instructions : BWInstruction[]
+}
+
+Program --> BWFunction
+Program --> BWClass
+Program --> BWVariable
+Program --> BWInstruction
+
+Scope --> BWObject
+
+BWClass --> AbstractFunction
+
+BWObject --> BWClass
+BWObject <--> BWObjectFunction
+BWObject --> BWVariable
+
+BWVariable --> BWObject
+
+VariableDeclaration --> BWExpression
+ObjectVariableDeclaration --> BWObject
+
+Calculation --> BWExpression
+
+Condition --> BWExpression
+Condition --> BWInstruction
+
+Loop --> BWExpression
+Loop --> BWInstruction
+
+BWExpression ..|> BWInstruction
+AbstractFunction ..|> BWExpression
+BWFunction --|> AbstractFunction
+BWObjectFunction --|> BWFunction
+BWVariable ..|> BWExpression
+BWInteger --|> BWVariable
+
+Calculation ..|> BWExpression
+
+VariableDeclaration ..|> BWInstruction
+PrintVariable ..|> BWInstruction
+PrintChar ..|> BWInstruction
+Exit ..|> BWInstruction
+Condition ..|> BWInstruction
+Loop ..|> BWInstruction
+
+@enduml

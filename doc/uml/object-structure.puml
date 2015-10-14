@@ -1,0 +1,56 @@
+@startuml
+
+interface BWInstruction {
+    + run()
+}
+
+interface BWExpression {
+    + getValue() : BWObject
+    + getIntValue() : int
+    + getValueType() : String
+}
+
+class BWClass {
+    - functions : AbstractFunction[]
+    + BWObject : createInstance()
+}
+
+class BWFunction {
+}
+
+class BWVariable {
+    - value : BWObject
+    + getValue() : BWObject
+    + getIntValue() : int
+}
+
+abstract class AbstractFunction {
+    - name : String
+    - scope : String
+    + createFunction() : BWFunction
+    + createObjectFunction(BWObject) : BWObjectFunction
+}
+
+class BWObjectFunction {
+    - object : BWObject
+}
+
+class BWObject {
+    - bwClass : BWClass
+    - variables : BWVariable[]
+    - functions : BWFunction[]
+    + callFunction(String) : BWObject
+}
+
+BWObject --> BWClass
+BWObject --> BWObjectFunction
+BWObject --> BWVariable
+BWFunction --|> AbstractFunction
+BWObjectFunction --|> BWFunction
+
+BWExpression ..|> BWInstruction
+AbstractFunction ..|> BWExpression
+
+BWClass --> AbstractFunction
+
+@enduml

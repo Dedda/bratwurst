@@ -1,0 +1,35 @@
+@startuml
+
+class Parser {
+    - file : File
+    - program : Program
+    + parse()
+}
+
+class BWClassParser {
+    + parse(String[], int, int) : BWClass
+}
+
+class Patterns {
+    + {static} BEGIN : String
+    + {static} END : String
+    + {static} CLASS_BEGIN : String
+    + {static} CLASS_END : String
+    + {static} FUNCTION_BEGIN : String
+    + {static} FUNCTION_END : String
+    + {static} FUNCTION_PARAM_FIRST : String
+    + {static} FUNCTION_PARAM_OTHERS : String
+    + {static} FUNCTION_CALL : String
+    + {static} CLASS_INSTANTIATION : String
+    + {static} VARIABLE_DECLARATION : String
+    + {static} NAMING : String
+    + {static} INCLUDE : String
+    + {static} PRINT : String
+    + {static} CONDITION_HEAD : String
+    + {static} CONDITION_SEPARATOR : String
+    + {static} CONDITION_END : String
+    + {static} LOOP_HEAD : String
+    + {static} LOOP_END : String
+}
+
+@enduml
