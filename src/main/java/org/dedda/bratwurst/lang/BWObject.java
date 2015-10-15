@@ -7,7 +7,7 @@ import java.util.Arrays;
  *
  * @author dedda
  */
-public class BWObject {
+public class BWObject extends BWExpression {
 
     private BWClass bwClass;
     private BWVariable[] variables;
@@ -49,4 +49,22 @@ public class BWObject {
     public void setVariables(BWVariable[] variables) {
         this.variables = variables;
     }
+
+    @Override
+    public BWObject getValue() {
+        return this;
+    }
+
+    @Override
+    public int getIntValue() {
+        return 0;
+    }
+
+    @Override
+    public String getValueType() {
+        return "object";
+    }
+
+    @Override
+    public void run(Scope scope) {}
 }

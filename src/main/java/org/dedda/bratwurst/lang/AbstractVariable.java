@@ -5,7 +5,7 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public abstract class AbstractVariable implements BWExpression {
+public abstract class AbstractVariable extends BWExpression {
 
     private String name;
     private BWExpression toEvaluate;

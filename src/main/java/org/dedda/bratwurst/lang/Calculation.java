@@ -5,7 +5,7 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class Calculation implements BWExpression {
+public class Calculation extends BWExpression {
 
     private BWExpression leftSide;
     private BWExpression rightSide;

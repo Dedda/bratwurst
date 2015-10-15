@@ -38,4 +38,15 @@ public class Scope {
         throw new UnsupportedOperationException();
     }
 
+    public BWVariable getVariable(final String variableName) {
+        BWVariable variable = null;
+        if (isInObject()) {
+            variable = Arrays.stream(currentObject.getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().get();
+        }
+        if (variable == null) {
+            variable = Arrays.stream(Program.getInstance().getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().get();
+        }
+        return variable;
+    }
+
 }

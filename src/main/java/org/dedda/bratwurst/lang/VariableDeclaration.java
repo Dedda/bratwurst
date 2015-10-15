@@ -7,10 +7,15 @@ import java.util.Arrays;
  *
  * @author dedda
  */
-public class VariableDeclaration implements BWInstruction {
+public class VariableDeclaration extends BWInstruction {
 
     private String variableName;
     private BWExpression targetValue;
+
+    public VariableDeclaration(String variableName, BWExpression targetValue) {
+        this.variableName = variableName;
+        this.targetValue = targetValue;
+    }
 
     @Override
     public void run(Scope scope) {

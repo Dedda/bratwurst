@@ -1,6 +1,8 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.lang.instruction.Print;
+import org.dedda.bratwurst.lang.BWInstruction;
+import org.dedda.bratwurst.lang.PrintChar;
+import org.dedda.bratwurst.lang.PrintVariable;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,14 +16,19 @@ import static org.dedda.bratwurst.parse.Patterns.PRINT;
  */
 public class PrintParser {
 
-    public Print parse(String line) {
+    public BWInstruction parse(String line) {
         Pattern pattern = Pattern.compile(PRINT);
         Matcher matcher = pattern.matcher(line);
         String message = "";
         if (matcher.find()) {
             message = matcher.group(1);
         }
-        return new Print(message);
+        if (message.length() == 1) {
+            return new PrintChar(message.charAt(0));
+        } else if (message.matches("^\\d+$")) {
+            return new PrintChar((char) Integer.parseInt(message));
+        }
+        return new PrintVariable(message);
     }
 
 }

@@ -5,7 +5,7 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class Exit implements BWInstruction {
+public class Exit extends BWInstruction {
 
     @Override
     public void run(Scope scope) {

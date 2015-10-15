@@ -1,19 +1,18 @@
 @startuml
 
-abstract class AbstractFunction {
+class FunctionFactory {
     - name : String
     - scope : String
     + createFunction() : BWFunction
-    + createObjectFunction(BWObject) : BWObjectFunction
 }
-abstract class AbstractVariable {
+class VariableFactory {
     - name : String
     - toEvaluate : BWExpression
     + getVariable()
 }
 class BWClass {
     - name : String
-    - functions : AbstractFunction[]
+    - functions : FunctionFactory[]
     + BWObject : createInstance()
 }
 interface BWExpression {
@@ -25,6 +24,7 @@ interface BWInstruction {
     + run(Scope)
 }
 class BWFunction {
+    - instructions : BWInstruction[]
 }
 class BWInteger {
     - value : int
@@ -34,9 +34,6 @@ class BWObject {
     - variables : BWVariable[]
     - functions : BWFunction[]
     + callFunction(String) : BWObject
-}
-class BWObjectFunction {
-    - object : BWObject
 }
 class BWString {
     - value : String
@@ -98,10 +95,9 @@ Program --> BWInstruction
 Scope --> BWObject
 Scope --> BWVariable
 
-BWClass --> AbstractFunction
+BWClass --> FunctionFactory
 
 BWObject --> BWClass
-BWObject <--> BWObjectFunction
 BWObject --> BWVariable
 
 BWVariable --> BWObject
@@ -117,11 +113,8 @@ Loop --> BWExpression
 Loop --> BWInstruction
 
 BWExpression ..|> BWInstruction
-AbstractFunction ..|> BWExpression
-BWFunction --|> AbstractFunction
-BWObjectFunction --|> BWFunction
-AbstractVariable ..|> BWExpression
-BWVariable --|> AbstractVariable
+BWFunction --|> BWExpression
+BWVariable --|> BWExpression
 BWInteger --|> BWObject
 BWString --|> BWObject
 
@@ -133,5 +126,10 @@ PrintChar ..|> BWInstruction
 Exit ..|> BWInstruction
 Condition ..|> BWInstruction
 Loop ..|> BWInstruction
+
+FunctionFactory --> BWFunction : creates >
+
+VariableFactory --> BWVariable : creates >
+VariableFactory --> BWObjectVariable : creates >
 
 @enduml

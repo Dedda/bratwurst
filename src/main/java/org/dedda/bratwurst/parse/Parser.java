@@ -1,14 +1,13 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.lang.BWClass;
+import org.dedda.bratwurst.lang.BWInstruction;
 import org.dedda.bratwurst.lang.Program;
-import org.dedda.bratwurst.lang.instruction.Print;
-import org.dedda.bratwurst.lang.instruction.RegisterClass;
-import org.dedda.bratwurst.lang.instruction.VariableDeclaration;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.dedda.bratwurst.parse.Patterns.PRINT;
 import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
@@ -33,6 +32,7 @@ public class Parser {
     }
 
     public Program parse() {
+        ArrayList<BWInstruction> instructions = new ArrayList<>();
         String sourceCode;
         try {
             sourceCode = getFileContents(this.sourceFile);
@@ -44,27 +44,14 @@ public class Parser {
         String lines[] = sourceCode.split("\n");
         while (currentLine < lines.length) {
             String line = lines[currentLine];
-            if (line.matches(Patterns.CLASS_BEGIN)) {
-                int end = getClassEndLine(lines, currentLine);
-                BWClass bwClass = new BWClassParser().parseClass(lines, currentLine);
-                RegisterClass instruction = new RegisterClass(bwClass);
-                Program.getInstance().addInstruction(instruction);
-                currentLine = end + 1;
-                continue;
-            }
-            if (line.matches(VARIABLE_DECLARATION)) {
-                VariableDeclaration declaration = new BWVariableParser().parseDeclaration(line);
-                Program.getInstance().addInstruction(declaration);
-                currentLine++;
-                continue;
-            }
             if (line.matches(PRINT)) {
-                Print print = new PrintParser().parse(line);
-                Program.getInstance().addInstruction(print);
+                BWInstruction print = new PrintParser().parse(line);
+                instructions.add(print);
                 currentLine++;
                 continue;
             }
         }
+        BWInstruction[] instructionsArray = (BWInstruction[]) instructions.toArray();
         return this.program;
     }
 

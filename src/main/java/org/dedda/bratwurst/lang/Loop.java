@@ -5,7 +5,7 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class Loop implements BWInstruction {
+public class Loop extends BWInstruction {
 
     private BWExpression toEvaluate;
 

@@ -5,7 +5,7 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class Condition implements BWInstruction {
+public class Condition extends BWInstruction {
 
     private BWExpression toEvaluate;
 

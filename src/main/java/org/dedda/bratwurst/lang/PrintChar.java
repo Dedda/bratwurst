@@ -5,7 +5,7 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class PrintChar implements BWInstruction {
+public class PrintChar extends BWInstruction {
 
     private char toPrint;
 
@@ -15,7 +15,7 @@ public class PrintChar implements BWInstruction {
 
     @Override
     public void run(Scope scope) {
-        System.out.println(toPrint);
+        System.out.print(toPrint);
     }
 
 }

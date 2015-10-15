@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.lang.AbstractFunction;
 import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.BWFunction;
 
@@ -18,7 +19,7 @@ public class BWClassParser extends Parser {
     }
 
     public BWClass parseClass(final String lines[], final int linenumber) {
-        BWClass bwClass = new BWClass();
+        String className = null;
         int lastLine = getClassEndLine(lines, linenumber);
         String classLines[] = new String[lastLine - linenumber + 1];
         for (int i = linenumber, k = 0; i <= lastLine; i++, k++) {
@@ -45,15 +46,15 @@ public class BWClassParser extends Parser {
                     inFunction = true;
                 }
                 if (line.matches(Patterns.NAMING)) {
-                    if (bwClass.getName().equals("")) {
-                        bwClass.setName(extractName(line));
+                    if (className == null) {
+                        className = extractName(line);
                     } else {
                         throw new RuntimeException("class already named");
                     }
                 }
             }
         }
-        return bwClass;
+        return new BWClass(className, new AbstractFunction[0]);
     }
 
     private String extractName(final String line) {
