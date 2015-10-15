@@ -1,7 +1,7 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.lang.BWClass;
-import org.dedda.bratwurst.lang.function.BWFunction;
+import org.dedda.bratwurst.lang.BWFunction;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -9,6 +9,6 @@ public class Exit implements BWInstruction {
 
     @Override
     public void run(Scope scope) {
-
+        System.exit(scope.getArguments().length > 0 ? scope.getArguments()[0].getIntValue() : 0);
     }
 }

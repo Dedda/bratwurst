@@ -7,8 +7,15 @@ package org.dedda.bratwurst.lang;
  */
 public class PrintChar implements BWInstruction {
 
+    private char toPrint;
+
+    public PrintChar(char toPrint) {
+        this.toPrint = toPrint;
+    }
+
     @Override
     public void run(Scope scope) {
-        
+        System.out.println(toPrint);
     }
+
 }

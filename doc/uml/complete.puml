@@ -6,7 +6,7 @@ abstract class AbstractFunction {
     + createFunction() : BWFunction
     + createObjectFunction(BWObject) : BWObjectFunction
 }
-class AbstractVariable {
+abstract class AbstractVariable {
     - name : String
     - toEvaluate : BWExpression
     + getVariable()
@@ -119,7 +119,7 @@ BWFunction --|> AbstractFunction
 BWObjectFunction --|> BWFunction
 AbstractVariable ..|> BWExpression
 BWVariable --|> AbstractVariable
-BWInteger --|> BWVariable
+BWInteger --|> BWObject
 
 Calculation ..|> BWExpression
 

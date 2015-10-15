@@ -7,6 +7,12 @@ package org.dedda.bratwurst.lang;
  */
 public abstract class AbstractVariable implements BWExpression {
 
+    private String name;
+    private BWExpression toEvaluate;
 
+    public BWVariable getVariable(Scope scope) {
+        toEvaluate.run(scope);
+        return new BWVariable(name, toEvaluate.getValue());
+    }
 
 }

@@ -1,18 +1,14 @@
 package org.dedda.bratwurst.lang;
 
 /**
- * Created by dedda on 10/14/15.
+ * Created by dedda on 10/15/15.
  *
  * @author dedda
  */
-public class BWObjectFunction extends BWFunction {
+public class Calculation implements BWExpression {
 
-    private BWObject object;
-
-    public BWObjectFunction(String name, BWInstruction[] instructions, BWObject object) {
-        super(name, instructions);
-        this.object = object;
-    }
+    private BWExpression leftSide;
+    private BWExpression rightSide;
 
     @Override
     public BWObject getValue() {

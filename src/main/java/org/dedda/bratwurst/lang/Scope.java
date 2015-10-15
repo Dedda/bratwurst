@@ -1,5 +1,7 @@
 package org.dedda.bratwurst.lang;
 
+import java.util.Arrays;
+
 /**
  * Created by dedda on 10/14/15.
  *
@@ -26,4 +28,14 @@ public class Scope {
     public BWVariable[] getArguments() {
         return arguments;
     }
+
+    public void registerVariable(BWVariable variable) {
+        if (isInObject()) {
+            currentObject.addVariable(variable);
+        } else {
+            Program.getInstance().registerVariable(variable);
+        }
+        throw new UnsupportedOperationException();
+    }
+
 }
