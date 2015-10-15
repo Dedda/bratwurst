@@ -1,5 +1,7 @@
 package org.dedda.bratwurst.lang;
 
+import java.util.Arrays;
+
 /**
  * Created by dedda on 10/14/15.
  *
@@ -32,5 +34,14 @@ public class BWObjectFunction extends BWFunction {
     @Override
     public void run(Scope scope) {
 
+    }
+
+    @Override
+    public BWObject substituteVariableName(String variableName) {
+        BWObject object = null;
+        if (Arrays.stream(object.getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().isPresent()) {
+            object = Arrays.stream(object.getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().get().getValue();
+        }
+        return object;
     }
 }

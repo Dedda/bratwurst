@@ -5,10 +5,10 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public interface BWExpression extends BWInstruction {
+public abstract class BWExpression extends BWInstruction {
 
-    BWObject getValue();
-    int getIntValue();
-    String getValueType();
+    public abstract BWObject getValue();
+    public abstract int getIntValue();
+    public abstract String getValueType();
 
 }

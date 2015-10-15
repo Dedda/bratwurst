@@ -38,6 +38,9 @@ class BWObject {
 class BWObjectFunction {
     - object : BWObject
 }
+class BWString {
+    - value : String
+}
 class BWVariable {
     - name : String
     - value : BWObject
@@ -120,6 +123,7 @@ BWObjectFunction --|> BWFunction
 AbstractVariable ..|> BWExpression
 BWVariable --|> AbstractVariable
 BWInteger --|> BWObject
+BWString --|> BWObject
 
 Calculation ..|> BWExpression
 

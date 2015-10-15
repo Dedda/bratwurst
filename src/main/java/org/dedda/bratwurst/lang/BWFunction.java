@@ -44,4 +44,5 @@ public class BWFunction extends AbstractFunction {
     public BWInstruction[] getInstructions() {
         return instructions;
     }
+
 }
