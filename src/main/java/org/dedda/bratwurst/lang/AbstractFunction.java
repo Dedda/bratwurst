@@ -5,7 +5,7 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public abstract class AbstractFunction extends BWExpression {
+public abstract class AbstractFunction {
 
     private String name;
     private String scope;

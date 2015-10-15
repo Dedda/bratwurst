@@ -27,7 +27,7 @@ public class Patterns {
 
     public static final String INCLUDE = "^%(\\w+[\\w\\.]+)%$";
 
-    public static final String PRINT = "^>([^>].*[^<])<$";
+    public static final String PRINT = "^>(.*)<$";
 
     public static final String CONDITION_HEAD = "^\\?\\((\\w+\\))>>$";
     public static final String CONDITION_SEPARATOR = "^<<$";

@@ -1,6 +1,5 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.BWInstruction;
 import org.dedda.bratwurst.lang.Program;
 
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.dedda.bratwurst.parse.Patterns.PRINT;
-import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
 
 /**
  * Created by dedda on 9/25/15.

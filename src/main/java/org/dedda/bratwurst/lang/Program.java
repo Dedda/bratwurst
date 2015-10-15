@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 /**
  * Created by dedda on 10/14/15.
+ *
+ * @author dedda
  */
 public class Program {
     private static Program instance = new Program();
@@ -16,8 +18,16 @@ public class Program {
     private BWClass[] classes;
     private BWVariable[] variables;
     private BWInstruction[] instructions;
+    private BWVariable[][] arguments;
 
     private Program() {
+
+    }
+
+    public void run() {
+        for (int i = 0; i < instructions.length; i++) {
+            instructions[i].run(new Scope(null, arguments[i]));
+        }
     }
 
     public BWObject callFunction(String functionName, BWVariable[] arguments) {
@@ -33,10 +43,6 @@ public class Program {
         Scope scope = new Scope(object, arguments);
         function.run(scope);
         return function.getValue();
-    }
-
-    public void run() {
-
     }
 
     public void registerVariable(BWVariable variable) {
@@ -73,5 +79,13 @@ public class Program {
 
     public void setInstructions(BWInstruction[] instructions) {
         this.instructions = instructions;
+    }
+
+    public BWVariable[][] getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(BWVariable[][] arguments) {
+        this.arguments = arguments;
     }
 }

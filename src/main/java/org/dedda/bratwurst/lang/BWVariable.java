@@ -5,7 +5,7 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class BWVariable extends AbstractVariable {
+public class BWVariable extends BWExpression {
 
     private String name;
     private BWObject value;

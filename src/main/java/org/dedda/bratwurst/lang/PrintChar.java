@@ -18,4 +18,7 @@ public class PrintChar extends BWInstruction {
         System.out.print(toPrint);
     }
 
+    public char getToPrint() {
+        return toPrint;
+    }
 }

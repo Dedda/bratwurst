@@ -7,9 +7,11 @@
 [...]                   Objekt von einer Klasse instanziieren
 ...{...}                Funktion einer Variabelen aufrufen
 {} @ x <-- 3 & y <-- 4  Parameter an funktion übergeben
-%...%                   Datei inkludieren. Enthaltener Code wird direkt ausgeführt
->...<                   Text ausgeben. Die übergebene Variable wird als ASCII-Zeichen ausgegeben
+>...<                   Text ausgeben. Die übergebene Variable wird als ASCII-Zeichen ausgegeben. Zahlen oder einzelne Zeichen werden als char ausgegeben.
 ?(...)>>...<<...|       Bedingung. Falls die Variable in den Klammern ungleich 0 evaluiert, wird der erste Block ausgeführt. Ansonsten der zweite
 /(...)...\              Wiederhole den Block so lange, bis der ausdruck nach dem '/' in der ersten Zeile zu 0 evaluiert
 + - * /                 Grundrechenarten
 ... -->                 Rückgabewert einer Funktion
+
+Nice to have:
+%...%                   Datei inkludieren. Enthaltener Code wird direkt ausgeführt

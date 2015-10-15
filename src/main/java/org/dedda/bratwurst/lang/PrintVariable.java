@@ -25,4 +25,8 @@ public class PrintVariable extends BWInstruction {
             System.out.print(character);
         }
     }
+
+    public String getVariableName() {
+        return variableName;
+    }
 }
