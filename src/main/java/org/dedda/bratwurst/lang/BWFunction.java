@@ -9,6 +9,7 @@ public class BWFunction extends BWExpression {
 
     private String name;
     private BWInstruction[] instructions;
+    private BWObject value = new BWInteger(0);
 
     public BWFunction(String name, BWInstruction[] instructions) {
         this.name = name;
@@ -17,22 +18,33 @@ public class BWFunction extends BWExpression {
 
     @Override
     public BWObject getValue() {
-        return null;
+        return value;
     }
 
     @Override
     public int getIntValue() {
-        return 0;
+        return value.getIntValue();
     }
 
     @Override
     public String getValueType() {
-        return null;
+        return value.getValueType();
     }
 
     @Override
     public void run(Scope scope) {
-
+        BWVariable[] arguments = scope.getArguments();
+        for (BWVariable variable : arguments) {
+            scope.registerVariable(variable);
+        }
+        for (int i = 0; i < instructions.length; i++) {
+            BWInstruction instruction = instructions[i];
+            instruction.run(scope);
+            if (instruction instanceof Return) {
+                value = ((Return) instruction).getValue();
+                break;
+            }
+        }
     }
 
     public String getName() {
