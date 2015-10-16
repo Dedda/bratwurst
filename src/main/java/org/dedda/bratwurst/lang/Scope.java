@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.lang;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * Created by dedda on 10/14/15.
@@ -35,13 +36,15 @@ public class Scope {
         } else {
             Program.getInstance().registerVariable(variable);
         }
-        throw new UnsupportedOperationException();
     }
 
     public BWVariable getVariable(final String variableName) {
         BWVariable variable = null;
         if (isInObject()) {
-            variable = Arrays.stream(currentObject.getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().get();
+            Optional<BWVariable> variableOptional = Arrays.stream(currentObject.getVariables()).filter(v -> v.getName().equals(variableName)).findFirst();
+            if (variableOptional.isPresent()) {
+                variable = variableOptional.get();
+            }
         }
         if (variable == null) {
             variable = Arrays.stream(Program.getInstance().getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().get();

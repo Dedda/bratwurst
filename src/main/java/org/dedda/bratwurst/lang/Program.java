@@ -1,6 +1,8 @@
 package org.dedda.bratwurst.lang;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by dedda on 10/14/15.
@@ -46,7 +48,10 @@ public class Program {
     }
 
     public void registerVariable(BWVariable variable) {
-
+        List<BWVariable> variableList = Arrays.stream(this.variables).collect(Collectors.toList());
+        variableList.add(variable);
+        this.variables = new BWVariable[variableList.size()];
+        variableList.toArray(this.variables);
     }
 
     public BWFunction[] getFunctions() {

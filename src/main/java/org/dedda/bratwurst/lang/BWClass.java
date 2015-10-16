@@ -2,6 +2,7 @@ package org.dedda.bratwurst.lang;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by dedda on 10/14/15.
@@ -39,6 +40,15 @@ public class BWClass {
         object.setFunctions(functions);
         object.setVariables(variables);
         return object;
+    }
+
+    public static BWClass getClassForName(String name) {
+        Optional<BWClass> classOptional = classes.stream().filter(c -> c.name.equals(name)).findFirst();
+        if (classOptional.isPresent()) {
+            return classOptional.get();
+        } else {
+            return new BWClass(name, new AbstractFunction[0]);
+        }
     }
 
 }

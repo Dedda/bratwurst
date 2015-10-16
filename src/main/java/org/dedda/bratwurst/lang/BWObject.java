@@ -1,6 +1,8 @@
 package org.dedda.bratwurst.lang;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by dedda on 10/14/15.
@@ -28,7 +30,10 @@ public class BWObject extends BWExpression {
     }
 
     public void addVariable(BWVariable variable) {
-
+        List<BWVariable> variableList = Arrays.stream(variables).collect(Collectors.toList());
+        variableList.add(variable);
+        variables = new BWVariable[variableList.size()];
+        variableList.toArray(variables);
     }
 
     public BWFunction[] getFunctions() {
