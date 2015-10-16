@@ -12,6 +12,12 @@ public class Condition extends BWInstruction {
     private BWInstruction[] trueInstructions;
     private BWInstruction[] falseInstructions;
 
+    public Condition(BWExpression toEvaluate, BWInstruction[] trueInstructions, BWInstruction[] falseInstructions) {
+        this.toEvaluate = toEvaluate;
+        this.trueInstructions = trueInstructions;
+        this.falseInstructions = falseInstructions;
+    }
+
     @Override
     public void run(Scope scope) {
         toEvaluate.run(scope);
@@ -23,11 +29,15 @@ public class Condition extends BWInstruction {
     }
 
     private void runTrue(Scope scope) {
-
+        for (int i = 0; i < trueInstructions.length; i++) {
+            trueInstructions[i].run(scope);
+        }
     }
 
     private void runFalse(Scope scope) {
-
+        for (int i = 0; i < falseInstructions.length; i++) {
+            falseInstructions[i].run(scope);
+        }
     }
 
 }
