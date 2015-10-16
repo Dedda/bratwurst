@@ -18,8 +18,14 @@ public class BWInteger extends BWObject {
         this.value = value;
     }
 
+    @Override
     public int getIntValue() {
         return value;
+    }
+
+    @Override
+    public String getValueType() {
+        return "integer";
     }
 
 }

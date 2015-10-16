@@ -21,4 +21,9 @@ public class BWString extends BWObject {
     public void setStringValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public String getValueType() {
+        return "string";
+    }
 }
