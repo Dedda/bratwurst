@@ -10,14 +10,17 @@ public class FunctionCall extends BWExpression {
     private String variableName = "";
     private String functionName;
     private BWObject value = new BWInteger(0);
+    private BWVariable[] functionArguments;
 
-    public FunctionCall(String functionName) {
+    public FunctionCall(String functionName, BWVariable[] functionArguments) {
         this.functionName = functionName;
+        this.functionArguments = functionArguments;
     }
 
-    public FunctionCall(String variableName, String functionName) {
+    public FunctionCall(String variableName, String functionName, BWVariable[] functionArguments) {
         this.variableName = variableName;
         this.functionName = functionName;
+        this.functionArguments = functionArguments;
     }
 
     @Override

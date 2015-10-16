@@ -8,7 +8,7 @@ import org.dedda.bratwurst.lang.VariableDeclaration;
  *
  * @author dedda
  */
-public class BWVariableParser {
+public class VariableDeclarationParser {
 
     public VariableDeclaration parseDeclaration(final String line) {
         VariableDeclaration declaration;
