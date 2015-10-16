@@ -54,9 +54,10 @@ public class Program {
         variables.stream().collect(Collectors.toList());
         Optional<BWVariable> variableOptional = variables.stream().filter(v -> v.getName().equals(variable.getName())).findFirst();
         if (variableOptional.isPresent()) {
-            variables.remove(variableOptional.get());
+            variableOptional.get().setValue(variable.getValue());
+        } else {
+            variables.add(variable);
         }
-        variables.add(variable);
     }
 
     public void registerClass(BWClass bwClass) {

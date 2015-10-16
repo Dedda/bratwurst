@@ -2,6 +2,7 @@ package org.dedda.bratwurst.lang;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +32,12 @@ public class BWObject extends BWExpression {
 
     public void addVariable(BWVariable variable) {
         List<BWVariable> variableList = Arrays.stream(variables).collect(Collectors.toList());
-        variableList.add(variable);
+        Optional<BWVariable> variableOptional = variableList.stream().filter(v -> v.getName().equals(variable.getName())).findFirst();
+        if (variableOptional.isPresent()) {
+            variableOptional.get().setValue(variable.getValue());
+        } else {
+            variableList.add(variable);
+        }
         variables = new BWVariable[variableList.size()];
         variableList.toArray(variables);
     }

@@ -1,6 +1,5 @@
 package org.dedda.bratwurst;
 
-import org.dedda.bratwurst.lang.AbstractFunction;
 import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.BWFunction;
 import org.dedda.bratwurst.lang.BWInstruction;
