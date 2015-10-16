@@ -64,7 +64,7 @@ public class BWFunctionTest {
     @Test
     public void testFunction() throws Exception {
         function.setArguments(arguments);
-        function.run(new Scope(null));
+        function.run(new Scope());
         assertEquals(expectedValue.getValueType(), function.getValueType());
         assertEquals(expectedValue.getIntValue(), function.getIntValue());
     }

@@ -16,7 +16,7 @@ public class ScopeTest {
 
     @Test
     public void testIsInObject() throws Exception {
-        Scope scope = new Scope(null);
+        Scope scope = new Scope();
         assertFalse(scope.isInObject());
         scope = new Scope(new BWObject(null, new BWVariable[0], new BWFunction[0]));
         assertTrue(scope.isInObject());
@@ -25,7 +25,7 @@ public class ScopeTest {
     @Test
     public void testRegisterVariable() throws Exception {
         Program.getInstance().setVariables(new ArrayList<>(Arrays.asList(new BWVariable[0])));
-        Scope scope = new Scope(null);
+        Scope scope = new Scope();
         scope.registerVariable(new BWVariable("testVar", new BWInteger(1)));
         assertEquals(1, Program.getInstance().getVariables().size());
         assertEquals(Program.getInstance().getVariables().get(0).getName(), "testVar");
@@ -46,7 +46,7 @@ public class ScopeTest {
                 new BWVariable("abc", new BWInteger(1)),
                 new BWVariable("def", new BWString("2"))
         })));
-        Scope scope = new Scope(null);
+        Scope scope = new Scope();
         assertEquals(1, scope.getVariable("abc").getIntValue());
         assertEquals("2", ((BWString) (scope.getVariable("def").getValue())).getStringValue());
 
