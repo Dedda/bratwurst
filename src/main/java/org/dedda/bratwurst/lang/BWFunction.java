@@ -5,7 +5,7 @@ package org.dedda.bratwurst.lang;
  *
  * @author dedda
  */
-public class BWFunction extends AbstractFunction {
+public class BWFunction extends BWExpression {
 
     private String name;
     private BWInstruction[] instructions;
@@ -35,12 +35,10 @@ public class BWFunction extends AbstractFunction {
 
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public BWInstruction[] getInstructions() {
         return instructions;
     }
