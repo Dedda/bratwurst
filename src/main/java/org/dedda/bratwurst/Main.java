@@ -10,7 +10,9 @@ import org.dedda.bratwurst.lang.*;
 public class Main {
 
     public static void main(String[] args) {
-        BWFunction[] functions = new BWFunction[1];
+        new TestProgram();
+        Program.getInstance().run();
+        /*BWFunction[] functions = new BWFunction[1];
         BWClass[] classes = new BWClass[0];
         BWVariable[] variables = new BWVariable[0];
         BWInstruction[] instructions = new BWInstruction[0];
@@ -24,7 +26,7 @@ public class Main {
         Program.getInstance().setClasses(classes);
         Program.getInstance().setVariables(variables);
         Program.getInstance().setInstructions(instructions);
-        Program.getInstance().run();
+        Program.getInstance().run();*/
     }
 
 }

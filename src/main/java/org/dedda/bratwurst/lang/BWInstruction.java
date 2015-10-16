@@ -16,8 +16,8 @@ public abstract class BWInstruction {
 
     public BWObject substituteVariableName(String variableName) {
         BWObject object = null;
-        if (Arrays.stream(Program.getInstance().getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().isPresent()) {
-            object = Arrays.stream(Program.getInstance().getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().get().getValue();
+        if (Program.getInstance().getVariable(variableName) != null) {
+            object = Program.getInstance().getVariable(variableName).getValue();
         }
         return object;
     }

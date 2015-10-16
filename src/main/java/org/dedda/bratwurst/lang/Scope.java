@@ -44,7 +44,7 @@ public class Scope {
             }
         }
         if (variable == null) {
-            variable = Arrays.stream(Program.getInstance().getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().get();
+            variable = Program.getInstance().getVariable(variableName);
         }
         return variable;
     }
@@ -75,6 +75,10 @@ public class Scope {
             throw new RuntimeException("function " + functionName + " not defined!");
         }
         return function;
+    }
+
+    public void registerClass(BWClass bwClass) {
+        Program.getInstance().registerClass(bwClass);
     }
 
 }

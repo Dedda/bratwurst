@@ -50,6 +50,8 @@ public class FunctionCall extends BWExpression {
         if (function == null) {
             throw new RuntimeException("function " + variableName + "." + functionName + " not set!");
         }
+        scope = new Scope(scope.getVariable(variableName).getValue());
+        function.setArguments(functionArguments);
         function.run(scope);
         value = function.getValue();
     }

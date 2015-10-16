@@ -1,7 +1,9 @@
 package org.dedda.bratwurst.lang;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -18,9 +20,9 @@ public class Program {
 
     private BWFunction[] functions = new BWFunction[0];
     private BWClass[] classes = new BWClass[0];
-    private BWVariable[] variables = new BWVariable[0];
+//    private BWVariable[] variables = new BWVariable[0];
+    private ArrayList<BWVariable> variables = new ArrayList<>();
     private BWInstruction[] instructions = new BWInstruction[0];
-    private BWVariable[][] arguments = new BWVariable[0][0];
 
     private Program() {
 
@@ -42,17 +44,28 @@ public class Program {
 
     public BWObject callVariableFunction(String variableName, String functionName, BWVariable[] arguments) {
         BWFunction function = Arrays.stream(functions).filter(f -> f.getName().equals(functionName)).findFirst().get();
-        BWObject object = Arrays.stream(variables).filter(o -> o.getName().equals(variableName)).findFirst().get().getValue();
+        BWObject object = variables.stream().filter(o -> o.getName().equals(variableName)).findFirst().get().getValue();
         Scope scope = new Scope(object);
         function.run(scope);
         return function.getValue();
     }
 
     public void registerVariable(BWVariable variable) {
-        List<BWVariable> variableList = Arrays.stream(this.variables).collect(Collectors.toList());
-        variableList.add(variable);
-        this.variables = new BWVariable[variableList.size()];
-        variableList.toArray(this.variables);
+        variables.stream().collect(Collectors.toList());
+        Optional<BWVariable> variableOptional = variables.stream().filter(v -> v.getName().equals(variable.getName())).findFirst();
+        if (variableOptional.isPresent()) {
+            variables.remove(variableOptional.get());
+        }
+        variables.add(variable);
+    }
+
+    public void registerClass(BWClass bwClass) {
+        List<BWClass> classList = Arrays.stream(Program.getInstance().getClasses()).collect(Collectors.toList());
+        if (classList.stream().filter(c -> c.name.equals(bwClass.name)).findFirst().isPresent()) {
+            throw new RuntimeException("Class " + bwClass.name + " already registered!");
+        }
+        classList.add(bwClass);
+        classList.toArray(classes);
     }
 
     public BWFunction[] getFunctions() {
@@ -71,14 +84,6 @@ public class Program {
         this.classes = classes;
     }
 
-    public BWVariable[] getVariables() {
-        return variables;
-    }
-
-    public void setVariables(BWVariable[] variables) {
-        this.variables = variables;
-    }
-
     public BWInstruction[] getInstructions() {
         return instructions;
     }
@@ -87,11 +92,19 @@ public class Program {
         this.instructions = instructions;
     }
 
-    public BWVariable[][] getArguments() {
-        return arguments;
+    public BWVariable getVariable(String name) {
+        Optional<BWVariable> variable = variables.stream().filter(v -> v.getName().equals(name)).findFirst();
+        if (variable.isPresent()) {
+            return variable.get();
+        }
+        throw new RuntimeException("Variable " + name + " does not exist!");
     }
 
-    public void setArguments(BWVariable[][] arguments) {
-        this.arguments = arguments;
+    public ArrayList<BWVariable> getVariables() {
+        return variables;
+    }
+
+    public void setVariables(ArrayList<BWVariable> variables) {
+        this.variables = variables;
     }
 }

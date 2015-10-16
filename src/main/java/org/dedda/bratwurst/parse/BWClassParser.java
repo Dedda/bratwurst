@@ -54,7 +54,7 @@ public class BWClassParser extends Parser {
                 }
             }
         }
-        return new BWClass(className, new AbstractFunction[0]);
+        return new BWClass(className, new BWFunction[0]);
     }
 
     private String extractName(final String line) {

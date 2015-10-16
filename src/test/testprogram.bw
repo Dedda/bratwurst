@@ -28,9 +28,13 @@
 (point1) <-- [Point]
 point1{setX} @ newX <-- 65
 point1{setY} @ newY <-- 66
->point1{getX}<
->point1{getY}<
+(x) <-- point1{getX}
+(y) <-- point1{getY}
+>x<
+>x<
 point1{setLocation} @ newX <-- 67 & newY <-- 68
->point1{getX}<
->point1{getY}<
+(x) <-- point1{getX}
+(y) <-- point1{getY}
+>x<
+>y<
 <==

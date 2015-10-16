@@ -11,6 +11,7 @@ import org.junit.runners.Parameterized.Parameters;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -57,7 +58,7 @@ public class PrintVariableTest {
         systemOut = System.out;
         System.setOut(new PrintStream(customOut));
         outputBuffer = "";
-        Program.getInstance().setVariables(new BWVariable[]{programVariable});
+        Program.getInstance().setVariables(new ArrayList<>(Arrays.asList(new BWVariable[]{programVariable})));
     }
 
     @After
