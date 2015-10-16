@@ -35,7 +35,9 @@ public class Calculation extends BWExpression {
 
     @Override
     public void run(Scope scope) {
+        leftSide.run(scope);
         int left = leftSide.getIntValue();
+        rightSide.run(scope);
         int right = rightSide.getIntValue();
         switch (operator) {
             case '+':

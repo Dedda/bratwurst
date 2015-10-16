@@ -1,7 +1,9 @@
 package org.dedda.bratwurst.lang;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by dedda on 10/14/15.
@@ -11,11 +13,9 @@ import java.util.Optional;
 public class Scope {
 
     private BWObject currentObject;
-    private BWVariable[] arguments;
 
-    public Scope(BWObject currentObject, BWVariable[] arguments) {
+    public Scope(BWObject currentObject) {
         this.currentObject = currentObject;
-        this.arguments = arguments;
     }
 
     public BWObject getCurrentObject() {
@@ -26,9 +26,6 @@ public class Scope {
         return currentObject != null;
     }
 
-    public BWVariable[] getArguments() {
-        return arguments;
-    }
 
     public void registerVariable(BWVariable variable) {
         if (isInObject()) {
@@ -50,6 +47,34 @@ public class Scope {
             variable = Arrays.stream(Program.getInstance().getVariables()).filter(v -> v.getName().equals(variableName)).findFirst().get();
         }
         return variable;
+    }
+
+    public BWFunction getFunction(String functionName) {
+        BWFunction function = null;
+        List<BWFunction> functionList = Arrays.stream(Program.getInstance().getFunctions()).collect(Collectors.toList());
+        if (isInObject()) {
+            Arrays.stream(currentObject.getFunctions()).forEach(f -> functionList.add(f));
+        }
+        Optional<BWFunction> functionOptional = functionList.stream().filter(f -> f.getName().equals(functionName)).findFirst();
+        if (functionOptional.isPresent()) {
+            function = functionOptional.get();
+        }
+        return function;
+    }
+
+    public BWFunction getFunction(String variableName, String functionName) {
+        BWFunction function = null;
+        BWVariable variable = getVariable(variableName);
+        if (variable == null) {
+            throw new RuntimeException("variable " + variableName + " not defined!");
+        }
+        Optional<BWFunction> functionOptional = Arrays.stream(variable.getValue().getFunctions()).filter(f -> f.getName().equals(functionName)).findFirst();
+        if (functionOptional.isPresent()) {
+            function = functionOptional.get();
+        } else {
+            throw new RuntimeException("function " + functionName + " not defined!");
+        }
+        return function;
     }
 
 }

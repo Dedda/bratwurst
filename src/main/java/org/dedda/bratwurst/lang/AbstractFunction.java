@@ -15,11 +15,6 @@ public abstract class AbstractFunction {
         return function;
     }
 
-    public BWObjectFunction createObjectFunction(final BWObject object) {
-        BWObjectFunction function = new BWObjectFunction(name, getInstructions(), object);
-        return function;
-    }
-
     public String getName() {
         return name;
     }

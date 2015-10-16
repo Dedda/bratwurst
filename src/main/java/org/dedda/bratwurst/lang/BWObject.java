@@ -13,9 +13,9 @@ public class BWObject extends BWExpression {
 
     private BWClass bwClass;
     private BWVariable[] variables;
-    private BWObjectFunction[] functions;
+    private BWFunction[] functions;
 
-    public BWObject(BWClass bwClass, BWVariable[] variables, BWObjectFunction[] functions) {
+    public BWObject(BWClass bwClass, BWVariable[] variables, BWFunction[] functions) {
         this.bwClass = bwClass;
         this.variables = variables;
         this.functions = functions;
@@ -42,12 +42,12 @@ public class BWObject extends BWExpression {
 
     public BWObject callFunction(String functionName, BWVariable[] arugments) {
         BWFunction function = Arrays.stream(functions).filter(f -> f.getName().equals(functionName)).findFirst().get();
-        Scope scope = new Scope(this, arugments);
+        Scope scope = new Scope(this);
         function.run(scope);
         return function.getValue();
     }
 
-    public void setFunctions(BWObjectFunction[] functions) {
+    public void setFunctions(BWFunction[] functions) {
         this.functions = functions;
     }
 

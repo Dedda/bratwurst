@@ -16,25 +16,26 @@ public class Program {
         return instance;
     }
 
-    private BWFunction[] functions;
-    private BWClass[] classes;
-    private BWVariable[] variables;
-    private BWInstruction[] instructions;
-    private BWVariable[][] arguments;
+    private BWFunction[] functions = new BWFunction[0];
+    private BWClass[] classes = new BWClass[0];
+    private BWVariable[] variables = new BWVariable[0];
+    private BWInstruction[] instructions = new BWInstruction[0];
+    private BWVariable[][] arguments = new BWVariable[0][0];
 
     private Program() {
 
     }
 
     public void run() {
+        Scope scope = new Scope(null);
         for (int i = 0; i < instructions.length; i++) {
-            instructions[i].run(new Scope(null, arguments[i]));
+            instructions[i].run(scope);
         }
     }
 
     public BWObject callFunction(String functionName, BWVariable[] arguments) {
         BWFunction function = Arrays.stream(functions).filter(f -> f.getName().equals(functionName)).findFirst().get();
-        Scope scope = new Scope(null, arguments);
+        Scope scope = new Scope(null);
         function.run(scope);
         return function.getValue();
     }
@@ -42,7 +43,7 @@ public class Program {
     public BWObject callVariableFunction(String variableName, String functionName, BWVariable[] arguments) {
         BWFunction function = Arrays.stream(functions).filter(f -> f.getName().equals(functionName)).findFirst().get();
         BWObject object = Arrays.stream(variables).filter(o -> o.getName().equals(variableName)).findFirst().get().getValue();
-        Scope scope = new Scope(object, arguments);
+        Scope scope = new Scope(object);
         function.run(scope);
         return function.getValue();
     }

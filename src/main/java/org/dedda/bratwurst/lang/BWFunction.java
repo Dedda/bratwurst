@@ -33,8 +33,7 @@ public class BWFunction extends BWExpression {
 
     @Override
     public void run(Scope scope) {
-        BWVariable[] arguments = scope.getArguments();
-        for (BWVariable variable : arguments) {
+        for (BWVariable variable : getArguments()) {
             scope.registerVariable(variable);
         }
         for (int i = 0; i < instructions.length; i++) {
@@ -54,5 +53,4 @@ public class BWFunction extends BWExpression {
     public BWInstruction[] getInstructions() {
         return instructions;
     }
-
 }

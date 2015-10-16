@@ -33,6 +33,9 @@ public class BWFunctionTest {
     @Parameter(1)
     public BWObject expectedValue;
 
+    @Parameter(2)
+    public BWVariable[] arguments;
+
     @Parameters
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
@@ -41,21 +44,28 @@ public class BWFunctionTest {
                             @Override
                             public void run(Scope scope) {}
                         }
-                }, new BWInteger(0)},
+                }, new BWInteger(0), new BWVariable[0]},
                 {new BWInstruction[] {
                         new BWInstruction() {
                             @Override
                             public void run(Scope scope) {}
                         }, new Return(new BWInteger(1))
-                }, new BWInteger(1)}
+                }, new BWInteger(1), new BWVariable[0]},
+                {new BWInstruction[] {
+                        new Return(
+                                new ReadVariable("a")
+                        )
+                }, new BWInteger(1), new BWVariable[]{
+                        new BWVariable("a", new BWInteger(1))
+                }}
         });
     }
 
     @Test
     public void testFunction() throws Exception {
-        function.run(new Scope(null, new BWVariable[0]));
+        function.setArguments(arguments);
+        function.run(new Scope(null));
         assertEquals(expectedValue.getValueType(), function.getValueType());
         assertEquals(expectedValue.getIntValue(), function.getIntValue());
     }
-
 }

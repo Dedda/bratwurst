@@ -27,15 +27,15 @@ public class BWClass {
     }
 
     public BWObject createInstance() {
-        BWObjectFunction[] functions = new BWObjectFunction[this.functions.length];
+        BWFunction[] functions = new BWFunction[this.functions.length];
         BWVariable[] variables = new BWVariable[this.variables.length];
         //TODO: init functions and variables
         BWObject object = new BWObject(this, variables, functions);
         for (int i = 0; i < functions.length; i++) {
-            functions[i] = this.functions[i].createObjectFunction(object);
+            functions[i] = this.functions[i].createFunction();
         }
         for (int i  = 0; i < variables.length; i++) {
-            variables[i] = this.variables[i].getVariable(new Scope(object, new BWVariable[0]));
+            variables[i] = this.variables[i].getVariable(new Scope(object));
         }
         object.setFunctions(functions);
         object.setVariables(variables);

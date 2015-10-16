@@ -36,9 +36,9 @@ public class PrintVariableTest {
     @Parameters
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][]{
-                {"A", new Scope(null, new BWVariable[0]), new BWVariable("testVar", new BWInteger('A'))},
-                {"Test", new Scope(null, new BWVariable[0]), new BWVariable("testVar", new BWString("Test"))},
-                {"" + (char) 0, new Scope(null, new BWVariable[0]), new BWVariable("testVar", new BWObject(null, null, null))}
+                {"A", new Scope(null), new BWVariable("testVar", new BWInteger('A'))},
+                {"Test", new Scope(null), new BWVariable("testVar", new BWString("Test"))},
+                {"" + (char) 0, new Scope(null), new BWVariable("testVar", new BWObject(null, null, null))}
 
         });
     }
