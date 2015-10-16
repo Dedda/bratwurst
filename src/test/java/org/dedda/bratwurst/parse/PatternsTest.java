@@ -43,6 +43,14 @@ public class PatternsTest {
                 {CONDITION_END, "|", true},
                 {LOOP_HEAD, "/(test)", true},
                 {LOOP_END, "\\", true},
+                {RETURN, "123 -->", true},
+                {RETURN, "abc -->", true},
+                {RETURN, "abc{def} @ test <-- 1 & test <-- 2 -->", true},
+                {CALCULATION, "123 + 456", true},
+                {CALCULATION, "abc - 456", true},
+                {CALCULATION, "abc * def", true},
+//                {CALCULATION, "abc{ghi} @ j <-- 1 & k <-- 2 / def", true},
+//                {CALCULATION, "abc{ghi} @ j <-- 1 & k <-- 2 / def{lmn} @ o <-- 1 & p <-- 2", true}
         });
     }
 
@@ -56,10 +64,8 @@ public class PatternsTest {
     @Test
     public void testPattern() {
         if (matches) {
-//            System.out.println("'" + text + "' should match pattern '" + pattern + "'");
             assertTrue(text.matches(pattern));
         } else {
-//            System.out.println("'" + text + "' should not match pattern '" + pattern + "'");
             assertFalse(text.matches(pattern));
         }
     }

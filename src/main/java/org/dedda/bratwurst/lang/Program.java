@@ -20,7 +20,6 @@ public class Program {
 
     private BWFunction[] functions = new BWFunction[0];
     private BWClass[] classes = new BWClass[0];
-//    private BWVariable[] variables = new BWVariable[0];
     private ArrayList<BWVariable> variables = new ArrayList<>();
     private BWInstruction[] instructions = new BWInstruction[0];
 
@@ -29,7 +28,7 @@ public class Program {
     }
 
     public void run() {
-        Scope scope = new Scope(null);
+        Scope scope = new Scope();
         for (int i = 0; i < instructions.length; i++) {
             instructions[i].run(scope);
         }
@@ -37,7 +36,7 @@ public class Program {
 
     public BWObject callFunction(String functionName, BWVariable[] arguments) {
         BWFunction function = Arrays.stream(functions).filter(f -> f.getName().equals(functionName)).findFirst().get();
-        Scope scope = new Scope(null);
+        Scope scope = new Scope();
         function.run(scope);
         return function.getValue();
     }

@@ -12,10 +12,24 @@ import java.util.stream.Collectors;
  */
 public class Scope {
 
-    private BWObject currentObject;
+    private BWObject currentObject = null;
+
+    private BWFunction currentFunction = null;
+
+    public Scope() {
+    }
 
     public Scope(BWObject currentObject) {
         this.currentObject = currentObject;
+    }
+
+    public Scope(BWFunction currentFunction) {
+        this.currentFunction = currentFunction;
+    }
+
+    public Scope(BWObject currentObject, BWFunction currentFunction) {
+        this.currentObject = currentObject;
+        this.currentFunction = currentFunction;
     }
 
     public BWObject getCurrentObject() {
@@ -26,27 +40,38 @@ public class Scope {
         return currentObject != null;
     }
 
+    public BWFunction getCurrentFunction() {
+        return currentFunction;
+    }
+
+    public boolean isInFunction() {
+        return currentFunction != null;
+    }
 
     public void registerVariable(BWVariable variable) {
         if (isInObject()) {
             currentObject.addVariable(variable);
+        } else if (isInFunction()) {
+            currentFunction.getVariables().add(variable);
         } else {
             Program.getInstance().registerVariable(variable);
         }
     }
 
     public BWVariable getVariable(final String variableName) {
-        BWVariable variable = null;
+        if (isInFunction()) {
+            Optional<BWVariable> variableOptional = currentFunction.getVariables().stream().filter(v -> v.getName().equals(variableName)).findFirst();
+            if (variableOptional.isPresent()) {
+                return variableOptional.get();
+            }
+        }
         if (isInObject()) {
             Optional<BWVariable> variableOptional = Arrays.stream(currentObject.getVariables()).filter(v -> v.getName().equals(variableName)).findFirst();
             if (variableOptional.isPresent()) {
-                variable = variableOptional.get();
+                return variableOptional.get();
             }
         }
-        if (variable == null) {
-            variable = Program.getInstance().getVariable(variableName);
-        }
-        return variable;
+        return Program.getInstance().getVariable(variableName);
     }
 
     public BWFunction getFunction(String functionName) {

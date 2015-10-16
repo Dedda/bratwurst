@@ -1,5 +1,9 @@
 package org.dedda.bratwurst.lang;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by dedda on 10/9/15.
  *
@@ -10,6 +14,7 @@ public class BWFunction extends BWExpression {
     private String name;
     private BWInstruction[] instructions;
     private BWObject value = new BWInteger(0);
+    private List<BWVariable> variables = new ArrayList<>();
 
     public BWFunction(String name, BWInstruction[] instructions) {
         this.name = name;
@@ -33,9 +38,8 @@ public class BWFunction extends BWExpression {
 
     @Override
     public void run(Scope scope) {
-        for (BWVariable variable : getArguments()) {
-            scope.registerVariable(variable);
-        }
+        variables.addAll(Arrays.asList(getArguments()));
+        scope = new Scope(scope.getCurrentObject(), this);
         for (int i = 0; i < instructions.length; i++) {
             BWInstruction instruction = instructions[i];
             instruction.run(scope);
@@ -52,5 +56,9 @@ public class BWFunction extends BWExpression {
 
     public BWInstruction[] getInstructions() {
         return instructions;
+    }
+
+    public List<BWVariable> getVariables() {
+        return variables;
     }
 }
