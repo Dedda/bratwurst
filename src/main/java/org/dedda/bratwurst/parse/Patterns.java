@@ -18,7 +18,8 @@ public class Patterns {
     public static final String FUNCTION_PARAM_FIRST = "@ (\\w+) <-- (\\w+)";
 
     public static final String FUNCTION_PARAM_OTHERS = "& (\\w+) <-- (\\w+)";
-    public static final String FUNCTION_CALL = "(\\w+)\\{(\\w+)\\}( " + FUNCTION_PARAM_FIRST + ")?( " + FUNCTION_PARAM_OTHERS + ")*$";
+    public static final String FUNCTION_CALL_NOT_TERMINAL = "(\\w+)\\{(\\w+)\\}( " + FUNCTION_PARAM_FIRST + ")?( " + FUNCTION_PARAM_OTHERS + ")*";
+    public static final String FUNCTION_CALL = FUNCTION_CALL_NOT_TERMINAL + "$";
 
     public static final String CLASS_INSTANTIATION = "\\[(\\w+)\\]$";
     public static final String VARIABLE_DECLARATION = "^\\((\\w+)\\) <-- ((\\w+)|(" + FUNCTION_CALL + ")|(" + CLASS_INSTANTIATION + "))$";
@@ -28,8 +29,8 @@ public class Patterns {
 
     public static final String PRINT = "^>(.*)<$";
 
-    public static final String CALCULATION = "((\\w+)|(" + FUNCTION_CALL + ")) [\\+\\-\\*\\/] (\\w+|(" + FUNCTION_CALL + "))";
-    public static final String RETURN = "^(\\w+|(" + FUNCTION_CALL.substring(0, FUNCTION_CALL.length()-1) + ")) -->$";
+    public static final String CALCULATION = "((\\w+)|(" + FUNCTION_CALL_NOT_TERMINAL + ")) [\\+\\-\\*\\/] (\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + "))";
+    public static final String RETURN = "^(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")) -->$";
 
     public static final String CONDITION_HEAD = "^\\?\\((\\w+\\))>>$";
     public static final String CONDITION_SEPARATOR = "^<<$";
