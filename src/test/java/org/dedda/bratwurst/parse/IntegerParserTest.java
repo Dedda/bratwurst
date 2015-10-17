@@ -28,7 +28,7 @@ public class IntegerParserTest {
         return Arrays.asList(new Object[][]{
                 {"0", 0},
                 {"10", 10},
-                {"12345", 12345}
+                {"-12345", -12345}
         });
     }
 

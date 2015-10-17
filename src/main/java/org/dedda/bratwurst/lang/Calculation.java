@@ -56,4 +56,16 @@ public class Calculation extends BWExpression {
                 throw new IllegalArgumentException("Operator " + operator + " not known!");
         }
     }
+
+    public char getOperator() {
+        return operator;
+    }
+
+    public BWExpression getLeftSide() {
+        return leftSide;
+    }
+
+    public BWExpression getRightSide() {
+        return rightSide;
+    }
 }
