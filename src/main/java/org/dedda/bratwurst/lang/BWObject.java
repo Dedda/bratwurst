@@ -13,12 +13,11 @@ import java.util.stream.Collectors;
 public class BWObject extends BWExpression {
 
     private BWClass bwClass;
-    private BWVariable[] variables;
+    private BWVariable[] variables = new BWVariable[0];
     private BWFunction[] functions;
 
-    public BWObject(BWClass bwClass, BWVariable[] variables, BWFunction[] functions) {
+    public BWObject(BWClass bwClass, BWFunction[] functions) {
         this.bwClass = bwClass;
-        this.variables = variables;
         this.functions = functions;
     }
 

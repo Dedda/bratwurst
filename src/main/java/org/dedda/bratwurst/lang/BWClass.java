@@ -15,7 +15,6 @@ public class BWClass {
 
     public final String name;
     public final BWFunction[] functions;
-    public AbstractVariable[] variables = new AbstractVariable[0];
 
     public BWClass(String name, BWFunction[] functions) {
         this.name = name;
@@ -27,12 +26,9 @@ public class BWClass {
     }
 
     public BWObject createInstance() {
-//        BWFunction[] functions = new BWFunction[this.functions.length];
-        BWVariable[] variables = new BWVariable[this.variables.length];
         //TODO: init functions and variables
-        BWObject object = new BWObject(this, variables, functions);
+        BWObject object = new BWObject(this, functions);
         object.setFunctions(functions);
-        object.setVariables(variables);
         return object;
     }
 

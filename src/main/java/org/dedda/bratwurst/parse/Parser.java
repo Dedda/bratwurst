@@ -60,8 +60,8 @@ public class Parser {
             if (instruction == null) {
                 System.out.println("not an instruction");
                 if (line.matches(CLASS_BEGIN)) {
-                    int end = classParser.getClassEndLine(lines, i);
-                    classes.add(classParser.parseClass(lines, i));
+                    int end = classParser.getEnd(lines, i);
+                    classes.add(classParser.parse(lines, i));
                     i = end;
                     continue;
                 }
@@ -92,36 +92,6 @@ public class Parser {
         char buffer[] = new char[(int) size];
         new FileReader(file).read(buffer);
         return new String(buffer);
-    }
-
-    public boolean isClassDeclaration(final String line) {
-        return false;
-    }
-
-    public int getClassEndLine(final String lines[], final int start) {
-        int breacketCounter = 0;
-        boolean classStarted = false;
-        for (int i = start; i < lines.length; i++) {
-            String line = lines[i].trim();
-            for (int k = 0; k < line.length(); k++) {
-                if (line.charAt(k) == '[') {
-                    breacketCounter++;
-                    if (k > 0 && line.charAt(k-1) == '#') {
-                        classStarted = true;
-                    }
-                } else if (line.charAt(k) == ']') {
-                    breacketCounter--;
-                    if (breacketCounter == 0 && classStarted) {
-                        return i;
-                    }
-                }
-            }
-        }
-        return -1;
-    }
-
-    public boolean isFunctionDeclaration(final String line) {
-        return false;
     }
 
 }

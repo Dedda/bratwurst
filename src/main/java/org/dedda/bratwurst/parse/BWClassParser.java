@@ -1,68 +1,57 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.lang.AbstractFunction;
 import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.BWFunction;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.dedda.bratwurst.parse.Patterns.CLASS_END;
+import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
+import static org.dedda.bratwurst.parse.Patterns.NAMING;
+import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
+
 /**
  * Created by dedda on 9/25/15.
  *
  * @author dedda
  */
-public class BWClassParser extends Parser {
+public class BWClassParser {
 
-    public BWClassParser() {
-        super(null);
-    }
-
-    public BWClass parseClass(final String lines[], final int linenumber) {
-        String className = null;
-        int lastLine = getClassEndLine(lines, linenumber);
-        String classLines[] = new String[lastLine - linenumber + 1];
-        for (int i = linenumber, k = 0; i <= lastLine; i++, k++) {
-            classLines[k] = lines[i];
+    public BWClass parse(String[] lines, int begin) {
+        int end = getEnd(lines, begin);
+        for (int i = 0; i < lines.length; i++) {
+            lines[i] = lines[i].trim();
         }
-        boolean inFunction = false;
-        List<String> functionLines = new LinkedList<>();
+        String className = null;
         List<BWFunction> functions = new LinkedList<>();
-        for (int i = 0; i < classLines.length; i++) {
-            String line = classLines[i];
-            if (inFunction) {
-                if (line.matches(Patterns.FUNCTION_BEGIN)) {
-                    throw new RuntimeException("function declaration inside function!");
-                }
-                if (line.matches(Patterns.FUNCTION_END)) {
-                    BWFunction function = createFunction(functionLines);
-                    functions.add(function);
-                    inFunction = false;
-                    continue;
-                }
-                functionLines.add(line);
-            } else {
-                if (line.matches(Patterns.FUNCTION_BEGIN)) {
-                    inFunction = true;
-                }
-                if (line.matches(Patterns.NAMING)) {
-                    if (className == null) {
-                        className = extractName(line);
-                    } else {
-                        throw new RuntimeException("class already named");
-                    }
-                }
+        BWFunctionParser functionParser = new BWFunctionParser();
+        for (int i = 0; i < end; i++) {
+            String line = lines[i];
+            if (line.matches(NAMING)) {
+                className = line.split(" ")[2];
+                continue;
+            }
+            if (line.matches(FUNCTION_BEGIN)) {
+                functions.add(functionParser.parse(lines, i));
+                int functionEnd = functionParser.getEndOfFunction(lines, i);
+                i = functionEnd;
+                continue;
             }
         }
-        return new BWClass(className, new BWFunction[0]);
-    }
-
-    private String extractName(final String line) {
-        return line.split(" ")[2];
-    }
-
-    private BWFunction createFunction(final List<String> lines) {
+        if (className == null) {
+            throw new RuntimeException("class name not found!");
+        }
         return null;
+    }
+
+    public int getEnd(String[] lines, int begin) {
+        for (int i = begin; i < lines.length; i++) {
+            if (lines[i].trim().matches(CLASS_END)) {
+                return i;
+            }
+        }
+        throw new RuntimeException("no class end found!");
     }
 
 }

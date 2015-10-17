@@ -1,8 +1,6 @@
 ==>
 #[
     (CALL_ME_MAYBE) <-- Point
-    (x) <-- 0
-    (y) <-- 0
     ~{
         (CALL_ME_MAYBE) <-- setX
         (x) <-- newX

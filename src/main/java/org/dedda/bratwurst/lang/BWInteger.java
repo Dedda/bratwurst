@@ -10,7 +10,7 @@ public class BWInteger extends BWObject {
     private int value;
 
     public BWInteger(int value) {
-        super(BWClass.getClassForName("integer"), new BWVariable[0], new BWFunction[0]);
+        super(BWClass.getClassForName("integer"), new BWFunction[0]);
         this.value = value;
     }
 

@@ -39,7 +39,7 @@ public class PrintVariableTest {
         return Arrays.asList(new Object[][]{
                 {"A", new Scope(), new BWVariable("testVar", new BWInteger('A'))},
                 {"Test", new Scope(), new BWVariable("testVar", new BWString("Test"))},
-                {"" + (char) 0, new Scope(), new BWVariable("testVar", new BWObject(null, null, null))}
+                {"" + (char) 0, new Scope(), new BWVariable("testVar", new BWObject(null, null))}
 
         });
     }

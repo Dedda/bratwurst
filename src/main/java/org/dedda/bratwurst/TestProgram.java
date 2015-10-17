@@ -26,8 +26,8 @@ import java.io.File;
 public class TestProgram {
 
     public TestProgram() {
-//        Program.getInstance().setInstructions(getInstructions());
-        getParsedInstructions();
+        Program.getInstance().setInstructions(getInstructions());
+//        getParsedInstructions();
     }
 
     private void getParsedInstructions() {
