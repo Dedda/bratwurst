@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import com.sun.org.apache.bcel.internal.generic.Instruction;
 import org.dedda.bratwurst.lang.BWInstruction;
 import org.dedda.bratwurst.lang.Program;
 
@@ -8,6 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static org.dedda.bratwurst.parse.Patterns.CLASS_BEGIN;
+import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.PRINT;
 
 /**
@@ -29,28 +32,25 @@ public class Parser {
         this.program = program;
     }
 
-    public Program parse() {
-        ArrayList<BWInstruction> instructions = new ArrayList<>();
-        String sourceCode;
+    public void parse() {
+        String[] lines;
         try {
-            sourceCode = getFileContents(this.sourceFile);
+            lines = getFileContents(sourceFile).split("\n");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("can't load source file!", e);
         }
+        InstructionParser instructionParser = new InstructionParser();
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i];
+            BWInstruction instruction = instructionParser.parse(line);
+            if (instruction == null) {
+                if (line.matches(FUNCTION_BEGIN)) {
 
-        int currentLine = 0;
-        String lines[] = sourceCode.split("\n");
-        while (currentLine < lines.length) {
-            String line = lines[currentLine];
-            if (line.matches(PRINT)) {
-                BWInstruction print = new PrintParser().parse(line);
-                instructions.add(print);
-                currentLine++;
-                continue;
+                }
+                // TODO: not an instruction
             }
         }
-        BWInstruction[] instructionsArray = (BWInstruction[]) instructions.toArray();
-        return this.program;
+
     }
 
     private String getFileContents(final File file) throws IOException {
@@ -58,25 +58,6 @@ public class Parser {
         char buffer[] = new char[(int) size];
         new FileReader(file).read(buffer);
         return new String(buffer);
-    }
-
-    public boolean isInstruction(final String line) {
-        return true;
-    }
-
-    public boolean isVariableDeclaration(final String line) {
-        String trimmed = line;
-        String split[] = trimmed.split(" ");
-        if (!split[0].matches("\\((w+)\\)")) {
-            return false;
-        }
-        if (!split[1].equals("<--")) {
-            return false;
-        }
-        if (split.length < 3) {
-            return false;
-        }
-        return true;
     }
 
     public boolean isClassDeclaration(final String line) {
