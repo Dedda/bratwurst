@@ -10,6 +10,10 @@ import org.dedda.bratwurst.lang.BWExpression;
 public class ExpressionParser {
 
     public BWExpression parse(String data) {
+        data = data.trim();
+        if (data.matches("\\d*")) {
+            return new IntegerParser().parse(data);
+        }
         return null;
     }
 

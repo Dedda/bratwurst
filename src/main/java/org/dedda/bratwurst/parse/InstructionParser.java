@@ -2,6 +2,7 @@ package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.lang.BWInstruction;
 
+import static org.dedda.bratwurst.parse.Patterns.END;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_CALL;
 import static org.dedda.bratwurst.parse.Patterns.PRINT;
 import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
@@ -20,9 +21,10 @@ public class InstructionParser {
             return new VariableDeclarationParser().parseDeclaration(line);
         } else if (line.matches(PRINT)) {
             return new PrintParser().parse(line);
-        } else {
-            return null;
+        } else if (line.matches(END)) {
+            return new ExitParser().parse(line);
         }
+        return null;
     }
 
 }

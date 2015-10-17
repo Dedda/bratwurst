@@ -21,7 +21,7 @@ public class BWFunctionParser {
      *
      * @param lines Lines of code which also contain the code for the function to parse.
      * @param begin Index of the line that indicates the beginning of the function (~{).
-     * @return
+     * @return Parsed {@link BWFunction}
      */
     public BWFunction parse(String[] lines, int begin) {
         if (!lines[begin].matches(FUNCTION_BEGIN)) {

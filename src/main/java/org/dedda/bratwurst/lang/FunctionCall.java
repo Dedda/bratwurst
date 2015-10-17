@@ -10,17 +10,16 @@ public class FunctionCall extends BWExpression {
     private String variableName = "";
     private String functionName;
     private BWObject value = new BWInteger(0);
-    private BWVariable[] functionArguments;
 
     public FunctionCall(String functionName, BWVariable[] functionArguments) {
         this.functionName = functionName;
-        this.functionArguments = functionArguments;
+        setArguments(functionArguments);
     }
 
     public FunctionCall(String variableName, String functionName, BWVariable[] functionArguments) {
         this.variableName = variableName;
         this.functionName = functionName;
-        this.functionArguments = functionArguments;
+        setArguments(functionArguments);
     }
 
     @Override
@@ -51,7 +50,7 @@ public class FunctionCall extends BWExpression {
             throw new RuntimeException("function " + variableName + "." + functionName + " not set!");
         }
         scope = new Scope(scope.getVariable(variableName).getValue());
-        function.setArguments(functionArguments);
+        function.setArguments(getArguments());
         function.run(scope);
         value = function.getValue();
     }

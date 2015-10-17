@@ -28,13 +28,13 @@
 (point1) <-- [Point]
 point1{setX} @ newX <-- 65
 point1{setY} @ newY <-- 66
-(x) <-- point1{getX}
-(y) <-- point1{getY}
->x<
->x<
+(px) <-- point1{getX}
+(py) <-- point1{getY}
+>px<
+>px<
 point1{setLocation} @ newX <-- 67 & newY <-- 68
-(x) <-- point1{getX}
-(y) <-- point1{getY}
->x<
->y<
+(px) <-- point1{getX}
+(py) <-- point1{getY}
+>px<
+>py<
 <==

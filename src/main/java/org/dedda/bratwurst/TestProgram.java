@@ -14,6 +14,9 @@ import org.dedda.bratwurst.lang.Program;
 import org.dedda.bratwurst.lang.ReadVariable;
 import org.dedda.bratwurst.lang.Return;
 import org.dedda.bratwurst.lang.VariableDeclaration;
+import org.dedda.bratwurst.parse.Parser;
+
+import java.io.File;
 
 /**
  * Created by dedda on 10/16/15.
@@ -23,7 +26,16 @@ import org.dedda.bratwurst.lang.VariableDeclaration;
 public class TestProgram {
 
     public TestProgram() {
-        Program.getInstance().setInstructions(getInstructions());
+//        Program.getInstance().setInstructions(getInstructions());
+        getParsedInstructions();
+    }
+
+    private void getParsedInstructions() {
+        Parser parser = new Parser(new File("src/test/testprogram.bw"));
+        parser.parse();
+        System.out.println(Program.getInstance().getInstructions().length);
+        System.out.println(Program.getInstance().getFunctions().length);
+        System.out.println(Program.getInstance().getClasses().length);
     }
 
     private BWInstruction[] getInstructions() {

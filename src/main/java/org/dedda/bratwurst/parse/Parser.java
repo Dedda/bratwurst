@@ -1,6 +1,8 @@
 package org.dedda.bratwurst.parse;
 
 import com.sun.org.apache.bcel.internal.generic.Instruction;
+import org.dedda.bratwurst.lang.BWClass;
+import org.dedda.bratwurst.lang.BWFunction;
 import org.dedda.bratwurst.lang.BWInstruction;
 import org.dedda.bratwurst.lang.Program;
 
@@ -8,8 +10,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.dedda.bratwurst.parse.Patterns.CLASS_BEGIN;
+import static org.dedda.bratwurst.parse.Patterns.END;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.PRINT;
 
@@ -39,18 +44,47 @@ public class Parser {
         } catch (IOException e) {
             throw new RuntimeException("can't load source file!", e);
         }
+        for (int i = 0; i < lines.length; i++) {
+            lines[i] = lines[i].trim();
+        }
+        List<BWInstruction> instructions = new LinkedList<>();
+        List<BWFunction> functions = new LinkedList<>();
+        List<BWClass> classes = new LinkedList<>();
         InstructionParser instructionParser = new InstructionParser();
+        BWFunctionParser functionParser = new BWFunctionParser();
+        BWClassParser classParser = new BWClassParser();
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
+            System.out.println("line: " + line);
             BWInstruction instruction = instructionParser.parse(line);
             if (instruction == null) {
-                if (line.matches(FUNCTION_BEGIN)) {
-
+                System.out.println("not an instruction");
+                if (line.matches(CLASS_BEGIN)) {
+                    int end = classParser.getClassEndLine(lines, i);
+                    classes.add(classParser.parseClass(lines, i));
+                    i = end;
+                    continue;
                 }
-                // TODO: not an instruction
+                if (line.matches(FUNCTION_BEGIN)) {
+                    int end = functionParser.getEndOfFunction(lines, i);
+                    functions.add(functionParser.parse(lines, i));
+                    i = end;
+                    continue;
+                }
+            } else {
+                System.out.println("is instruction of type: " + instruction.getClass());
+                instructions.add(instruction);
             }
         }
-
+        BWInstruction[] instructionsArray = new BWInstruction[instructions.size()];
+        instructions.toArray(instructionsArray);
+        BWFunction[] functionsArray = new BWFunction[functions.size()];
+        functions.toArray(functionsArray);
+        BWClass[] classesArray = new BWClass[classes.size()];
+        classes.toArray(classesArray);
+        Program.getInstance().setInstructions(instructionsArray);
+        Program.getInstance().setFunctions(functionsArray);
+        Program.getInstance().setClasses(classesArray);
     }
 
     private String getFileContents(final File file) throws IOException {

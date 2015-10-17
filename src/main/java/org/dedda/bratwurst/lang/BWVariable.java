@@ -8,11 +8,17 @@ package org.dedda.bratwurst.lang;
 public class BWVariable extends BWExpression {
 
     private String name;
-    private BWObject value;
+    private BWObject value = null;
+    private BWExpression expression = null;
 
     public BWVariable(String name, BWObject value) {
         this.name = name;
         this.value = value;
+    }
+
+    public BWVariable(String name, BWExpression expression) {
+        this.name = name;
+        this.expression = expression;
     }
 
     public String getName() {
@@ -37,5 +43,10 @@ public class BWVariable extends BWExpression {
     }
 
     @Override
-    public void run(Scope scope) {}
+    public void run(Scope scope) {
+        if (expression != null) {
+            expression.run(scope);
+            value = expression.getValue();
+        }
+    }
 }

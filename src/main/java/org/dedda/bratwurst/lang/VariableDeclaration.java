@@ -1,7 +1,5 @@
 package org.dedda.bratwurst.lang;
 
-import java.util.Arrays;
-
 /**
  * Created by dedda on 10/15/15.
  *
@@ -23,5 +21,13 @@ public class VariableDeclaration extends BWInstruction {
         BWObject value = targetValue.getValue();
         BWVariable variable = new BWVariable(variableName, value);
         scope.registerVariable(variable);
+    }
+
+    public String getVariableName() {
+        return variableName;
+    }
+
+    public BWExpression getTargetValue() {
+        return targetValue;
     }
 }

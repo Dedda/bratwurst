@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.lang.BWExpression;
 import org.dedda.bratwurst.lang.BWInteger;
 import org.dedda.bratwurst.lang.VariableDeclaration;
 
@@ -13,11 +14,10 @@ public class VariableDeclarationParser {
     public VariableDeclaration parseDeclaration(final String line) {
         VariableDeclaration declaration;
         String[] split = line.split(" ");
-        if (split[2].matches("(\\d+)")) {
-            declaration = new VariableDeclaration(split[0], new BWInteger(Integer.parseInt(split[2])));
-        } else {
-            declaration = null;
-        }
+        String variableName = split[0].substring(1, split[0].length()-1);
+        String expressionString = split[2];
+        BWExpression expression = new ExpressionParser().parse(expressionString);
+        declaration = new VariableDeclaration(variableName, expression);
         return declaration;
     }
 
