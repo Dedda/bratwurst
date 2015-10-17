@@ -24,9 +24,6 @@ public class BWFunctionParser {
      * @return
      */
     public BWFunction parse(String[] lines, int begin) {
-        if (begin > lines.length-2) {
-            throw new RuntimeException("function declaration to close to end of lines!");
-        }
         if (!lines[begin].matches(FUNCTION_BEGIN)) {
             throw new RuntimeException("invalid function begin, no head found!");
         }

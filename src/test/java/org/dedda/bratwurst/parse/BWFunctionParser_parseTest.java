@@ -33,7 +33,26 @@ public class BWFunctionParser_parseTest {
                         "test -->",
                         "}",
                         "<=="
-                }, 1, null, "testFunc", 1}
+                }, 1, null, "testFunc", 1},
+                {new String[]{
+                        "==>",
+                        "~{",
+                        "test -->",
+                        "}",
+                        "<=="
+                }, 1, "function name not defined!", null, 0},
+                {new String[]{
+                        "==>",
+                        "~{",
+                        "}",
+                        "<=="
+                }, 0, "invalid function begin, no head found!", null, 0},
+                {new String[]{
+                        "==>",
+                        "~{",
+                        "test -->",
+                        "<=="
+                }, 1, "End of method not found!", null, 0}
         });
     }
 
