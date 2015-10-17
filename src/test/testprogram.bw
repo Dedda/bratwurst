@@ -29,7 +29,7 @@ point1{setY} @ newY <-- 66
 (px) <-- point1{getX}
 (py) <-- point1{getY}
 >px<
->px<
+>py<
 point1{setLocation} @ newX <-- 67 & newY <-- 68
 (px) <-- point1{getX}
 (py) <-- point1{getY}

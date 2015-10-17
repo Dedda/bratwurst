@@ -17,6 +17,8 @@ public class ExpressionParser {
         data = data.trim();
         if (data.matches("-?\\d*")) {
             return new IntegerParser().parse(data);
+        } else if (data.matches("\\w+")) {
+            return new ReadVariableParser().parse(data);
         } else if (data.matches(CALCULATION)) {
             return new CalculationParser().parse(data);
         } else if (data.matches(FUNCTION_CALL_NOT_TERMINAL)) {

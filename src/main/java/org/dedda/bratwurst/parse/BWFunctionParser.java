@@ -9,6 +9,7 @@ import java.util.List;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_END;
 import static org.dedda.bratwurst.parse.Patterns.NAMING;
+import static org.dedda.bratwurst.parse.Patterns.RETURN;
 
 /**
  * Created by dedda on 10/17/15.

@@ -34,21 +34,6 @@ public class Program {
         }
     }
 
-    public BWObject callFunction(String functionName, BWVariable[] arguments) {
-        BWFunction function = Arrays.stream(functions).filter(f -> f.getName().equals(functionName)).findFirst().get();
-        Scope scope = new Scope();
-        function.run(scope);
-        return function.getValue();
-    }
-
-    public BWObject callVariableFunction(String variableName, String functionName, BWVariable[] arguments) {
-        BWFunction function = Arrays.stream(functions).filter(f -> f.getName().equals(functionName)).findFirst().get();
-        BWObject object = variables.stream().filter(o -> o.getName().equals(variableName)).findFirst().get().getValue();
-        Scope scope = new Scope(object);
-        function.run(scope);
-        return function.getValue();
-    }
-
     public void registerVariable(BWVariable variable) {
         variables.stream().collect(Collectors.toList());
         Optional<BWVariable> variableOptional = variables.stream().filter(v -> v.getName().equals(variable.getName())).findFirst();

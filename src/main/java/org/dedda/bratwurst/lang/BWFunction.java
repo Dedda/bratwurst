@@ -40,6 +40,9 @@ public class BWFunction extends BWExpression {
     public void run(Scope scope) {
         variables.addAll(Arrays.asList(getArguments()));
         scope = new Scope(scope.getCurrentObject(), this);
+        for (BWVariable argument : getArguments()) {
+            argument.run(scope);
+        }
         for (int i = 0; i < instructions.length; i++) {
             BWInstruction instruction = instructions[i];
             instruction.run(scope);

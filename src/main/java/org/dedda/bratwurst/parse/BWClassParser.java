@@ -42,7 +42,9 @@ public class BWClassParser {
         if (className == null) {
             throw new RuntimeException("class name not found!");
         }
-        return null;
+        BWFunction[] functionsArray = new BWFunction[functions.size()];
+        functions.toArray(functionsArray);
+        return new BWClass(className, functionsArray);
     }
 
     public int getEnd(String[] lines, int begin) {
