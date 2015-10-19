@@ -14,10 +14,6 @@ public class BWInteger extends BWObject {
         this.value = value;
     }
 
-    public void setIntValue(int value) {
-        this.value = value;
-    }
-
     @Override
     public int getIntValue() {
         return value;

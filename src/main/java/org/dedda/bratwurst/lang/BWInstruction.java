@@ -1,8 +1,5 @@
 package org.dedda.bratwurst.lang;
 
-import java.util.Arrays;
-import java.util.Optional;
-
 /**
  * Created by dedda on 10/14/15.
  *
@@ -18,22 +15,6 @@ public abstract class BWInstruction {
     }
 
     public abstract void run(Scope scope);
-
-    public BWObject substituteVariableName(String variableName) {
-        BWObject object = null;
-        if (Program.getInstance().getVariable(variableName) != null) {
-            object = Program.getInstance().getVariable(variableName).getValue();
-        }
-        return object;
-    }
-
-    protected BWVariable getArgument(final String name) {
-        Optional<BWVariable> variableOptional = Arrays.stream(arguments).filter(v -> v.getName().equals(name)).findFirst();
-        if (variableOptional.isPresent()) {
-            return variableOptional.get();
-        }
-        return null;
-    }
 
     public BWVariable[] getArguments() {
         return arguments;

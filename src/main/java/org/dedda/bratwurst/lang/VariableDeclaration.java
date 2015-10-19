@@ -27,8 +27,4 @@ public class VariableDeclaration extends BWInstruction {
     public String getVariableName() {
         return variableName;
     }
-
-    public BWExpression getTargetValue() {
-        return targetValue;
-    }
 }

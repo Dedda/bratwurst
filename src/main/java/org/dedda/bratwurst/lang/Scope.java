@@ -40,10 +40,6 @@ public class Scope {
         return currentObject != null;
     }
 
-    public BWFunction getCurrentFunction() {
-        return currentFunction;
-    }
-
     public boolean isInFunction() {
         return currentFunction != null;
     }

@@ -1,135 +1,214 @@
 @startuml
 
-class FunctionFactory {
-    - name : String
-    - scope : String
-    + createFunction() : BWFunction
-}
-class VariableFactory {
-    - name : String
-    - toEvaluate : BWExpression
-    + getVariable()
-}
-class BWClass {
+class org.dedda.bratwurst.lang.BWClass {
+    - {static} classes : List<BWClass>
     - name : String
     - functions : FunctionFactory[]
+    + {static} getClassForName(String) : BWClass
+    + BWClass(String, BWFunction[])
     + BWObject : createInstance()
 }
-interface BWExpression {
-    + getValue() : BWObject
-    + getIntValue() : int
-    + getValueType() : String
+
+abstract class org.dedda.bratwurst.lang.BWExpression {
+    + BWExpression(int)
+    + {abstract} getValue() : BWObject
+    + {abstract} getIntValue() : int
+    + {abstract} getValueType() : String
 }
-interface BWInstruction {
-    + run(Scope)
-}
-class BWFunction {
+
+class org.dedda.bratwurst.lang.BWFunction {
+    - name : String
     - instructions : BWInstruction[]
+    - value : BWObject
+    - variables : List<BWVariable>
+    + BWFunction(String, BWInstruction[])
+    + getName() : String
+    + getInstructions() : BWInstruction[]
+    + getVariables() : List<BWVariable>
 }
-class BWInteger {
+org.dedda.bratwurst.lang.BWFunction --|> org.dedda.bratwurst.lang.BWExpression
+
+abstract class org.dedda.bratwurst.lang.BWInstruction {
+    - lineNumber : int
+    - arguments : BWVariable[]
+    + BWInstruction(int)
+    + {abstract} run(Scope)
+    + getArguments() : BWVariable[]
+    + setArguments(BWVariable[])
+    + getLineNumber() : int
+}
+
+class org.dedda.bratwurst.lang.BWInteger {
     - value : int
+    + BWInteger(int)
 }
-class BWObject {
+org.dedda.bratwurst.lang.BWInteger --|> org.dedda.bratwurst.lang.BWObject
+
+class org.dedda.bratwurst.lang.BWObject {
     - bwClass : BWClass
     - variables : BWVariable[]
     - functions : BWFunction[]
-    + callFunction(String) : BWObject
+    + BWObject(BWClass, BWFunction[])
+    + getVariables() : BWVariable[]
+    + addVariable(BWVariable)
+    + getFunctions() : BWFunction[]
+    + setFunctions(BWFunction[])
 }
-class BWString {
+org.dedda.bratwurst.lang.BWObject --|> org.dedda.bratwurst.lang.BWExpression
+
+class org.dedda.bratwurst.lang.BWString {
     - value : String
+    + BWString(String)
 }
-class BWVariable {
+org.dedda.bratwurst.lang.BWString --|> org.dedda.bratwurst.lang.BWObject
+
+class org.dedda.bratwurst.lang.BWVariable {
     - name : String
     - value : BWObject
+    - expression : BWExpression
+    + BWVariable(String, BWObject)
+    + BWVariable(String, BWExpression)
+    + getName() : String
     + getValue() : BWObject
+    + setValue(BWObject)
     + getIntValue() : int
 }
-class Calculation {
+org.dedda.bratwurst.lang.BWVariable --|> org.dedda.bratwurst.lang.BWExpression
+
+class org.dedda.bratwurst.lang.Calculation {
     - leftSide : BWExpression
     - rightSide : BWExpression
+    - operator : char
+    - value : int
+    + Calculation(int, BWExpression, BWExpression, char)
+    + getOperator() : char
+    + getLeftSide() : BWExpression
+    + getRightSide() : BWExpression
 }
-class Condition {
+org.dedda.bratwurst.lang.Calculation --|> org.dedda.bratwurst.lang.BWExpression
+
+class org.dedda.bratwurst.lang.ClassRegistration {
+    - bwClass : BWClass
+    + ClassRegistration(int, BWClass)
+}
+org.dedda.bratwurst.lang.ClassRegistration --|> org.dedda.bratwurst.lang.BWInstruction
+
+class org.dedda.bratwurst.lang.Condition {
     - toEvaluate : BWExpression
     - trueInstructions : BWInstruction[]
     - falseInstructions : BWInstruction[]
+    + Condition(int, BWExpression, BWInstruction, BWInstruction)
+    - runTrue(Scope)
+    - runFalse(Scope)
 }
-class Exit {
+org.dedda.bratwurst.lang.Condition --|> org.dedda.bratwurst.lang.BWInstruction
+
+class org.dedda.bratwurst.lang.Exit {
+    + Exit(int)
 }
-class Loop {
+org.dedda.bratwurst.lang.Exit --|> org.dedda.bratwurst.lang.BWInstruction
+
+class org.dedda.bratwurst.lang.FunctionCall {
+    - variableName : String
+    - functionName : String
+    - value : BWObject
+    + FunctionCall(int, String, BWVariable[])
+    + FunctionCall(int, String, String, BWVariable[])
+}
+org.dedda.bratwurst.lang.FunctionCall --|> org.dedda.bratwurst.lang.BWExpression
+
+class org.dedda.bratwurst.lang.Loop {
     - toEvaluate : BWExpression
     - instructions : BWInstruction[]
+    + Loop(int, BWExpression, BWInstruction[])
+    - runInstructions(Scope)
 }
-class PrintChar {
-    - charValue : int
+org.dedda.bratwurst.lang.Loop --|> org.dedda.bratwurst.lang.BWInstruction
+
+class org.dedda.bratwurst.lang.ObjectCreation {
+    - className : String
+    - object : BWObject
+    + ObjectCreation(int, String)
 }
-class PrintVariable {
+org.dedda.bratwurst.lang.ObjectCreation --|> org.dedda.bratwurst.lang.BWExpression
+
+class org.dedda.bratwurst.lang.PrintChar {
+    - toPrint : char
+    + PrintChar(int, char)
+    + getToPrint() : char
+}
+org.dedda.bratwurst.lang.PrintChar --|> org.dedda.bratwurst.lang.BWInstruction
+
+class org.dedda.bratwurst.lang.PrintInt {
+    - message : String
+    + PrintInt(int, String)
+}
+org.dedda.bratwurst.lang.PrintInt --|> org.dedda.bratwurst.lang.BWInstruction
+
+class org.dedda.bratwurst.lang.PrintVariable {
     - variableName : String
+    + PrintVariable(int, String)
+    + getVariableName() : String
 }
-class Program {
+org.dedda.bratwurst.lang.PrintVariable --|> org.dedda.bratwurst.lang.BWInstruction
+
+class org.dedda.bratwurst.lang.Program {
     - {static} instance : Program
     - functions : BWFunction[]
     - classes : BWClass[]
-    - variables : BWVariable[]
+    - variables : ArrayList<BWVariable>
     - instructions : BWInstruction[]
-    --
     - Program()
-    + {static} getInstance() : Program
-    + callFunction(String)
     + run()
+    + registerVariable(BWVariable)
+    + registerClass(BWClass)
+    + getFunctions() : BWFunction[]
+    + setFunctions(BWFunction[])
+    + getClasses() : BWClass[]
+    + setClasses(BWClass[])
+    + setInstructions(BWInstruction[])
+    + getVariable(String) : BWVariable
+    + getVariables() : ArrayList<BWVariable>
+    + setVariables(ArrayList<BWVariable>)
 }
-class Scope {
+
+class org.dedda.bratwurst.lang.ReadVariable {
+    - variableName : String
+    - value : BWObject
+    + ReadVariable(int, String)
+}
+org.dedda.bratwurst.lang.ReadVariable --|> org.dedda.bratwurst.lang.BWExpression
+
+class org.dedda.bratwurst.lang.Return {
+    - expression : BWExpression
+    - value : BWObject
+    + Return(int, BWExpression)
+}
+org.dedda.bratwurst.lang.Return --|> org.dedda.bratwurst.lang.BWExpression
+
+class org.dedda.bratwurst.lang.Scope {
     - currentObject : BWObject
-    - arguments : BWVariable[]
-    + isInObject()
+    - currentFunction : BWFunction
+    + Scope()
+    + Scope(BWObject)
+    + Scope(BWFunction)
+    + Scope(BWObject, BWFunction)
+    + getCurrentObject() : BWObject
+    + isInObject() : boolean
+    + isInFunction() : boolean
+    + registerVariable(BWVariable)
+    + getVariable(String) : BWVariable
+    + getFunction(String) : BWFunction
+    + getFunction(String, String) : BWFunction
+    + registerClass(BWClass)
 }
-class VariableDeclaration {
+
+class org.dedda.bratwurst.lang.VariableDeclaration {
     - variableName : String
     - targetValue : BWExpression
+    + VariableDeclaration(int, String, BWExpression)
+    + getVariableName() : String
 }
-
-Program --> BWFunction
-Program --> BWClass
-Program --> BWVariable
-Program --> BWInstruction
-
-Scope --> BWObject
-Scope --> BWVariable
-
-BWClass --> FunctionFactory
-
-BWObject --> BWClass
-BWObject --> BWVariable
-
-BWVariable --> BWObject
-
-VariableDeclaration --> BWExpression
-
-Calculation --> BWExpression
-
-Condition --> BWExpression
-Condition --> BWInstruction
-
-Loop --> BWExpression
-Loop --> BWInstruction
-
-BWExpression ..|> BWInstruction
-BWFunction --|> BWExpression
-BWVariable --|> BWExpression
-BWInteger --|> BWObject
-BWString --|> BWObject
-
-Calculation ..|> BWExpression
-
-VariableDeclaration ..|> BWInstruction
-PrintVariable ..|> BWInstruction
-PrintChar ..|> BWInstruction
-Exit ..|> BWInstruction
-Condition ..|> BWInstruction
-Loop ..|> BWInstruction
-
-FunctionFactory --> BWFunction : creates >
-
-VariableFactory --> BWVariable : creates >
-VariableFactory --> BWObjectVariable : creates >
+org.dedda.bratwurst.lang.VariableDeclaration --|> org.dedda.bratwurst.lang.BWInstruction
 
 @enduml

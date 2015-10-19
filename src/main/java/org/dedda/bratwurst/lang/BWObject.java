@@ -22,10 +22,6 @@ public class BWObject extends BWExpression {
         this.functions = functions;
     }
 
-    public BWClass getBwClass() {
-        return bwClass;
-    }
-
     public BWVariable[] getVariables() {
         return variables;
     }
@@ -46,19 +42,8 @@ public class BWObject extends BWExpression {
         return functions;
     }
 
-    public BWObject callFunction(String functionName, BWVariable[] arugments) {
-        BWFunction function = Arrays.stream(functions).filter(f -> f.getName().equals(functionName)).findFirst().get();
-        Scope scope = new Scope(this);
-        function.run(scope);
-        return function.getValue();
-    }
-
     public void setFunctions(BWFunction[] functions) {
         this.functions = functions;
-    }
-
-    public void setVariables(BWVariable[] variables) {
-        this.variables = variables;
     }
 
     @Override
