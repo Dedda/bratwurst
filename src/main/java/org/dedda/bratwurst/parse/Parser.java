@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.dedda.bratwurst.parse.Patterns.BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.CLASS_BEGIN;
+import static org.dedda.bratwurst.parse.Patterns.CONDITION_HEAD;
 import static org.dedda.bratwurst.parse.Patterns.END;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.PRINT;
@@ -51,6 +52,7 @@ public class Parser {
         InstructionParser instructionParser = new InstructionParser();
         BWFunctionParser functionParser = new BWFunctionParser();
         BWClassParser classParser = new BWClassParser();
+        ConditionParser conditionParser = new ConditionParser();
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
             BWInstruction instruction = instructionParser.parse(line, i);
@@ -64,6 +66,12 @@ public class Parser {
                 if (line.matches(FUNCTION_BEGIN)) {
                     int end = functionParser.getEndOfFunction(lines, i);
                     functions.add(functionParser.parse(lines, i));
+                    i = end;
+                    continue;
+                }
+                if (line.matches(CONDITION_HEAD)) {
+                    int end = conditionParser.getEnd(lines, i);
+                    instructions.add(conditionParser.parse(lines, i));
                     i = end;
                     continue;
                 }

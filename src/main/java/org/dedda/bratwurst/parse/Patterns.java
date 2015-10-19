@@ -20,8 +20,6 @@ public class Patterns {
     public static final String FUNCTION_PARAM_OTHERS = "& (\\w+) <-- (\\w+)";
     public static final String FUNCTION_CALL_NOT_TERMINAL = "(\\w*)\\{(\\w+)\\}( " + FUNCTION_PARAM_FIRST + ")?( " + FUNCTION_PARAM_OTHERS + ")*";
     public static final String FUNCTION_CALL = FUNCTION_CALL_NOT_TERMINAL + "$";
-    public static final String FUNCTION_CALL_BEGIN_DEFAULT = "\\{\\w+\\}";
-    public static final String FUNCTION_CALL_BEGIN_OBJECT = "(\\w+)" + FUNCTION_CALL_BEGIN_DEFAULT;
 
     public static final String CLASS_INSTANTIATION = "\\[(\\w+)\\]$";
     public static final String VARIABLE_DECLARATION = "^\\((\\w+)\\) <-- ((\\-?\\d+)|(\\w+)|(" + FUNCTION_CALL + ")|(" + CLASS_INSTANTIATION + "))$";
