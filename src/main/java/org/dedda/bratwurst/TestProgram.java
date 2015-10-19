@@ -33,6 +33,7 @@ public class TestProgram {
     private void getParsedInstructions() {
         Parser parser = new Parser(new File("src/test/testprogram.bw"));
         parser.parse();
+        return;
     }
 
     private BWInstruction[] getInstructions() {

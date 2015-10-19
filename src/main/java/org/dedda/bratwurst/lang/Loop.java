@@ -17,7 +17,7 @@ public class Loop extends BWInstruction {
 
     @Override
     public void run(Scope scope) {
-        boolean run = false;
+        boolean run;
         toEvaluate.run(scope);
         run = toEvaluate.getIntValue() != 0;
         while (run) {

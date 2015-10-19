@@ -13,7 +13,7 @@ public class VariableDeclarationParser {
 
     public VariableDeclaration parseDeclaration(final String line, int lineNumber) {
         VariableDeclaration declaration;
-        String[] split = line.split(" ");
+        String[] split = line.split(" ", 3);
         String variableName = split[0].substring(1, split[0].length()-1);
         String expressionString = split[2];
         BWExpression expression = new ExpressionParser().parse(expressionString, lineNumber);
