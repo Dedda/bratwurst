@@ -11,8 +11,10 @@ public class Loop extends BWInstruction {
 
     private BWInstruction[] instructions;
 
-    public Loop(int lineNumber) {
+    public Loop(int lineNumber, BWExpression toEvaluate, BWInstruction[] instructions) {
         super(lineNumber);
+        this.toEvaluate = toEvaluate;
+        this.instructions = instructions;
     }
 
     @Override

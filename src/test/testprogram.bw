@@ -60,7 +60,10 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
 |py|
 >newLine<
 {printPoint} @ point <-- point1
-(penis) <-- 0
-(penis) <-- penis + 1
-|penis|
+(counter) <-- 10
+/(counter)
+|counter|
+>newLine<
+(counter) <-- counter - 1
+\
 <==
