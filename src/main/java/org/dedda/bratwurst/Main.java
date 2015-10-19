@@ -1,6 +1,9 @@
 package org.dedda.bratwurst;
 
 import org.dedda.bratwurst.lang.*;
+import org.dedda.bratwurst.parse.Parser;
+
+import java.io.File;
 
 /**
  * Created by dedda on 9/25/15.
@@ -10,8 +13,19 @@ import org.dedda.bratwurst.lang.*;
 public class Main {
 
     public static void main(String[] args) {
-        new TestProgram();
+        if (args.length != 1) {
+            throw new RuntimeException("No program file given!");
+        }
+        String fileName = args[0];
+        File file = new File(fileName);
+        if (!file.exists()) {
+            throw new RuntimeException("Cannot find file!");
+        }
+        Parser parser = new Parser(file);
+        parser.parse();
         Program.getInstance().run();
+//        new TestProgram();
+//        Program.getInstance().run();
         /*BWFunction[] functions = new BWFunction[1];
         BWClass[] classes = new BWClass[0];
         BWVariable[] variables = new BWVariable[0];
