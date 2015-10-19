@@ -11,7 +11,8 @@ public class PrintVariable extends BWInstruction {
 
     private String variableName;
 
-    public PrintVariable(String variableName) {
+    public PrintVariable(int lineNumber, String variableName) {
+        super(lineNumber);
         this.variableName = variableName;
     }
 

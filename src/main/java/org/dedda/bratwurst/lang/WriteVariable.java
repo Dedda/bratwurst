@@ -10,7 +10,8 @@ public class WriteVariable extends BWInstruction {
     private String variableName;
     private BWExpression variableValue;
 
-    public WriteVariable(String variableName, BWExpression variableValue) {
+    public WriteVariable(int lineNumber, String variableName, BWExpression variableValue) {
+        super(lineNumber);
         this.variableName = variableName;
         this.variableValue = variableValue;
     }

@@ -9,7 +9,8 @@ public class PrintChar extends BWInstruction {
 
     private char toPrint;
 
-    public PrintChar(char toPrint) {
+    public PrintChar(int lineNumber, char toPrint) {
+        super(lineNumber);
         this.toPrint = toPrint;
     }
 

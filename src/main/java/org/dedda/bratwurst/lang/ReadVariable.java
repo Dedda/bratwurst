@@ -10,7 +10,8 @@ public class ReadVariable extends BWExpression {
     private String variableName;
     private BWObject value = new BWInteger(0);
 
-    public ReadVariable(String variableName) {
+    public ReadVariable(int lineNumber, String variableName) {
+        super(lineNumber);
         this.variableName = variableName;
     }
 

@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.Calculation;
  */
 public class CalculationParser {
 
-    public Calculation parse(String line) {
+    public Calculation parse(String line, int lineNumber) {
         line = line.trim();
         String[] parts = line.split("[\\*\\/]", 2);
         char operand;
@@ -19,7 +19,7 @@ public class CalculationParser {
             int divIndex = line.indexOf('/');
             divIndex = divIndex < 0 ? Integer.MAX_VALUE : divIndex;
             operand = mulIndex < divIndex ? '*' : '/';
-            return new Calculation(new ExpressionParser().parse(parts[0].trim()), new ExpressionParser().parse(parts[1].trim()), operand);
+            return new Calculation(lineNumber, new ExpressionParser().parse(parts[0].trim(), lineNumber), new ExpressionParser().parse(parts[1].trim(), lineNumber), operand);
         }
         parts = line.split("[\\+\\-]", 2);
         if (parts.length == 2) {
@@ -28,7 +28,7 @@ public class CalculationParser {
             int subIndex = line.indexOf('-');
             subIndex = subIndex < 0 ? Integer.MAX_VALUE : subIndex;
             operand = addIndex < subIndex ? '+' : '-';
-            return new Calculation(new ExpressionParser().parse(parts[0].trim()), new ExpressionParser().parse(parts[1].trim()), operand);
+            return new Calculation(lineNumber, new ExpressionParser().parse(parts[0].trim(), lineNumber), new ExpressionParser().parse(parts[1].trim(), lineNumber), operand);
         }
         return null;
     }

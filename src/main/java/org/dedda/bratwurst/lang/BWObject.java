@@ -17,6 +17,7 @@ public class BWObject extends BWExpression {
     private BWFunction[] functions;
 
     public BWObject(BWClass bwClass, BWFunction[] functions) {
+        super(0);
         this.bwClass = bwClass;
         this.functions = functions;
     }

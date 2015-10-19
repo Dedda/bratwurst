@@ -10,7 +10,12 @@ import java.util.Optional;
  */
 public abstract class BWInstruction {
 
+    private int lineNumber;
     private BWVariable[] arguments;
+
+    public BWInstruction(int lineNumber) {
+        this.lineNumber = lineNumber;
+    }
 
     public abstract void run(Scope scope);
 
@@ -36,5 +41,9 @@ public abstract class BWInstruction {
 
     public void setArguments(BWVariable[] arguments) {
         this.arguments = arguments;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
     }
 }

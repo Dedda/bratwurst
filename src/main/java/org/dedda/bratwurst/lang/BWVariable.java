@@ -12,11 +12,13 @@ public class BWVariable extends BWExpression {
     private BWExpression expression = null;
 
     public BWVariable(String name, BWObject value) {
+        super(0);
         this.name = name;
         this.value = value;
     }
 
     public BWVariable(String name, BWExpression expression) {
+        super(0);
         this.name = name;
         this.expression = expression;
     }

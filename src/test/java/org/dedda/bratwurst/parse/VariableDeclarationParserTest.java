@@ -39,7 +39,7 @@ public class VariableDeclarationParserTest {
     @Test
     public void testParseDeclaration() throws Exception {
         VariableDeclarationParser parser = new VariableDeclarationParser();
-        VariableDeclaration declaration = parser.parseDeclaration(data);
+        VariableDeclaration declaration = parser.parseDeclaration(data, 0);
         assertEquals(expectedName, declaration.getVariableName());
     }
 }

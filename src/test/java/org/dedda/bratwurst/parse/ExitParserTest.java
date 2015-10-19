@@ -14,7 +14,7 @@ public class ExitParserTest {
 
     @Test
     public void testParse() throws Exception {
-        assertEquals(Exit.class, new ExitParser().parse("<==").getClass());
-        assertNull(new ExitParser().parse("==>"));
+        assertEquals(Exit.class, new ExitParser().parse("<==", 0).getClass());
+        assertNull(new ExitParser().parse("==>", 0));
     }
 }

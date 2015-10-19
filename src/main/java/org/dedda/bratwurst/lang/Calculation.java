@@ -12,7 +12,8 @@ public class Calculation extends BWExpression {
     private char operator;
     private int value = 0;
 
-    public Calculation(BWExpression leftSide, BWExpression rightSide, char operator) {
+    public Calculation(int lineNumber, BWExpression leftSide, BWExpression rightSide, char operator) {
+        super(lineNumber);
         this.leftSide = leftSide;
         this.rightSide = rightSide;
         this.operator = operator;
@@ -53,7 +54,7 @@ public class Calculation extends BWExpression {
                 value = left / right;
                 break;
             default:
-                throw new IllegalArgumentException("Operator " + operator + " not known!");
+                throw new IllegalArgumentException(getLineNumber() + ": Operator " + operator + " not known!");
         }
     }
 

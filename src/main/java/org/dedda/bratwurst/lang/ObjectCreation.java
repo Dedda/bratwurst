@@ -10,7 +10,8 @@ public class ObjectCreation extends BWExpression {
     private String className;
     private BWObject object = new BWInteger(0);
 
-    public ObjectCreation(String className) {
+    public ObjectCreation(int lineNumber, String className) {
+        super(lineNumber);
         this.className = className;
     }
 

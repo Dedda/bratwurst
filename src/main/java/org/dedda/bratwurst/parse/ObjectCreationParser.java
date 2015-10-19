@@ -9,9 +9,9 @@ import org.dedda.bratwurst.lang.ObjectCreation;
  */
 public class ObjectCreationParser {
 
-    public ObjectCreation parse(String line) {
+    public ObjectCreation parse(String line, int lineNumber) {
         line = line.trim();
-        return new ObjectCreation(line.substring(1, line.length()-1));
+        return new ObjectCreation(lineNumber, line.substring(1, line.length()-1));
     }
 
 }

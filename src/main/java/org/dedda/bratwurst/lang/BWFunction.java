@@ -15,8 +15,10 @@ public class BWFunction extends BWExpression {
     private BWInstruction[] instructions;
     private BWObject value = new BWInteger(0);
     private List<BWVariable> variables = new ArrayList<>();
+    BWInstruction currentInstruction;
 
     public BWFunction(String name, BWInstruction[] instructions) {
+        super(0);
         this.name = name;
         this.instructions = instructions;
     }
@@ -44,6 +46,7 @@ public class BWFunction extends BWExpression {
             argument.run(scope);
         }
         for (int i = 0; i < instructions.length; i++) {
+            currentInstruction = instructions[i];
             BWInstruction instruction = instructions[i];
             instruction.run(scope);
             if (instruction instanceof Return) {

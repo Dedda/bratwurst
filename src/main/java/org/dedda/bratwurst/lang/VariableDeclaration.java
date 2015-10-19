@@ -10,7 +10,8 @@ public class VariableDeclaration extends BWInstruction {
     private String variableName;
     private BWExpression targetValue;
 
-    public VariableDeclaration(String variableName, BWExpression targetValue) {
+    public VariableDeclaration(int lineNumber, String variableName, BWExpression targetValue) {
+        super(lineNumber);
         this.variableName = variableName;
         this.targetValue = targetValue;
     }

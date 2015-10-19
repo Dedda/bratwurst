@@ -16,7 +16,7 @@ import static org.dedda.bratwurst.parse.Patterns.PRINT;
  */
 public class PrintParser {
 
-    public BWInstruction parse(String line) {
+    public BWInstruction parse(String line, int lineNumber) {
         Pattern pattern = Pattern.compile(PRINT);
         Matcher matcher = pattern.matcher(line);
         String message = "";
@@ -24,11 +24,11 @@ public class PrintParser {
             message = matcher.group(1);
         }
         if (message.length() == 1) {
-            return new PrintChar(message.charAt(0));
+            return new PrintChar(lineNumber, message.charAt(0));
         } else if (message.matches("^\\d+$")) {
-            return new PrintChar((char) Integer.parseInt(message));
+            return new PrintChar(lineNumber, (char) Integer.parseInt(message));
         }
-        return new PrintVariable(message);
+        return new PrintVariable(lineNumber, message);
     }
 
 }

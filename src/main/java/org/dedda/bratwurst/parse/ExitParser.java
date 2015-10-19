@@ -11,8 +11,8 @@ import static org.dedda.bratwurst.parse.Patterns.END;
  */
 public class ExitParser {
 
-    public Exit parse(String line) {
-        return line.matches(END) ? new Exit() : null;
+    public Exit parse(String line, int lineNumber) {
+        return line.matches(END) ? new Exit(lineNumber) : null;
     }
 
 }

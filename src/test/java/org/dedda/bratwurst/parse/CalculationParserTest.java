@@ -49,7 +49,7 @@ public class CalculationParserTest {
     @Test
     public void testParse() throws Exception {
         CalculationParser parser = new CalculationParser();
-        Calculation calculation = parser.parse(line);
+        Calculation calculation = parser.parse(line, 0);
         assertEquals(expectedOperator, calculation.getOperator());
         if (leftArgumentValue != null) {
             assertEquals((int) leftArgumentValue, calculation.getLeftSide().getIntValue());

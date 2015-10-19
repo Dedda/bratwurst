@@ -15,17 +15,17 @@ import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
  */
 public class InstructionParser {
 
-    public BWInstruction parse(String line) {
+    public BWInstruction parse(String line, int lineNumber) {
         if (line.matches("^" + FUNCTION_CALL)) {
-            return new FunctionCallParser().parse(line);
+            return new FunctionCallParser().parse(line, lineNumber);
         } else if (line.matches(VARIABLE_DECLARATION)) {
-            return new VariableDeclarationParser().parseDeclaration(line);
+            return new VariableDeclarationParser().parseDeclaration(line, lineNumber);
         } else if (line.matches(PRINT)) {
-            return new PrintParser().parse(line);
+            return new PrintParser().parse(line, lineNumber);
         } else if (line.matches(END)) {
-            return new ExitParser().parse(line);
+            return new ExitParser().parse(line, lineNumber);
         } else if (line.matches(RETURN)) {
-            return new ReturnParser().parse(line);
+            return new ReturnParser().parse(line, lineNumber);
         }
         return null;
     }

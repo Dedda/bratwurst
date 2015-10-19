@@ -26,15 +26,9 @@ import static org.dedda.bratwurst.parse.Patterns.PRINT;
 public class Parser {
 
     private final File sourceFile;
-    private Program program;
 
     public Parser(File sourceFile) {
-        this(sourceFile, Program.getInstance());
-    }
-
-    public Parser(File sourceFile, Program program) {
         this.sourceFile = sourceFile;
-        this.program = program;
     }
 
     public void parse() {
@@ -56,7 +50,7 @@ public class Parser {
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
             System.out.println("line: " + line);
-            BWInstruction instruction = instructionParser.parse(line);
+            BWInstruction instruction = instructionParser.parse(line, i);
             if (instruction == null) {
                 System.out.println("not an instruction");
                 if (line.matches(CLASS_BEGIN)) {

@@ -40,20 +40,20 @@ public class BWFunctionTest {
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
                 {new BWInstruction[] {
-                        new BWInstruction() {
+                        new BWInstruction(0) {
                             @Override
                             public void run(Scope scope) {}
                         }
                 }, new BWInteger(0), new BWVariable[0]},
                 {new BWInstruction[] {
-                        new BWInstruction() {
+                        new BWInstruction(0) {
                             @Override
                             public void run(Scope scope) {}
-                        }, new Return(new BWInteger(1))
+                        }, new Return(0, new BWInteger(1))
                 }, new BWInteger(1), new BWVariable[0]},
                 {new BWInstruction[] {
                         new Return(
-                                new ReadVariable("a")
+                                0, new ReadVariable(0, "a")
                         )
                 }, new BWInteger(1), new BWVariable[]{
                         new BWVariable("a", new BWInteger(1))

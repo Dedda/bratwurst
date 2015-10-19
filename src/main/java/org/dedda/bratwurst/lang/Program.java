@@ -23,6 +23,9 @@ public class Program {
     private ArrayList<BWVariable> variables = new ArrayList<>();
     private BWInstruction[] instructions = new BWInstruction[0];
 
+
+    private BWInstruction currentInstruction;
+
     private Program() {
 
     }
@@ -30,6 +33,7 @@ public class Program {
     public void run() {
         Scope scope = new Scope();
         for (int i = 0; i < instructions.length; i++) {
+            this.currentInstruction = instructions[i];
             instructions[i].run(scope);
         }
     }

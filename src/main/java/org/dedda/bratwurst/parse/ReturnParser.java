@@ -9,8 +9,8 @@ import org.dedda.bratwurst.lang.Return;
  */
 public class ReturnParser {
 
-    public Return parse(String line) {
-        return new Return(new ExpressionParser().parse(line.substring(0, line.length()-4)));
+    public Return parse(String line, int lineNumber) {
+        return new Return(lineNumber, new ExpressionParser().parse(line.substring(0, line.length()-4), lineNumber));
     }
 
 }

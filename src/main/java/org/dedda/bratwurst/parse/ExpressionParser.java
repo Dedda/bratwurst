@@ -13,18 +13,18 @@ import static org.dedda.bratwurst.parse.Patterns.FUNCTION_CALL_NOT_TERMINAL;
  */
 public class ExpressionParser {
 
-    public BWExpression parse(String data) {
+    public BWExpression parse(String data, int lineNumber) {
         data = data.trim();
         if (data.matches("-?\\d*")) {
             return new IntegerParser().parse(data);
         } else if (data.matches("\\w+")) {
-            return new ReadVariableParser().parse(data);
+            return new ReadVariableParser().parse(data, lineNumber);
         } else if (data.matches(CALCULATION)) {
-            return new CalculationParser().parse(data);
+            return new CalculationParser().parse(data, lineNumber);
         } else if (data.matches(FUNCTION_CALL_NOT_TERMINAL)) {
-            return new FunctionCallParser().parse(data);
+            return new FunctionCallParser().parse(data, lineNumber);
         } else if (data.matches(CLASS_INSTANTIATION)) {
-            return new ObjectCreationParser().parse(data);
+            return new ObjectCreationParser().parse(data, lineNumber);
         }
         return null;
     }

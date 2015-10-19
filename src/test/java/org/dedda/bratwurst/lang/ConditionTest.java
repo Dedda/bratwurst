@@ -20,7 +20,7 @@ public class ConditionTest {
     @Before
     public void setUp() throws Exception {
         BWInstruction[] trueInstructions = new BWInstruction[]{
-                new BWInstruction() {
+                new BWInstruction(0) {
                     @Override
                     public void run(Scope scope) {
                         trueRun = true;
@@ -28,7 +28,7 @@ public class ConditionTest {
                 }
         };
         BWInstruction[] falseInstructions = new BWInstruction[]{
-                new BWInstruction() {
+                new BWInstruction(0) {
                     @Override
                     public void run(Scope scope) {
                         falseRun = true;
@@ -41,7 +41,7 @@ public class ConditionTest {
                 return testValue;
             }
         };
-        condition = new Condition(expression, trueInstructions, falseInstructions);
+        condition = new Condition(0, expression, trueInstructions, falseInstructions);
     }
 
     @Test

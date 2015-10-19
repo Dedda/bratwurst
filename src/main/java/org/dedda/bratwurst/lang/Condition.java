@@ -12,7 +12,8 @@ public class Condition extends BWInstruction {
     private BWInstruction[] trueInstructions;
     private BWInstruction[] falseInstructions;
 
-    public Condition(BWExpression toEvaluate, BWInstruction[] trueInstructions, BWInstruction[] falseInstructions) {
+    public Condition(int lineNumber, BWExpression toEvaluate, BWInstruction[] trueInstructions, BWInstruction[] falseInstructions) {
+        super(lineNumber);
         this.toEvaluate = toEvaluate;
         this.trueInstructions = trueInstructions;
         this.falseInstructions = falseInstructions;

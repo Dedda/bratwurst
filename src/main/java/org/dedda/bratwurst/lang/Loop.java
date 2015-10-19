@@ -11,6 +11,10 @@ public class Loop extends BWInstruction {
 
     private BWInstruction[] instructions;
 
+    public Loop(int lineNumber) {
+        super(lineNumber);
+    }
+
     @Override
     public void run(Scope scope) {
         boolean run = false;

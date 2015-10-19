@@ -68,7 +68,7 @@ public class PrintVariableTest {
 
     @Test
     public void testRun() throws Exception {
-        PrintVariable printVariable = new PrintVariable("testVar");
+        PrintVariable printVariable = new PrintVariable(0, "testVar");
         printVariable.run(scope);
         assertEquals(expected, outputBuffer);
     }

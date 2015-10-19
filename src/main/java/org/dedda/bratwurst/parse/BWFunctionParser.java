@@ -37,7 +37,7 @@ public class BWFunctionParser {
             if (line.matches(NAMING)) {
                 functionName = line.split(" ")[2];
             } else {
-                instructions.add(instructionParser.parse(line));
+                instructions.add(instructionParser.parse(line, i));
             }
         }
         if (functionName == null) {

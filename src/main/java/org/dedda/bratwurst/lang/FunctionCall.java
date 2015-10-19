@@ -11,12 +11,14 @@ public class FunctionCall extends BWExpression {
     private String functionName;
     private BWObject value = new BWInteger(0);
 
-    public FunctionCall(String functionName, BWVariable[] functionArguments) {
+    public FunctionCall(int lineNumber, String functionName, BWVariable[] functionArguments) {
+        super(lineNumber);
         this.functionName = functionName;
         setArguments(functionArguments);
     }
 
-    public FunctionCall(String variableName, String functionName, BWVariable[] functionArguments) {
+    public FunctionCall(int lineNumber, String variableName, String functionName, BWVariable[] functionArguments) {
+        super(lineNumber);
         this.variableName = variableName;
         this.functionName = functionName;
         setArguments(functionArguments);
@@ -47,9 +49,14 @@ public class FunctionCall extends BWExpression {
             function = scope.getFunction(functionName);
         }
         if (function == null) {
-            throw new RuntimeException("function " + variableName + "." + functionName + " not set!");
+            throw new RuntimeException(getLineNumber() + ": function " + variableName + "." + functionName + " not set!");
         }
-        scope = new Scope(scope.getVariable(variableName).getValue());
+        for (BWVariable argument : getArguments()) {
+            argument.run(scope);
+        }
+        if (!variableName.equals("")) {
+            scope = new Scope(scope.getVariable(variableName).getValue());
+        }
         function.setArguments(getArguments());
         function.run(scope);
         value = function.getValue();

@@ -44,7 +44,7 @@ public class PrintParserTest {
     @Test
     public void testParse() throws Exception {
         PrintParser parser = new PrintParser();
-        BWInstruction print = parser.parse(line);
+        BWInstruction print = parser.parse(line, 0);
         assertEquals(expectedClass, print.getClass());
         if (print instanceof PrintChar) {
             assertEquals(expectedValue, ((PrintChar) print).getToPrint());

@@ -23,6 +23,24 @@
         y -->
     }
 ]
+~{
+    (CALL_ME_MAYBE) <-- printPoint
+    (px) <-- point{getX}
+    (py) <-- point{getY}
+    >P<
+    >o<
+    >i<
+    >n<
+    >t<
+    >:<
+    >x<
+    >=<
+    >px<
+    >,<
+    >y<
+    >=<
+    >py<
+}
 (point1) <-- [Point]
 point1{setX} @ newX <-- 65
 point1{setY} @ newY <-- 66
@@ -35,4 +53,5 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
 (py) <-- point1{getY}
 >px<
 >py<
+{printPoint} @ point <-- point1
 <==

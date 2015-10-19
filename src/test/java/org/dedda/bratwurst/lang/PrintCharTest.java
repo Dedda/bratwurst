@@ -39,7 +39,7 @@ public class PrintCharTest {
 
     @Test
     public void testRun() throws Exception {
-        PrintChar instance = new PrintChar('A');
+        PrintChar instance = new PrintChar(0, 'A');
         instance.run(null);
         assertEquals(outputBuffer, "A");
     }

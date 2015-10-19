@@ -9,9 +9,9 @@ import org.dedda.bratwurst.lang.ReadVariable;
  */
 public class ReadVariableParser {
 
-    public ReadVariable parse(String data) {
+    public ReadVariable parse(String data, int lineNumber) {
         data = data.trim();
-        return new ReadVariable(data);
+        return new ReadVariable(lineNumber, data);
     }
 
 }

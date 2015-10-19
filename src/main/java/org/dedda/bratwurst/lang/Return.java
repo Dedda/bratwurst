@@ -10,7 +10,8 @@ public class Return extends BWExpression {
     private BWExpression expression;
     private BWObject value;
 
-    public Return(BWExpression expression) {
+    public Return(int lineNumber, BWExpression expression) {
+        super(lineNumber);
         this.expression = expression;
     }
 

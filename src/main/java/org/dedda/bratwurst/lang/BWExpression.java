@@ -7,6 +7,10 @@ package org.dedda.bratwurst.lang;
  */
 public abstract class BWExpression extends BWInstruction {
 
+    public BWExpression(int lineNumber) {
+        super(lineNumber);
+    }
+
     public abstract BWObject getValue();
     public abstract int getIntValue();
     public abstract String getValueType();

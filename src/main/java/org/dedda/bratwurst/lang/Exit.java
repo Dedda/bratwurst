@@ -7,6 +7,10 @@ package org.dedda.bratwurst.lang;
  */
 public class Exit extends BWInstruction {
 
+    public Exit(int lineNumber) {
+        super(lineNumber);
+    }
+
     @Override
     public void run(Scope scope) {
         System.exit(0);
