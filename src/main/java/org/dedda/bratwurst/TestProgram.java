@@ -33,9 +33,6 @@ public class TestProgram {
     private void getParsedInstructions() {
         Parser parser = new Parser(new File("src/test/testprogram.bw"));
         parser.parse();
-        System.out.println(Program.getInstance().getInstructions().length);
-        System.out.println(Program.getInstance().getFunctions().length);
-        System.out.println(Program.getInstance().getClasses().length);
     }
 
     private BWInstruction[] getInstructions() {

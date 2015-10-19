@@ -49,10 +49,8 @@ public class Parser {
         BWClassParser classParser = new BWClassParser();
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
-            System.out.println("line: " + line);
             BWInstruction instruction = instructionParser.parse(line, i);
             if (instruction == null) {
-                System.out.println("not an instruction");
                 if (line.matches(CLASS_BEGIN)) {
                     int end = classParser.getEnd(lines, i);
                     classes.add(classParser.parse(lines, i));
@@ -66,7 +64,6 @@ public class Parser {
                     continue;
                 }
             } else {
-                System.out.println("is instruction of type: " + instruction.getClass());
                 instructions.add(instruction);
             }
         }
