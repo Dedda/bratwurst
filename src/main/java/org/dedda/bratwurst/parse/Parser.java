@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.dedda.bratwurst.parse.Patterns.BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.CLASS_BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.END;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
@@ -40,6 +41,9 @@ public class Parser {
         }
         for (int i = 0; i < lines.length; i++) {
             lines[i] = lines[i].trim();
+        }
+        if (!lines[0].matches(BEGIN)) {
+            throw new RuntimeException("HELP! FIRST INSTRUCTION IS NOT AN ENTRY POINT! WHAT DO?!");
         }
         List<BWInstruction> instructions = new LinkedList<>();
         List<BWFunction> functions = new LinkedList<>();

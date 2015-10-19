@@ -29,7 +29,9 @@ public class Patterns {
 
     public static final String INCLUDE = "^%(\\w+[\\w\\.]+)%$";
 
-    public static final String PRINT = "^>(.*)<$";
+    public static final String PRINT_VAR = ">(.*)<";
+    public static final String PRINT_INT = "\\|(\\w+)\\|";
+    public static final String PRINT = "^(" + PRINT_VAR + "|" + PRINT_INT + ")$";
 
     public static final String CALCULATION = "((\\-?\\d+)|(\\w+)|(" + FUNCTION_CALL_NOT_TERMINAL + ")) [\\+\\-\\*\\/] ((\\-?\\d+)|\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + "))";
     public static final String RETURN = "^(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")) -->$";

@@ -35,11 +35,11 @@
     >:<
     >x<
     >=<
-    >px<
+    |px|
     >,<
     >y<
     >=<
-    >py<
+    |py|
     >newLine<
 }
 (newLine) <-- 10
@@ -48,13 +48,16 @@ point1{setX} @ newX <-- 65
 point1{setY} @ newY <-- 66
 (px) <-- point1{getX}
 (py) <-- point1{getY}
->px<
->py<
+|px|
+>newLine<
+|py|
+>newLine<
 point1{setLocation} @ newX <-- 67 & newY <-- 68
 (px) <-- point1{getX}
 (py) <-- point1{getY}
->px<
->py<
+|px|
+>newLine<
+|py|
 >newLine<
 {printPoint} @ point <-- point1
 <==
