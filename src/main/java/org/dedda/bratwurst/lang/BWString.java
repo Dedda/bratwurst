@@ -22,4 +22,12 @@ public class BWString extends BWObject {
     public String getValueType() {
         return "string";
     }
+
+    @Override
+    public int getIntValue() {
+        if (value.matches("\\-?\\d+")) {
+            return Integer.parseInt(value);
+        }
+        return 0;
+    }
 }

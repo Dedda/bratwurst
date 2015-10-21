@@ -1,4 +1,5 @@
 ==>
+%testinclude.bw%
 #[
     (CALL_ME_MAYBE) <-- Point
     ~{

@@ -1,6 +1,5 @@
 package org.dedda.bratwurst.parse;
 
-import com.sun.org.apache.bcel.internal.generic.Instruction;
 import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.BWFunction;
 import org.dedda.bratwurst.lang.BWInstruction;
@@ -9,17 +8,16 @@ import org.dedda.bratwurst.lang.Program;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.dedda.bratwurst.parse.Patterns.BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.CLASS_BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.CONDITION_HEAD;
-import static org.dedda.bratwurst.parse.Patterns.END;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
+import static org.dedda.bratwurst.parse.Patterns.INCLUDE;
 import static org.dedda.bratwurst.parse.Patterns.LOOP_HEAD;
-import static org.dedda.bratwurst.parse.Patterns.PRINT;
 
 /**
  * Created by dedda on 9/25/15.
@@ -43,6 +41,19 @@ public class Parser {
         }
         for (int i = 0; i < lines.length; i++) {
             lines[i] = lines[i].trim();
+        }
+        while (Arrays.stream(lines).filter(l -> l.matches(INCLUDE)).findFirst().isPresent()) {
+            for (int i = 0; i < lines.length; i++) {
+                if (lines[i].matches(INCLUDE)) {
+                    try {
+                        String[] included = getFileContents(new File(sourceFile.getParent() + '/' + lines[i].substring(1, lines[i].length()-1))).split("\n");
+                        lines = insertIntoArray(lines, included, i);
+                        break;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
         if (!lines[0].matches(BEGIN)) {
             throw new RuntimeException("HELP! FIRST INSTRUCTION IS NOT AN ENTRY POINT! WHAT DO?!");
@@ -103,6 +114,20 @@ public class Parser {
         char buffer[] = new char[(int) size];
         new FileReader(file).read(buffer);
         return new String(buffer);
+    }
+
+    public String[] insertIntoArray(String[] array, String[] toInsert, int lineToReplace) {
+        String[] newArray = new String[array.length + toInsert.length - 1];
+        for (int i = 0; i < lineToReplace; i++) {
+            newArray[i] = array[i];
+        }
+        for (int i = lineToReplace; i < lineToReplace + toInsert.length; i++) {
+            newArray[i] = toInsert[i - lineToReplace];
+        }
+        for (int i = lineToReplace + toInsert.length; i < newArray.length; i++) {
+            newArray[i] = array[i - toInsert.length + 1];
+        }
+        return newArray;
     }
 
 }

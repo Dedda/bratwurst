@@ -13,7 +13,7 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-        if (args.length != 1) {
+        /*if (args.length != 1) {
             throw new RuntimeException("No program file given!");
         }
         String fileName = args[0];
@@ -23,9 +23,9 @@ public class Main {
         }
         Parser parser = new Parser(file);
         parser.parse();
+        Program.getInstance().run();*/
+        new TestProgram();
         Program.getInstance().run();
-//        new TestProgram();
-//        Program.getInstance().run();
         /*BWFunction[] functions = new BWFunction[1];
         BWClass[] classes = new BWClass[0];
         BWVariable[] variables = new BWVariable[0];
