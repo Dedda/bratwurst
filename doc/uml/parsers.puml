@@ -1,16 +1,99 @@
 @startuml
 
-class Parser {
+class org.dedda.bratwurst.parse.BWClassParser {
+    + parse(String[], int) : BWClass
+    + getEnd() : int
+}
+org.dedda.bratwurst.parse.BWClassParser -- class org.dedda.bratwurst.lang.BWClass
+org.dedda.bratwurst.parse.BWClassParser <-- org.dedda.bratwurst.parse.Parser
+
+class org.dedda.bratwurst.parse.BWFunctionParser {
+    + parse(String[], int) : BWFunction
+    + getEndOfFunction(String[], int) : int
+}
+org.dedda.bratwurst.parse.BWFunctionParser -- class org.dedda.bratwurst.lang.BWFunction
+org.dedda.bratwurst.parse.BWFunctionParser <-- org.dedda.bratwurst.parse.Parser
+org.dedda.bratwurst.parse.BWFunctionParser <-- org.dedda.bratwurst.parse.BWClassParser
+
+class org.dedda.bratwurst.parse.CalculationParser {
+    + parse(String, int) : Calculation
+}
+org.dedda.bratwurst.parse.CalculationParser -- class org.dedda.bratwurst.lang.Calculation
+org.dedda.bratwurst.parse.CalculationParser <--> org.dedda.bratwurst.parse.ExpressionParser
+
+class org.dedda.bratwurst.parse.ConditionParser {
+    + parse(String[], int) : Condition
+    + getEnd(String[], int) : int
+    - getSeparator(String[], int) : int
+}
+org.dedda.bratwurst.parse.ConditionParser -- class org.dedda.bratwurst.lang.Condition
+org.dedda.bratwurst.parse.ConditionParser <-- org.dedda.bratwurst.parse.Parser
+
+class org.dedda.bratwurst.parse.ExitParser {
+    + parse(String, int) : Exit
+}
+org.dedda.bratwurst.parse.ExitParser -- class org.dedda.bratwurst.lang.Exit
+org.dedda.bratwurst.parse.ExitParser <-- org.dedda.bratwurst.parse.InstructionParser
+
+class org.dedda.bratwurst.parse.ExpressionParser {
+    + parse(Stirng, int) : BWExpression
+}
+org.dedda.bratwurst.parse.ExpressionParser -- class org.dedda.bratwurst.lang.BWExpression
+org.dedda.bratwurst.parse.ExpressionParser <-- org.dedda.bratwurst.parse.Parser
+org.dedda.bratwurst.parse.ExpressionParser <-- org.dedda.bratwurst.parse.BWClassParser
+org.dedda.bratwurst.parse.ExpressionParser <-- org.dedda.bratwurst.parse.BWFunctionParser
+org.dedda.bratwurst.parse.ExpressionParser <-- org.dedda.bratwurst.parse.ConditionParser
+org.dedda.bratwurst.parse.ExpressionParser <-- org.dedda.bratwurst.parse.InstructionParser
+org.dedda.bratwurst.parse.ExpressionParser <-- org.dedda.bratwurst.parse.LoopParser
+org.dedda.bratwurst.parse.ExpressionParser <--> org.dedda.bratwurst.parse.PrintParser
+org.dedda.bratwurst.parse.ExpressionParser <-- org.dedda.bratwurst.parse.ReturnParser
+org.dedda.bratwurst.parse.ExpressionParser <-- org.dedda.bratwurst.parse.VariableDeclarationParser
+
+class org.dedda.bratwurst.parse.FunctionCallParser {
+    + parse(String, int) : FunctionCall
+    - parseArguments(String, int) : List<BWVariable>
+    - parseArgument(String, int) : BWVariable
+}
+org.dedda.bratwurst.parse.FunctionCallParser -- class org.dedda.bratwurst.lang.FunctionCall
+org.dedda.bratwurst.parse.FunctionCallParser <-- org.dedda.bratwurst.parse.ExpressionParser
+
+class org.dedda.bratwurst.parse.InstructionParser {
+    + parse(String, int) : BWInstruction
+}
+org.dedda.bratwurst.parse.InstructionParser -- class org.dedda.bratwurst.lang.BWInstruction
+org.dedda.bratwurst.parse.InstructionParser <-- org.dedda.bratwurst.parse.Parser
+org.dedda.bratwurst.parse.InstructionParser <-- org.dedda.bratwurst.parse.BWClassParser
+org.dedda.bratwurst.parse.InstructionParser <-- org.dedda.bratwurst.parse.BWFunctionParser
+org.dedda.bratwurst.parse.InstructionParser <--> org.dedda.bratwurst.parse.ConditionParser
+org.dedda.bratwurst.parse.InstructionParser <--> org.dedda.bratwurst.parse.LoopParser
+
+class org.dedda.bratwurst.parse.IntegerParser {
+    + parse(String, int) BWInteger
+}
+org.dedda.bratwurst.parse.IntegerParser -- class org.dedda.bratwurst.lang.BWInteger
+org.dedda.bratwurst.parse.IntegerParser <-- org.dedda.bratwurst.parse.ExpressionParser
+org.dedda.bratwurst.parse.IntegerParser <-- org.dedda.bratwurst.parse.PrintParser
+
+class org.dedda.bratwurst.parse.LoopParser {
+    + parse(String[], int) : Loop
+    + getEnd(String[], int) : int
+}
+org.dedda.bratwurst.parse.LoopParser -- class org.dedda.bratwurst.lang.Loop
+org.dedda.bratwurst.parse.LoopParser <-- org.dedda.bratwurst.parse.Parser
+
+class org.dedda.bratwurst.parse.ObjectCreationParser {
+    + parse(String, int) : ObjectCreation
+}
+org.dedda.bratwurst.parse.ObjectCreationParser -- class org.dedda.bratwurst.lang.ObjectCreation
+org.dedda.bratwurst.parse.ObjectCreationParser <-- org.dedda.bratwurst.parse.ExpressionParser
+
+class org.dedda.bratwurst.parse.Parser {
     - file : File
     - program : Program
     + parse()
 }
 
-class BWClassParser {
-    + parse(String[], int, int) : BWClass
-}
-
-class Patterns {
+class org.dedda.bratwurst.parse.Patterns {
     + {static} BEGIN : String
     + {static} END : String
     + {static} CLASS_BEGIN : String
@@ -31,5 +114,31 @@ class Patterns {
     + {static} LOOP_HEAD : String
     + {static} LOOP_END : String
 }
+
+class org.dedda.bratwurst.parse.PrintParser {
+    + parse(String, int) : BWInstruction
+}
+org.dedda.bratwurst.parse.PrintParser -- class org.dedda.bratwurst.lang.PrintChar
+org.dedda.bratwurst.parse.PrintParser -- class org.dedda.bratwurst.lang.PrintInt
+org.dedda.bratwurst.parse.PrintParser -- class org.dedda.bratwurst.lang.PrintVariable
+org.dedda.bratwurst.parse.PrintParser <-- org.dedda.bratwurst.parse.InstructionParser
+
+class org.dedda.bratwurst.parse.ReadVariableParser {
+    + parse(String, int) : ReadVariable
+}
+org.dedda.bratwurst.parse.ReadVariableParser -- class org.dedda.bratwurst.lang.ReadVariable
+org.dedda.bratwurst.parse.ReadVariableParser <-- org.dedda.bratwurst.parse.ExpressionParser
+
+class org.dedda.bratwurst.parse.ReturnParser {
+    + parse(String, int) : Return
+}
+org.dedda.bratwurst.parse.ReturnParser -- class org.dedda.bratwurst.lang.Return
+org.dedda.bratwurst.parse.ReturnParser <-- org.dedda.bratwurst.parse.InstructionParser
+
+class org.dedda.bratwurst.parse.VariableDeclarationParser {
+    + parseDeclaration(String, int) : VariableDeclaration
+}
+org.dedda.bratwurst.parse.VariableDeclarationParser -- class org.dedda.bratwurst.lang.VariableDeclaration
+org.dedda.bratwurst.parse.VariableDeclarationParser <-- org.dedda.bratwurst.parse.InstructionParser
 
 @enduml
