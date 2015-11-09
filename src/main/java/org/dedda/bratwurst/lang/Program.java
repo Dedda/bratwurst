@@ -73,6 +73,10 @@ public class Program {
         this.instructions = instructions;
     }
 
+    public boolean hasVariable(String name) {
+        return variables.stream().filter(v -> v.getName().equals(name)).findFirst().isPresent();
+    }
+
     public BWVariable getVariable(String name) {
         Optional<BWVariable> variable = variables.stream().filter(v -> v.getName().equals(name)).findFirst();
         if (variable.isPresent()) {

@@ -67,4 +67,15 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
 >newLine<
 (counter) <-- counter - 1
 \
+~{
+    (CALL_ME_MAYBE) <-- recursive
+    >c<
+    |condition|
+    >10<
+    ?(condition)>>
+        {recursive} @ condition <-- recursive
+    <<
+    |
+}
+{recursive} @ condition <-- 1
 <==
