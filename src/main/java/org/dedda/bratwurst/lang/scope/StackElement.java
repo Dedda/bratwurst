@@ -31,8 +31,12 @@ public class StackElement {
         if (localOpt.isPresent()) {
             return localOpt.get();
         }
-        Optional<BWVariable> objectOpt = Arrays.asList(object.getVariables()).stream().filter(v -> v.getName().equals(name)).findFirst();
-        return objectOpt.isPresent() ? objectOpt.get() : null;
+        Optional<BWVariable> objectOpt;
+        if (object != null) {
+             objectOpt = Arrays.asList(object.getVariables()).stream().filter(v -> v.getName().equals(name)).findFirst();
+            return objectOpt.isPresent() ? objectOpt.get() : null;
+        }
+        return null;
     }
 
     public void setFunctionVar(BWVariable variable) {

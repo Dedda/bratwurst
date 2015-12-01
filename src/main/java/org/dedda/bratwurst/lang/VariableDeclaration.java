@@ -1,5 +1,7 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.lang.scope.Scope;
+
 /**
  * Created by dedda on 10/15/15.
  *
@@ -21,7 +23,7 @@ public class VariableDeclaration extends BWInstruction {
         targetValue.run(scope);
         BWObject value = targetValue.getValue();
         BWVariable variable = new BWVariable(variableName, value);
-        scope.registerVariable(variable);
+        scope.setVariable(variable);
     }
 
     public String getVariableName() {

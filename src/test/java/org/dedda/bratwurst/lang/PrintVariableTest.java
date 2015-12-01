@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.lang.scope.Scope;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

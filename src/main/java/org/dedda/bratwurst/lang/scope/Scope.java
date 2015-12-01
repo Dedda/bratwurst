@@ -1,11 +1,15 @@
 package org.dedda.bratwurst.lang.scope;
 
+import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.BWFunction;
 import org.dedda.bratwurst.lang.BWObject;
 import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.Program;
 
+import javax.swing.text.html.Option;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Stack;
 
 /**
@@ -38,8 +42,40 @@ public class Scope {
         return null;
     }
 
+    public boolean isInObject() {
+        return getCurrentObjectR() != null;
+    }
+
     public BWFunction getCurrentFunction() {
         return scopeStack.peek().getFunction();
+    }
+
+    public BWFunction getFunction(String name) {
+        Optional<BWFunction> funcOpt;
+        if (isInObject()) {
+             funcOpt = Arrays.stream(getCurrentObjectR().getFunctions()).filter(f -> f.getName().equals(name)).findFirst();
+            if (funcOpt.isPresent()) {
+                return funcOpt.get();
+            }
+        }
+        funcOpt = Arrays.stream(Program.getInstance().getFunctions()).filter(f -> f.getName().equals(name)).findFirst();
+        if (funcOpt.isPresent()) {
+            return funcOpt.get();
+        }
+        return null;
+    }
+
+    public BWFunction getFunction(String variableName, String functionName) {
+        BWObject object = getVariable(variableName).getValue();
+        Optional<BWFunction> funcOpt = Arrays.stream(object.getFunctions()).filter(f -> f.getName().equals(functionName)).findFirst();
+        if (funcOpt.isPresent()) {
+            return funcOpt.get();
+        }
+        return null;
+    }
+
+    public void registerClass(BWClass bwClass) {
+        Program.getInstance().registerClass(bwClass);
     }
 
     public BWVariable getVariable(String name) {

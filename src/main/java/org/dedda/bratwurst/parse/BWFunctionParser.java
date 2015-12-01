@@ -6,6 +6,7 @@ import org.dedda.bratwurst.lang.BWInstruction;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.dedda.bratwurst.parse.Patterns.CONDITION_HEAD;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_END;
 import static org.dedda.bratwurst.parse.Patterns.NAMING;
@@ -32,10 +33,15 @@ public class BWFunctionParser {
         String functionName = null;
         List<BWInstruction> instructions = new LinkedList<>();
         InstructionParser instructionParser = new InstructionParser();
+        ConditionParser conditionParser = new ConditionParser();
         for (int i = begin+1; i < end; i++) {
             String line = lines[i];
             if (line.matches(NAMING)) {
                 functionName = line.split(" ")[2];
+            } else if (line.matches(CONDITION_HEAD)) {
+                int conditionEnd = conditionParser.getEnd(lines, i);
+                instructions.add(conditionParser.parse(lines, i));
+                i = conditionEnd;
             } else {
                 instructions.add(instructionParser.parse(line, i));
             }

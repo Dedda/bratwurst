@@ -1,5 +1,7 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.lang.scope.Scope;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +42,8 @@ public class BWFunction extends BWExpression {
     @Override
     public void run(Scope scope) {
         variables.addAll(Arrays.asList(getArguments()));
-        scope = new Scope(scope.getCurrentObject(), this);
+//        scope.enterFunction(this, variables);
+//        scope = new Scope(scope.getCurrentObject(), this);
         for (BWVariable argument : getArguments()) {
             argument.run(scope);
         }
@@ -52,6 +55,7 @@ public class BWFunction extends BWExpression {
                 break;
             }
         }
+//        scope.leaveFunction();
     }
 
     public String getName() {

@@ -13,22 +13,22 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-        if (args.length != 1) {
-            throw new RuntimeException("No program file given!");
-        }
-        String fileName = args[0];
-        File file = new File(fileName);
-        if (!file.exists()) {
-            throw new RuntimeException("Cannot find file!");
-        }
-        Parser parser = new Parser(file);
-        parser.parse();
-        Program.getInstance().run();
-
-
-
-//        new TestProgram();
+//        if (args.length != 1) {
+//            throw new RuntimeException("No program file given!");
+//        }
+//        String fileName = args[0];
+//        File file = new File(fileName);
+//        if (!file.exists()) {
+//            throw new RuntimeException("Cannot find file!");
+//        }
+//        Parser parser = new Parser(file);
+//        parser.parse();
 //        Program.getInstance().run();
+
+
+
+        new TestProgram();
+        Program.getInstance().run();
     }
 
 }

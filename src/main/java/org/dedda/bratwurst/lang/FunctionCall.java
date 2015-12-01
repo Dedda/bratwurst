@@ -1,5 +1,9 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.lang.scope.Scope;
+
+import java.util.Arrays;
+
 /**
  * Created by dedda on 10/16/15.
  *
@@ -55,10 +59,14 @@ public class FunctionCall extends BWExpression {
             argument.run(scope);
         }
         if (!variableName.equals("")) {
-            scope = new Scope(scope.getVariable(variableName).getValue());
+//            scope = new Scope(scope.getVariable(variableName).getValue());
+            scope.enterFunction(scope.getVariable(variableName).getValue(), function, Arrays.asList(getArguments()));
+        } else {
+            scope.enterFunction(function, Arrays.asList(getArguments()));
         }
         function.setArguments(getArguments());
         function.run(scope);
         value = function.getValue();
+        scope.leaveFunction();
     }
 }

@@ -73,9 +73,10 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
     |condition|
     >10<
     ?(condition)>>
-        {recursive} @ condition <-- recursive
+        (condition) <-- condition - 1
+        {recursive} @ condition <-- condition
     <<
     |
 }
-{recursive} @ condition <-- 1
+{recursive} @ condition <-- 3
 <==
