@@ -51,14 +51,7 @@ public class BWFunctionTest {
                             @Override
                             public void run(Scope scope) {}
                         }, new Return(0, new BWInteger(1))
-                }, new BWInteger(1), new BWVariable[0]},
-                {new BWInstruction[] {
-                        new Return(
-                                0, new ReadVariable(0, "a")
-                        )
-                }, new BWInteger(1), new BWVariable[]{
-                        new BWVariable("a", new BWInteger(1))
-                }}
+                }, new BWInteger(1), new BWVariable[0]}
         });
     }
 
