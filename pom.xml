@@ -33,7 +33,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.dedda.bratwurst.Main</mainClass>
+                            <mainClass>org.dedda.webr.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
