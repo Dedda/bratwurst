@@ -25,7 +25,8 @@ public class Main {
         parser.parse();
         Program.getInstance().run();
 
-
+        int exitCode = Program.getInstance().getExitCode();
+        System.out.println("Program exited with code " + exitCode);
 
 //        new TestProgram();
 //        Program.getInstance().run();

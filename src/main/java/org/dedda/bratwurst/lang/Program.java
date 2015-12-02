@@ -24,6 +24,8 @@ public class Program {
     private BWClass[] classes = new BWClass[0];
     private ArrayList<BWVariable> variables = new ArrayList<>();
     private BWInstruction[] instructions = new BWInstruction[0];
+    private boolean stopped = false;
+    private int exitCode = 0;
 
     private Program() {
 
@@ -32,8 +34,20 @@ public class Program {
     public void run() {
         Scope scope = new Scope();
         for (int i = 0; i < instructions.length; i++) {
+            if (stopped) {
+                return;
+            }
             instructions[i].run(scope);
         }
+    }
+
+    public void stop(int code) {
+        stopped = true;
+        exitCode = code;
+    }
+
+    public int getExitCode() {
+        return exitCode;
     }
 
     public void registerVariable(BWVariable variable) {
