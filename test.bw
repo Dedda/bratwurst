@@ -1,82 +1,16 @@
 ==>
-#[
-    (CALL_ME_MAYBE) <-- Point
-    ~{
-        (CALL_ME_MAYBE) <-- setX
-        (x) <-- newX
-    }
-    ~{
-        (CALL_ME_MAYBE) <-- setY
-        (y) <-- newY
-    }
-    ~{
-        (CALL_ME_MAYBE) <-- setLocation
-        (x) <-- newX
-        (y) <-- newY
-    }
-    ~{
-        (CALL_ME_MAYBE) <-- getX
-        x -->
-    }
-    ~{
-        (CALL_ME_MAYBE) <-- getY
-        y -->
-    }
-]
-~{
-    (CALL_ME_MAYBE) <-- printPoint
-    (px) <-- point{getX}
-    (py) <-- point{getY}
-    >P<
-    >o<
-    >i<
-    >n<
-    >t<
-    >:<
-    >x<
-    >=<
-    |px|
-    >,<
-    >y<
-    >=<
-    |py|
-    >newLine<
-}
-(newLine) <-- 10
-(point1) <-- [Point]
-point1{setX} @ newX <-- 65
-point1{setY} @ newY <-- 66
-(px) <-- point1{getX}
-(py) <-- point1{getY}
-|px|
->newLine<
-|py|
->newLine<
-point1{setLocation} @ newX <-- 67 & newY <-- 68
-(px) <-- point1{getX}
-(py) <-- point1{getY}
-|px|
->newLine<
-|py|
->newLine<
-{printPoint} @ point <-- point1
-(counter) <-- 10
-/(counter)
-|counter|
->newLine<
-(counter) <-- counter - 1
-\
-~{
-    (CALL_ME_MAYBE) <-- recursive
-    >c<
-    |condition|
-    >10<
-    ?(condition)>>
-        (condition) <-- condition - 1
-        {recursive} @ condition <-- condition
-    <<
-    |
-}
-{recursive} @ condition <-- 3
+>Y<
+>o<
+>u<
+>r<
+> <
+>N<
+>u<
+>m<
+>b<
+>e<
+>r<
+>:<
+> <
 |testparameter|
 <==
