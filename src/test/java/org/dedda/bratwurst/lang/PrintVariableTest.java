@@ -26,6 +26,7 @@ import static org.junit.Assert.*;
 @RunWith(Parameterized.class)
 public class PrintVariableTest {
 
+    public static Program program = new Program();
     private PrintStream systemOut;
     private String outputBuffer = "";
     private OutputStream customOut = new OutputStream() {
@@ -38,9 +39,9 @@ public class PrintVariableTest {
     @Parameters
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][]{
-                {"A", new Scope(), new BWVariable("testVar", new BWInteger('A'))},
-                {"Test", new Scope(), new BWVariable("testVar", new BWString("Test"))},
-                {"" + (char) 0, new Scope(), new BWVariable("testVar", new BWObject(null, null))}
+                {"A", new Scope(program), new BWVariable("testVar", new BWInteger('A'))},
+                {"Test", new Scope(program), new BWVariable("testVar", new BWString("Test"))},
+                {"" + (char) 0, new Scope(program), new BWVariable("testVar", new BWObject(null, null))}
 
         });
     }
@@ -59,7 +60,7 @@ public class PrintVariableTest {
         systemOut = System.out;
         System.setOut(new PrintStream(customOut));
         outputBuffer = "";
-        Program.getInstance().setVariables(new ArrayList<>(Arrays.asList(new BWVariable[]{programVariable})));
+        program.setVariables(new ArrayList<>(Arrays.asList(new BWVariable[]{programVariable})));
     }
 
     @After

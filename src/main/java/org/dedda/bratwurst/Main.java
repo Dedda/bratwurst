@@ -22,10 +22,10 @@ public class Main {
             throw new RuntimeException("Cannot find file!");
         }
         Parser parser = new Parser(file);
-        parser.parse();
-        Program.getInstance().run();
+        Program program = parser.parse();
+        program.run();
 
-        int exitCode = Program.getInstance().getExitCode();
+        int exitCode = program.getExitCode();
         System.out.println("Program exited with code " + exitCode);
 
 //        new TestProgram();

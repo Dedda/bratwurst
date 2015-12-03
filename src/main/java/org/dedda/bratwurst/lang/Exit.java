@@ -15,6 +15,6 @@ public class Exit extends BWInstruction {
 
     @Override
     public void run(Scope scope) {
-        Program.getInstance().stop(0);
+        scope.getProgram().stop(0);
     }
 }
