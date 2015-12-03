@@ -21,7 +21,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        weBr.addRoute("/", "test.bw");
+        weBr.addRoute("/test", "test.bw");
+        weBr.addRoute("/test2", "test2.bw");
     }
 
 }

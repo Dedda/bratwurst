@@ -40,20 +40,15 @@ public class weBr implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        System.out.println(1);
+        System.out.println("request: " + httpExchange.getRequestURI());
         String route = httpExchange.getRequestURI().toString().split("\\?")[0];
-        System.out.println(2);
         String attributesS[] = httpExchange.getRequestURI().toString().split("\\?")[1].split("&");
-        System.out.println(3);
         HashMap<String, Integer> params = new HashMap<>();
-        System.out.println(4);
         for (String attribute : attributesS) {
             params.put(attribute.split("=")[0], Integer.parseInt(attribute.split("=")[1]));
         }
-        System.out.println(5);
         String rendered = call(route, params);
-        System.out.println(6);
-        System.out.println(rendered);
+        System.out.println("rendered page: " + rendered);
         httpExchange.getResponseHeaders().set("Content-Type", "text/html");
         httpExchange.sendResponseHeaders(200, rendered.length());
         httpExchange.getResponseBody().write(rendered.getBytes());
@@ -70,6 +65,7 @@ public class weBr implements HttpHandler {
             throw new RuntimeException("script " + file + " not found!");
         }
         Parser parser = new Parser(file);
+        Program.reset();
         parser.parse();
         for (String key : parameters.keySet()) {
             Program.getInstance().registerVariable(

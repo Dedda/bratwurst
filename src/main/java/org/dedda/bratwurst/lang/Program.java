@@ -20,6 +20,10 @@ public class Program {
         return instance;
     }
 
+    public static void reset() {
+        instance = new Program();
+    }
+
     private BWFunction[] functions = new BWFunction[0];
     private BWClass[] classes = new BWClass[0];
     private ArrayList<BWVariable> variables = new ArrayList<>();
