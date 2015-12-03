@@ -65,10 +65,9 @@ public class weBr implements HttpHandler {
             throw new RuntimeException("script " + file + " not found!");
         }
         Parser parser = new Parser(file);
-        Program.reset();
-        parser.parse();
+        Program program = parser.parse();
         for (String key : parameters.keySet()) {
-            Program.getInstance().registerVariable(
+            program.registerVariable(
                     new BWVariable(key, new BWInteger(parameters.get(key)))
             );
         }
@@ -76,7 +75,7 @@ public class weBr implements HttpHandler {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
         System.setOut(ps);
-        Program.getInstance().run();
+        program.run();
         String content = baos.toString("utf-8");
         System.setOut(origOut);
         return content;
