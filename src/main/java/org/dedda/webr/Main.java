@@ -4,6 +4,7 @@ import org.dedda.bratwurst.lang.*;
 import org.dedda.bratwurst.parse.Parser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -14,15 +15,22 @@ import java.io.UnsupportedEncodingException;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        Config config = Config.load(new File("routes.json"));
         weBr weBr = null;
         try {
-            weBr = new weBr(9999);
+            weBr = new weBr(config.getPort());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        weBr.addRoute("/test", "test.bw");
-        weBr.addRoute("/test2", "test2.bw");
+
+        for (Route route : config.getDynamicRoutes()) {
+            weBr.addDynamicRoute(route);
+        }
+        for (Route route : config.getStaticRoutes()) {
+            weBr.addStaticRoute(route);
+        }
+
     }
 
 }

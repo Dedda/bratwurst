@@ -8,7 +8,14 @@ import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.Program;
 import org.dedda.bratwurst.parse.Parser;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 
@@ -19,33 +26,62 @@ import java.util.HashMap;
  */
 public class weBr implements HttpHandler {
 
-    private HashMap<String, String> routesMap;
+    private HashMap<String, weBrRoute> dynamicRoutes;
+    private HashMap<String, weBrRoute> staticRoutes;
     private HttpServer server;
 
     public weBr(int port) throws IOException {
-        routesMap = new HashMap<>();
+        dynamicRoutes = new HashMap<>();
+        staticRoutes = new HashMap<>();
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", this);
         server.setExecutor(null);
         server.start();
     }
 
-    public boolean addRoute(String route, String script) {
-        if (routesMap.containsKey(route)) {
+    public boolean addDynamicRoute(Route route) {
+        if (dynamicRoutes.containsKey(route.getRoute())) {
             return false;
         }
-        routesMap.put(route, script);
+        if (staticRoutes.containsKey(route.getRoute())) {
+            return false;
+        }
+        weBrRoute weBrRoute = new weBrRoute();
+        weBrRoute.dir = new File(route.getEndpoint()).isDirectory();
+        weBrRoute.endpoint = route.getEndpoint();
+        weBrRoute.route = route.getRoute();
+        dynamicRoutes.put(route.getRoute(), weBrRoute);
+        return true;
+    }
+
+    public boolean addStaticRoute(Route route) {
+        if (staticRoutes.containsKey(route.getRoute())) {
+            return false;
+        }
+        if (dynamicRoutes.containsKey(route.getRoute())) {
+            return false;
+        }
+        weBrRoute weBrRoute = new weBrRoute();
+        weBrRoute.dir = new File(route.getEndpoint()).isDirectory();
+        weBrRoute.endpoint = route.getEndpoint();
+        weBrRoute.route = route.getRoute();
+        staticRoutes.put(route.getRoute(), weBrRoute);
         return true;
     }
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         System.out.println("request: " + httpExchange.getRequestURI());
-        String route = httpExchange.getRequestURI().toString().split("\\?")[0];
-        String attributesS[] = httpExchange.getRequestURI().toString().split("\\?")[1].split("&");
         HashMap<String, Integer> params = new HashMap<>();
-        for (String attribute : attributesS) {
-            params.put(attribute.split("=")[0], Integer.parseInt(attribute.split("=")[1]));
+        String route;
+        if (httpExchange.getRequestURI().toString().contains("?")) {
+            route = httpExchange.getRequestURI().toString().split("\\?")[0];
+            String attributesS[] = httpExchange.getRequestURI().toString().split("\\?")[1].split("&");
+            for (String attribute : attributesS) {
+                params.put(attribute.split("=")[0], Integer.parseInt(attribute.split("=")[1]));
+            }
+        } else {
+            route = httpExchange.getRequestURI().toString();
         }
         String rendered = call(route, params);
         System.out.println("rendered page: " + rendered);
@@ -55,11 +91,36 @@ public class weBr implements HttpHandler {
         httpExchange.getRequestBody().close();
     }
 
-    public String call(String route, HashMap<String, Integer> parameters) throws UnsupportedEncodingException {
-        if (!routesMap.containsKey(route)) {
-            return "No route to " + route;
+    public String call(String requestRoute, HashMap<String, Integer> parameters) throws UnsupportedEncodingException {
+        for (String key : staticRoutes.keySet()) {
+            if (requestRoute.startsWith(key)) {
+                weBrRoute buffer = staticRoutes.get(key);
+                String filename;
+                if (buffer.dir || requestRoute.equals(buffer.route)) {
+                    filename = requestRoute;
+                    if (filename.startsWith("/")) {
+                        filename = filename.substring(1);
+                    }
+                    return callStatic(filename);
+                }
+            }
         }
-        String filename = routesMap.get(route);
+        weBrRoute weBrRoute = null;
+        for (String key : dynamicRoutes.keySet()) {
+            if (key.startsWith(requestRoute)) {
+                weBrRoute = dynamicRoutes.get(key);
+                break;
+            }
+        }
+        if (weBrRoute == null) {
+            return "No route found! #1";
+        }
+        String filename = weBrRoute.endpoint;
+        if (weBrRoute.dir) {
+            filename = weBrRoute.endpoint + requestRoute.replaceFirst("^" + weBrRoute.route, "/");
+        } else if (!weBrRoute.route.equals(requestRoute)) {
+            return "no route found! #2";
+        }
         File file = new File(filename);
         if (!file.exists()) {
             throw new RuntimeException("script " + file + " not found!");
@@ -80,4 +141,31 @@ public class weBr implements HttpHandler {
         System.setOut(origOut);
         return content;
     }
+
+    private String callStatic(String file) {
+        String contents = "";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File(file)));
+            String buffer;
+            while ((buffer = reader.readLine()) != null) {
+                contents += buffer;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contents;
+    }
+
+    private class weBrRoute {
+
+        private String route;
+
+        private String endpoint;
+
+        private boolean dir;
+
+    }
+
 }

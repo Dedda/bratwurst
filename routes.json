@@ -1,0 +1,15 @@
+{
+  "port": 9999,
+  "dynamicRoutes": [
+    {
+      "route": "/index",
+      "endpoint": "test.bw"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "route": "/static",
+      "endpoint": "static"
+    }
+  ]
+}
