@@ -19,9 +19,12 @@ import java.util.Stack;
  */
 public class Scope {
 
+    private Program program;
+
     private Stack<StackElement> scopeStack;
 
-    public Scope() {
+    public Scope(Program program) {
+        this.program = program;
         scopeStack = new Stack<>();
     }
 
@@ -58,7 +61,7 @@ public class Scope {
                 return funcOpt.get();
             }
         }
-        funcOpt = Arrays.stream(Program.getInstance().getFunctions()).filter(f -> f.getName().equals(name)).findFirst();
+        funcOpt = Arrays.stream(program.getFunctions()).filter(f -> f.getName().equals(name)).findFirst();
         if (funcOpt.isPresent()) {
             return funcOpt.get();
         }
@@ -75,7 +78,7 @@ public class Scope {
     }
 
     public void registerClass(BWClass bwClass) {
-        Program.getInstance().registerClass(bwClass);
+        program.registerClass(bwClass);
     }
 
     public BWVariable getVariable(String name) {
@@ -88,7 +91,7 @@ public class Scope {
             }
             index--;
         }
-        return Program.getInstance().hasVariable(name) ? Program.getInstance().getVariable(name) : null;
+        return program.hasVariable(name) ? program.getVariable(name) : null;
     }
 
     public void setVariable(BWVariable variable) {
@@ -100,7 +103,7 @@ public class Scope {
             if (obj != null) {
                 obj.addVariable(variable);
             } else {
-                Program.getInstance().registerVariable(variable);
+                program.registerVariable(variable);
             }
         }
     }
@@ -117,4 +120,7 @@ public class Scope {
         scopeStack.pop();
     }
 
+    public Program getProgram() {
+        return program;
+    }
 }

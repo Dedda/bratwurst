@@ -14,15 +14,6 @@ import java.util.stream.Collectors;
  * @author dedda
  */
 public class Program {
-    private static Program instance = new Program();
-
-    public static Program getInstance() {
-        return instance;
-    }
-
-    public static void reset() {
-        instance = new Program();
-    }
 
     private BWFunction[] functions = new BWFunction[0];
     private BWClass[] classes = new BWClass[0];
@@ -31,12 +22,12 @@ public class Program {
     private boolean stopped = false;
     private int exitCode = 0;
 
-    private Program() {
+    public Program() {
 
     }
 
     public void run() {
-        Scope scope = new Scope();
+        Scope scope = new Scope(this);
         for (int i = 0; i < instructions.length; i++) {
             if (stopped) {
                 return;
@@ -65,7 +56,7 @@ public class Program {
     }
 
     public void registerClass(BWClass bwClass) {
-        List<BWClass> classList = Arrays.stream(Program.getInstance().getClasses()).collect(Collectors.toList());
+        List<BWClass> classList = Arrays.stream(classes).collect(Collectors.toList());
         if (classList.stream().filter(c -> c.name.equals(bwClass.name)).findFirst().isPresent()) {
             throw new RuntimeException("Class " + bwClass.name + " already registered!");
         }

@@ -32,7 +32,7 @@ public class Parser {
         this.sourceFile = sourceFile;
     }
 
-    public void parse() {
+    public Program parse() {
         String[] lines;
         try {
             lines = getFileContents(sourceFile).split("\n");
@@ -104,9 +104,11 @@ public class Parser {
         functions.toArray(functionsArray);
         BWClass[] classesArray = new BWClass[classes.size()];
         classes.toArray(classesArray);
-        Program.getInstance().setInstructions(instructionsArray);
-        Program.getInstance().setFunctions(functionsArray);
-        Program.getInstance().setClasses(classesArray);
+        Program program = new Program();
+        program.setInstructions(instructionsArray);
+        program.setFunctions(functionsArray);
+        program.setClasses(classesArray);
+        return program;
     }
 
     private String getFileContents(final File file) throws IOException {
