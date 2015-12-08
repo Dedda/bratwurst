@@ -15,7 +15,7 @@ import static org.dedda.bratwurst.parse.Patterns.PRINT;
  *
  * @author dedda
  */
-public class PrintParser {
+public class PrintParser extends InstructionParser {
 
     public BWInstruction parse(String line, int lineNumber) {
         String message = line.substring(1, line.length()-1);

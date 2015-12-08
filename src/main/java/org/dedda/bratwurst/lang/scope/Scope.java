@@ -123,4 +123,12 @@ public class Scope {
     public Program getProgram() {
         return program;
     }
+
+    public void push(BWObject object) {
+        program.push(object);
+    }
+
+    public BWObject pop() {
+        return program.pop();
+    }
 }

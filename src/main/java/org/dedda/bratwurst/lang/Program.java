@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 /**
@@ -21,6 +22,7 @@ public class Program {
     private BWInstruction[] instructions = new BWInstruction[0];
     private boolean stopped = false;
     private int exitCode = 0;
+    private Stack<BWObject> global = new Stack<>();
 
     public Program() {
 
@@ -39,6 +41,14 @@ public class Program {
     public void stop(int code) {
         stopped = true;
         exitCode = code;
+    }
+
+    public void push(BWObject object) {
+        global.push(object);
+    }
+
+    public BWObject pop() {
+        return global.pop();
     }
 
     public int getExitCode() {
@@ -102,5 +112,9 @@ public class Program {
 
     public void setVariables(ArrayList<BWVariable> variables) {
         this.variables = variables;
+    }
+
+    public Stack<BWObject> getGlobal() {
+        return global;
     }
 }

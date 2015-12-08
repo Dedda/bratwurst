@@ -7,7 +7,7 @@ import org.dedda.bratwurst.lang.Return;
  *
  * @author dedda
  */
-public class ReturnParser {
+public class ReturnParser extends InstructionParser {
 
     public Return parse(String line, int lineNumber) {
         return new Return(lineNumber, new ExpressionParser().parse(line.substring(0, line.length()-4), lineNumber));

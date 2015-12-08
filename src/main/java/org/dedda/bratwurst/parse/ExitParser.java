@@ -9,7 +9,7 @@ import static org.dedda.bratwurst.parse.Patterns.END;
  *
  * @author dedda
  */
-public class ExitParser {
+public class ExitParser extends InstructionParser {
 
     public Exit parse(String line, int lineNumber) {
         return line.matches(END) ? new Exit(lineNumber) : null;

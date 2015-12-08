@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.VariableDeclaration;
  *
  * @author dedda
  */
-public class VariableDeclarationParser {
+public class VariableDeclarationParser extends InstructionParser {
 
     public VariableDeclaration parseDeclaration(final String line, int lineNumber) {
         VariableDeclaration declaration;
