@@ -7,7 +7,7 @@ import org.dedda.bratwurst.lang.Calculation;
  *
  * @author dedda
  */
-public class CalculationParser {
+public class CalculationParser extends ExpressionParser {
 
     public Calculation parse(String line, int lineNumber) {
         line = line.trim();

@@ -7,7 +7,7 @@ import org.dedda.bratwurst.lang.BWInteger;
  *
  * @author dedda
  */
-public class IntegerParser {
+public class IntegerParser extends ExpressionParser {
 
     public BWInteger parse(String data) {
         data = data.trim();

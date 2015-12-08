@@ -7,7 +7,7 @@ import org.dedda.bratwurst.lang.ObjectCreation;
  *
  * @author dedda
  */
-public class ObjectCreationParser {
+public class ObjectCreationParser extends ExpressionParser {
 
     public ObjectCreation parse(String line, int lineNumber) {
         line = line.trim();

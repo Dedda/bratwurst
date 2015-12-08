@@ -24,4 +24,14 @@ public class BWInteger extends BWObject {
         return "integer";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BWInteger bwInteger = (BWInteger) o;
+
+        return value == bwInteger.value;
+
+    }
 }

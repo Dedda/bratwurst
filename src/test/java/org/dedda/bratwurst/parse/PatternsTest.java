@@ -50,7 +50,9 @@ public class PatternsTest {
                 {CALCULATION, "abc - 456", true},
                 {CALCULATION, "abc * def", true},
                 {CALCULATION, "abc{ghi} @ j <-- 1 & k <-- 2 / def", true},
-                {CALCULATION, "abc{ghi} @ j <-- 1 & k <-- 2 / def{lmn} @ o <-- 1 & p <-- 2", true}
+                {CALCULATION, "abc{ghi} @ j <-- 1 & k <-- 2 / def{lmn} @ o <-- 1 & p <-- 2", true},
+                {POP, "<test<", true},
+                {POP, "<test>", false}
         });
     }
 

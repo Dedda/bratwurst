@@ -7,7 +7,7 @@ import org.dedda.bratwurst.lang.ReadVariable;
  *
  * @author dedda
  */
-public class ReadVariableParser {
+public class ReadVariableParser extends ExpressionParser {
 
     public ReadVariable parse(String data, int lineNumber) {
         data = data.trim();

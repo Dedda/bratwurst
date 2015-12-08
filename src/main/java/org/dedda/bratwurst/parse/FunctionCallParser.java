@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author dedda
  */
-public class FunctionCallParser {
+public class FunctionCallParser extends ExpressionParser {
 
     public FunctionCall parse(String line, int lineNumber) {
         String objectName = null;
