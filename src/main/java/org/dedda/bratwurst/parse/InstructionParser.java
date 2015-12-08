@@ -1,10 +1,13 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.lang.BWInstruction;
+import org.dedda.bratwurst.lang.Pop;
 
 import static org.dedda.bratwurst.parse.Patterns.END;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_CALL;
+import static org.dedda.bratwurst.parse.Patterns.POP;
 import static org.dedda.bratwurst.parse.Patterns.PRINT;
+import static org.dedda.bratwurst.parse.Patterns.PUSH;
 import static org.dedda.bratwurst.parse.Patterns.RETURN;
 import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
 
@@ -26,6 +29,10 @@ public class InstructionParser {
             return new ExitParser().parse(line, lineNumber);
         } else if (line.matches(RETURN)) {
             return new ReturnParser().parse(line, lineNumber);
+        } else if (line.matches(POP)) {
+            return new PopParser().parse(line, lineNumber);
+        } else if (line.matches(PUSH)) {
+            return new PushParser().parse(line, lineNumber);
         }
         return null;
     }

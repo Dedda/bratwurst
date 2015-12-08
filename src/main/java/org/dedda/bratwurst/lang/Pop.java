@@ -18,7 +18,10 @@ public class Pop extends BWInstruction {
 
     @Override
     public void run(Scope scope) {
-        scope.setVariable(new BWVariable(variableName, scope.pop()));
+        BWExpression value = scope.pop();
+        BWVariable variable = new BWVariable(variableName, value);
+        variable.run(scope);
+        scope.setVariable(variable);
     }
 
     public String getVariableName() {

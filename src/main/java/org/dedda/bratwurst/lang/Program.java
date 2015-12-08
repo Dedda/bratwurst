@@ -27,7 +27,7 @@ public class Program {
     private BWInstruction[] instructions = new BWInstruction[0];
     private boolean stopped = false;
     private int exitCode = 0;
-    private Stack<BWObject> global;
+    private Stack<BWObject> global = new Stack<>();
 
     public Program() {
 
@@ -117,5 +117,9 @@ public class Program {
 
     public void setVariables(ArrayList<BWVariable> variables) {
         this.variables = variables;
+    }
+
+    public Stack<BWObject> getGlobal() {
+        return global;
     }
 }
