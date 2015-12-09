@@ -38,7 +38,7 @@ public class BWVariable extends BWExpression {
     }
 
     public int getIntValue() {
-        return (value instanceof BWInteger) ? ((BWInteger) value).getIntValue() : 0;
+        return (value instanceof BWInteger) ? value.getIntValue() : 0;
     }
 
     @Override

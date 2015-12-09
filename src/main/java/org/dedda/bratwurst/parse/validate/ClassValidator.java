@@ -8,13 +8,8 @@ package org.dedda.bratwurst.parse.validate;
 public class ClassValidator extends BaseValidator {
 
     public boolean validate(final String lines[], final int startLine, final int endLine) {
-        int brackets = 0;
         int squareBrackets;
-        int curlyBrackets = 0;
-        int ifs = 0;
-        int loops = 0;
         boolean isNamed = false;
-        boolean inClass = false;
         boolean inFunction = false;
         if (!lines[startLine].trim().equals("#[")) {
             error("class syntax", "class declaration doesn't start with '#['");
@@ -24,7 +19,6 @@ public class ClassValidator extends BaseValidator {
             error("class syntax", "class declaration doesn't end with ']'");
             return false;
         }
-        inClass = true;
         squareBrackets = 1;
         for (int i = startLine + 1; i <= endLine - 1; i++) {
             String trimmed = lines[i].trim();
@@ -34,14 +28,10 @@ public class ClassValidator extends BaseValidator {
             if (trimmed.equals("]")) {
                 squareBrackets--;
                 if (squareBrackets == 0) {
-                    inClass = false;
                     break;
                 } else {
                     continue;
                 }
-            }
-            if (!inClass) {
-                break;
             }
             if (trimmed.matches("\\(CALL_ME_MAYBE\\) <-- (\\w+)")) {
                 if (!inFunction) {
