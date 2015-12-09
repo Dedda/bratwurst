@@ -9,7 +9,8 @@ import org.dedda.bratwurst.lang.BWInteger;
  */
 public class IntegerParser extends ExpressionParser {
 
-    public BWInteger parse(String data) {
+    @Override
+    public BWInteger parse(String data, int lineNumber) {
         data = data.trim();
         return new BWInteger(Integer.parseInt(data));
     }

@@ -45,7 +45,7 @@ public class IntegerParserTest {
 
     @Test
     public void testParse() throws Exception {
-        BWInteger integer = parser.parse(data);
+        BWInteger integer = parser.parse(data, 0);
         assertEquals(expectedValue, integer.getIntValue());
     }
 }

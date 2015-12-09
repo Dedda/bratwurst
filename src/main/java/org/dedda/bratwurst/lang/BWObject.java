@@ -48,6 +48,10 @@ public class BWObject extends BWExpression {
         this.functions = functions;
     }
 
+    public BWClass getBwClass() {
+        return bwClass;
+    }
+
     @Override
     public BWObject getValue() {
         return this;

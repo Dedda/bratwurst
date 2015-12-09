@@ -19,6 +19,9 @@ import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
 public class InstructionParser {
 
     public BWInstruction parse(String line, int lineNumber) {
+        line = line.replace((char) 10, ' ');
+        line = line.replace((char) 13, ' ');
+        line.trim();
         if (line.matches("^" + FUNCTION_CALL)) {
             return new FunctionCallParser().parse(line, lineNumber);
         } else if (line.matches(VARIABLE_DECLARATION)) {
