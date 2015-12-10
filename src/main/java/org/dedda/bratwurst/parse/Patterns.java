@@ -43,8 +43,9 @@ public class Patterns {
     public static final String LOOP_HEAD = "^/\\((\\w+)\\)$";
 
     public static final String LOOP_END = "^\\\\$";
-    public static final String PUSH = "^>(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + "))>$";
 
+    public static final String PUSH = "^>(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + "))>$";
     public static final String POP = "^<\\w+<$";
 
+    public static final String BW_STRING = "^:[^:;]*;$";
 }

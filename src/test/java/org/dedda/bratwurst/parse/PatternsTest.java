@@ -52,7 +52,16 @@ public class PatternsTest {
                 {CALCULATION, "abc{ghi} @ j <-- 1 & k <-- 2 / def", true},
                 {CALCULATION, "abc{ghi} @ j <-- 1 & k <-- 2 / def{lmn} @ o <-- 1 & p <-- 2", true},
                 {POP, "<test<", true},
-                {POP, "<test>", false}
+                {POP, "<test>", false},
+                {PUSH, ">test>", true},
+                {PUSH, "<test>", false},
+                {TYPE_CHECK, "testVar -?> testClass", true},
+                {TYPE_CHECK, "testVar <?- testClass", false},
+                {BW_STRING, ":Here's some text!;", true},
+                {BW_STRING, ":Here's some wrong: text!;", false},
+                {BW_STRING, ":Here's some wrong; text!;", false},
+                {BW_STRING, ":Here's some wrong text!", false},
+                {BW_STRING, "Here's some wrong text!;", false}
         });
     }
 

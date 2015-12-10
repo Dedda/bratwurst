@@ -10,7 +10,7 @@ public class BWString extends BWObject {
     private String value;
 
     public BWString(String value) {
-        super(BWClass.getClassForName("string"), new BWFunction[0]);
+        super(new BWStringClass(), new BWFunction[0]);
         this.value = value;
     }
 
@@ -30,4 +30,16 @@ public class BWString extends BWObject {
         }
         return 0;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BWString bwString = (BWString) o;
+
+        return !(value != null ? !value.equals(bwString.value) : bwString.value != null);
+
+    }
+
 }
