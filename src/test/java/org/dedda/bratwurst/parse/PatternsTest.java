@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -18,7 +19,7 @@ import static org.junit.Assert.*;
  * @author dedda
  */
 @RunWith(Parameterized.class)
-public class PatternsTest {
+public class PatternsTest extends BratwurtstTestcase {
 
     @Parameters
     public static Collection<Object[]> getParams() {

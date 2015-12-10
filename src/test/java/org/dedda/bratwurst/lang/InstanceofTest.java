@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +10,7 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class InstanceofTest {
+public class InstanceofTest extends BratwurtstTestcase {
 
     @Test
     public void testRun() throws Exception {
@@ -17,7 +18,7 @@ public class InstanceofTest {
         String testType = "testClass";
         BWClass testClass = new BWClass("testClass", new BWFunction[0]);
         BWInteger integer = new BWInteger(12);
-        BWObject testObject = new BWObject(testClass, new BWFunction[0]);
+        BWObject testObject = new BWObject(testClass);
         Instanceof instruction = new Instanceof(0, integer, integerType);
         instruction.run(null);
         assertEquals(new BWInteger(1), instruction.getValue());

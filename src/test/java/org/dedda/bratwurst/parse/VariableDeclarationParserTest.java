@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.VariableDeclaration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,7 @@ import static org.junit.Assert.*;
  * @author dedda
  */
 @RunWith(Parameterized.class)
-public class VariableDeclarationParserTest {
+public class VariableDeclarationParserTest extends BratwurtstTestcase {
 
     @Parameters
     public static Collection<Object[]> getParams() {

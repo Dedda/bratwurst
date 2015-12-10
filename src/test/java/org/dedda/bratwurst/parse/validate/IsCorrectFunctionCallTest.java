@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse.validate;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,7 @@ import static org.junit.Assert.*;
  * @author dedda
  */
 @RunWith(Parameterized.class)
-public class IsCorrectFunctionCallTest {
+public class IsCorrectFunctionCallTest extends BratwurtstTestcase {
 
     private VariableDeclarationValidator instance;
 

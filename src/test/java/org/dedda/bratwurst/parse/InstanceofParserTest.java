@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.BWFunction;
 import org.dedda.bratwurst.lang.BWInteger;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class InstanceofParserTest {
+public class InstanceofParserTest extends BratwurtstTestcase {
 
     @Test
     public void testParse() throws Exception {

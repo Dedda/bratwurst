@@ -10,7 +10,7 @@ public class BWString extends BWObject {
     private String value;
 
     public BWString(String value) {
-        super(new BWStringClass(), new BWFunction[0]);
+        super(new BWStringClass());
         this.value = value;
     }
 

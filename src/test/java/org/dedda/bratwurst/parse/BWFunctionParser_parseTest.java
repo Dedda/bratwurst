@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWFunction;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +20,7 @@ import static org.junit.Assert.assertEquals;
  * @author dedda
  */
 @RunWith(Parameterized.class)
-public class BWFunctionParser_parseTest {
+public class BWFunctionParser_parseTest extends BratwurtstTestcase {
 
     private BWFunctionParser parser;
 

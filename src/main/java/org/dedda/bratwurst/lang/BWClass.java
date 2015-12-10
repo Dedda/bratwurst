@@ -27,8 +27,7 @@ public class BWClass {
 
     public BWObject createInstance() {
         //TODO: init functions and variables
-        BWObject object = new BWObject(this, functions);
-        object.setFunctions(functions);
+        BWObject object = new BWObject(this);
         return object;
     }
 
@@ -39,6 +38,10 @@ public class BWClass {
         } else {
             return new BWClass(name, new BWFunction[0]);
         }
+    }
+
+    public static void unregisterAll() {
+        classes = new ArrayList<>();
     }
 
 }
