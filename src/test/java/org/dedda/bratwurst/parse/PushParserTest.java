@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWInteger;
 import org.dedda.bratwurst.lang.Push;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class PushParserTest {
+public class PushParserTest extends BratwurtstTestcase {
 
     @Test
     public void testParse() throws Exception {

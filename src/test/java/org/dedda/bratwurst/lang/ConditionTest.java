@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class ConditionTest {
+public class ConditionTest extends BratwurtstTestcase {
 
     private boolean trueRun = false;
     private boolean falseRun = false;

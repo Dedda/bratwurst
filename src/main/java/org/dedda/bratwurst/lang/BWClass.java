@@ -20,15 +20,14 @@ public class BWClass {
         this.name = name;
         this.functions = functions;
         if (classes.stream().filter(c -> c.name.equals(this.name)).findAny().isPresent()) {
-            throw new RuntimeException("class already registered");
+            throw new RuntimeException("class " + name + " already registered");
         }
         classes.add(this);
     }
 
     public BWObject createInstance() {
         //TODO: init functions and variables
-        BWObject object = new BWObject(this, functions);
-        object.setFunctions(functions);
+        BWObject object = new BWObject(this);
         return object;
     }
 
@@ -39,6 +38,10 @@ public class BWClass {
         } else {
             return new BWClass(name, new BWFunction[0]);
         }
+    }
+
+    public static void unregisterAll() {
+        classes = new ArrayList<>();
     }
 
 }

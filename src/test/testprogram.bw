@@ -1,29 +1,6 @@
 ==>
 %testinclude.bw%
-#[
-    (CALL_ME_MAYBE) <-- Point
-    ~{
-        (CALL_ME_MAYBE) <-- setX
-        (x) <-- newX
-    }
-    ~{
-        (CALL_ME_MAYBE) <-- setY
-        (y) <-- newY
-    }
-    ~{
-        (CALL_ME_MAYBE) <-- setLocation
-        (x) <-- newX
-        (y) <-- newY
-    }
-    ~{
-        (CALL_ME_MAYBE) <-- getX
-        x -->
-    }
-    ~{
-        (CALL_ME_MAYBE) <-- getY
-        y -->
-    }
-]
+%point.bw%
 ~{
     (CALL_ME_MAYBE) <-- printPoint
     (px) <-- point{getX}
@@ -84,5 +61,18 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
 (x) <-- 5
 <x<
 |x|
+>newLine<
+point1 -?> Point
+(isInstance) <-- point1 -?> Point
+|isInstance|
+>newLine<
+(isInstance) <-- point1 -?> integer
+|isInstance|
+>newLine<
+(isInstance) <-- 123 -?> integer
+|isInstance|
+>newLine<
+(isInstance) <-- 123 -?> Point
+|isInstance|
 >newLine<
 <==

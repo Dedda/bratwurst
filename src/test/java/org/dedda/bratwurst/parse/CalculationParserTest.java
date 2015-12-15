@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWInstruction;
 import org.dedda.bratwurst.lang.BWInteger;
 import org.dedda.bratwurst.lang.Calculation;
@@ -20,7 +21,7 @@ import static org.junit.Assert.*;
  * @author dedda
  */
 @RunWith(Parameterized.class)
-public class CalculationParserTest {
+public class CalculationParserTest extends BratwurtstTestcase {
 
     @Parameters
     public static Collection<Object[]> getParams() {

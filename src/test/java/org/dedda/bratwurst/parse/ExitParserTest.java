@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.Exit;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class ExitParserTest {
+public class ExitParserTest extends BratwurtstTestcase {
 
     @Test
     public void testParse() throws Exception {

@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.Pop;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class PopParserTest {
+public class PopParserTest extends BratwurtstTestcase {
 
     @Test
     public void testParse() throws Exception {

@@ -15,6 +15,5 @@
 ... -->                 Rückgabewert einer Funktion
 >...>                   Push a variable on the global stack
 <...<                   Pop a variable from the global stack
-
-Nice to have:
 %...%                   Datei inkludieren. Enthaltener Code wird direkt ausgeführt
+... -?> ...             Pendant zu instanceof. var1 -?> class1
