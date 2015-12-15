@@ -20,7 +20,7 @@ public class BWClass {
         this.name = name;
         this.functions = functions;
         if (classes.stream().filter(c -> c.name.equals(this.name)).findAny().isPresent()) {
-            throw new RuntimeException("class already registered");
+            throw new RuntimeException("class " + name + " already registered");
         }
         classes.add(this);
     }
