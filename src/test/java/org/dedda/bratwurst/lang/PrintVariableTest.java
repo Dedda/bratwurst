@@ -42,7 +42,7 @@ public class PrintVariableTest extends BratwurtstTestcase {
         return Arrays.asList(new Object[][]{
                 {"A", new Scope(program), new BWVariable("testVar", new BWInteger('A'))},
                 {"Test", new Scope(program), new BWVariable("testVar", new BWString("Test"))},
-                {"" + (char) 0, new Scope(program), new BWVariable("testVar", new BWObject(new BWClass("testClass", new BWFunction[0])))}
+                {"" + (char) 0, new Scope(program), new BWVariable("testVar", new BWObject(BWClass.getClassForName("testClass")))}
 
         });
     }
