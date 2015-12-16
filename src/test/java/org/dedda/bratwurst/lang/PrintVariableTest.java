@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +25,7 @@ import static org.junit.Assert.*;
  * @author dedda
  */
 @RunWith(Parameterized.class)
-public class PrintVariableTest {
+public class PrintVariableTest extends BratwurtstTestcase {
 
     public static Program program = new Program();
     private PrintStream systemOut;
@@ -41,7 +42,7 @@ public class PrintVariableTest {
         return Arrays.asList(new Object[][]{
                 {"A", new Scope(program), new BWVariable("testVar", new BWInteger('A'))},
                 {"Test", new Scope(program), new BWVariable("testVar", new BWString("Test"))},
-                {"" + (char) 0, new Scope(program), new BWVariable("testVar", new BWObject(null, null))}
+                {"" + (char) 0, new Scope(program), new BWVariable("testVar", new BWObject(BWClass.getClassForName("testClass")))}
 
         });
     }

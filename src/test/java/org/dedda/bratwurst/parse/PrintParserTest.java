@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWInstruction;
 import org.dedda.bratwurst.lang.PrintChar;
 import org.dedda.bratwurst.lang.PrintVariable;
@@ -21,7 +22,7 @@ import static org.junit.Assert.assertEquals;
  * @author dedda
  */
 @RunWith(Parameterized.class)
-public class PrintParserTest {
+public class PrintParserTest extends BratwurtstTestcase {
 
     @Parameters
     public static Collection<Object[]> getParams() {

@@ -42,8 +42,6 @@ public class BWFunction extends BWExpression {
     @Override
     public void run(Scope scope) {
         variables.addAll(Arrays.asList(getArguments()));
-//        scope.enterFunction(this, variables);
-//        scope = new Scope(scope.getCurrentObject(), this);
         for (BWVariable argument : getArguments()) {
             argument.run(scope);
         }
@@ -55,7 +53,6 @@ public class BWFunction extends BWExpression {
                 break;
             }
         }
-//        scope.leaveFunction();
     }
 
     public String getName() {

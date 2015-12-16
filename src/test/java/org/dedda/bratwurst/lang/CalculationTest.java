@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +10,7 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class CalculationTest {
+public class CalculationTest extends BratwurtstTestcase {
 
     @Test
     public void testRun() throws Exception {

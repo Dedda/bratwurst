@@ -25,13 +25,13 @@ public class Loop extends BWInstruction {
         toEvaluate.run(scope);
         run = toEvaluate.getIntValue() != 0;
         while (run) {
-            runInstuctions(scope);
+            runInstructions(scope);
             toEvaluate.run(scope);
             run = toEvaluate.getIntValue() != 0;
         }
     }
 
-    private void runInstuctions(Scope scope) {
+    private void runInstructions(Scope scope) {
         for (int i = 0; i < instructions.length; i++) {
             instructions[i].run(scope);
         }

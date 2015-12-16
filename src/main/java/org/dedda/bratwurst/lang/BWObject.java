@@ -18,10 +18,10 @@ public class BWObject extends BWExpression {
     private BWVariable[] variables = new BWVariable[0];
     private BWFunction[] functions;
 
-    public BWObject(BWClass bwClass, BWFunction[] functions) {
+    public BWObject(BWClass bwClass) {
         super(0);
         this.bwClass = bwClass;
-        this.functions = functions;
+        this.functions = bwClass.functions;
     }
 
     public BWVariable[] getVariables() {
@@ -46,6 +46,10 @@ public class BWObject extends BWExpression {
 
     public void setFunctions(BWFunction[] functions) {
         this.functions = functions;
+    }
+
+    public BWClass getBwClass() {
+        return bwClass;
     }
 
     @Override

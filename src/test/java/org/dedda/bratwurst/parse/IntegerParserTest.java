@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWInteger;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +20,7 @@ import static org.junit.Assert.*;
  * @author dedda
  */
 @RunWith(Parameterized.class)
-public class IntegerParserTest {
+public class IntegerParserTest extends BratwurtstTestcase {
 
     private IntegerParser parser;
 
@@ -45,7 +46,7 @@ public class IntegerParserTest {
 
     @Test
     public void testParse() throws Exception {
-        BWInteger integer = parser.parse(data);
+        BWInteger integer = parser.parse(data, 0);
         assertEquals(expectedValue, integer.getIntValue());
     }
 }

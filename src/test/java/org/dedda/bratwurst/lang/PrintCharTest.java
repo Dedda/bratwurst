@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,7 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class PrintCharTest {
+public class PrintCharTest extends BratwurtstTestcase {
 
     private String outputBuffer = "";
 

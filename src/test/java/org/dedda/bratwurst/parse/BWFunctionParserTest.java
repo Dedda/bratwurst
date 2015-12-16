@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.parse;
 
+import org.dedda.bratwurst.BratwurtstTestcase;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class BWFunctionParserTest {
+public class BWFunctionParserTest extends BratwurtstTestcase {
 
     private final String[] lines = new String[]{
             "==>",
