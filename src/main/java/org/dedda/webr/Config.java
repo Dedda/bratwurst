@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dedda on 12/3/15.
@@ -21,6 +22,8 @@ public class Config {
     private List<Route> dynamicRoutes;
 
     private List<Route> staticRoutes;
+
+    private Map<String, List<String>> contentTypes;
 
     public int getPort() {
         return port;
@@ -44,6 +47,14 @@ public class Config {
 
     public void setStaticRoutes(List<Route> staticRoutes) {
         this.staticRoutes = staticRoutes;
+    }
+
+    public Map<String, List<String>> getContentTypes() {
+        return contentTypes;
+    }
+
+    public void setContentTypes(Map<String, List<String>> contentTypes) {
+        this.contentTypes = contentTypes;
     }
 
     public static Config load(File file) throws FileNotFoundException {

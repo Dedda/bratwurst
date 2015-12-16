@@ -11,5 +11,16 @@
       "route": "/static",
       "endpoint": "static"
     }
-  ]
+  ],
+  "contentTypes": {
+    "application/octet-stream" : [
+      "eot",
+      "ttf",
+      "woff",
+      "woff2"
+    ],
+    "text/css" : [
+      "css"
+    ]
+  }
 }

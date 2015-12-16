@@ -1,12 +1,8 @@
 package org.dedda.webr;
 
-import org.dedda.bratwurst.lang.*;
-import org.dedda.bratwurst.parse.Parser;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by dedda on 9/25/15.
@@ -15,8 +11,10 @@ import java.io.UnsupportedEncodingException;
  */
 public class Main {
 
+    private static Config config;
+
     public static void main(String[] args) throws FileNotFoundException {
-        Config config = Config.load(new File("routes.json"));
+        config = Config.load(new File("routes.json"));
         weBr weBr = null;
         try {
             weBr = new weBr(config.getPort());
@@ -30,7 +28,10 @@ public class Main {
         for (Route route : config.getStaticRoutes()) {
             weBr.addStaticRoute(route);
         }
+    }
 
+    public static Config getConfig() {
+        return config;
     }
 
 }

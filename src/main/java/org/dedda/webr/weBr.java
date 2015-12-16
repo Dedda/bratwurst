@@ -11,6 +11,7 @@ import org.dedda.bratwurst.parse.Parser;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,6 +19,8 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
+
+import static java.util.concurrent.Executors.newCachedThreadPool;
 
 /**
  * Created by dedda on 12/2/15.
@@ -35,7 +38,7 @@ public class weBr implements HttpHandler {
         staticRoutes = new HashMap<>();
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", this);
-        server.setExecutor(null);
+        server.setExecutor(newCachedThreadPool());
         server.start();
     }
 
@@ -83,15 +86,17 @@ public class weBr implements HttpHandler {
         } else {
             route = httpExchange.getRequestURI().toString();
         }
-        String rendered = call(route, params);
+        Response rendered = call(route, params);
         System.out.println("rendered page: " + rendered);
-        httpExchange.getResponseHeaders().set("Content-Type", "text/html");
-        httpExchange.sendResponseHeaders(200, rendered.length());
-        httpExchange.getResponseBody().write(rendered.getBytes());
+        String filetype = rendered.getFiletype();
+        httpExchange.getResponseHeaders().set("Content-Type", filetype);
+        httpExchange.sendResponseHeaders(rendered.getCode(), rendered.getContent().length);
+        httpExchange.getResponseBody().write(rendered.getContent());
         httpExchange.getRequestBody().close();
     }
 
-    public String call(String requestRoute, HashMap<String, Integer> parameters) throws UnsupportedEncodingException {
+    public Response call(String requestRoute, HashMap<String, Integer> parameters) throws UnsupportedEncodingException {
+        Response response = new Response();
         for (String key : staticRoutes.keySet()) {
             if (requestRoute.startsWith(key)) {
                 weBrRoute buffer = staticRoutes.get(key);
@@ -113,13 +118,19 @@ public class weBr implements HttpHandler {
             }
         }
         if (weBrRoute == null) {
-            return "No route found! #1";
+            response.setContent("No route found! #1".getBytes());
+            response.setCode(404);
+            response.setFiletype("text/html");
+            return response;
         }
         String filename = weBrRoute.endpoint;
         if (weBrRoute.dir) {
             filename = weBrRoute.endpoint + requestRoute.replaceFirst("^" + weBrRoute.route, "/");
         } else if (!weBrRoute.route.equals(requestRoute)) {
-            return "no route found! #2";
+            response.setContent("No route found! #2".getBytes());
+            response.setCode(404);
+            response.setFiletype("text/html");
+            return response;
         }
         File file = new File(filename);
         if (!file.exists()) {
@@ -139,23 +150,31 @@ public class weBr implements HttpHandler {
         program.run();
         String content = baos.toString("utf-8");
         System.setOut(origOut);
-        return content;
+        response.setContent(content.getBytes());
+        response.setFiletype("text/html");
+        return response;
     }
 
-    private String callStatic(String file) {
-        String contents = "";
+    private Response callStatic(String file) {
+        byte contents[] = new byte[(int) new File(file).length()];
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(file)));
-            String buffer;
-            while ((buffer = reader.readLine()) != null) {
-                contents += buffer;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            new FileInputStream(file).read(contents);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return contents;
+        Response response = new Response();
+        response.setContent(contents);
+        response.setFiletype(getContentType(file.substring(file.lastIndexOf("."))));
+        return response;
+    }
+
+    private String getContentType(String filetype) {
+        for (String key : Main.getConfig().getContentTypes().keySet()) {
+            if (Main.getConfig().getContentTypes().get(key).contains(filetype)) {
+                return key;
+            }
+        }
+        return "text/html";
     }
 
     private class weBrRoute {
