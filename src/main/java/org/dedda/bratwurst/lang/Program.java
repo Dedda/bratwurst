@@ -74,6 +74,10 @@ public class Program {
         classList.toArray(classes);
     }
 
+    public boolean isStopped() {
+        return stopped;
+    }
+
     public BWFunction[] getFunctions() {
         return functions;
     }

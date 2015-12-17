@@ -75,4 +75,7 @@ point1 -?> Point
 (isInstance) <-- 123 -?> Point
 |isInstance|
 >newLine<
+(testText) <-- :Hallo Welt!;
+>testText<
+>newLine<
 <==
