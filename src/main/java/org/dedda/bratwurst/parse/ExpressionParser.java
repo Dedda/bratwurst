@@ -2,6 +2,7 @@ package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.lang.BWExpression;
 
+import static org.dedda.bratwurst.parse.Patterns.BW_STRING;
 import static org.dedda.bratwurst.parse.Patterns.CALCULATION;
 import static org.dedda.bratwurst.parse.Patterns.CLASS_INSTANTIATION;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_CALL_NOT_TERMINAL;
@@ -38,6 +39,8 @@ public class ExpressionParser {
             return new FunctionCallParser();
         } else if (expression.matches(CLASS_INSTANTIATION)) {
             return new ObjectCreationParser();
+        } else if (expression.matches(BW_STRING)) {
+            return new StringParser();
         }
         return null;
     }
