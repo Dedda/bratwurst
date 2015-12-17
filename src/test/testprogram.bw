@@ -1,7 +1,7 @@
-==>
+👽
 %testinclude.bw%
 %point.bw%
-~{
+💣
     (CALL_ME_MAYBE) <-- printPoint
     (px) <-- point{getX}
     (py) <-- point{getY}
@@ -19,7 +19,7 @@
     >=<
     |py|
     >newLine<
-}
+💪
 (newLine) <-- 10
 (point1) <-- [Point]
 point1{setX} @ newX <-- 65
@@ -44,7 +44,7 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
 >newLine<
 (counter) <-- counter - 1
 \
-~{
+💣
     (CALL_ME_MAYBE) <-- recursive
     >c<
     |condition|
@@ -54,7 +54,7 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
         {recursive} @ condition <-- condition
     <<
     |
-}
+💪
 {recursive} @ condition <-- 3
 (x) <-- 4
 >x>
@@ -78,4 +78,4 @@ point1 -?> Point
 (testText) <-- :Hallo Welt!;
 >testText<
 >newLine<
-<==
+👌

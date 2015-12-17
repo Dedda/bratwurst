@@ -1,24 +1,24 @@
-#[
+👻
     (CALL_ME_MAYBE) <-- Point
-    ~{
+    💣
         (CALL_ME_MAYBE) <-- setX
         (x) <-- newX
-    }
-    ~{
+    💪
+    💣
         (CALL_ME_MAYBE) <-- setY
         (y) <-- newY
-    }
-    ~{
+    💪
+    💣
         (CALL_ME_MAYBE) <-- setLocation
         (x) <-- newX
         (y) <-- newY
-    }
-    ~{
+    💪
+    💣
         (CALL_ME_MAYBE) <-- getX
         x -->
-    }
-    ~{
+    💪
+    💣
         (CALL_ME_MAYBE) <-- getY
         y -->
-    }
-]
+    💪
+😇

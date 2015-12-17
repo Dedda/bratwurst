@@ -15,23 +15,27 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        if (args.length != 1) {
-//            throw new RuntimeException("No program file given!");
-//        }
-//        String fileName = args[0];
-//        File file = new File(fileName);
-//        if (!file.exists()) {
-//            throw new RuntimeException("Cannot find file!");
-//        }
-//        Parser parser = new Parser(file);
-//        Program program = parser.parse();
-//        program.run();
-//
-//        int exitCode = program.getExitCode();
-//        System.out.println("Program exited with code " + exitCode);
+        System.out.println(Emoji.ALIEN);
+        System.out.println(Emoji.ALL_OK);
+        System.out.println(Emoji.GHOST);
+        System.out.println(Emoji.ANGEL_FACE);
+        System.out.println(Emoji.BOMB);
+        System.out.println(Emoji.FLEX);
 
-//        new TestProgram();
-//        Program.getInstance().run();
+        if (args.length != 1) {
+            throw new RuntimeException("No program file given!");
+        }
+        String fileName = args[0];
+        File file = new File(fileName);
+        if (!file.exists()) {
+            throw new RuntimeException("Cannot find file!");
+        }
+        Parser parser = new Parser(file);
+        Program program = parser.parse();
+        program.run();
+
+        int exitCode = program.getExitCode();
+        System.out.println("Program exited with code " + exitCode);
     }
 
 }

@@ -7,14 +7,14 @@ package org.dedda.bratwurst.parse;
  */
 public class Patterns {
 
-    public static final String BEGIN = "^==>$";
-    public static final String END = "^<==$";
+    public static final String BEGIN = "^" + Emoji.ALIEN + "$";
+    public static final String END = "^" + Emoji.ALL_OK + "$";
 
-    public static final String CLASS_BEGIN = "^#\\[$";
-    public static final String CLASS_END = "^\\]$";
+    public static final String CLASS_BEGIN = "^" + Emoji.GHOST + "$";
+    public static final String CLASS_END = "^" + Emoji.ANGEL_FACE + "$";
 
-    public static final String FUNCTION_BEGIN = "^~\\{$";
-    public static final String FUNCTION_END = "^\\}$";
+    public static final String FUNCTION_BEGIN = "^" + Emoji.BOMB + "$";
+    public static final String FUNCTION_END = "^" + Emoji.FLEX + "$";
     public static final String FUNCTION_PARAM_FIRST = "@ (\\w+) <-- (\\w+)";
 
     public static final String FUNCTION_PARAM_OTHERS = "& (\\w+) <-- (\\w+)";
