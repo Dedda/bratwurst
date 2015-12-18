@@ -46,8 +46,8 @@ public class Patterns {
     public static final String LOOP_HEAD = "^" + EXPLOSION + "(\\w+)" + HEART_BIG + "$";
     public static final String LOOP_END = "^" + GRAND_PA + "$";
 
-    public static final String PUSH = "^>(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + "))>$";
-    public static final String POP = "^<\\w+<$";
+    public static final String PUSH = "^" + LEMON + "(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + "))" + SANTA + "$";
+    public static final String POP = "^" + PINEAPPLE + "\\w+" + MONKEY_FACE + "$";
 
     public static final String BW_STRING = "^" + POODLE + "[^:;]*" + POOP + "$";
 }

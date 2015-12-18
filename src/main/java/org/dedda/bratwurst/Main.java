@@ -40,6 +40,10 @@ public class Main {
 //        System.out.println(CACTUS);
 //        System.out.println(DOCTOR_MASK);
 //        System.out.println(DIAMOND);
+//        System.out.println(LEMON);
+//        System.out.println(SANTA);
+//        System.out.println(PINEAPPLE);
+//        System.out.println(MONKEY_FACE);
 
         if (args.length != 1) {
             throw new RuntimeException("No program file given!");

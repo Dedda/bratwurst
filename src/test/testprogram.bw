@@ -57,9 +57,9 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
 💪
 {recursive} @ condition <-- 3
 (x) <-- 4
->x>
+🍋x🎅
 (x) <-- 5
-<x<
+🍍x🐵
 😵x🐖
 🐍newLine👳
 point1 -?> Point

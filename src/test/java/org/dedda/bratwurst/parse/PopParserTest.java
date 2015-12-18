@@ -4,6 +4,7 @@ import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.Pop;
 import org.junit.Test;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
 import static org.junit.Assert.*;
 
 /**
@@ -16,7 +17,7 @@ public class PopParserTest extends BratwurtstTestcase {
     @Test
     public void testParse() throws Exception {
         String variableName = "testPopVar";
-        String line = "<" + variableName + "<";
+        String line = PINEAPPLE + variableName + MONKEY_FACE;
         int lineNumber = 15;
         PopParser parser = new PopParser();
         Pop pop = parser.parse(line, lineNumber);
