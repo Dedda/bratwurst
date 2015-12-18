@@ -38,13 +38,13 @@ public class Patterns {
     public static final String PRINT = "^(" + PRINT_VAR + "|" + PRINT_INT + ")$";
 
     public static final String RETURN = "^(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")) -->$";
-    public static final String CONDITION_HEAD = "^\\?\\((\\w+\\))>>$";
-    public static final String CONDITION_SEPARATOR = "^<<$";
 
-    public static final String CONDITION_END = "^\\|$";
-    public static final String LOOP_HEAD = "^/\\((\\w+)\\)$";
+    public static final String CONDITION_HEAD = "^" + EVERGREEN + "(\\w+)" + CORN + "$";
+    public static final String CONDITION_SEPARATOR = "^" + SQUIRT + "$";
+    public static final String CONDITION_END = "^" + BANANA + "$";
 
-    public static final String LOOP_END = "^\\\\$";
+    public static final String LOOP_HEAD = "^" + EXPLOSION + "(\\w+)" + HEART_BIG + "$";
+    public static final String LOOP_END = "^" + GRAND_PA + "$";
 
     public static final String PUSH = "^>(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + "))>$";
     public static final String POP = "^<\\w+<$";

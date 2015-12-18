@@ -30,6 +30,13 @@ public class Main {
 //        System.out.println(POODLE);
 //        System.out.println(PIG);
 //        System.out.println(SNAKE);
+//        System.out.println(EXPLOSION);
+//        System.out.println(HEART_BIG);
+//        System.out.println(GRAND_PA);
+//        System.out.println(EVERGREEN);
+//        System.out.println(CORN);
+//        System.out.println(SQUIRT);
+//        System.out.println(BANANA);
 
         if (args.length != 1) {
             throw new RuntimeException("No program file given!");

@@ -39,21 +39,21 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
 🐍newLine👳
 {printPoint} @ point <-- point1
 (counter) <-- 10
-/(counter)
+💥counter❤
 😵counter🐖
 🐍newLine👳
 (counter) <-- counter - 1
-\
+👴
 💣
     (CALL_ME_MAYBE) <-- recursive
     🐍c👳
     😵condition🐖
     🐍10👳
-    ?(condition)>>
+    🌲condition🌽
         (condition) <-- condition - 1
         {recursive} @ condition <-- condition
-    <<
-    |
+    💦
+    🍌
 💪
 {recursive} @ condition <-- 3
 (x) <-- 4

@@ -75,6 +75,21 @@ public class Emoji {
     public static final String LADY_BUG = forInt(0x1F41E);
     public static final String ROSE = forInt(0x1F339);
     public static final String TULIP = forInt(0x1F337);
+    public static final String EVERGREEN = forInt(0x1F332);
+    public static final String TREE_REGULAR = forInt(0x1F333);
+    public static final String PALM = forInt(0x1F334);
+    public static final String CACTUS = forInt(0x1F335);
+    public static final String WATER_MELON = forInt(0x1F349);
+    public static final String LEMON = forInt(0x1F34B);
+    public static final String BANANA = forInt(0x1F34C);
+    public static final String PINEAPPLE = forInt(0x1F34D);
+    public static final String APPLE_GREEN = forInt(0x1F34F);
+    public static final String PEAR = forInt(0x1F350);
+    public static final String CHERRIES = forInt(0x1F352);
+    public static final String STRAWBERRY = forInt(0x1F353);
+    public static final String AUBERGINE = forInt(0x1F346);
+    public static final String CORN = forInt(0x1F33D);
+    public static final String MUSHROOM = forInt(0x1F344);
 
     public static String forInt(int code) {
         return String.valueOf(Character.toChars(code));

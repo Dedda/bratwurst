@@ -7,6 +7,7 @@ import org.dedda.bratwurst.lang.Condition;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
 import static org.dedda.bratwurst.parse.Patterns.CONDITION_END;
 import static org.dedda.bratwurst.parse.Patterns.CONDITION_SEPARATOR;
 
@@ -29,7 +30,7 @@ public class ConditionParser {
         for (int i = separator+1; i < end; i++) {
             falseInstructions.add(new InstructionParser().parse(lines[i], i));
         }
-        BWExpression condition = new ExpressionParser().parse(conditionLine.substring(2, conditionLine.length() - 3), begin);
+        BWExpression condition = new ExpressionParser().parse(conditionLine.substring(EVERGREEN.length(), conditionLine.length() - CORN.length()), begin);
         BWInstruction[] trueInstructionsArray = new BWInstruction[trueInstructions.size()];
         trueInstructions.toArray(trueInstructionsArray);
         BWInstruction[] falseInstructionsArray = new BWInstruction[falseInstructions.size()];
