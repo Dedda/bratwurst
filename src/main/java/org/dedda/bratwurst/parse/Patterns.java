@@ -1,5 +1,7 @@
 package org.dedda.bratwurst.parse;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
+
 /**
  * Created by dedda on 9/28/15.
  *
@@ -7,14 +9,14 @@ package org.dedda.bratwurst.parse;
  */
 public class Patterns {
 
-    public static final String BEGIN = "^" + Emoji.ALIEN + "$";
-    public static final String END = "^" + Emoji.ALL_OK + "$";
+    public static final String BEGIN = "^" + ALIEN + "$";
+    public static final String END = "^" + ALL_OK + "$";
 
-    public static final String CLASS_BEGIN = "^" + Emoji.GHOST + "$";
-    public static final String CLASS_END = "^" + Emoji.ANGEL_FACE + "$";
+    public static final String CLASS_BEGIN = "^" + GHOST + "$";
+    public static final String CLASS_END = "^" + ANGEL_FACE + "$";
 
-    public static final String FUNCTION_BEGIN = "^" + Emoji.BOMB + "$";
-    public static final String FUNCTION_END = "^" + Emoji.FLEX + "$";
+    public static final String FUNCTION_BEGIN = "^" + BOMB + "$";
+    public static final String FUNCTION_END = "^" + FLEX + "$";
     public static final String FUNCTION_PARAM_FIRST = "@ (\\w+) <-- (\\w+)";
 
     public static final String FUNCTION_PARAM_OTHERS = "& (\\w+) <-- (\\w+)";
@@ -30,8 +32,8 @@ public class Patterns {
     public static final String NAMING = "^\\(CALL_ME_MAYBE\\) <-- \\w+$";
 
     public static final String INCLUDE = "^%(\\w+[\\w\\.]+)%$";
-    public static final String PRINT_VAR = ">(.*)<";
-    public static final String PRINT_INT = "\\|(\\w+)\\|";
+    public static final String PRINT_VAR = SNAKE + "(.*)" + TURBAN;
+    public static final String PRINT_INT = X_X + "(\\w+)" + PIG;
 
     public static final String PRINT = "^(" + PRINT_VAR + "|" + PRINT_INT + ")$";
 
@@ -47,5 +49,5 @@ public class Patterns {
     public static final String PUSH = "^>(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + "))>$";
     public static final String POP = "^<\\w+<$";
 
-    public static final String BW_STRING = "^:[^:;]*;$";
+    public static final String BW_STRING = "^" + POODLE + "[^:;]*" + POOP + "$";
 }

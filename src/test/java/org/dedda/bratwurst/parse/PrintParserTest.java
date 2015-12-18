@@ -14,6 +14,7 @@ import org.junit.runners.Parameterized.Parameters;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -27,9 +28,9 @@ public class PrintParserTest extends BratwurtstTestcase {
     @Parameters
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
-                {PrintChar.class, 'A', ">A<"},
-                {PrintChar.class, (char) 65, ">65<"},
-                {PrintVariable.class, "testVar", ">testVar<"}
+                {PrintChar.class, 'A', SNAKE + "A" + TURBAN},
+                {PrintChar.class, (char) 65, SNAKE + "65" + TURBAN},
+                {PrintVariable.class, "testVar", SNAKE + "testVar" + TURBAN}
         });
     }
 

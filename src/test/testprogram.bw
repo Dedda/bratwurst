@@ -5,20 +5,20 @@
     (CALL_ME_MAYBE) <-- printPoint
     (px) <-- point{getX}
     (py) <-- point{getY}
-    >P<
-    >o<
-    >i<
-    >n<
-    >t<
-    >:<
-    >x<
-    >=<
-    |px|
-    >,<
-    >y<
-    >=<
-    |py|
-    >newLine<
+    🐍P👳
+    🐍o👳
+    🐍i👳
+    🐍n👳
+    🐍t👳
+    🐍:👳
+    🐍x👳
+    🐍=👳
+    😵px🐖
+    🐍,👳
+    🐍y👳
+    🐍=👳
+    😵py🐖
+    🐍newLine👳
 💪
 (newLine) <-- 10
 (point1) <-- [Point]
@@ -26,29 +26,29 @@ point1{setX} @ newX <-- 65
 point1{setY} @ newY <-- 66
 (px) <-- point1{getX}
 (py) <-- point1{getY}
-|px|
->newLine<
-|py|
->newLine<
+😵px🐖
+🐍newLine👳
+😵py🐖
+🐍newLine👳
 point1{setLocation} @ newX <-- 67 & newY <-- 68
 (px) <-- point1{getX}
 (py) <-- point1{getY}
-|px|
->newLine<
-|py|
->newLine<
+😵px🐖
+🐍newLine👳
+😵py🐖
+🐍newLine👳
 {printPoint} @ point <-- point1
 (counter) <-- 10
 /(counter)
-|counter|
->newLine<
+😵counter🐖
+🐍newLine👳
 (counter) <-- counter - 1
 \
 💣
     (CALL_ME_MAYBE) <-- recursive
-    >c<
-    |condition|
-    >10<
+    🐍c👳
+    😵condition🐖
+    🐍10👳
     ?(condition)>>
         (condition) <-- condition - 1
         {recursive} @ condition <-- condition
@@ -60,22 +60,22 @@ point1{setLocation} @ newX <-- 67 & newY <-- 68
 >x>
 (x) <-- 5
 <x<
-|x|
->newLine<
+😵x🐖
+🐍newLine👳
 point1 -?> Point
 (isInstance) <-- point1 -?> Point
-|isInstance|
->newLine<
+😵isInstance🐖
+🐍newLine👳
 (isInstance) <-- point1 -?> integer
-|isInstance|
->newLine<
+😵isInstance🐖
+🐍newLine👳
 (isInstance) <-- 123 -?> integer
-|isInstance|
->newLine<
+😵isInstance🐖
+🐍newLine👳
 (isInstance) <-- 123 -?> Point
-|isInstance|
->newLine<
-(testText) <-- :Hallo Welt!;
->testText<
->newLine<
+😵isInstance🐖
+🐍newLine👳
+(testText) <-- 🐩Hallo Welt!💩
+🐍testText👳
+🐍newLine👳
 👌

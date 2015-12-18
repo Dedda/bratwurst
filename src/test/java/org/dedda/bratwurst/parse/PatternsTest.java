@@ -39,7 +39,7 @@ public class PatternsTest extends BratwurtstTestcase {
                 {VARIABLE_DECLARATION, "(test) <-- test{test} @ test <-- 2 & test <-- 3", true},
                 {VARIABLE_DECLARATION, "(test) <-- [test]", true},
                 {INCLUDE, "%test.bw%", true},
-                {PRINT, ">td<", true},
+                {PRINT, SNAKE + "td" + TURBAN, true},
                 {CONDITION_HEAD, "?(test)>>", true},
                 {CONDITION_SEPARATOR, "<<", true},
                 {CONDITION_END, "|", true},
@@ -59,11 +59,9 @@ public class PatternsTest extends BratwurtstTestcase {
                 {PUSH, "<test>", false},
                 {TYPE_CHECK, "testVar -?> testClass", true},
                 {TYPE_CHECK, "testVar <?- testClass", false},
-                {BW_STRING, ":Here's some text!;", true},
-                {BW_STRING, ":Here's some wrong: text!;", false},
-                {BW_STRING, ":Here's some wrong; text!;", false},
-                {BW_STRING, ":Here's some wrong text!", false},
-                {BW_STRING, "Here's some wrong text!;", false}
+                {BW_STRING, POODLE + "Here's some text!" + POOP, true},
+                {BW_STRING, POODLE + "Here's some wrong text!", false},
+                {BW_STRING, "Here's some wrong text!" + POOP, false}
         });
     }
 

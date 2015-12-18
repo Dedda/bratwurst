@@ -71,6 +71,10 @@ public class Emoji {
     public static final String ELEPHANT = forInt(0x1F418);
     public static final String BABY_CHICK = forInt(0x1F425);
     public static final String SNAKE = forInt(0x1F40D);
+    public static final String OCTOPUS = forInt(0x1F419);
+    public static final String LADY_BUG = forInt(0x1F41E);
+    public static final String ROSE = forInt(0x1F339);
+    public static final String TULIP = forInt(0x1F337);
 
     public static String forInt(int code) {
         return String.valueOf(Character.toChars(code));

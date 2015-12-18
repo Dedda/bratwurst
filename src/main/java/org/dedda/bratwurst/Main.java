@@ -6,6 +6,8 @@ import org.dedda.bratwurst.parse.Parser;
 
 import java.io.File;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
+
 /**
  * Created by dedda on 9/25/15.
  *
@@ -15,12 +17,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println(Emoji.ALIEN);
-        System.out.println(Emoji.ALL_OK);
-        System.out.println(Emoji.GHOST);
-        System.out.println(Emoji.ANGEL_FACE);
-        System.out.println(Emoji.BOMB);
-        System.out.println(Emoji.FLEX);
+//        System.out.println(ALIEN);
+//        System.out.println(ALL_OK);
+//        System.out.println(GHOST);
+//        System.out.println(ANGEL_FACE);
+//        System.out.println(BOMB);
+//        System.out.println(FLEX);
+//        System.out.println(X_X);
+//        System.out.println(GHOST);
+//        System.out.println(POOP);
+//        System.out.println(TURBAN);
+//        System.out.println(POODLE);
+//        System.out.println(PIG);
+//        System.out.println(SNAKE);
 
         if (args.length != 1) {
             throw new RuntimeException("No program file given!");
