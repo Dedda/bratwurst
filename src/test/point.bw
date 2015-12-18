@@ -1,24 +1,24 @@
 👻
-    (CALL_ME_MAYBE) <-- Point
+    😷Point💎
     💣
-        (CALL_ME_MAYBE) <-- setX
+        😷setX💎
         (x) <-- newX
     💪
     💣
-        (CALL_ME_MAYBE) <-- setY
+        😷setY💎
         (y) <-- newY
     💪
     💣
-        (CALL_ME_MAYBE) <-- setLocation
+        😷setLocation💎
         (x) <-- newX
         (y) <-- newY
     💪
     💣
-        (CALL_ME_MAYBE) <-- getX
+        😷getX💎
         x -->
     💪
     💣
-        (CALL_ME_MAYBE) <-- getY
+        😷getY💎
         y -->
     💪
 😇

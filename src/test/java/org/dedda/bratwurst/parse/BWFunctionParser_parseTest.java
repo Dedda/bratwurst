@@ -31,7 +31,7 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
                 {new String[]{
                         ALIEN,
                         BOMB,
-                        "(CALL_ME_MAYBE) <-- testFunc",
+                        DOCTOR_MASK + "testFunc" + DIAMOND,
                         "test -->",
                         FLEX,
                         ALL_OK

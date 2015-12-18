@@ -37,6 +37,9 @@ public class Main {
 //        System.out.println(CORN);
 //        System.out.println(SQUIRT);
 //        System.out.println(BANANA);
+//        System.out.println(CACTUS);
+//        System.out.println(DOCTOR_MASK);
+//        System.out.println(DIAMOND);
 
         if (args.length != 1) {
             throw new RuntimeException("No program file given!");

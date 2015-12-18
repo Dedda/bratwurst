@@ -18,7 +18,7 @@ public class BWFunctionParserTest extends BratwurtstTestcase {
     private final String[] lines = new String[]{
             ALIEN,
             BOMB,
-            "(CALL_ME_MAYBE) <-- testFunc",
+            DOCTOR_MASK + "testFunc" + DIAMOND,
             "test -->",
             FLEX,
             ALL_OK

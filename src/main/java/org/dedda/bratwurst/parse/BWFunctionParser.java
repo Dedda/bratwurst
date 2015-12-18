@@ -6,6 +6,7 @@ import org.dedda.bratwurst.lang.BWInstruction;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
 import static org.dedda.bratwurst.parse.Patterns.CONDITION_HEAD;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_END;
@@ -39,7 +40,7 @@ public class BWFunctionParser {
         for (int i = begin+1; i < end; i++) {
             String line = lines[i];
             if (line.matches(NAMING)) {
-                functionName = line.split(" ")[2];
+                functionName = line.substring(DOCTOR_MASK.length(), line.length() -  DIAMOND.length());
             } else if (line.matches(CONDITION_HEAD)) {
                 int conditionEnd = conditionParser.getEnd(lines, i);
                 instructions.add(conditionParser.parse(lines, i));

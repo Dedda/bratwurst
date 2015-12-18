@@ -57,7 +57,7 @@ public class PatternsTest extends BratwurtstTestcase {
                 {POP,                   "<test>",                                                       false},
                 {PUSH,                  ">test>",                                                       true},
                 {PUSH,                  "<test>",                                                       false},
-                {TYPE_CHECK,            "testVar -?> testClass",                                        true},
+                {TYPE_CHECK,            "testVar " + CACTUS + " testClass",                             true},
                 {TYPE_CHECK,            "testVar <?- testClass",                                        false},
                 {BW_STRING,             POODLE + "Here's some text!" + POOP,                            true},
                 {BW_STRING,             POODLE + "Here's some wrong text!",                             false},
