@@ -12,6 +12,7 @@ import org.junit.runners.Parameterized.Parameters;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -28,31 +29,31 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
                 {new String[]{
-                        "==>",
-                        "~{",
+                        ALIEN,
+                        BOMB,
                         "(CALL_ME_MAYBE) <-- testFunc",
                         "test -->",
-                        "}",
-                        "<=="
+                        FLEX,
+                        ALL_OK
                 }, 1, null, "testFunc", 1},
                 {new String[]{
-                        "==>",
-                        "~{",
+                        ALIEN,
+                        BOMB,
                         "test -->",
-                        "}",
-                        "<=="
+                        FLEX,
+                        ALL_OK
                 }, 1, "function name not defined!", null, 0},
                 {new String[]{
-                        "==>",
-                        "~{",
-                        "}",
-                        "<=="
+                        ALIEN,
+                        BOMB,
+                        FLEX,
+                        ALL_OK
                 }, 0, "invalid function begin, no head found!", null, 0},
                 {new String[]{
-                        "==>",
-                        "~{",
+                        ALIEN,
+                        BOMB,
                         "test -->",
-                        "<=="
+                        ALL_OK
                 }, 1, "End of method not found!", null, 0}
         });
     }

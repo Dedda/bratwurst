@@ -10,6 +10,7 @@ import org.junit.runners.Parameterized.Parameters;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
 import static org.dedda.bratwurst.parse.Patterns.*;
 import static org.junit.Assert.*;
 
@@ -24,12 +25,12 @@ public class PatternsTest extends BratwurtstTestcase {
     @Parameters
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
-                {BEGIN, "==>", true},
-                {END, "<==", true},
-                {CLASS_BEGIN, "#[", true},
-                {CLASS_END, "]", true},
-                {FUNCTION_BEGIN, "~{", true},
-                {FUNCTION_END, "}", true},
+                {BEGIN, ALIEN, true},
+                {END, ALL_OK, true},
+                {CLASS_BEGIN, GHOST, true},
+                {CLASS_END, ANGEL_FACE, true},
+                {FUNCTION_BEGIN, BOMB, true},
+                {FUNCTION_END, FLEX, true},
                 {FUNCTION_CALL, "test{test}", true},
                 {FUNCTION_CALL, "test{test} @ test <-- 1", true},
                 {FUNCTION_CALL, "test{test} @ test <-- 1 & test <-- 2", true},

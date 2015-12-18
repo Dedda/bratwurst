@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
 import static org.junit.Assert.*;
 
 /**
@@ -15,12 +16,12 @@ import static org.junit.Assert.*;
 public class BWFunctionParserTest extends BratwurtstTestcase {
 
     private final String[] lines = new String[]{
-            "==>",
-            "~{",
+            ALIEN,
+            BOMB,
             "(CALL_ME_MAYBE) <-- testFunc",
             "test -->",
-            "}",
-            "<=="
+            FLEX,
+            ALL_OK
     };
     private final int begin = 1;
     private final int end = 4;

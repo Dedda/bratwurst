@@ -1,5 +1,7 @@
 package org.dedda.bratwurst.parse;
 
+import java.io.FileOutputStream;
+
 /**
  * Created by dedda on 12/17/15.
  *
@@ -40,12 +42,35 @@ public class Emoji {
     public static final String ALIEN = forInt(0x1F47D);
     public static final String ROBOT_FACE = forInt(0x1F916);
     public static final String POOP = forInt(0x1F4A9);
+    public static final String CAT_HEART_EYES = forInt(0x1F63B);
+    public static final String BOY = forInt(0x1F466);
+    public static final String GIRL = forInt(0x1F467);
+    public static final String MAN = forInt(0x1F468);
+    public static final String WOMAN = forInt(0x1F469);
+    public static final String GRAND_PA = forInt(0x1F474);
+    public static final String GRAND_MA = forInt(0x1F475);
+    public static final String BABY = forInt(0x1F476);
+    public static final String POLICE = forInt(0x1F46E);
+    public static final String TURBAN = forInt(0x1F473);
+    public static final String SANTA = forInt(0x1F385);
     public static final String FLEX = forInt(0x1F4AA);
     public static final String SPOCK = forInt(0x1F596);
     public static final String METAL = forInt(0x1F918);
     public static final String ALL_OK = forInt(0x1F44C);
     public static final String HEART_BIG = forInt(0x2764);
     public static final String BOMB = forInt(0x1F4A3);
+    public static final String EXPLOSION = forInt(0x1F4A5);
+    public static final String SQUIRT = forInt(0x1F4A6);
+    public static final String CROWN = forInt(0x1F451);
+    public static final String DIAMOND = forInt(0x1F48E);
+    public static final String MONKEY_FACE = forInt(0x1F435);
+    public static final String POODLE = forInt(0x1F429);
+    public static final String TIGER = forInt(0x1F405);
+    public static final String UNICORN = forInt(0x1F984);
+    public static final String PIG = forInt(0x1F416);
+    public static final String ELEPHANT = forInt(0x1F418);
+    public static final String BABY_CHICK = forInt(0x1F425);
+    public static final String SNAKE = forInt(0x1F40D);
 
     public static String forInt(int code) {
         return String.valueOf(Character.toChars(code));
