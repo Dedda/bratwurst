@@ -1,9 +1,5 @@
 package org.dedda.bratwurst.lang;
 
-import org.dedda.bratwurst.parse.StringValidator;
-
-import static org.dedda.bratwurst.parse.Emoji.*;
-
 /**
  * Created by dedda on 10/15/15.
  *
