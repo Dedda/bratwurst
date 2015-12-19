@@ -12,6 +12,7 @@ import static org.dedda.bratwurst.parse.Emoji.*;
 import static org.dedda.bratwurst.parse.Patterns.PRINT;
 import static org.dedda.bratwurst.parse.Patterns.PRINT_INT;
 import static org.dedda.bratwurst.parse.Patterns.PRINT_VAR;
+import static org.dedda.bratwurst.parse.Patterns.validVariableNameEmojis;
 
 /**
  * Created by dedda on 9/28/15.
@@ -40,6 +41,9 @@ public class PrintParser extends InstructionParser {
                 return new PrintChar(lineNumber, message.charAt(0));
             } else if (message.matches("^\\d+$")) {
                 return new PrintChar(lineNumber, (char) Integer.parseInt(message));
+            }
+            if (!new StringValidator().isValid(message, validVariableNameEmojis())) {
+                throw new RuntimeException("\"" + message + "\" is not a valid variable name!");
             }
             return new PrintVariable(lineNumber, message);
         }

@@ -1,5 +1,9 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.parse.StringValidator;
+
+import static org.dedda.bratwurst.parse.Emoji.*;
+
 /**
  * Created by dedda on 10/15/15.
  *
@@ -39,7 +43,5 @@ public class BWString extends BWObject {
         BWString bwString = (BWString) o;
 
         return !(value != null ? !value.equals(bwString.value) : bwString.value != null);
-
     }
-
 }

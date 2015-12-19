@@ -11,6 +11,7 @@ import org.junit.runners.Parameterized.Parameters;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.dedda.bratwurst.parse.Emoji.*;
 import static org.junit.Assert.*;
 
 /**
@@ -24,10 +25,10 @@ public class VariableDeclarationParserTest extends BratwurtstTestcase {
     @Parameters
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
-                {"(px) <-- 65", "px"},
-                {"(abc) <-- {test} @ def <-- 13 & ghi <-- 26", "abc"},
-                {"(point) <-- [Point]", "point"},
-                {"(px) <-- point{getX}", "px"}
+                {"(" + SKULL_BONES + ") <-- 65", SKULL_BONES},
+                {"(" + TIGER + METAL + ") <-- {test} @ def <-- 13 & ghi <-- 26", TIGER + METAL},
+                {"(" + OCTOPUS + BREAD + TWO_BEERS + ") <-- [Point]", OCTOPUS + BREAD + TWO_BEERS},
+                {"(" + WINE + ") <-- point{getX}", WINE}
         });
     }
 

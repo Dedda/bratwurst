@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
  */
 public class Emoji {
 
+    // Faces:
     public static final String GRINNING_FACE = forInt(0x1F600);
     public static final String GRINNING_FACE_SMILING_EYES = forInt(0x1F601);
     public static final String GRINNING_FACE_TEARS = forInt(0x1F602);
@@ -36,6 +37,8 @@ public class Emoji {
     public static final String MONEY_MOUTH = forInt(0x1F911);
     public static final String CRYING_HARD = forInt(0x1F62D);
     public static final String X_X = forInt(0x1F635);
+
+
     public static final String SKULL = forInt(0x1F480);
     public static final String SKULL_BONES = forInt(0x2620);
     public static final String GHOST = forInt(0x1F47B);
@@ -63,6 +66,8 @@ public class Emoji {
     public static final String SQUIRT = forInt(0x1F4A6);
     public static final String CROWN = forInt(0x1F451);
     public static final String DIAMOND = forInt(0x1F48E);
+
+    // Animals:
     public static final String MONKEY_FACE = forInt(0x1F435);
     public static final String POODLE = forInt(0x1F429);
     public static final String TIGER = forInt(0x1F405);
@@ -73,12 +78,17 @@ public class Emoji {
     public static final String SNAKE = forInt(0x1F40D);
     public static final String OCTOPUS = forInt(0x1F419);
     public static final String LADY_BUG = forInt(0x1F41E);
+    public static final String SPIDER = forInt(0x1F577);
+
+    // Plants and fungi:
     public static final String ROSE = forInt(0x1F339);
     public static final String TULIP = forInt(0x1F337);
+    public static final String SUNFLOWER = forInt(0x1F33B);
     public static final String EVERGREEN = forInt(0x1F332);
     public static final String TREE_REGULAR = forInt(0x1F333);
     public static final String PALM = forInt(0x1F334);
     public static final String CACTUS = forInt(0x1F335);
+    public static final String CLOVER = forInt(0x1F340);
     public static final String WATER_MELON = forInt(0x1F349);
     public static final String LEMON = forInt(0x1F34B);
     public static final String BANANA = forInt(0x1F34C);
@@ -90,6 +100,34 @@ public class Emoji {
     public static final String AUBERGINE = forInt(0x1F346);
     public static final String CORN = forInt(0x1F33D);
     public static final String MUSHROOM = forInt(0x1F344);
+
+    // Food:
+    public static final String BREAD = forInt(0x1F35E);
+    public static final String CHEESE = forInt(0x1F9C0);
+    public static final String POULTRY_LEG = forInt(0x1F357);
+    public static final String HAMBURGER = forInt(0x1F354);
+    public static final String FRIES = forInt(0x1F35F);
+    public static final String SLICE_PIZZA = forInt(0x1F355);
+    public static final String HOT_DOG = forInt(0x1F32D);
+    public static final String POPCORN = forInt(0x1F37F);
+    public static final String SOUP_BOWL_STEAMING = forInt(0x1F35C);
+    public static final String SPAGHETTI = forInt(0x1F35D);
+    public static final String SUSHI = forInt(0x1F363);
+    public static final String FRIED_SHRIMP = forInt(0x1F364);
+    public static final String SOFT_ICE = forInt(0x1F366);
+    public static final String DONUT = forInt(0x1F369);
+    public static final String COOKIE = forInt(0x1F36A);
+    public static final String BIRTHDAY_CAKE = forInt(0x1F382);
+    public static final String CAKE_PIECE = forInt(0x1F370);
+    public static final String CHOCOLATE = forInt(0x1F36B);
+    public static final String CANDY = forInt(0x1F36C);
+    public static final String LOLLIPOP = forInt(0x1F36D);
+    public static final String BABY_BOTTLE = forInt(0x1F37C);
+    public static final String CHAMPAGNE = forInt(0x1F37E);
+    public static final String WINE = forInt(0x1F377);
+    public static final String COCKTAIL = forInt(0x1F378);
+    public static final String BEER = forInt(0x1F37A);
+    public static final String TWO_BEERS = forInt(0x1F37B);
 
     public static String forInt(int code) {
         return String.valueOf(Character.toChars(code));

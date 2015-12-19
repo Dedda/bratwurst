@@ -32,14 +32,14 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
                         ALIEN,
                         BOMB,
                         DOCTOR_MASK + "testFunc" + DIAMOND,
-                        "test -->",
+                        ROSE + COOKIE + " -->",
                         FLEX,
                         ALL_OK
                 }, 1, null, "testFunc", 1},
                 {new String[]{
                         ALIEN,
                         BOMB,
-                        "test -->",
+                        CANDY + TWO_BEERS + " -->",
                         FLEX,
                         ALL_OK
                 }, 1, "function name not defined!", null, 0},
@@ -52,7 +52,7 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
                 {new String[]{
                         ALIEN,
                         BOMB,
-                        "test -->",
+                        BREAD + HOT_DOG + " -->",
                         ALL_OK
                 }, 1, "End of method not found!", null, 0}
         });

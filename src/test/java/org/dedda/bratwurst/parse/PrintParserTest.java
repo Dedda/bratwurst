@@ -30,7 +30,7 @@ public class PrintParserTest extends BratwurtstTestcase {
         return Arrays.asList(new Object[][]{
                 {PrintChar.class, 'A', SNAKE + "A" + TURBAN},
                 {PrintChar.class, (char) 65, SNAKE + "65" + TURBAN},
-                {PrintVariable.class, "testVar", SNAKE + "testVar" + TURBAN}
+                {PrintVariable.class, BOY + TIGER + CHERRIES, SNAKE + BOY + TIGER + CHERRIES + TURBAN}
         });
     }
 

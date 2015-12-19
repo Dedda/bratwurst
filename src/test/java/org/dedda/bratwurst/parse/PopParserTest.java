@@ -16,7 +16,7 @@ public class PopParserTest extends BratwurtstTestcase {
 
     @Test
     public void testParse() throws Exception {
-        String variableName = "testPopVar";
+        String variableName = CLOVER + PEAR;
         String line = PINEAPPLE + variableName + MONKEY_FACE;
         int lineNumber = 15;
         PopParser parser = new PopParser();
