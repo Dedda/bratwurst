@@ -59,7 +59,7 @@ public class PatternsTest extends BratwurtstTestcase {
                 {POP,                   "<test>",                                                       false},
                 {PUSH,                  LEMON + TIGER + METAL + BOY + SANTA,                            true},
                 {PUSH,                  "<test>",                                                       false},
-                {TYPE_CHECK,            SKULL_BONES + " " + CACTUS + " testClass",                      true},
+                {TYPE_CHECK,            SKULL_BONES + CACTUS + POLICE + CAKE_PIECE,                     true},
                 {TYPE_CHECK,            "testVar <?- testClass",                                        false},
                 {BW_STRING,             POODLE + "Here's some text!" + POOP,                            true},
                 {BW_STRING,             POODLE + "Here's some wrong text!",                             false},
@@ -76,7 +76,6 @@ public class PatternsTest extends BratwurtstTestcase {
 
     @Test
     public void testPattern() {
-        System.out.println(CALCULATION);
         if (matches) {
             assertTrue("\"" + text + "\" does not match \"" + pattern + "\"!", text.matches(pattern));
         } else {

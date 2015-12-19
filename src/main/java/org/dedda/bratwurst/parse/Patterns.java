@@ -9,6 +9,8 @@ import static org.dedda.bratwurst.parse.Emoji.*;
  */
 public class Patterns {
 
+    public static final String NUMBER = "(\\-?\\d+)";
+
     public static final String[] VALID_VARIABLE_NAME_EMOJIS = new String[]{
             SKULL_BONES,
             BOY,
@@ -79,19 +81,19 @@ public class Patterns {
     public static final String FUNCTION_CALL_NOT_TERMINAL = VARIABLE_NAME + "\\{(" + FUNCTION_NAME + ")\\}( " + FUNCTION_PARAM_FIRST + ")?( " + FUNCTION_PARAM_OTHERS + ")*";
     public static final String FUNCTION_CALL = FUNCTION_CALL_NOT_TERMINAL + "$";
 
-    public static final String CALCULATION_PARAMETER = "((\\-?\\d+)|" + VARIABLE_NAME + "|(" + FUNCTION_CALL_NOT_TERMINAL + "))";
+    public static final String CALCULATION_PARAMETER = "(" + NUMBER + "|" + VARIABLE_NAME + "|(" + FUNCTION_CALL_NOT_TERMINAL + "))";
 
     public static final String CALCULATION = CALCULATION_PARAMETER + " [\\+\\-\\*\\/] " + CALCULATION_PARAMETER;
 
-    public static final String TYPE_CHECK = "^" + VARIABLE_NAME + " " + CACTUS + " \\w+$";
+    public static final String TYPE_CHECK = "^" + VARIABLE_NAME + CACTUS + CLASS_NAME + "$";
     public static final String CLASS_INSTANTIATION = "\\[(" + CLASS_NAME + ")\\]$";
     public static final String VARIABLE_DECLARATION = "^\\(" + VARIABLE_NAME + "\\) <-- .*$";
 
     public static final String NAMING = "^" + DOCTOR_MASK + "\\w+" + DIAMOND + "$";
 
     public static final String INCLUDE = "^%(\\w+[\\w\\.]+)%$";
-    public static final String PRINT_VAR = SNAKE + "(" + VARIABLE_NAME + ")" + TURBAN;
-    public static final String PRINT_INT = X_X + "((\\-?\\d+)|.|(" + VARIABLE_NAME + "))" + PIG;
+    public static final String PRINT_VAR = SNAKE + "((" + VARIABLE_NAME + ")|.|" + NUMBER + ")" + TURBAN;
+    public static final String PRINT_INT = X_X + "(" + NUMBER + "|(" + VARIABLE_NAME + ")|.)" + PIG;
 
     public static final String PRINT = "^(" + PRINT_VAR + ")|(" + PRINT_INT + ")$";
 
@@ -104,7 +106,7 @@ public class Patterns {
     public static final String LOOP_HEAD = "^" + EXPLOSION + "(\\w+)" + HEART_BIG + "$";
     public static final String LOOP_END = "^" + GRAND_PA + "$";
 
-    public static final String PUSH = "^" + LEMON + "(" + VARIABLE_NAME + "|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + "))" + SANTA + "$";
+    public static final String PUSH = "^" + LEMON + "(" + VARIABLE_NAME + "|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + ")|" + NUMBER + ")" + SANTA + "$";
     public static final String POP = "^" + PINEAPPLE + VARIABLE_NAME + MONKEY_FACE + "$";
 
     public static final String BW_STRING = "^" + POODLE + "[^:;]*" + POOP + "$";
