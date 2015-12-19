@@ -39,9 +39,9 @@ public class PatternsVariableNameTest extends BratwurtstTestcase {
     @Test
     public void testPattern() {
         if (matches) {
-            assertTrue("\"" + text + "\" does not match!", text.matches(validVariableNamePattern()));
+            assertTrue("\"" + text + "\" does not match!", text.matches(VARIABLE_NAME));
         } else {
-            assertFalse("\"" + text + "\" does match!", text.matches(validVariableNamePattern()));
+            assertFalse("\"" + text + "\" does match!", text.matches(VARIABLE_NAME));
         }
     }
 }

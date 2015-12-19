@@ -31,13 +31,13 @@ public class PatternsTest extends BratwurtstTestcase {
                 {CLASS_END,             ANGEL_FACE,                                                     true},
                 {FUNCTION_BEGIN,        BOMB,                                                           true},
                 {FUNCTION_END,          FLEX,                                                           true},
-                {FUNCTION_CALL,         "test{test}",                                                   true},
-                {FUNCTION_CALL,         "test{test} @ test <-- 1",                                      true},
-                {FUNCTION_CALL,         "test{test} @ test <-- 1 & test <-- 2",                         true},
-                {CLASS_INSTANTIATION,   "[test]",                                                       true},
+                {FUNCTION_CALL,         ROSE + "{" + BABY_BOTTLE + LOLLIPOP + "}",                      true},
+                {FUNCTION_CALL,         OCTOPUS + "{" + MEH + DONUT + "} @ " + CLOVER + " <-- 1",       true},
+                {FUNCTION_CALL,         TIGER + "{" + SUSHI + SPOCK + "} @ " + TWO_BEERS + " <-- 1 & " + CANDY + " <-- 2",   true},
+                {CLASS_INSTANTIATION,   "[" + BABY + BEER + "]",                                        true},
                 {VARIABLE_DECLARATION,  "(" + OCTOPUS + TIGER + ") <-- 123",                            true},
-                {VARIABLE_DECLARATION,  "(" + OCTOPUS + TIGER + ") <-- test{test} @ test <-- 2 & test <-- 3",   true},
-                {VARIABLE_DECLARATION,  "(" + OCTOPUS + TIGER + ") <-- [test]",                         true},
+                {VARIABLE_DECLARATION,  "(" + OCTOPUS + TIGER + ") <-- " + CLOVER + "{" + MEH + SOFT_ICE + "} @ " + TWO_BEERS + " <-- 2 & " + ROSE + " <-- 3",   true},
+                {VARIABLE_DECLARATION,  "(" + OCTOPUS + TIGER + ") <-- [" + UNICORN + PALM + "]",       true},
                 {INCLUDE,               "%test.bw%",                                                    true},
                 {PRINT,                 SNAKE + SKULL_BONES + TURBAN,                                   true},
                 {PRINT,                 X_X + 'R' + PIG,                                                true},
@@ -49,15 +49,15 @@ public class PatternsTest extends BratwurtstTestcase {
                 {LOOP_END,              GRAND_PA,                                                       true},
                 {RETURN,                METAL + TIGER + " -->",                                         true},
                 {RETURN,                BOY + PEAR + " -->",                                            true},
-                {RETURN,                "abc{def} @ test <-- 1 & test <-- 2 -->",                       true},
+                {RETURN,                BOY + "{" + SPIDER + ELEPHANT + "} @ " + TIGER + " <-- 1 & " + OCTOPUS + " <-- 2 -->",    true},
                 {CALCULATION,           "123 + 456",                                                    true},
                 {CALCULATION,           SKULL_BONES + TIGER + " - 456",                                 true},
                 {CALCULATION,           CLOVER + ROSE + " * " + OCTOPUS + COOKIE,                       true},
-                {CALCULATION,           "abc{ghi} @ j <-- 1 & k <-- 2 / " + FRIED_SHRIMP,               true},
-                {CALCULATION,           "abc{ghi} @ j <-- 1 & k <-- 2 / def{lmn} @ o <-- 1 & p <-- 2",  true},
+                {CALCULATION,           SKULL_BONES + "{" + TREE_REGULAR + SOFT_ICE + "} @ " + WINE + " <-- 1 & " + FRIED_SHRIMP + " <-- 2 / " + FRIED_SHRIMP,  true},
+                {CALCULATION,           CHERRIES + "{" + SUSHI + "} @ " + COOKIE + " <-- 1 & " + METAL + " <-- 2 / " + HOT_DOG + "{" + SMIRKING + "} @ " + TWO_BEERS + " <-- 1 & " + BREAD + " <-- 2", true},
                 {POP,                   PINEAPPLE + SKULL_BONES + OCTOPUS + MONKEY_FACE,                true},
                 {POP,                   "<test>",                                                       false},
-                {PUSH,                  LEMON + TIGER + METAL + BOY + SANTA,                                         true},
+                {PUSH,                  LEMON + TIGER + METAL + BOY + SANTA,                            true},
                 {PUSH,                  "<test>",                                                       false},
                 {TYPE_CHECK,            SKULL_BONES + " " + CACTUS + " testClass",                      true},
                 {TYPE_CHECK,            "testVar <?- testClass",                                        false},
@@ -76,6 +76,7 @@ public class PatternsTest extends BratwurtstTestcase {
 
     @Test
     public void testPattern() {
+        System.out.println(CALCULATION);
         if (matches) {
             assertTrue("\"" + text + "\" does not match \"" + pattern + "\"!", text.matches(pattern));
         } else {

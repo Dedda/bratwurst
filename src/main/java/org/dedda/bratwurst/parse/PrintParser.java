@@ -5,14 +5,10 @@ import org.dedda.bratwurst.lang.PrintChar;
 import org.dedda.bratwurst.lang.PrintInt;
 import org.dedda.bratwurst.lang.PrintVariable;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import static org.dedda.bratwurst.parse.Emoji.*;
-import static org.dedda.bratwurst.parse.Patterns.PRINT;
 import static org.dedda.bratwurst.parse.Patterns.PRINT_INT;
 import static org.dedda.bratwurst.parse.Patterns.PRINT_VAR;
-import static org.dedda.bratwurst.parse.Patterns.validVariableNameEmojis;
+import static org.dedda.bratwurst.parse.Patterns.VARIABLE_NAME;
 
 /**
  * Created by dedda on 9/28/15.
@@ -42,7 +38,7 @@ public class PrintParser extends InstructionParser {
             } else if (message.matches("^\\d+$")) {
                 return new PrintChar(lineNumber, (char) Integer.parseInt(message));
             }
-            if (!new StringValidator().isValid(message, validVariableNameEmojis())) {
+            if (!message.matches(VARIABLE_NAME)) {
                 throw new RuntimeException("\"" + message + "\" is not a valid variable name!");
             }
             return new PrintVariable(lineNumber, message);

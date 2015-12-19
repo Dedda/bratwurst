@@ -25,7 +25,7 @@ public class InstanceofParserTest extends BratwurtstTestcase {
         String line = TIGER + FRIED_SHRIMP + CACTUS + " testClass";
         InstanceofParser parser = new InstanceofParser();
         Instanceof instruction = parser.parse(line, 0);
-        System.out.println(Patterns.validVariableNamePattern());
+        System.out.println(Patterns.VARIABLE_NAME);
         assertEquals("testClass", instruction.className);
     }
 }
