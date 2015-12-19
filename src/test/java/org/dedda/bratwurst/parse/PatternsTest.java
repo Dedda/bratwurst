@@ -55,7 +55,7 @@ public class PatternsTest extends BratwurtstTestcase {
                 {CALCULATION,           CLOVER + ROSE + " * " + OCTOPUS + COOKIE,                       true},
                 {CALCULATION,           "abc{ghi} @ j <-- 1 & k <-- 2 / " + FRIED_SHRIMP,               true},
                 {CALCULATION,           "abc{ghi} @ j <-- 1 & k <-- 2 / def{lmn} @ o <-- 1 & p <-- 2",  true},
-                {POP,                   PINEAPPLE + SKULL_BONES + OCTOPUS + MONKEY_FACE,                               true},
+                {POP,                   PINEAPPLE + SKULL_BONES + OCTOPUS + MONKEY_FACE,                true},
                 {POP,                   "<test>",                                                       false},
                 {PUSH,                  LEMON + TIGER + METAL + BOY + SANTA,                                         true},
                 {PUSH,                  "<test>",                                                       false},

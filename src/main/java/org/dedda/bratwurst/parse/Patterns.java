@@ -79,7 +79,6 @@ public class Patterns {
         for (String string : validVariableNameEmojis()) {
             pattern += string;
         }
-        pattern = pattern.substring(0, pattern.length() - 1);
         pattern += "]+";
         return pattern;
     }
