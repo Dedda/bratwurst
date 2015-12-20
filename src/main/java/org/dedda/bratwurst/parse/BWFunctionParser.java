@@ -11,7 +11,7 @@ import static org.dedda.bratwurst.parse.Patterns.CONDITION_HEAD;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_END;
 import static org.dedda.bratwurst.parse.Patterns.LOOP_HEAD;
-import static org.dedda.bratwurst.parse.Patterns.NAMING;
+import static org.dedda.bratwurst.parse.Patterns.FUNCTION_NAMING;
 import static org.dedda.bratwurst.parse.Patterns.RETURN;
 
 /**
@@ -39,7 +39,7 @@ public class BWFunctionParser {
         LoopParser loopParser = new LoopParser();
         for (int i = begin+1; i < end; i++) {
             String line = lines[i];
-            if (line.matches(NAMING)) {
+            if (line.matches(FUNCTION_NAMING)) {
                 functionName = line.substring(DOCTOR_MASK.length(), line.length() -  DIAMOND.length());
             } else if (line.matches(CONDITION_HEAD)) {
                 int conditionEnd = conditionParser.getEnd(lines, i);

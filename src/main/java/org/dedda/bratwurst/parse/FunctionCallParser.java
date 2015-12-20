@@ -38,7 +38,7 @@ public class FunctionCallParser extends ExpressionParser {
 
     private List<BWVariable> parseArguments(String line, int lineNumber) {
         List<BWVariable> arguments = new LinkedList<>();
-        line = line.split("@")[1];
+        line = line.split("@")[1].trim();
         String[] split = line.split("&");
         for (String argumentString : split) {
             arguments.add(parseArgument(argumentString, lineNumber));
@@ -49,8 +49,8 @@ public class FunctionCallParser extends ExpressionParser {
     private BWVariable parseArgument(String data, int lineNumber) {
         data = data.trim();
         BWVariable argument;
-        String split[] = data.split(" ");
-        argument = new BWVariable(split[0], new ExpressionParser().parse(split[2], lineNumber));
+        String split[] = data.split(" <-- ");
+        argument = new BWVariable(split[0].trim(), new ExpressionParser().parse(split[1].trim(), lineNumber));
         return argument;
     }
 

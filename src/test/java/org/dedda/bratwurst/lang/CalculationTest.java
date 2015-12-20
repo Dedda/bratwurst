@@ -41,12 +41,12 @@ public class CalculationTest extends BratwurtstTestcase {
     public void testGetValue() throws Exception {
         Calculation calculation = new Calculation(0, new BWInteger(1), new BWInteger(2), '+');
         calculation.run(null);
-        assertEquals("integer", calculation.getValue().getValueType());
+        assertEquals(BWInteger.INTEGER_CLASS_NAME, calculation.getValue().getValueType());
         assertEquals(3, calculation.getValue().getIntValue());
     }
 
     @Test
     public void testGetValueType() throws Exception {
-        assertEquals("integer", new Calculation(0, null, null, '+').getValueType());
+        assertEquals(BWInteger.INTEGER_CLASS_NAME, new Calculation(0, null, null, '+').getValueType());
     }
 }

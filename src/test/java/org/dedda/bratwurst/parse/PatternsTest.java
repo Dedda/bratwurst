@@ -42,10 +42,10 @@ public class PatternsTest extends BratwurtstTestcase {
                 {PRINT,                 SNAKE + SKULL_BONES + TURBAN,                                   true},
                 {PRINT,                 X_X + 'R' + PIG,                                                true},
                 {PRINT,                 X_X + "-123" + PIG,                                             true},
-                {CONDITION_HEAD,        EVERGREEN + "test" + CORN,                                      true},
+                {CONDITION_HEAD,        EVERGREEN + PEAR + HOT_DOG + CORN,                              true},
                 {CONDITION_SEPARATOR,   SQUIRT,                                                         true},
                 {CONDITION_END,         BANANA,                                                         true},
-                {LOOP_HEAD,             EXPLOSION + "test" + HEART_BIG,                                 true},
+                {LOOP_HEAD,             EXPLOSION + CANDY + ROSE + OCTOPUS + HEART_BIG,                 true},
                 {LOOP_END,              GRAND_PA,                                                       true},
                 {RETURN,                METAL + TIGER + " -->",                                         true},
                 {RETURN,                BOY + PEAR + " -->",                                            true},
@@ -61,7 +61,7 @@ public class PatternsTest extends BratwurtstTestcase {
                 {PUSH,                  "<test>",                                                       false},
                 {TYPE_CHECK,            SKULL_BONES + CACTUS + POLICE + CAKE_PIECE,                     true},
                 {TYPE_CHECK,            "testVar <?- testClass",                                        false},
-                {BW_STRING,             POODLE + "Here's some text!" + POOP,                            true},
+                {BW_STRING,             POODLE + TOILET + LOVE_HOTEL + TRUCK_2 + POOP,                  true},
                 {BW_STRING,             POODLE + "Here's some wrong text!",                             false},
                 {BW_STRING,             "Here's some wrong text!" + POOP,                               false}
         });

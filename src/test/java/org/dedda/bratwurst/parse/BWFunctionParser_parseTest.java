@@ -31,11 +31,11 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
                 {new String[]{
                         ALIEN,
                         BOMB,
-                        DOCTOR_MASK + "testFunc" + DIAMOND,
+                        DOCTOR_MASK + DONUT + BABY_BOTTLE + DIAMOND,
                         ROSE + COOKIE + " -->",
                         FLEX,
                         ALL_OK
-                }, 1, null, "testFunc", 1},
+                }, 1, null, DONUT + BABY_BOTTLE, 1},
                 {new String[]{
                         ALIEN,
                         BOMB,

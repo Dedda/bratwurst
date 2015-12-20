@@ -17,33 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        System.out.println(ALIEN);
-//        System.out.println(ALL_OK);
-//        System.out.println(GHOST);
-//        System.out.println(ANGEL_FACE);
-//        System.out.println(BOMB);
-//        System.out.println(FLEX);
-//        System.out.println(X_X);
-//        System.out.println(GHOST);
-//        System.out.println(POOP);
-//        System.out.println(TURBAN);
-//        System.out.println(POODLE);
-//        System.out.println(PIG);
-//        System.out.println(SNAKE);
-//        System.out.println(EXPLOSION);
-//        System.out.println(HEART_BIG);
-//        System.out.println(GRAND_PA);
-//        System.out.println(EVERGREEN);
-//        System.out.println(CORN);
-//        System.out.println(SQUIRT);
-//        System.out.println(BANANA);
-//        System.out.println(CACTUS);
-//        System.out.println(DOCTOR_MASK);
-//        System.out.println(DIAMOND);
-//        System.out.println(LEMON);
-//        System.out.println(SANTA);
-//        System.out.println(PINEAPPLE);
-//        System.out.println(MONKEY_FACE);
+//        printEmojis();
 
         if (args.length != 1) {
             throw new RuntimeException("No program file given!");
@@ -59,6 +33,100 @@ public class Main {
 
         int exitCode = program.getExitCode();
         System.out.println("Program exited with code " + exitCode);
+    }
+
+    private static void printEmojis() {
+        for (String emoji : new String[]{
+                "Variable name:",
+                SKULL_BONES,
+                BOY,
+                METAL,
+                TIGER,
+                OCTOPUS,
+                ROSE,
+                CLOVER,
+                PEAR,
+                CHERRIES,
+                BREAD,
+                HOT_DOG,
+                FRIED_SHRIMP,
+                COOKIE,
+                CANDY,
+                WINE,
+                TWO_BEERS,
+                "Class name:",
+                POLICE,
+                CROWN,
+                UNICORN,
+                BABY_CHICK,
+                TULIP,
+                PALM,
+                HAMBURGER,
+                SPAGHETTI,
+                CAKE_PIECE,
+                BEER,
+                BABY,
+                MAN,
+                WATER_MELON,
+                COOL_FACE,
+                NERD,
+                "Function name:",
+                SMIRKING,
+                MEH,
+                CAT_HEART_EYES,
+                SPOCK,
+                SPIDER,
+                ELEPHANT,
+                TREE_REGULAR,
+                SUSHI,
+                SOFT_ICE,
+                BABY_BOTTLE,
+                LOLLIPOP,
+                DONUT,
+                "String:",
+                CHURCH,
+                POST_OFFICE,
+                LOVE_HOTEL,
+                ROLLER_COASTER,
+                METRO,
+                POLICE_CAR,
+                TRUCK_2,
+                ANCHOR,
+                SAILING_BOAT,
+                YACHT,
+                PLANE,
+                DOOR,
+                TOILET,
+                "======",
+                ALIEN,
+                ALL_OK,
+                GHOST,
+                ANGEL_FACE,
+                BOMB,
+                FLEX,
+                CACTUS,
+                DOCTOR_MASK,
+                DIAMOND,
+                SNAKE,
+                TURBAN,
+                X_X,
+                PIG,
+                EVERGREEN,
+                CORN,
+                SQUIRT,
+                BANANA,
+                EXPLOSION,
+                HEART_BIG,
+                GRAND_PA,
+                LEMON,
+                SANTA,
+                PINEAPPLE,
+                MONKEY_FACE,
+                POODLE,
+                POOP
+        }) {
+            System.out.println(emoji);
+        }
     }
 
 }

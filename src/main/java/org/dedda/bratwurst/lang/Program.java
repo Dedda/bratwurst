@@ -126,4 +126,8 @@ public class Program {
     public Stack<BWObject> getGlobal() {
         return global;
     }
+
+    public BWInstruction[] getInstructions() {
+        return instructions;
+    }
 }

@@ -14,7 +14,7 @@ public class InstanceofTest extends BratwurtstTestcase {
 
     @Test
     public void testRun() throws Exception {
-        String integerType = "integer";
+        String integerType = BWInteger.INTEGER_CLASS_NAME;
         String testType = "testClass";
         BWClass testClass = new BWClass("testClass", new BWFunction[0]);
         BWInteger integer = new BWInteger(12);

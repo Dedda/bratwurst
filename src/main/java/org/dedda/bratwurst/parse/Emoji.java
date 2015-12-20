@@ -128,6 +128,71 @@ public class Emoji {
     public static final String COCKTAIL = forInt(0x1F378);
     public static final String BEER = forInt(0x1F37A);
     public static final String TWO_BEERS = forInt(0x1F37B);
+    public static final String VOLCANO = forInt(0x1F30B);
+    public static final String CAMPING = forInt(0x1F3D5);
+    public static final String DESERT = forInt(0x1F3DC);
+    public static final String CONSTRUCTION = forInt(0x1F3D7);
+    public static final String HOUSE = forInt(0x1F3E0);
+    public static final String CHURCH = forInt(0x26EA);
+    public static final String KAABA = forInt(0x1F54B);
+    public static final String POST_OFFICE = forInt(0x1F3E4);
+    public static final String HOSPITAL = forInt(0x1F3E5);
+    public static final String LOVE_HOTEL = forInt(0x1D3E9);
+    public static final String FACTORY = forInt(0x1F3ED);
+    public static final String CASTLE = forInt(0x1F3F0);
+    public static final String TENT = forInt(0x26FA);
+    public static final String ROLLER_COASTER = forInt(0x1F3A2);
+    public static final String CIRCUS = forInt(0x1F3AA);
+    public static final String PICTURE_FRAME = forInt(0x1F5BC);
+
+    // Travelling:
+    public static final String STEAM_LOCOMOTIVE = forInt(0x1F682);
+    public static final String TRAM = forInt(0x1F683);
+    public static final String HIGH_SPEED_TRAIN = forInt(0x1F684);
+    public static final String METRO = forInt(0x1F687);
+    public static final String TRAIN_STATION = forInt(0x1F689);
+    public static final String MONORAIL = forInt(0x1F69D);
+    public static final String BUS = forInt(0x1F68C);
+    public static final String AMBULANCE = forInt(0x1F691);
+    public static final String FIRE_TRUCK = forInt(0x1F692);
+    public static final String POLICE_CAR = forInt(0x1F693);
+    public static final String TAXI = forInt(0x1F695);
+    public static final String CAR = forInt(0x1F697);
+    public static final String SUV = forInt(0x1F699);
+    public static final String TRUCK_1 = forInt(0x1F69A);
+    public static final String TRUCK_2 = forInt(0x1F69B);
+    public static final String TRACTOR = forInt(0x1F69C);
+    public static final String BIKE = forInt(0x1F6B2);
+    public static final String TRAFFIC_LIGHT = forInt(0x1F6A6);
+    public static final String ANCHOR = forInt(0x2693);
+    public static final String SAILING_BOAT = forInt(0x26F5);
+    public static final String ROWING_BOAT = forInt(0x1F6A3);
+    public static final String FERRY = forInt(0x26F4);
+    public static final String YACHT = forInt(0x1F6E5);
+    public static final String PLANE = forInt(0x2708);
+    public static final String PLANE_DEPARTURE = forInt(0x1F6EB);
+    public static final String PLANE_ARRIVAL = forInt(0x1F6EC);
+    public static final String SEAT = forInt(0x1F4BA);
+    public static final String HELICOPTER = forInt(0x1F681);
+    public static final String CABLEWAY = forInt(0x1F6A0);
+    public static final String ROCKET = forInt(0x1F680);
+
+    // Furniture:
+    public static final String DOOR = forInt(0x1F6AA);
+    public static final String BED_SLEEPING = forInt(0x1F6CC);
+    public static final String BED = forInt(0x1F6CF);
+    public static final String COUCH = forInt(0x1F6CB);
+    public static final String TOILET = forInt(0x1F6BD);
+    public static final String SHOWER = forInt(0x1F6BF);
+    public static final String BATH = forInt(0x1F6C0);
+    public static final String BATHTUB = forInt(0x1F6C1);
+
+    // Time:
+    public static final String HOURGLASS = forInt(0x23F3);
+    public static final String WATCH = forInt(0x231A);
+    public static final String ALARM_CLOCK = forInt(0x23F0);
+    public static final String STOP_WATCH = forInt(0x23F1);
+
 
     public static String forInt(int code) {
         return String.valueOf(Character.toChars(code));

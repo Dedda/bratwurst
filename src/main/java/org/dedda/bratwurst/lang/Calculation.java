@@ -33,7 +33,7 @@ public class Calculation extends BWExpression {
 
     @Override
     public String getValueType() {
-        return "integer";
+        return BWInteger.INTEGER_CLASS_NAME;
     }
 
     @Override

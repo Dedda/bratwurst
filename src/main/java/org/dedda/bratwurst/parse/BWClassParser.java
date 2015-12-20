@@ -10,7 +10,7 @@ import static org.dedda.bratwurst.parse.Emoji.DIAMOND;
 import static org.dedda.bratwurst.parse.Emoji.DOCTOR_MASK;
 import static org.dedda.bratwurst.parse.Patterns.CLASS_END;
 import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
-import static org.dedda.bratwurst.parse.Patterns.NAMING;
+import static org.dedda.bratwurst.parse.Patterns.CLASS_NAMING;
 import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
 
 /**
@@ -30,7 +30,7 @@ public class BWClassParser {
         BWFunctionParser functionParser = new BWFunctionParser();
         for (int i = 0; i < end; i++) {
             String line = lines[i];
-            if (line.matches(NAMING)) {
+            if (line.matches(CLASS_NAMING)) {
                 className = line.substring(DOCTOR_MASK.length(), line.length() -  DIAMOND.length());
                 continue;
             }

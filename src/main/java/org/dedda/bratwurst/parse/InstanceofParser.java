@@ -16,8 +16,8 @@ public class InstanceofParser extends ExpressionParser {
     public Instanceof parse(final String line, final int lineNumber) {
         if (line.matches(Patterns.TYPE_CHECK)) {
             String parts[] = line.split(CACTUS);
-            BWExpression expression = new ExpressionParser().parse(parts[0], lineNumber);
-            String className = parts[1];
+            BWExpression expression = new ExpressionParser().parse(parts[0].trim(), lineNumber);
+            String className = parts[1].trim();
             return new Instanceof(lineNumber, expression, className);
         }
         return null;
