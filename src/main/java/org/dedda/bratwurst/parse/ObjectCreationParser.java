@@ -11,7 +11,10 @@ public class ObjectCreationParser extends ExpressionParser {
 
     public ObjectCreation parse(String line, int lineNumber) {
         line = line.trim();
-        return new ObjectCreation(lineNumber, line.substring(1, line.length()-1));
+        return new ObjectCreation(lineNumber, line.substring(
+                Patterns.CLASS_INSTANTIATION_OPEN.length(),
+                line.length() - Patterns.CLASS_INSTANTIATION_CLOSE.length()
+        ));
     }
 
 }

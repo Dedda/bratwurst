@@ -24,17 +24,17 @@ public class Patterns {
     public static final String WORD_CHARACTER = "\\w";
     public static final String DOT = "\\.";
 
-    public static final String NUMBER = group("\\-?\\d+");
+    public static final String NUMBER =  group("\\-?\\d+");
 
-    public static final String VARIABLE_DECLARATION_OPEN = "\\(";
-    public static final String VARIABLE_DECLARATION_CLOSE = "\\)";
-    public static final String CLASS_INSTANTIATION_OPEN = "\\[";
-    public static final String CLASS_INSTANTIATION_CLOSE = "\\]";
-    public static final String FUNCTION_CALL_OPEN = "\\{";
-    public static final String FUNCTION_CALL_CLOSE = "\\}";
-    public static final String ASSIGNMENT_OPERATOR = " <-- ";
-    public static final String FUNCTION_PARAM_FIRST_PRE = "@ ";
-    public static final String FUNCTION_PARAM_OTHERS_PRE = "& ";
+    public static final String VARIABLE_DECLARATION_OPEN = AUBERGINE;
+    public static final String VARIABLE_DECLARATION_CLOSE = FRIES;
+    public static final String CLASS_INSTANTIATION_OPEN = WATCH;
+    public static final String CLASS_INSTANTIATION_CLOSE = BATHTUB;
+    public static final String FUNCTION_CALL_OPEN = CABLEWAY;
+    public static final String FUNCTION_CALL_CLOSE = PLANE_ARRIVAL;
+    public static final String ASSIGNMENT_OPERATOR = ROCKET;
+    public static final String FUNCTION_PARAM_FIRST_PRE = COUCH;
+    public static final String FUNCTION_PARAM_OTHERS_PRE = ROWING_BOAT;
     public static final String CALCULATION_OPERATOR = SPACE + charSelection("\\+", "\\-", "\\*", "\\/") + SPACE;
     public static final String RETURN_OPERATOR = " -->";
     public static final String INCLUDE_IDENTIFIER = "%";

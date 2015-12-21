@@ -25,10 +25,10 @@ public class VariableDeclarationParserTest extends BratwurtstTestcase {
     @Parameters
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
-                {"(" + SKULL_BONES + ") <-- 65", SKULL_BONES},
-                {"(" + TIGER + METAL + ") <-- {test} @ def <-- 13 & ghi <-- 26", TIGER + METAL},
-                {"(" + OCTOPUS + BREAD + TWO_BEERS + ") <-- [Point]", OCTOPUS + BREAD + TWO_BEERS},
-                {"(" + WINE + ") <-- point{getX}", WINE}
+                {AUBERGINE + SKULL_BONES + FRIES + " <-- 65", SKULL_BONES},
+                {AUBERGINE + TIGER + METAL + FRIES + " <-- {test} @ def <-- 13 & ghi <-- 26", TIGER + METAL},
+                {AUBERGINE + OCTOPUS + BREAD + TWO_BEERS + FRIES + " <-- [Point]", OCTOPUS + BREAD + TWO_BEERS},
+                {AUBERGINE + WINE + FRIES + " <-- point{getX}", WINE}
         });
     }
 
