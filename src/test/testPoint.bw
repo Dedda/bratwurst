@@ -1,0 +1,9 @@
+==>
+%point.bw%
+~{
+    (CALL_ME_MAYBE) <-- testSetterAndGetter
+    (point) <-- [Point]
+    (isPoint) <-- point -?> Point
+    {[isPoint]}
+}
+<==

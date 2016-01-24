@@ -29,4 +29,11 @@
     (var2) <-- [TestClass2]
     {[var1 != var2]}
 }
+~{
+    (CALL_ME_MAYBE) <-- testTrueFalse
+    (var1) <-- 123
+    {[var1]}
+    (var1) <-- 0
+    {[!var1]}
+}
 <==

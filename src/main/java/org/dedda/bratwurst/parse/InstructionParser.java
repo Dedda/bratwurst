@@ -33,6 +33,10 @@ public class InstructionParser {
             return new AssertEqualsParser().parse(line, lineNumber);
         } else if (line.matches(ASSERT_NOT_EQUALS)) {
             return new AssertNotEqualsParser().parse(line, lineNumber);
+        } else if (line.matches(ASSERT_TRUE)) {
+            return new AssertTrueParser().parse(line, lineNumber);
+        } else if (line.matches(ASSERT_FALSE)) {
+            return new AssertFalseParser().parse(line, lineNumber);
         }
         return null;
     }
