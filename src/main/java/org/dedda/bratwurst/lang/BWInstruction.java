@@ -10,7 +10,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
 public abstract class BWInstruction {
 
     private int lineNumber;
-    private BWVariable[] arguments;
+    private BWVariable[] arguments = new BWVariable[0];
 
     public BWInstruction(int lineNumber) {
         this.lineNumber = lineNumber;

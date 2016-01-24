@@ -1,5 +1,6 @@
 ==>                     Anfangspunkt
 <==                     Programm beenden
+{[...]}                 Assertion
 #[]                     Klasse. Der Code befindet sich innerhalb der Klammern
 ~{}                     Funktion. Der Code befindet sich innerhalb der Klammern
 (...) <--               Variable mit Wertzuweisung

@@ -48,4 +48,7 @@ public class Patterns {
     public static final String POP = "^<\\w+<$";
 
     public static final String BW_STRING = "^:[^:;]*;$";
+
+    public static final String ASSERT_EQUALS = "^\\{\\[(\\w+) == (\\w+)\\]\\}$";
+    public static final String ASSERT_NOT_EQUALS = "^\\{\\[(\\w+) != (\\w+)\\]\\}$";
 }

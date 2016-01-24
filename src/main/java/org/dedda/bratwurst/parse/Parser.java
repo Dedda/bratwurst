@@ -12,12 +12,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.dedda.bratwurst.parse.Patterns.BEGIN;
-import static org.dedda.bratwurst.parse.Patterns.CLASS_BEGIN;
-import static org.dedda.bratwurst.parse.Patterns.CONDITION_HEAD;
-import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
-import static org.dedda.bratwurst.parse.Patterns.INCLUDE;
-import static org.dedda.bratwurst.parse.Patterns.LOOP_HEAD;
+import static org.dedda.bratwurst.parse.Patterns.*;
 
 /**
  * Created by dedda on 9/25/15.
