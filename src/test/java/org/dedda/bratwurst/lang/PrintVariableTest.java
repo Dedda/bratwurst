@@ -56,7 +56,6 @@ public class PrintVariableTest extends BratwurtstTestcase {
     @Parameter(2)
     public BWVariable programVariable;
 
-    @Before
     public void setUp() throws Exception {
         systemOut = System.out;
         System.setOut(new PrintStream(customOut));

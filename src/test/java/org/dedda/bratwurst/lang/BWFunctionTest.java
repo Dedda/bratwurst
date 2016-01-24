@@ -25,7 +25,6 @@ public class BWFunctionTest extends BratwurtstTestcase {
     private BWFunction function;
     private static boolean[] executed;
 
-    @Before
     public void setUp() throws Exception {
         function = new BWFunction("testFunction", instructions);
         executed = new boolean[instructions.length];

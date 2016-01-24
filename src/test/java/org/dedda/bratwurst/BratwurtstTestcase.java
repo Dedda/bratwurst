@@ -11,8 +11,11 @@ import org.junit.Before;
 public class BratwurtstTestcase {
 
     @Before
-    public final void __setUpBratwurstTestcase() {
+    public final void __setUpBratwurstTestcase() throws Exception {
         BWClass.unregisterAll();
+        this.setUp();
     }
+
+    protected void setUp() throws Exception {}
 
 }

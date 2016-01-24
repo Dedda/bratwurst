@@ -16,7 +16,6 @@ public class ExitTest extends BratwurtstTestcase {
 
     private Scope scope;
 
-    @Before
     public void setUp() throws Exception {
         Program program = new Program();
         scope = new Scope(program);

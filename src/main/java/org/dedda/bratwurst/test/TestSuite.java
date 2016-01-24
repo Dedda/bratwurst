@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.test;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,23 @@ public class TestSuite {
 
     public TestSuite() {
         testFiles = new ArrayList<>();
+    }
+
+    public TestSuite(String suiteFile) {
+        File file = new File(suiteFile);
+        if (!file.exists()) {
+            throw new RuntimeException("suite file not found!");
+        }
+        testFiles = new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                testFiles.add(file.getParent() + "/" + line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public TestSuite(List<String> testFiles) {

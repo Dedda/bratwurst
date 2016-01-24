@@ -19,7 +19,6 @@ public class ConditionTest extends BratwurtstTestcase {
     private int testValue;
     private Condition condition;
 
-    @Before
     public void setUp() throws Exception {
         BWInstruction[] trueInstructions = new BWInstruction[]{
                 new BWInstruction(0) {

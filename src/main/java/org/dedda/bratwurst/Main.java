@@ -15,11 +15,7 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-        String testRunnerTest = "src/test/testRunnerTest.bw";
-        String testPoint = "src/test/testPoint.bw";
-        TestSuite testSuite = new TestSuite();
-        testSuite.addFile(testRunnerTest);
-        testSuite.addFile(testPoint);
+        TestSuite testSuite = new TestSuite("src/test/testSuite.bw");
         testSuite.run();
 //        TestFileRunner runner = new TestFileRunner(filename);
 //        runner.run();

@@ -28,7 +28,6 @@ public class PrintCharTest extends BratwurtstTestcase {
         }
     };
 
-    @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(customOut));
     }

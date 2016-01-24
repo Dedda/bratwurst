@@ -72,7 +72,6 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
     @Parameter(4)
     public int expectedInstructionsCount;
 
-    @Before
     public void setUp() throws Exception {
         parser = new BWFunctionParser();
     }

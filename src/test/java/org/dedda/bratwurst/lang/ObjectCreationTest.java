@@ -16,7 +16,6 @@ public class ObjectCreationTest extends BratwurtstTestcase {
 
     private Scope scope;
 
-    @Before
     public void setUp() throws Exception {
         Program program = new Program();
         program.registerClass(new BWClass("testClass", new BWFunction[]{}));

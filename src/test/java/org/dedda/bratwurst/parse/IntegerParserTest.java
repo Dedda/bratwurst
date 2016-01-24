@@ -39,7 +39,6 @@ public class IntegerParserTest extends BratwurtstTestcase {
     @Parameter(1)
     public int expectedValue;
 
-    @Before
     public void setUp() throws Exception {
         parser = new IntegerParser();
     }
