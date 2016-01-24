@@ -15,33 +15,44 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-        TestSuite testSuite = new TestSuite("src/test/testSuite.bw");
-        testSuite.run();
-//        TestFileRunner runner = new TestFileRunner(filename);
-//        runner.run();
+        if (isTestMode(args)) {
+            String testSuiteFile = getTestSuite(args);
+            TestSuite testSuite = new TestSuite(testSuiteFile);
+            testSuite.run();
+        } else {
+            if (args.length != 1) {
+                throw new RuntimeException("No program file given!");
+            }
+            String fileName = args[0];
+            File file = new File(fileName);
+            if (!file.exists()) {
+                throw new RuntimeException("Cannot find file!");
+            }
+            Parser parser = new Parser(file);
+            Program program = parser.parse();
+            program.run();
 
+            int exitCode = program.getExitCode();
+            System.out.println("Program exited with code " + exitCode);
+        }
+    }
 
+    private static boolean isTestMode(String[] args) {
+        for (String arg : args) {
+            if (arg.equals("-t")) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-//        if (args.length != 1) {
-//            throw new RuntimeException("No program file given!");
-//        }
-//        String fileName = args[0];
-//        File file = new File(fileName);
-//        if (!file.exists()) {
-//            throw new RuntimeException("Cannot find file!");
-//        }
-//        Parser parser = new Parser(file);
-//        Program program = parser.parse();
-//        program.run();
-//
-//        int exitCode = program.getExitCode();
-//        System.out.println("Program exited with code " + exitCode);
-
-
-
-
-//        new TestProgram();
-//        Program.getInstance().run();
+    private static String getTestSuite(String[] args) {
+        for (int i = 0; i < args.length - 1; i++) {
+            if (args[i].equals("--test-suite")) {
+                return args[i + 1];
+            }
+        }
+        return null;
     }
 
 }
