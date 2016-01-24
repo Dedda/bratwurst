@@ -5,10 +5,9 @@ import org.dedda.bratwurst.lang.BWFunction;
 import org.dedda.bratwurst.lang.BWObject;
 import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.Program;
+import org.dedda.bratwurst.test.TestFileRunner;
 import org.dedda.bratwurst.test.TestFunctionRunner;
-import org.dedda.bratwurst.test.TestRunner;
 
-import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,7 @@ public class Scope {
 
     private Stack<StackElement> scopeStack;
 
-    private TestRunner testRunner = null;
+    private TestFileRunner testFileRunner = null;
     private TestFunctionRunner testFunctionRunner = null;
 
     public Scope(Program program) {
@@ -33,9 +32,9 @@ public class Scope {
         scopeStack = new Stack<>();
     }
 
-    public Scope(Program program, TestRunner testRunner, TestFunctionRunner testFunctionRunner) {
+    public Scope(Program program, TestFileRunner testFileRunner, TestFunctionRunner testFunctionRunner) {
         this(program);
-        this.testRunner = testRunner;
+        this.testFileRunner = testFileRunner;
         this.testFunctionRunner = testFunctionRunner;
     }
 
@@ -143,8 +142,8 @@ public class Scope {
         return program.pop();
     }
 
-    public TestRunner getTestRunner() {
-        return testRunner;
+    public TestFileRunner getTestFileRunner() {
+        return testFileRunner;
     }
 
     public TestFunctionRunner getTestFunctionRunner() {
@@ -152,6 +151,6 @@ public class Scope {
     }
 
     public boolean isInTest() {
-        return testRunner != null;
+        return testFileRunner != null;
     }
 }

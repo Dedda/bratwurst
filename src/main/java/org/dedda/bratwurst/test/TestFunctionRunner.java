@@ -17,9 +17,9 @@ import java.util.Optional;
  */
 public class TestFunctionRunner {
 
-    private TestRunner runner;
+    private TestFileRunner runner;
 
-    public void run(TestRunner runner, String filename, String functionName) {
+    public void run(TestFileRunner runner, String filename, String functionName) {
         this.runner = runner;
         BWClass.unregisterAll();
         Parser parser = new Parser(new File(filename));

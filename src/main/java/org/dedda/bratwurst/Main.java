@@ -2,7 +2,8 @@ package org.dedda.bratwurst;
 
 import org.dedda.bratwurst.lang.*;
 import org.dedda.bratwurst.parse.Parser;
-import org.dedda.bratwurst.test.TestRunner;
+import org.dedda.bratwurst.test.TestFileRunner;
+import org.dedda.bratwurst.test.TestSuite;
 
 import java.io.File;
 
@@ -14,9 +15,14 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-        String filename = "src/test/testRunnerTest.bw";
-        TestRunner runner = new TestRunner(filename);
-        runner.run();
+        String testRunnerTest = "src/test/testRunnerTest.bw";
+        String testPoint = "src/test/testPoint.bw";
+        TestSuite testSuite = new TestSuite();
+        testSuite.addFile(testRunnerTest);
+        testSuite.addFile(testPoint);
+        testSuite.run();
+//        TestFileRunner runner = new TestFileRunner(filename);
+//        runner.run();
 
 
 

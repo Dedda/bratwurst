@@ -2,10 +2,7 @@ package org.dedda.bratwurst.lang.assertions;
 
 import org.dedda.bratwurst.lang.*;
 import org.dedda.bratwurst.lang.scope.Scope;
-import org.dedda.bratwurst.test.TestRunner;
-
-import java.util.Arrays;
-import java.util.Optional;
+import org.dedda.bratwurst.test.TestFileRunner;
 
 /**
  * Created by dedda on 1/23/16.
@@ -28,8 +25,8 @@ public class AssertEquals extends BWInstruction {
         if (!scope.isInTest()) {
             return;
         }
-        TestRunner testRunner = scope.getTestRunner();
-        testRunner.incAssertions();
+        TestFileRunner testFileRunner = scope.getTestFileRunner();
+        testFileRunner.incAssertions();
         BWVariable var1 = scope.getVariable(variableName1);
         BWVariable var2 = scope.getVariable(variableName2);
         String message = null;

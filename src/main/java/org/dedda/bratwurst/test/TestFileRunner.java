@@ -14,14 +14,15 @@ import java.util.stream.Collectors;
  *
  * @author dedda
  */
-public class TestRunner {
+public class TestFileRunner {
 
     public final String fileName;
     private int assertions = 0;
     private int allAssertions = 0;
-    private boolean stop;
+    private boolean stop = false;
+    private boolean finished = false;
 
-    public TestRunner(String fileName) {
+    public TestFileRunner(String fileName) {
         this.fileName = fileName;
     }
 
@@ -31,7 +32,7 @@ public class TestRunner {
         Program program = parser.parse();
         BWFunction[] functions = program.getFunctions();
         List<BWFunction> testFunctions = Arrays.stream(functions).filter(f -> f.getName().startsWith("test")).collect(Collectors.toList());
-        System.out.println(testFunctions.size() + " test functions found\n");
+        System.out.println("\n" + testFunctions.size() + " test functions found in file" + fileName + "\n");
         for (BWFunction function : testFunctions) {
             assertions = 0;
             System.out.println("running " + function.getName() + ":");
@@ -41,10 +42,12 @@ public class TestRunner {
             }
             System.out.println(" [" + assertions + "] assertions.");
         }
-        System.out.println("\n" + allAssertions + " assertions");
+        System.out.println("\n" + allAssertions + " assertions in file " + fileName);
         if (stop) {
             System.out.println("failures!");
         }
+        System.out.println("--------------------------------------");
+        finished = true;
     }
 
     public void incAssertions() {
@@ -56,4 +59,14 @@ public class TestRunner {
         stop = true;
     }
 
+    public boolean wasSuccessful() {
+        if (!finished) {
+            throw new RuntimeException("Test still running!");
+        }
+        return !stop;
+    }
+
+    public int getAllAssertions() {
+        return allAssertions;
+    }
 }
