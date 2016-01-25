@@ -48,6 +48,7 @@ public class Patterns {
     public static final String POP = "^<\\w+<$";
 
     public static final String BW_STRING = "^:[^:;]*;$";
+    public static final String BW_STRING_CONCAT = "^\\w+( <-< \\w+)+$";
 
     public static final String FILE_EXISTS = "\\?\\w+\\?$";
     public static final String FILE_CREATE = "^\\+\\w+\\+$";

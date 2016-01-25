@@ -62,6 +62,13 @@
     <var1<
     (expected) <-- 123
     {[var1 == expected]}
+    (string1) <-- :Hello ;
+    (string2) <-- :Worl;
+    (string3) <-- :d!;
+    (int1) <-- 123
+    (actual) <-- string1 <-< string2 <-< string3 <-< int1
+    (expected) <-- :Hello World!123;
+    {[actual == expected]}
 }
 ~{
     (CALL_ME_MAYBE) <-- testFileOperations
