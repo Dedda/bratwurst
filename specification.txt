@@ -24,3 +24,4 @@
 ?...?                   Check if file exists
 +...+                   Create empty file
 -...-                   Remove file
+[...}...]               Get character at certain position from a string variable as new string variable

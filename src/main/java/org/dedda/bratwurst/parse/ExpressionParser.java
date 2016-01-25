@@ -41,6 +41,8 @@ public class ExpressionParser {
             return new FileExistsParser();
         } else if (expression.matches(BW_STRING_CONCAT)) {
             return new StringConcatenationParser();
+        } else if (expression.matches(BW_STRING_GET_CHAR)) {
+            return new StringGetCharParser();
         }
         return null;
     }
