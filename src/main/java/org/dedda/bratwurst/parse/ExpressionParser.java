@@ -43,6 +43,8 @@ public class ExpressionParser {
             return new StringConcatenationParser();
         } else if (expression.matches(BW_STRING_GET_CHAR)) {
             return new StringGetCharParser();
+        } else if (expression.matches(LENGTH_GET)) {
+            return new LengthGetParser();
         }
         return null;
     }

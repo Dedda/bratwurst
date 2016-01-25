@@ -1,4 +1,5 @@
 ==>
+%base.bw%
 #[
     (CALL_ME_MAYBE) <-- TestClass1
 ]
@@ -76,6 +77,10 @@
     (char) <-- [text}2]
     (expected) <-- :m;
     {[char == expected]}
+    (text) <-- :Some random stuff;
+    (expected) <-- 17
+    (actual) <-- ))text))
+    {[actual == expected]}
 }
 ~{
     (CALL_ME_MAYBE) <-- testFileOperations

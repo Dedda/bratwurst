@@ -23,6 +23,8 @@ public class Patterns {
 
     public static final String CALCULATION = "((\\-?\\d+)|(\\w+)|(" + FUNCTION_CALL_NOT_TERMINAL + ")) [\\+\\-\\*\\/] ((\\-?\\d+)|\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + "))";
 
+    public static final String LENGTH_GET = "^\\)\\)\\w+\\)\\)$";
+
     public static final String TYPE_CHECK = "^\\w+ -\\?> \\w+$";
     public static final String CLASS_INSTANTIATION = "\\[(\\w+)\\]$";
     public static final String VARIABLE_DECLARATION = "^\\((\\w+)\\) <-- .*$";
