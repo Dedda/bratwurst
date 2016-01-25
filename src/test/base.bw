@@ -1,0 +1,42 @@
+==>
+~{
+    (CALL_ME_MAYBE) <-- substring1
+    (length) <-- ))source))
+    (length) <-- length - 1
+    (substring) <-- {substring2} @ source <-- source & begin <-- begin & end <-- length
+    substring -->
+}
+~{
+    (CALL_ME_MAYBE) <-- substring2
+    (length) <-- ))source))
+    ?(end)>>
+    <<
+        0 -->
+    |
+    (counter) <-- begin
+    (remaining) <-- end - counter
+    (substring) <-- :;
+    /(remaining)
+        (char) <-- [source}counter]
+        (substring) <-- substring <-< char
+        (counter) <-- counter + 1
+        (remaining) <-- end - counter
+        (remaining) <-- remaining + 1
+    \
+    substring -->
+}
+~{
+    (CALL_ME_MAYBE) <-- testSubstring2
+    (text) <-- :Howdy!;
+    (actual) <-- {substring2} @ source <-- text & begin <-- 1 & end <-- 3
+    (expected) <-- :owd;
+    {[actual == expected]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testSubstring1
+    (text) <-- :Howdy!;
+    (actual) <-- {substring1} @ source <-- text & begin <-- 2
+    (expected) <-- :wdy!;
+    {[actual == expected]}
+}
+<==
