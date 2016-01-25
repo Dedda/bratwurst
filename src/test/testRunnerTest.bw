@@ -63,4 +63,27 @@
     (expected) <-- 123
     {[var1 == expected]}
 }
+~{
+    (CALL_ME_MAYBE) <-- testFileOperations
+    (filename) <-- :testFile.txt;
+    (fileexists) <-- ?filename?
+    ?(fileexists)>>
+    <<
+        +filename+
+    |
+    (fileexists) <-- ?filename?
+    {[fileexists]}
+    -filename-
+    (fileexists) <-- ?filename?
+    {[!fileexists]}
+    +filename+
+    (towrite) <-- :Test content;
+    <|towrite > filename|>
+    (filedata) <-- filename
+    >|filedata|<
+    {[towrite == filedata]}
+    -filename-
+    (fileexists) <-- ?filename?
+    {[!fileexists]}
+}
 <==

@@ -18,3 +18,8 @@
 <...<                   Pop a variable from the global stack
 %...%                   Datei inkludieren. Enthaltener Code wird direkt ausgeführt
 ... -?> ...             Pendant zu instanceof. var1 -?> class1
+>|...|<                 Read file. Source file is variable value, destination is variable
+<|... > ...|>           Write file. Source data is value of first variable, destination is value of second variable
+?...?                   Check if file exists
++...+                   Create empty file
+-...-                   Remove file

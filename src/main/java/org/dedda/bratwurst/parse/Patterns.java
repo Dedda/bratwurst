@@ -30,7 +30,7 @@ public class Patterns {
     public static final String NAMING = "^\\(CALL_ME_MAYBE\\) <-- \\w+$";
 
     public static final String INCLUDE = "^%(\\w+[\\w\\.]+)%$";
-    public static final String PRINT_VAR = ">(.*)<";
+    public static final String PRINT_VAR = ">[^\\|](.*)[^\\|]<";
     public static final String PRINT_INT = "\\|(\\w+)\\|";
 
     public static final String PRINT = "^(" + PRINT_VAR + "|" + PRINT_INT + ")$";
@@ -48,6 +48,13 @@ public class Patterns {
     public static final String POP = "^<\\w+<$";
 
     public static final String BW_STRING = "^:[^:;]*;$";
+
+    public static final String FILE_EXISTS = "\\?\\w+\\?$";
+    public static final String FILE_CREATE = "^\\+\\w+\\+$";
+    public static final String FILE_REMOVE = "^\\-\\w+\\-$";
+
+    public static final String FILE_IMPORT = "^>\\|\\w+\\|<$";
+    public static final String FILE_EXPORT = "^<\\|\\w+ > \\w+\\|>$";
 
     public static final String ASSERT_TRUE = "^\\{\\[(\\w+)\\]\\}$";
     public static final String ASSERT_FALSE = "^\\{\\[!(\\w+)\\]\\}$";

@@ -37,6 +37,14 @@ public class InstructionParser {
             return new AssertTrueParser().parse(line, lineNumber);
         } else if (line.matches(ASSERT_FALSE)) {
             return new AssertFalseParser().parse(line, lineNumber);
+        } else if (line.matches(FILE_CREATE)) {
+            return new FileCreateParser().parse(line, lineNumber);
+        } else if (line.matches(FILE_REMOVE)) {
+            return new FileRemoveParser().parse(line, lineNumber);
+        } else if (line.matches(FILE_IMPORT)) {
+            return new FileImportParser().parse(line, lineNumber);
+        } else if (line.matches(FILE_EXPORT)) {
+            return new FileExportParser().parse(line, lineNumber);
         }
         return null;
     }
