@@ -26,7 +26,7 @@ public class BWClassParser {
         String className = null;
         List<BWFunction> functions = new LinkedList<>();
         BWFunctionParser functionParser = new BWFunctionParser();
-        for (int i = 0; i < end; i++) {
+        for (int i = begin; i < end; i++) {
             String line = lines[i];
             if (line.matches(NAMING)) {
                 className = line.split(" ")[2];

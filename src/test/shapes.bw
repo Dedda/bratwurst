@@ -1,0 +1,89 @@
+==>
+%point.bw%
+#[
+    (CALL_ME_MAYBE) <-- Dimension
+    ~{
+        (CALL_ME_MAYBE) <-- setWidth
+        (width) <-- newWidth
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- setHeight
+        (height) <-- newHeight
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- getWidth
+        width -->
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- getHeight
+        height -->
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- getArea
+        (area) <-- width * height
+        area -->
+    }
+]
+~{
+    (CALL_ME_MAYBE) <-- testDimensionGetArea
+    (dimension) <-- [Dimension]
+    dimension{setWidth} @ newWidth <-- 3
+    dimension{setHeight} @ newHeight <-- 4
+    (expected) <-- 12
+    (actual) <-- dimension{getArea}
+    {[actual == expected]}
+}
+#[
+    (CALL_ME_MAYBE) <-- Rect
+    ~{
+        (CALL_ME_MAYBE) <-- setLocation
+        (isPoint) <-- newLocation -?> Point
+        ?(isPoint)>>
+            (location) <-- newLocation
+        <<
+        |
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- getLocation
+        location -->
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- setSize
+        (isDimension) <-- newSize -?> Dimension
+        ?(isDimension)>>
+            (size) <-- newSize
+        <<
+        |
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- getSize
+        size -->
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- getMaxX
+        (maxX) <-- location{getX} + size{getWidth}
+        maxX -->
+    }
+    ~{
+        (CALL_ME_MAYBE) <-- getMaxY
+        (maxY) <-- location{getY} + size{getHeight}
+        maxY -->
+    }
+]
+~{
+    (CALL_ME_MAYBE) <-- testRectMaxPoints
+    (dimension) <-- [Dimension]
+    dimension{setWidth} @ newWidth <-- 3
+    dimension{setHeight} @ newHeight <-- 4
+    (rect) <-- [Rect]
+    rect{setSize} @ newSize <-- dimension
+    (point) <-- [Point]
+    point{setLocation} @ newX <-- 10 & newY <-- 20
+    rect{setLocation} @ newLocation <-- point
+    (expected) <-- 13
+    (actual) <-- rect{getMaxX}
+    {[actual == expected]}
+    (expected) <-- 24
+    (actual) <-- rect{getMaxY}
+    {[actual == expected]}
+}

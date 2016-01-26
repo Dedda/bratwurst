@@ -24,7 +24,7 @@
     }
 ]
 ~{
-    (CALL_ME_MAYBE) <-- testSetLocation
+    (CALL_ME_MAYBE) <-- testPointSetLocation
     (point) <-- [Point]
     (expected) <-- point -?> Point
     {[expected]}

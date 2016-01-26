@@ -34,6 +34,11 @@ public class ReadVariable extends BWExpression {
 
     @Override
     public void run(Scope scope) {
-        value = scope.getVariable(variableName).getValue();
+        BWVariable variable = scope.getVariable(variableName);
+        if (variable != null) {
+            value = variable.getValue();
+        } else {
+            throw new RuntimeException("Variable " + variableName + " is not defined!");
+        }
     }
 }
