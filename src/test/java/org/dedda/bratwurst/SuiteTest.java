@@ -1,6 +1,5 @@
 package org.dedda.bratwurst;
 
-import junit.framework.Assert;
 import org.dedda.bratwurst.test.TestSuite;
 import org.junit.Test;
 

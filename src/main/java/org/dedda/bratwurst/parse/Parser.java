@@ -50,6 +50,13 @@ public class Parser {
                 }
             }
         }
+        int counter = 1;
+        while (counter < lines.length) {
+            if (lines[counter].matches(BEGIN)) {
+                lines = removeFromArray(lines, counter);
+            }
+            counter++;
+        }
         if (!lines[0].matches(BEGIN)) {
             throw new RuntimeException("HELP! FIRST INSTRUCTION IS NOT AN ENTRY POINT! WHAT DO?!");
         }
@@ -123,6 +130,17 @@ public class Parser {
         }
         for (int i = lineToReplace + toInsert.length; i < newArray.length; i++) {
             newArray[i] = array[i - toInsert.length + 1];
+        }
+        return newArray;
+    }
+
+    public String[] removeFromArray(String[] array, int index) {
+        String[] newArray = new String[array.length - 1];
+        for (int i = 0, n = 0; i < array.length; i++) {
+            if (i != index) {
+                newArray[n] = array[i];
+                n++;
+            }
         }
         return newArray;
     }

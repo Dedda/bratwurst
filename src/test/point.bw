@@ -1,3 +1,4 @@
+==>
 #[
     (CALL_ME_MAYBE) <-- Point
     ~{
@@ -22,3 +23,16 @@
         y -->
     }
 ]
+~{
+    (CALL_ME_MAYBE) <-- testSetLocation
+    (point) <-- [Point]
+    (expected) <-- point -?> Point
+    {[expected]}
+    point{setLocation} @ newX <-- 2 & newY <-- 3
+    (expected) <-- 2
+    (actual) <-- point{getX}
+    {[actual == expected]}
+    (expected) <-- 3
+    (actual) <-- point{getY}
+    {[actual == expected]}
+}

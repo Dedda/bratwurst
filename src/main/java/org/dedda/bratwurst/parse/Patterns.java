@@ -32,7 +32,7 @@ public class Patterns {
     public static final String NAMING = "^\\(CALL_ME_MAYBE\\) <-- \\w+$";
 
     public static final String INCLUDE = "^%(\\w+[\\w\\.]+)%$";
-    public static final String PRINT_VAR = ">[^\\|](.*)[^\\|]<";
+    public static final String PRINT_VAR = ">[^\\|]*<";
     public static final String PRINT_INT = "\\|(\\w+)\\|";
 
     public static final String PRINT = "^(" + PRINT_VAR + "|" + PRINT_INT + ")$";
