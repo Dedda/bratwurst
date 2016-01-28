@@ -31,3 +31,4 @@
 (...) <__               Read line from terminal
 __# ...                 Char from integer value
 #__ ...                 Integer value of char
+`...,...:...,...`       Gui commands

@@ -73,4 +73,9 @@ point1 -?> Point
 (testText) <-- :Hallo Welt!;
 >testText<
 >newLine<
+(windowid) <-- `action,win-create`
+(width) <-- 400
+(height) <-- 300
+`action,win-set:attr,width:val,width:id,windowid`
+`action,win-set:attr,height:val,height:id,windowid`
 <==

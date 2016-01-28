@@ -59,6 +59,8 @@ public class Patterns {
 
     public static final String READ_LINE = "^<__$";
 
+    public static final String GUI_COMMAND = "^`\\w+,[\\w\\-]+(:\\w+,[\\w\\-]+)*`$";
+
     public static final String CHAR_TO_INT = "^#__ \\w+$";
     public static final String INT_TO_CHAR = "^__# \\w+$";
 

@@ -2,6 +2,8 @@ package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.lang.scope.Scope;
 
+import java.util.Map;
+
 /**
  * Created by dedda on 10/14/15.
  *
@@ -24,4 +26,5 @@ public class PrintChar extends BWInstruction {
     public char getToPrint() {
         return toPrint;
     }
+
 }
