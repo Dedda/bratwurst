@@ -104,4 +104,13 @@
     (fileexists) <-- ?filename?
     {[!fileexists]}
 }
+~{
+    (CALL_ME_MAYBE) <-- testBlankLines
+    (actual) <-- 1
+
+    (expected) <-- 1
+
+
+    {[actual == expected]}
+}
 <==

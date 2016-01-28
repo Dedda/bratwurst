@@ -57,6 +57,17 @@ public class Parser {
             }
             counter++;
         }
+        counter = 1;
+        while (counter < lines.length) {
+            boolean removed = false;
+            if (lines[counter].trim().equals("")) {
+                removed = true;
+                lines = removeFromArray(lines, counter);
+            }
+            if (!removed) {
+                counter++;
+            }
+        }
         if (!lines[0].matches(BEGIN)) {
             throw new RuntimeException("HELP! FIRST INSTRUCTION IS NOT AN ENTRY POINT! WHAT DO?!");
         }
