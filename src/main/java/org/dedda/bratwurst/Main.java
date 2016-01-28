@@ -1,8 +1,7 @@
 package org.dedda.bratwurst;
 
-import org.dedda.bratwurst.lang.*;
+import org.dedda.bratwurst.lang.Program;
 import org.dedda.bratwurst.parse.Parser;
-import org.dedda.bratwurst.test.TestFileRunner;
 import org.dedda.bratwurst.test.TestSuite;
 
 import java.io.File;

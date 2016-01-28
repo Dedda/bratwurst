@@ -49,6 +49,8 @@ public class ExpressionParser {
             return new ComparisonParser();
         } else if (expression.matches(COMPARE_INT)) {
             return new IntegerComparisonParser();
+        } else if (expression.matches(READ_LINE)) {
+            return new ReadLineParser();
         }
         return null;
     }
