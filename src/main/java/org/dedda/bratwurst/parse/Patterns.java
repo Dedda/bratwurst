@@ -15,10 +15,11 @@ public class Patterns {
 
     public static final String FUNCTION_BEGIN = "^~\\{$";
     public static final String FUNCTION_END = "^\\}$";
-    public static final String FUNCTION_PARAM_FIRST = "@ (\\w+) <-- (\\w+)";
 
+    public static final String FUNCTION_PARAM_FIRST = "@ (\\w+) <-- (\\w+)";
     public static final String FUNCTION_PARAM_OTHERS = "& (\\w+) <-- (\\w+)";
-    public static final String FUNCTION_CALL_NOT_TERMINAL = "(\\w*)\\{(\\w+)\\}( " + FUNCTION_PARAM_FIRST + ")?( " + FUNCTION_PARAM_OTHERS + ")*";
+    public static final String FUNCTION_CALL_BASE = "(\\w*)\\{(\\w+)\\}";
+    public static final String FUNCTION_CALL_NOT_TERMINAL = FUNCTION_CALL_BASE + "( " + FUNCTION_PARAM_FIRST + ")?( " + FUNCTION_PARAM_OTHERS + ")*";
     public static final String FUNCTION_CALL = FUNCTION_CALL_NOT_TERMINAL + "$";
 
     public static final String CALCULATION = "((\\-?\\d+)|(\\w+)|(" + FUNCTION_CALL_NOT_TERMINAL + ")) [\\+\\-\\*\\/] ((\\-?\\d+)|\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + "))";
