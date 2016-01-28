@@ -45,6 +45,10 @@ public class ExpressionParser {
             return new StringGetCharParser();
         } else if (expression.matches(LENGTH_GET)) {
             return new LengthGetParser();
+        } else if (expression.matches(COMPARE)) {
+            return new ComparisonParser();
+        } else if (expression.matches(COMPARE_INT)) {
+            return new IntegerComparisonParser();
         }
         return null;
     }

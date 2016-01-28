@@ -49,6 +49,9 @@ public class Patterns {
     public static final String PUSH = "^>(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + "))>$";
     public static final String POP = "^<\\w+<$";
 
+    public static final String COMPARE = "^\\w+ = \\w+$";
+    public static final String COMPARE_INT = "^\\w+ <=> \\w+$";
+
     public static final String BW_STRING = "^:[^:;]*;$";
     public static final String BW_STRING_CONCAT = "^\\w+( <-< \\w+)+$";
     public static final String BW_STRING_GET_CHAR = "^\\[\\w+\\}\\w+\\]$";

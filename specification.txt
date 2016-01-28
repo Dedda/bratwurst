@@ -26,3 +26,5 @@
 -...-                   Remove file
 [...}...]               Get character at certain position from a string variable as new string variable
 ))...))                 Get length of a string
+... = ...               Compare two variables
+... <=> ...             Compare integers

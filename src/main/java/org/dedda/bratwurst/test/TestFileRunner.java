@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.test;
 
+import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.BWFunction;
 import org.dedda.bratwurst.lang.Program;
 import org.dedda.bratwurst.parse.Parser;
@@ -27,6 +28,7 @@ public class TestFileRunner {
     }
 
     public void run() {
+        BWClass.unregisterAll();
         File file = new File(fileName);
         Parser parser = new Parser(file);
         Program program = parser.parse();
