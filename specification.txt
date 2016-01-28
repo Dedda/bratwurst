@@ -28,4 +28,6 @@
 ))...))                 Get length of a string
 ... = ...               Compare two variables
 ... <=> ...             Compare integers
-<__                     Read line from terminal
+(...) <__               Read line from terminal
+__# ...                 Char from integer value
+#__ ...                 Integer value of char

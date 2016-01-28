@@ -95,4 +95,15 @@
     (actual) <-- var1 <=> var2
     {[actual == expected]}
 }
+~{
+    (CALL_ME_MAYBE) <-- testCastCharAndInt
+    (var1) <-- :A;
+    (actual) <-- #__ var1
+    (expected) <-- 65
+    {[actual == expected]}
+    (var1) <-- 67
+    (actual) <-- __# var1
+    (expected) <-- :C;
+    {[actual == expected]}
+}
 <==

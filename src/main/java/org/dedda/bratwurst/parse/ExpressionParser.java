@@ -51,6 +51,10 @@ public class ExpressionParser {
             return new IntegerComparisonParser();
         } else if (expression.matches(READ_LINE)) {
             return new ReadLineParser();
+        } else if (expression.matches(CHAR_TO_INT)) {
+            return new CharToIntParser();
+        } else if (expression.matches(INT_TO_CHAR)) {
+            return new InToCharParser();
         }
         return null;
     }

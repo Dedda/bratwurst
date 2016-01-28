@@ -58,6 +58,9 @@ public class Patterns {
 
     public static final String READ_LINE = "^<__$";
 
+    public static final String CHAR_TO_INT = "^#__ \\w+$";
+    public static final String INT_TO_CHAR = "^__# \\w+$";
+
     public static final String FILE_EXISTS = "\\?\\w+\\?$";
     public static final String FILE_CREATE = "^\\+\\w+\\+$";
     public static final String FILE_REMOVE = "^\\-\\w+\\-$";
