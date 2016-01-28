@@ -1,4 +1,4 @@
-package org.dedda.bratwurst;
+package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.lang.BWExpression;
 import org.dedda.bratwurst.lang.BWInteger;

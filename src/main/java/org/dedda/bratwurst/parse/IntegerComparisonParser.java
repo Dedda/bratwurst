@@ -1,7 +1,6 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.IntegerComparison;
-import org.dedda.bratwurst.lang.BWExpression;
+import org.dedda.bratwurst.lang.IntegerComparison;
 
 /**
  * Created by dedda on 1/28/16.
