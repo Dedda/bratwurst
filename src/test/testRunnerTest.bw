@@ -113,4 +113,13 @@
 
     {[actual == expected]}
 }
+~{
+    (CALL_ME_MAYBE) <-- testComment
+    (actual) <-- 1
+    <(% Some comment here
+    (expected) <-- 1
+    <(% Some more
+    <(% comments here
+    {[actual == expected]}
+}
 <==

@@ -32,3 +32,4 @@
 __# ...                 Char from integer value
 #__ ...                 Integer value of char
 `...,...:...,...`       Gui commands
+<(%                     Comment
