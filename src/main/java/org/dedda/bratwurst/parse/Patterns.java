@@ -7,6 +7,8 @@ package org.dedda.bratwurst.parse;
  */
 public class Patterns {
 
+    public static final String COMMENT = "^<\\(%.*";
+
     public static final String BEGIN = "^==>$";
     public static final String END = "^<==$";
 

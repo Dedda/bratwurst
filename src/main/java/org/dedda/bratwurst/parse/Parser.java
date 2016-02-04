@@ -23,6 +23,15 @@ public class Parser {
 
     private final File sourceFile;
 
+    /*
+     * Parsers:
+     */
+    private InstructionParser instructionParser = new InstructionParser();
+    private BWFunctionParser functionParser = new BWFunctionParser();
+    private BWClassParser classParser = new BWClassParser();
+    private ConditionParser conditionParser = new ConditionParser();
+    private LoopParser loopParser = new LoopParser();
+
     public Parser(File sourceFile) {
         this.sourceFile = sourceFile;
     }
@@ -60,7 +69,7 @@ public class Parser {
         counter = 1;
         while (counter < lines.length) {
             boolean removed = false;
-            if (lines[counter].trim().equals("")) {
+            if (lines[counter].trim().length() == 0) {
                 removed = true;
                 lines = removeFromArray(lines, counter);
             }
@@ -71,7 +80,7 @@ public class Parser {
         counter = 1;
         while (counter < lines.length) {
             boolean removed = false;
-            if (lines[counter].trim().startsWith("<(%")) {
+            if (lines[counter].trim().matches(COMMENT)) {
                 removed = true;
                 lines = removeFromArray(lines, counter);
             }
@@ -85,11 +94,6 @@ public class Parser {
         List<BWInstruction> instructions = new LinkedList<>();
         List<BWFunction> functions = new LinkedList<>();
         List<BWClass> classes = new LinkedList<>();
-        InstructionParser instructionParser = new InstructionParser();
-        BWFunctionParser functionParser = new BWFunctionParser();
-        BWClassParser classParser = new BWClassParser();
-        ConditionParser conditionParser = new ConditionParser();
-        LoopParser loopParser = new LoopParser();
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
             BWInstruction instruction = instructionParser.parse(line, i);
@@ -167,4 +171,43 @@ public class Parser {
         return newArray;
     }
 
+    public InstructionParser getInstructionParser() {
+        return instructionParser;
+    }
+
+    public void setInstructionParser(InstructionParser instructionParser) {
+        this.instructionParser = instructionParser;
+    }
+
+    public BWFunctionParser getFunctionParser() {
+        return functionParser;
+    }
+
+    public void setFunctionParser(BWFunctionParser functionParser) {
+        this.functionParser = functionParser;
+    }
+
+    public BWClassParser getClassParser() {
+        return classParser;
+    }
+
+    public void setClassParser(BWClassParser classParser) {
+        this.classParser = classParser;
+    }
+
+    public ConditionParser getConditionParser() {
+        return conditionParser;
+    }
+
+    public void setConditionParser(ConditionParser conditionParser) {
+        this.conditionParser = conditionParser;
+    }
+
+    public LoopParser getLoopParser() {
+        return loopParser;
+    }
+
+    public void setLoopParser(LoopParser loopParser) {
+        this.loopParser = loopParser;
+    }
 }
