@@ -9,8 +9,8 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class VariableDeclaration extends BWInstruction {
 
-    private String variableName;
-    private BWExpression targetValue;
+    private final String variableName;
+    private final BWExpression targetValue;
 
     public VariableDeclaration(int lineNumber, String variableName, BWExpression targetValue) {
         super(lineNumber);

@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class ReadVariable extends BWExpression {
 
-    private String variableName;
+    private final String variableName;
     private BWObject value = new BWInteger(0);
 
     public ReadVariable(int lineNumber, String variableName) {

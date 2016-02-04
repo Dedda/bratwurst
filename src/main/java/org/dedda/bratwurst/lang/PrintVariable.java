@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class PrintVariable extends BWInstruction {
 
-    private String variableName;
+    private final String variableName;
 
     public PrintVariable(int lineNumber, String variableName) {
         super(lineNumber);

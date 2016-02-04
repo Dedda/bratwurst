@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  */
 public class BWObject extends BWExpression {
 
-    private BWClass bwClass;
+    private final BWClass bwClass;
     private BWVariable[] variables = new BWVariable[0];
     private BWFunction[] functions;
 

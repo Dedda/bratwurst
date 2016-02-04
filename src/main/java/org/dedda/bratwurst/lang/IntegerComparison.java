@@ -10,8 +10,8 @@ import org.dedda.bratwurst.tool.IntegerComparator;
  */
 public class IntegerComparison extends BWExpression {
 
-    private String varName1;
-    private String varName2;
+    private final String varName1;
+    private final String varName2;
     private int comparison;
 
     public IntegerComparison(int lineNumber, String varName1, String varName2) {

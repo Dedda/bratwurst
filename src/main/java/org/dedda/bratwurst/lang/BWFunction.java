@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class BWFunction extends BWExpression {
 
-    private String name;
-    private BWInstruction[] instructions;
+    private final String name;
+    private final BWInstruction[] instructions;
+    private final List<BWVariable> variables = new ArrayList<>();
     private BWObject value = new BWInteger(0);
-    private List<BWVariable> variables = new ArrayList<>();
 
     public BWFunction(String name, BWInstruction[] instructions) {
         super(0);

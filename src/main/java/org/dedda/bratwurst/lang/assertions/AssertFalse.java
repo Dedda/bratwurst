@@ -13,7 +13,7 @@ import org.dedda.bratwurst.test.TestFileRunner;
  */
 public class AssertFalse extends BWInstruction {
 
-    private String variableName;
+    private final String variableName;
 
     public AssertFalse(int lineNumber, String variableName) {
         super(lineNumber);

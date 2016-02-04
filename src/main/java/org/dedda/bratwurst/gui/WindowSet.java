@@ -16,7 +16,7 @@ public class WindowSet extends GuiCommandConsumer {
     public static final String KEY_WIDTH = "width";
     public static final String KEY_HEIGHT = "height";
 
-    private WindowMap windowMap;
+    private final WindowMap windowMap;
 
     public WindowSet(WindowMap windowMap) {
         this.windowMap = windowMap;

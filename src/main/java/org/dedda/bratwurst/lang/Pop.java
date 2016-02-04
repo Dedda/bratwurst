@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class Pop extends BWInstruction {
 
-    private String variableName;
+    private final String variableName;
 
     public Pop(int lineNumber, String variableName) {
         super(lineNumber);

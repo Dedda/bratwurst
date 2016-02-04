@@ -19,8 +19,8 @@ public class PrintCharTest extends BratwurtstTestcase {
 
     private String outputBuffer = "";
 
-    private PrintStream systemOut = System.out;
-    private OutputStream customOut = new OutputStream() {
+    private final PrintStream systemOut = System.out;
+    private final OutputStream customOut = new OutputStream() {
         @Override
         public void write(int b) throws IOException {
             outputBuffer += (char) b;

@@ -153,7 +153,7 @@ public class Parser {
         return newArray;
     }
 
-    public String[] removeFromArray(String[] array, int index) {
+    private String[] removeFromArray(String[] array, int index) {
         String[] newArray = new String[array.length - 1];
         for (int i = 0, n = 0; i < array.length; i++) {
             if (i != index) {

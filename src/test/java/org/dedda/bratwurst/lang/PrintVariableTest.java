@@ -26,10 +26,10 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class PrintVariableTest extends BratwurtstTestcase {
 
-    public static Program program = new Program();
+    public final static Program program = new Program();
     private PrintStream systemOut;
     private String outputBuffer = "";
-    private OutputStream customOut = new OutputStream() {
+    private final OutputStream customOut = new OutputStream() {
         @Override
         public void write(int b) throws IOException {
             outputBuffer += (char) b;
@@ -52,7 +52,7 @@ public class PrintVariableTest extends BratwurtstTestcase {
     @Parameter(1)
     public BWVariable programVariable;
 
-    public Scope scope = new Scope(program);
+    public final Scope scope = new Scope(program);
 
     public void setUp() throws Exception {
         systemOut = System.out;

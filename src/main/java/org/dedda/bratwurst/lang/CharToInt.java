@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class CharToInt extends BWExpression {
 
-    private String varname;
+    private final String varname;
     private int value;
 
     public CharToInt(int lineNumber, String varname) {

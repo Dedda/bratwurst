@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class LengthGet extends BWExpression {
 
-    public final String varName;
+    private final String varName;
     private int value;
 
     public LengthGet(int lineNumber, String varName) {

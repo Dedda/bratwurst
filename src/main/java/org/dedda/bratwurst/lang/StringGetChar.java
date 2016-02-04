@@ -9,8 +9,8 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class StringGetChar extends BWExpression {
 
-    public final String location;
-    public final String varName;
+    private final String location;
+    private final String varName;
     private String value = "";
 
     public StringGetChar(int lineNumber, String location, String varName) {

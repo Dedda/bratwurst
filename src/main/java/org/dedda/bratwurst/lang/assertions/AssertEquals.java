@@ -11,8 +11,8 @@ import org.dedda.bratwurst.test.TestFileRunner;
  */
 public class AssertEquals extends BWInstruction {
 
-    private String variableName1;
-    private String variableName2;
+    private final String variableName1;
+    private final String variableName2;
 
     public AssertEquals(int lineNumber, String variableName1, String variableName2) {
         super(lineNumber);

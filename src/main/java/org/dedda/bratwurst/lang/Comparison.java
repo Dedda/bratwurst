@@ -12,8 +12,8 @@ import org.dedda.bratwurst.tool.StringComparator;
  */
 public class Comparison extends BWExpression {
 
-    private String varName1;
-    private String varName2;
+    private final String varName1;
+    private final String varName2;
     private boolean equals;
 
     public Comparison(int lineNumber, String varName1, String varName2) {

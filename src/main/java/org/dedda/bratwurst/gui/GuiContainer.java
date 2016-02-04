@@ -18,8 +18,8 @@ public class GuiContainer {
     public static final String WINDOW_CREATE = "win-create";
     public static final String WINDOW_SET = "win-set";
 
-    private WindowMap windows;
-    private Map<String, GuiCommandConsumer> consumers;
+    private final WindowMap windows;
+    private final Map<String, GuiCommandConsumer> consumers;
 
     public GuiContainer() {
         windows = new WindowMap();

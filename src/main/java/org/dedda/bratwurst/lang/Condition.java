@@ -9,10 +9,10 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class Condition extends BWInstruction {
 
-    private BWExpression toEvaluate;
+    private final BWExpression toEvaluate;
 
-    private BWInstruction[] trueInstructions;
-    private BWInstruction[] falseInstructions;
+    private final BWInstruction[] trueInstructions;
+    private final BWInstruction[] falseInstructions;
 
     public Condition(int lineNumber, BWExpression toEvaluate, BWInstruction[] trueInstructions, BWInstruction[] falseInstructions) {
         super(lineNumber);

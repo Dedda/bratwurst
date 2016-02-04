@@ -17,8 +17,8 @@ import java.io.IOException;
  */
 public class FileExport extends BWInstruction {
 
-    public final String sourceVariableName;
-    public final String destinationVariableName;
+    private final String sourceVariableName;
+    private final String destinationVariableName;
 
     public FileExport(int lineNumber, String sourceVariableName, String destinationVariableName) {
         super(lineNumber);

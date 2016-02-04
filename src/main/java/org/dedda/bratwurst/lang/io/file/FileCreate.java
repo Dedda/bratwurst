@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class FileCreate extends BWInstruction {
 
-    public final String variableName;
+    private final String variableName;
 
     public FileCreate(int lineNumber, String variableName) {
         super(lineNumber);

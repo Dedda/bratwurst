@@ -24,8 +24,8 @@ public class Program {
     private BWInstruction[] instructions = new BWInstruction[0];
     private boolean stopped = false;
     private int exitCode = 0;
-    private Stack<BWObject> global = new Stack<>();
-    private GuiContainer guiContainer = new GuiContainer();
+    private final Stack<BWObject> global = new Stack<>();
+    private final GuiContainer guiContainer = new GuiContainer();
 
     public Program() {
 

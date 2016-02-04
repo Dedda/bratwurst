@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class ObjectCreation extends BWExpression {
 
-    private String className;
+    private final String className;
     private BWObject object = new BWInteger(0);
 
     public ObjectCreation(int lineNumber, String className) {

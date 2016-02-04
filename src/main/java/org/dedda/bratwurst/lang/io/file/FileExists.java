@@ -12,7 +12,7 @@ import java.io.File;
  */
 public class FileExists extends BWExpression {
 
-    public final String variableName;
+    private final String variableName;
     private boolean exists;
 
     public FileExists(int lineNumber, String variableName) {

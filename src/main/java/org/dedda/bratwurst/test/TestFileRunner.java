@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  */
 public class TestFileRunner {
 
-    public final String fileName;
+    private final String fileName;
     private int assertions = 0;
     private int allAssertions = 0;
     private boolean stop = false;

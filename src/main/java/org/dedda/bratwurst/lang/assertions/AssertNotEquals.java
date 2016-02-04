@@ -11,8 +11,8 @@ import org.dedda.bratwurst.test.TestFileRunner;
  */
 public class AssertNotEquals extends BWInstruction {
 
-    private String variableName1;
-    private String variableName2;
+    private final String variableName1;
+    private final String variableName2;
 
     public AssertNotEquals(int lineNumber, String variableName1, String variableName2) {
         super(lineNumber);
@@ -54,15 +54,15 @@ public class AssertNotEquals extends BWInstruction {
         }
     }
 
-    protected boolean assertEqualsInteger(BWVariable var1, BWVariable var2) {
+    private boolean assertEqualsInteger(BWVariable var1, BWVariable var2) {
         return var1.getIntValue() == var2.getIntValue();
     }
 
-    protected boolean assertEqualsString(BWVariable var1, BWVariable var2) {
+    private boolean assertEqualsString(BWVariable var1, BWVariable var2) {
         return ((BWString) var1.getValue()).getStringValue().equals(((BWString) var2.getValue()).getStringValue());
     }
 
-    protected boolean assertEqualsObject(BWVariable var1, BWVariable var2) {
+    private boolean assertEqualsObject(BWVariable var1, BWVariable var2) {
         return var1.getValue().getBwClass().name.equals(var2.getValue().getBwClass().name);
     }
 

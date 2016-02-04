@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class Push extends BWInstruction {
 
-    private BWExpression argument;
+    private final BWExpression argument;
 
     public Push(int lineNumber, BWExpression argument) {
         super(lineNumber);

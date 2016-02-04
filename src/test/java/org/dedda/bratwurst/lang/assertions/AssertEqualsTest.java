@@ -15,11 +15,6 @@ import static org.junit.Assert.assertTrue;
 public class AssertEqualsTest extends ScopedTestCase {
 
     @Test
-    public void testRun() throws Exception {
-
-    }
-
-    @Test
     public void testAssertEqualsInteger() throws Exception {
         AssertEquals assertEquals = new AssertEquals(0, "var1", "var2");
         assertTrue(assertEquals.assertEqualsInteger(

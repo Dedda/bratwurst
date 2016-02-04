@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class FileImport extends BWInstruction {
 
-    public final String variableName;
+    private final String variableName;
 
     public FileImport(int lineNumber, String variableName) {
         super(lineNumber);

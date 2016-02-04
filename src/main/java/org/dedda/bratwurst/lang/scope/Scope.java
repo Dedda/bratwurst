@@ -16,9 +16,9 @@ import java.util.Stack;
  */
 public class Scope {
 
-    private Program program;
+    private final Program program;
 
-    private Stack<StackElement> scopeStack;
+    private final Stack<StackElement> scopeStack;
 
     private TestFileRunner testFileRunner = null;
     private TestFunctionRunner testFunctionRunner = null;
@@ -53,10 +53,6 @@ public class Scope {
 
     public boolean isInObject() {
         return getCurrentObjectR() != null;
-    }
-
-    public BWFunction getCurrentFunction() {
-        return scopeStack.peek().getFunction();
     }
 
     public BWFunction getFunction(String name) {

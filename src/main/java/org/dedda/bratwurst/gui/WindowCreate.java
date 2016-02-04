@@ -13,7 +13,7 @@ import static org.dedda.bratwurst.gui.GuiContainer.SUCCESS;
  */
 public class WindowCreate extends GuiCommandConsumer {
 
-    private WindowMap windowMap;
+    private final WindowMap windowMap;
 
     public WindowCreate(WindowMap windowMap) {
         this.windowMap = windowMap;

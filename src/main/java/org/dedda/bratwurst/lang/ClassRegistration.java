@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class ClassRegistration extends BWInstruction {
 
-    private BWClass bwClass;
+    private final BWClass bwClass;
 
     public ClassRegistration(BWClass bwClass) {
         super(0);

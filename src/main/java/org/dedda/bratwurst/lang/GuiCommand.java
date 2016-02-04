@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class GuiCommand extends BWExpression {
 
-    private Map<String, String> arguments;
+    private final Map<String, String> arguments;
     private String value;
 
     public GuiCommand(int lineNumber, Map<String, String> arguments) {

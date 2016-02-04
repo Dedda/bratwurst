@@ -22,7 +22,7 @@ public class ExpressionParser {
         return null;
     }
 
-    public static ExpressionParser forExpression(String expression) {
+    private static ExpressionParser forExpression(String expression) {
         if (expression.matches("^-?\\d*$")) {
             return new IntegerParser();
         } else if (expression.matches("^\\w+$")) {

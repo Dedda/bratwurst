@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class StringConcatenation extends BWExpression {
 
-    public final String[] variableNames;
+    private final String[] variableNames;
     private String value = "";
 
     public StringConcatenation(int lineNumber, String[] variableNames) {

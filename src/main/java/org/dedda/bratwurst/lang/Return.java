@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class Return extends BWExpression {
 
-    private BWExpression expression;
+    private final BWExpression expression;
     private BWObject value;
 
     public Return(int lineNumber, BWExpression expression) {

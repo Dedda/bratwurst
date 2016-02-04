@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class Instanceof extends BWExpression {
 
-    public final BWExpression expression;
+    private final BWExpression expression;
     public final String className;
     private boolean isInstance;
 

@@ -14,7 +14,7 @@ import java.io.File;
  */
 public class FileRemove extends BWInstruction {
 
-    public final String variableName;
+    private final String variableName;
 
     public FileRemove(int lineNumber, String variableName) {
         super(lineNumber);
