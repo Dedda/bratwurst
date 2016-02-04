@@ -1,6 +1,5 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.lang.assertions.AssertEquals;
 import org.dedda.bratwurst.lang.assertions.AssertTrue;
 
 /**

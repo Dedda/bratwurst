@@ -1,12 +1,11 @@
 package org.dedda.bratwurst.lang;
 
-import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.ScopedTestCase;
 import org.dedda.bratwurst.lang.scope.Scope;
-import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by dedda on 12/17/15.

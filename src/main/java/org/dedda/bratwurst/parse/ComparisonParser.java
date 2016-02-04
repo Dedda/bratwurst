@@ -1,6 +1,5 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.lang.BWExpression;
 import org.dedda.bratwurst.lang.Comparison;
 
 /**
@@ -15,7 +14,6 @@ public class ComparisonParser extends ExpressionParser {
         String[] split = data.split(" ");
         String varName1 = split[0];
         String varName2 = split[2];
-        Comparison comparison = new Comparison(lineNumber, varName1, varName2);
-        return comparison;
+        return new Comparison(lineNumber, varName1, varName2);
     }
 }

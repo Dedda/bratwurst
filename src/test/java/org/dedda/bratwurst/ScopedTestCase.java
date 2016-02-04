@@ -12,8 +12,7 @@ public class ScopedTestCase extends BratwurtstTestcase {
 
     protected Scope createEmptyScope() {
         Program program = new Program();
-        Scope scope = new Scope(program);
-        return scope;
+        return new Scope(program);
     }
 
 }

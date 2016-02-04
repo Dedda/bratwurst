@@ -32,14 +32,14 @@ public class Condition extends BWInstruction {
     }
 
     private void runTrue(Scope scope) {
-        for (int i = 0; i < trueInstructions.length; i++) {
-            trueInstructions[i].run(scope);
+        for (BWInstruction trueInstruction : trueInstructions) {
+            trueInstruction.run(scope);
         }
     }
 
     private void runFalse(Scope scope) {
-        for (int i = 0; i < falseInstructions.length; i++) {
-            falseInstructions[i].run(scope);
+        for (BWInstruction falseInstruction : falseInstructions) {
+            falseInstruction.run(scope);
         }
     }
 

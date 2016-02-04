@@ -45,8 +45,7 @@ public class BWFunction extends BWExpression {
         for (BWVariable argument : getArguments()) {
             argument.run(scope);
         }
-        for (int i = 0; i < instructions.length; i++) {
-            BWInstruction instruction = instructions[i];
+        for (BWInstruction instruction : instructions) {
             instruction.run(scope);
             if (instruction instanceof Return) {
                 value = ((Return) instruction).getValue();

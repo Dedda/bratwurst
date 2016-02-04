@@ -3,11 +3,7 @@ package org.dedda.bratwurst.lang;
 import org.dedda.bratwurst.gui.GuiContainer;
 import org.dedda.bratwurst.lang.scope.Scope;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Stack;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -37,11 +33,11 @@ public class Program {
 
     public void run() {
         Scope scope = new Scope(this);
-        for (int i = 0; i < instructions.length; i++) {
+        for (BWInstruction instruction : instructions) {
             if (stopped) {
                 return;
             }
-            instructions[i].run(scope);
+            instruction.run(scope);
         }
     }
 

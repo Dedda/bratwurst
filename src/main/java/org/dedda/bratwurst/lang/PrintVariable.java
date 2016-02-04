@@ -2,8 +2,6 @@ package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.lang.scope.Scope;
 
-import java.util.Arrays;
-
 /**
  * Created by dedda on 10/14/15.
  *

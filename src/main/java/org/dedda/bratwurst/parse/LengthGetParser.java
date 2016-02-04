@@ -1,6 +1,5 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.lang.BWExpression;
 import org.dedda.bratwurst.lang.LengthGet;
 
 /**
@@ -13,7 +12,6 @@ public class LengthGetParser extends ExpressionParser {
     @Override
     public LengthGet parse(String data, int lineNumber) {
         String varName = data.substring(2, data.length() - 2);
-        LengthGet lengthGet = new LengthGet(lineNumber, varName);
-        return lengthGet;
+        return new LengthGet(lineNumber, varName);
     }
 }

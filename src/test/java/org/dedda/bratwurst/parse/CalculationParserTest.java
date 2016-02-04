@@ -1,8 +1,6 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
-import org.dedda.bratwurst.lang.BWInstruction;
-import org.dedda.bratwurst.lang.BWInteger;
 import org.dedda.bratwurst.lang.Calculation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +11,7 @@ import org.junit.runners.Parameterized.Parameters;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by dedda on 10/17/15.

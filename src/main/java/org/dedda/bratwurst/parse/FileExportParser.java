@@ -1,6 +1,5 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.lang.BWInstruction;
 import org.dedda.bratwurst.lang.io.file.FileExport;
 
 /**
@@ -15,7 +14,6 @@ public class FileExportParser extends InstructionParser {
         String[] split = line.split(" ");
         String dataVarName = split[0].substring(2);
         String destVarName = split[2].substring(0, split[2].length() - 2);
-        FileExport fileExport = new FileExport(lineNumber, dataVarName, destVarName);
-        return fileExport;
+        return new FileExport(lineNumber, dataVarName, destVarName);
     }
 }

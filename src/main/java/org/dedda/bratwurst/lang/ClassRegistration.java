@@ -11,8 +11,8 @@ public class ClassRegistration extends BWInstruction {
 
     private BWClass bwClass;
 
-    public ClassRegistration(int lineNumber, BWClass bwClass) {
-        super(lineNumber);
+    public ClassRegistration(BWClass bwClass) {
+        super(0);
         this.bwClass = bwClass;
     }
 

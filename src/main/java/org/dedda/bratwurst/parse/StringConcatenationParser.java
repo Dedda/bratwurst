@@ -1,7 +1,5 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.lang.BWExpression;
-import org.dedda.bratwurst.lang.BWString;
 import org.dedda.bratwurst.lang.StringConcatenation;
 
 /**
@@ -18,7 +16,6 @@ public class StringConcatenationParser extends ExpressionParser {
         for (int i = 0; i < varNames.length; i++) {
             varNames[i] = split[i*2];
         }
-        StringConcatenation concatenation = new StringConcatenation(lineNumber, varNames);
-        return concatenation;
+        return new StringConcatenation(lineNumber, varNames);
     }
 }

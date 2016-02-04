@@ -4,7 +4,7 @@ import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.Pop;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by dedda on 12/8/15.

@@ -5,9 +5,6 @@ import org.dedda.bratwurst.lang.BWObject;
 import org.dedda.bratwurst.lang.BWString;
 import org.dedda.bratwurst.lang.scope.Scope;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.Scanner;
 
 /**

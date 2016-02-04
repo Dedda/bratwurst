@@ -1,6 +1,8 @@
 package org.dedda.bratwurst.lang.assertions;
 
-import org.dedda.bratwurst.lang.*;
+import org.dedda.bratwurst.lang.BWInstruction;
+import org.dedda.bratwurst.lang.BWInteger;
+import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.dedda.bratwurst.test.TestFileRunner;
 

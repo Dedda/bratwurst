@@ -1,19 +1,6 @@
 package org.dedda.bratwurst;
 
-import org.dedda.bratwurst.lang.BWClass;
-import org.dedda.bratwurst.lang.BWFunction;
-import org.dedda.bratwurst.lang.BWInstruction;
-import org.dedda.bratwurst.lang.BWInteger;
-import org.dedda.bratwurst.lang.BWVariable;
-import org.dedda.bratwurst.lang.ClassRegistration;
-import org.dedda.bratwurst.lang.Exit;
-import org.dedda.bratwurst.lang.FunctionCall;
-import org.dedda.bratwurst.lang.ObjectCreation;
-import org.dedda.bratwurst.lang.PrintVariable;
-import org.dedda.bratwurst.lang.Program;
-import org.dedda.bratwurst.lang.ReadVariable;
-import org.dedda.bratwurst.lang.Return;
-import org.dedda.bratwurst.lang.VariableDeclaration;
+import org.dedda.bratwurst.lang.*;
 import org.dedda.bratwurst.parse.Parser;
 
 import java.io.File;
@@ -33,12 +20,11 @@ public class TestProgram {
     private void getParsedInstructions() {
         Parser parser = new Parser(new File("src/test/testprogram.bw"));
         parser.parse();
-        return;
     }
 
     private BWInstruction[] getInstructions() {
         return new BWInstruction[]{
-                new ClassRegistration(0, getPointClass()),
+                new ClassRegistration(getPointClass()),
                 new VariableDeclaration(0, "point1", new ObjectCreation(0, "Point")),
                 new FunctionCall(0, "point1", "setX", new BWVariable[]{new BWVariable("newX", new BWInteger(65))}),
                 new FunctionCall(0, "point1", "setY", new BWVariable[]{new BWVariable("newY", new BWInteger(66))}),

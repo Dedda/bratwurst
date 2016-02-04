@@ -6,10 +6,7 @@ import org.dedda.bratwurst.lang.BWFunction;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.dedda.bratwurst.parse.Patterns.CLASS_END;
-import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
-import static org.dedda.bratwurst.parse.Patterns.NAMING;
-import static org.dedda.bratwurst.parse.Patterns.VARIABLE_DECLARATION;
+import static org.dedda.bratwurst.parse.Patterns.*;
 
 /**
  * Created by dedda on 9/25/15.
@@ -34,9 +31,7 @@ public class BWClassParser {
             }
             if (line.matches(FUNCTION_BEGIN)) {
                 functions.add(functionParser.parse(lines, i));
-                int functionEnd = functionParser.getEndOfFunction(lines, i);
-                i = functionEnd;
-                continue;
+                i = functionParser.getEndOfFunction(lines, i);
             }
         }
         if (className == null) {

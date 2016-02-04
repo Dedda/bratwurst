@@ -11,7 +11,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static org.dedda.bratwurst.parse.Patterns.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by dedda on 9/28/15.

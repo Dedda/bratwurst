@@ -4,7 +4,6 @@ import org.dedda.bratwurst.lang.BWString;
 import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.scope.Scope;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**

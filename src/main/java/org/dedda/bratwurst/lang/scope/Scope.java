@@ -1,10 +1,6 @@
 package org.dedda.bratwurst.lang.scope;
 
-import org.dedda.bratwurst.lang.BWClass;
-import org.dedda.bratwurst.lang.BWFunction;
-import org.dedda.bratwurst.lang.BWObject;
-import org.dedda.bratwurst.lang.BWVariable;
-import org.dedda.bratwurst.lang.Program;
+import org.dedda.bratwurst.lang.*;
 import org.dedda.bratwurst.test.TestFileRunner;
 import org.dedda.bratwurst.test.TestFunctionRunner;
 

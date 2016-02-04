@@ -4,7 +4,7 @@ import org.dedda.bratwurst.ScopedTestCase;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by dedda on 1/25/16.
@@ -15,12 +15,6 @@ public class StringConcatenationTest extends ScopedTestCase {
 
     @Test
     public void testRun() throws Exception {
-        String[] texts = {
-                "Hello ",
-                "World",
-                "!"
-        };
-        int intVal = 123;
         Scope scope = createEmptyScope();
         scope.setVariable(new BWVariable("var1", new BWString("Hello ")));
         scope.setVariable(new BWVariable("var2", new BWString("World")));

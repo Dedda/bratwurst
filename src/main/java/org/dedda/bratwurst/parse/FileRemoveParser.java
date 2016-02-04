@@ -12,7 +12,6 @@ public class FileRemoveParser extends InstructionParser {
     @Override
     public FileRemove parse(String line, int lineNumber) {
         String variableName = line.substring(1, line.length() - 1);
-        FileRemove fileRemove = new FileRemove(lineNumber, variableName);
-        return fileRemove;
+        return new FileRemove(lineNumber, variableName);
     }
 }

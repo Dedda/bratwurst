@@ -4,7 +4,8 @@ import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.Exit;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by dedda on 10/16/15.

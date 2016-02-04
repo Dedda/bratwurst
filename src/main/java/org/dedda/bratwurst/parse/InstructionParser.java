@@ -1,8 +1,6 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.lang.BWInstruction;
-import org.dedda.bratwurst.lang.Pop;
-import org.dedda.bratwurst.lang.assertions.AssertEquals;
 
 import static org.dedda.bratwurst.parse.Patterns.*;
 

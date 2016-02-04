@@ -4,14 +4,14 @@
     (CALL_ME_MAYBE) <-- printPoint
     (px) <-- point{getX}
     (py) <-- point{getY}
-    (toprint) <-- :Point;
-    >toprint<
+    (toPrint) <-- :Point;
+    >toPrint<
     >:<
-    (toprint) <-- : x=;
-    >toprint<
+    (toPrint) <-- : x=;
+    >toPrint<
     |px|
-    (toprint) <-- :, y=;
-    >toprint<
+    (toPrint) <-- :, y=;
+    >toPrint<
     |py|
     >newLine<
 }
@@ -73,9 +73,9 @@ point1 -?> Point
 (testText) <-- :Hallo Welt!;
 >testText<
 >newLine<
-(windowid) <-- `action,win-create`
+(windowId) <-- `action,win-create`
 (width) <-- 400
 (height) <-- 300
-`action,win-set:attr,width:val,width:id,windowid`
-`action,win-set:attr,height:val,height:id,windowid`
+`action,win-set:attr,width:val,width:id,windowId`
+`action,win-set:attr,height:val,height:id,windowId`
 <==

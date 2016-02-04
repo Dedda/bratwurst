@@ -11,7 +11,7 @@ public class CalculationParser extends ExpressionParser {
 
     public Calculation parse(String line, int lineNumber) {
         line = line.trim();
-        String[] parts = line.split("[\\*\\/]", 2);
+        String[] parts = line.split("[\\*/]", 2);
         char operand;
         if (parts.length == 2) {
             int mulIndex = line.indexOf('*');

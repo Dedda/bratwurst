@@ -1,9 +1,5 @@
 package org.dedda.bratwurst.lang;
 
-import org.dedda.bratwurst.lang.BWExpression;
-import org.dedda.bratwurst.lang.BWInteger;
-import org.dedda.bratwurst.lang.BWObject;
-import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.dedda.bratwurst.tool.IntegerComparator;
 

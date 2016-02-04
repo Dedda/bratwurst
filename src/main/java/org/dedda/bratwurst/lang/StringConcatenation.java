@@ -28,7 +28,7 @@ public class StringConcatenation extends BWExpression {
         try {
             value = Integer.parseInt(((BWString) getValue()).getStringValue());
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return value;
     }
@@ -52,8 +52,8 @@ public class StringConcatenation extends BWExpression {
             }
         }
         String data = "";
-        for (int i = 0; i < strings.length; i++) {
-            data += strings[i];
+        for (String string : strings) {
+            data += string;
         }
         this.value = data;
     }

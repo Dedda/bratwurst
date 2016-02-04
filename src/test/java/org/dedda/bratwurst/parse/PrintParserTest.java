@@ -4,7 +4,6 @@ import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWInstruction;
 import org.dedda.bratwurst.lang.PrintChar;
 import org.dedda.bratwurst.lang.PrintVariable;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

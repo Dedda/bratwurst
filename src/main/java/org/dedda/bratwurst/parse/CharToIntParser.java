@@ -12,7 +12,6 @@ public class CharToIntParser extends ExpressionParser {
     @Override
     public CharToInt parse(String data, int lineNumber) {
         String varname = data.split(" ")[1];
-        CharToInt charToInt = new CharToInt(lineNumber, varname);
-        return charToInt;
+        return new CharToInt(lineNumber, varname);
     }
 }

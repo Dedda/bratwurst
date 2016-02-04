@@ -3,7 +3,7 @@ package org.dedda.bratwurst.parse;
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by dedda on 10/21/15.
@@ -38,6 +38,9 @@ public class ParserTest extends BratwurtstTestcase {
         int index = 2;
         Parser parser = new Parser(null);
         String[] actual = parser.insertIntoArray(array, toInsert, index);
-        assertEquals(expected, actual);
+        assertEquals(expected.length, actual.length);
+        for (int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
     }
 }

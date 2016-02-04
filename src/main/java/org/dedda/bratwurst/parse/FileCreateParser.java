@@ -12,8 +12,7 @@ public class FileCreateParser extends InstructionParser {
     @Override
     public FileCreate parse(String line, int lineNumber) {
         String variableName = line.substring(1, line.length() - 1);
-        FileCreate fileCreate = new FileCreate(lineNumber, variableName);
-        return fileCreate;
+        return new FileCreate(lineNumber, variableName);
     }
 
 }

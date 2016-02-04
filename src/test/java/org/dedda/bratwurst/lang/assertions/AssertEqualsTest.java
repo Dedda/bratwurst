@@ -2,10 +2,10 @@ package org.dedda.bratwurst.lang.assertions;
 
 import org.dedda.bratwurst.ScopedTestCase;
 import org.dedda.bratwurst.lang.*;
-import org.dedda.bratwurst.lang.scope.Scope;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by dedda on 1/24/16.
@@ -13,13 +13,6 @@ import static org.junit.Assert.*;
  * @author dedda
  */
 public class AssertEqualsTest extends ScopedTestCase {
-
-    private Scope scope;
-
-    @Override
-    protected void setUp() throws Exception {
-        scope = createEmptyScope();
-    }
 
     @Test
     public void testRun() throws Exception {

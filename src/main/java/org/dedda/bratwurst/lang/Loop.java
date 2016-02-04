@@ -32,8 +32,8 @@ public class Loop extends BWInstruction {
     }
 
     private void runInstructions(Scope scope) {
-        for (int i = 0; i < instructions.length; i++) {
-            instructions[i].run(scope);
+        for (BWInstruction instruction : instructions) {
+            instruction.run(scope);
         }
     }
 

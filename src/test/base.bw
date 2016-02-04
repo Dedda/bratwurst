@@ -52,8 +52,8 @@
     (expected) <-- 0
     (actual) <-- var1 = var2
     {[actual == expected]}
-    (var1) <-- :Testtext;
-    (var2) <-- :Testtext;
+    (var1) <-- :TestText;
+    (var2) <-- :TestText;
     (expected) <-- 1
     (actual) <-- var1 = var2
     {[actual == expected]}

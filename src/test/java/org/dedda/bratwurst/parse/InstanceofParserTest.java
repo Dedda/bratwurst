@@ -1,14 +1,10 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
-import org.dedda.bratwurst.lang.BWClass;
-import org.dedda.bratwurst.lang.BWFunction;
-import org.dedda.bratwurst.lang.BWInteger;
-import org.dedda.bratwurst.lang.BWObject;
 import org.dedda.bratwurst.lang.Instanceof;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by dedda on 12/9/15.

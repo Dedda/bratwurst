@@ -50,7 +50,7 @@ public class Parser {
             for (int i = 0; i < lines.length; i++) {
                 if (lines[i].matches(INCLUDE)) {
                     try {
-                        String[] included = getFileContents(new File(sourceFile.getParent() + '/' + lines[i].substring(1, lines[i].length()-1))).split("\n");
+                        String[] included = getFileContents(new File(sourceFile.getParent() + '/' + lines[i].substring(1, lines[i].length() - 1))).split("\n");
                         lines = insertIntoArray(lines, included, i);
                         break;
                     } catch (IOException e) {
@@ -120,7 +120,6 @@ public class Parser {
                     int end = loopParser.getEnd(lines, i);
                     instructions.add(loopParser.parse(lines, i));
                     i = end;
-                    continue;
                 }
             } else {
                 instructions.add(instruction);
@@ -148,15 +147,9 @@ public class Parser {
 
     public String[] insertIntoArray(String[] array, String[] toInsert, int lineToReplace) {
         String[] newArray = new String[array.length + toInsert.length - 1];
-        for (int i = 0; i < lineToReplace; i++) {
-            newArray[i] = array[i];
-        }
-        for (int i = lineToReplace; i < lineToReplace + toInsert.length; i++) {
-            newArray[i] = toInsert[i - lineToReplace];
-        }
-        for (int i = lineToReplace + toInsert.length; i < newArray.length; i++) {
-            newArray[i] = array[i - toInsert.length + 1];
-        }
+        System.arraycopy(array, 0, newArray, 0, lineToReplace);
+        System.arraycopy(toInsert, 0, newArray, lineToReplace, toInsert.length);
+        System.arraycopy(array, lineToReplace + 1, newArray, lineToReplace + toInsert.length, newArray.length - (lineToReplace + toInsert.length));
         return newArray;
     }
 

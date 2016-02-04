@@ -4,7 +4,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by dedda on 12/17/15.
@@ -14,10 +14,10 @@ import static org.junit.Assert.*;
 public class PopTest {
 
     private Scope scope;
-    private BWObject object;
 
     @Before
     public void setUp() throws Exception {
+        BWObject object;
         object = new BWInteger(312);
         Program program = new Program();
         program.push(object);

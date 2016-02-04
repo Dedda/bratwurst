@@ -14,7 +14,6 @@ public class IntegerComparisonParser extends ExpressionParser {
         String[] split = data.split(" ");
         String varName1 = split[0];
         String varName2 = split[2];
-        IntegerComparison comparison = new IntegerComparison(lineNumber, varName1, varName2);
-        return comparison;
+        return new IntegerComparison(lineNumber, varName1, varName2);
     }
 }

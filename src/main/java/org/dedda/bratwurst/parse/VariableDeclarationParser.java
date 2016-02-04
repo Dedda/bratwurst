@@ -1,7 +1,6 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.lang.BWExpression;
-import org.dedda.bratwurst.lang.BWInteger;
 import org.dedda.bratwurst.lang.VariableDeclaration;
 
 /**

@@ -1,8 +1,6 @@
 package org.dedda.bratwurst.parse;
 
-import org.dedda.bratwurst.lang.BWExpression;
 import org.dedda.bratwurst.lang.GuiCommand;
-import org.dedda.bratwurst.lang.PrintChar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +21,6 @@ public class GuiCommandParser extends ExpressionParser {
             String[] split = arg.split(",");
             arguments.put(split[0], split[1]);
         }
-        GuiCommand guiCommand = new GuiCommand(lineNumber, arguments);
-        return guiCommand;
+        return new GuiCommand(lineNumber, arguments);
     }
 }

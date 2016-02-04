@@ -5,7 +5,10 @@ import org.dedda.bratwurst.lang.BWString;
 import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.scope.Scope;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by dedda on 1/25/16.

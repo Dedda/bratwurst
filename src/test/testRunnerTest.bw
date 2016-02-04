@@ -84,25 +84,25 @@
 ~{
     (CALL_ME_MAYBE) <-- testFileOperations
     (filename) <-- :testFile.txt;
-    (fileexists) <-- ?filename?
-    ?(fileexists)>>
+    (fileExists) <-- ?filename?
+    ?(fileExists)>>
     <<
         +filename+
     |
-    (fileexists) <-- ?filename?
-    {[fileexists]}
+    (fileExists) <-- ?filename?
+    {[fileExists]}
     -filename-
-    (fileexists) <-- ?filename?
-    {[!fileexists]}
+    (fileExists) <-- ?filename?
+    {[!fileExists]}
     +filename+
-    (towrite) <-- :Test content;
-    <|towrite > filename|>
-    (filedata) <-- filename
-    >|filedata|<
-    {[towrite == filedata]}
+    (toWrite) <-- :Test content;
+    <|toWrite > filename|>
+    (fileData) <-- filename
+    >|fileData|<
+    {[toWrite == fileData]}
     -filename-
-    (fileexists) <-- ?filename?
-    {[!fileexists]}
+    (fileExists) <-- ?filename?
+    {[!fileExists]}
 }
 ~{
     (CALL_ME_MAYBE) <-- testBlankLines
