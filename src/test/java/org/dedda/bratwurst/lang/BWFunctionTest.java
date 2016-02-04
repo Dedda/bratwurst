@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
+import org.dedda.bratwurst.ScopedTestCase;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,7 @@ import static org.junit.Assert.*;
  * @author dedda
  */
 @RunWith(Parameterized.class)
-public class BWFunctionTest extends BratwurtstTestcase {
+public class BWFunctionTest extends ScopedTestCase {
 
     private BWFunction function;
     private static boolean[] executed;
@@ -79,7 +80,7 @@ public class BWFunctionTest extends BratwurtstTestcase {
     @Test
     public void testFunction() throws Exception {
         function.setArguments(arguments);
-        function.run(new Scope(new Program()));
+        function.run(createEmptyScope());
         assertEquals(expectedValue.getValueType(), function.getValueType());
         assertEquals(expectedValue.getIntValue(), function.getIntValue());
         for (int i = 0; i < executed.length; i++) {

@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
+import org.dedda.bratwurst.ScopedTestCase;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,14 +13,13 @@ import static org.junit.Assert.*;
  *
  * @author dedda
  */
-public class ExitTest extends BratwurtstTestcase {
+public class ExitTest extends ScopedTestCase {
 
     private Scope scope;
 
     public void setUp() throws Exception {
-        Program program = new Program();
-        scope = new Scope(program);
-        program.run();
+        scope = createEmptyScope();
+        scope.getProgram().run();
     }
 
     @Test

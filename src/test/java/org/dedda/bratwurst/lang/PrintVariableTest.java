@@ -40,9 +40,9 @@ public class PrintVariableTest extends BratwurtstTestcase {
     @Parameters
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][]{
-                {"A", new Scope(program), new BWVariable("testVar", new BWInteger('A'))},
-                {"Test", new Scope(program), new BWVariable("testVar", new BWString("Test"))},
-                {"" + (char) 0, new Scope(program), new BWVariable("testVar", new BWObject(BWClass.getClassForName("testClass")))}
+                {"A", new BWVariable("testVar", new BWInteger('A'))},
+                {"Test", new BWVariable("testVar", new BWString("Test"))},
+                {"" + (char) 0, new BWVariable("testVar", new BWObject(BWClass.getClassForName("testClass")))}
 
         });
     }
@@ -51,10 +51,9 @@ public class PrintVariableTest extends BratwurtstTestcase {
     public String expected;
 
     @Parameter(1)
-    public Scope scope;
-
-    @Parameter(2)
     public BWVariable programVariable;
+
+    public Scope scope = new Scope(program);
 
     public void setUp() throws Exception {
         systemOut = System.out;
