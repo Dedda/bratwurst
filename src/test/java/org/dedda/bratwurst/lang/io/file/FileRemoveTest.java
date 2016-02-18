@@ -4,11 +4,11 @@ import org.dedda.bratwurst.FileSystemTestCase;
 import org.dedda.bratwurst.lang.BWString;
 import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.scope.Scope;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.io.File;
 
-import static org.junit.Assert.assertFalse;
+import static org.testng.AssertJUnit.assertFalse;
 
 /**
  * Created by dedda on 1/28/16.

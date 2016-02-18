@@ -2,12 +2,8 @@ package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.scope.Scope;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -16,14 +12,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by dedda on 10/15/15.
  *
  * @author dedda
  */
-@RunWith(Parameterized.class)
 public class PrintVariableTest extends BratwurtstTestcase {
 
     public final static Program program = new Program();
@@ -36,7 +31,7 @@ public class PrintVariableTest extends BratwurtstTestcase {
         }
     };
 
-    @Parameters
+    // TODO: Fix params
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][]{
                 {"A", new BWVariable("testVar", new BWInteger('A'))},
@@ -46,10 +41,8 @@ public class PrintVariableTest extends BratwurtstTestcase {
         });
     }
 
-    @Parameter(0)
     public String expected;
 
-    @Parameter(1)
     public BWVariable programVariable;
 
     public final Scope scope = new Scope(program);
@@ -61,7 +54,7 @@ public class PrintVariableTest extends BratwurtstTestcase {
         program.setVariables(new ArrayList<>(Arrays.asList(new BWVariable[]{programVariable})));
     }
 
-    @After
+    @AfterTest
     public void tearDown() throws Exception {
         System.setOut(systemOut);
     }

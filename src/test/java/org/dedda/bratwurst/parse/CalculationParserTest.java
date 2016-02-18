@@ -2,26 +2,21 @@ package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.Calculation;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by dedda on 10/17/15.
  *
  * @author dedda
  */
-@RunWith(Parameterized.class)
 public class CalculationParserTest extends BratwurtstTestcase {
 
-    @Parameters
+    // TODO: FIx params
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
                 {"123 + 456", '+', 123, 456},
@@ -33,16 +28,12 @@ public class CalculationParserTest extends BratwurtstTestcase {
         });
     }
 
-    @Parameter(0)
     public String line;
 
-    @Parameter(1)
     public char expectedOperator;
 
-    @Parameter(2)
     public Integer leftArgumentValue;
 
-    @Parameter(3)
     public Integer rightArgumentValue;
 
     @Test

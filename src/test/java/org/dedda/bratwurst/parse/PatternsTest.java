@@ -1,28 +1,23 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import static org.dedda.bratwurst.parse.Patterns.*;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by dedda on 9/28/15.
  *
  * @author dedda
  */
-@RunWith(Parameterized.class)
 public class PatternsTest extends BratwurtstTestcase {
 
-    @Parameters
+    // TODO: Fix parameters
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
                 {BEGIN, "==>", true},
@@ -67,11 +62,8 @@ public class PatternsTest extends BratwurtstTestcase {
         });
     }
 
-    @Parameter(0)
     public String pattern;
-    @Parameter(1)
     public String text;
-    @Parameter(2)
     public boolean matches;
 
     @Test

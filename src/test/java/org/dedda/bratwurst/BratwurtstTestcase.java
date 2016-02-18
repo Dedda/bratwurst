@@ -1,7 +1,8 @@
 package org.dedda.bratwurst;
 
 import org.dedda.bratwurst.lang.BWClass;
-import org.junit.Before;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 /**
  * Created by dedda on 12/10/15.
@@ -10,7 +11,7 @@ import org.junit.Before;
  */
 public class BratwurtstTestcase {
 
-    @Before
+    @BeforeMethod
     public final void __setUpBratwurstTestcase() throws Exception {
         BWClass.unregisterAll();
         this.setUp();

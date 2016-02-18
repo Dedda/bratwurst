@@ -2,7 +2,10 @@ package org.dedda.bratwurst;
 
 import java.io.*;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertNotEquals;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertFalse;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by dedda on 1/27/16.
@@ -55,7 +58,7 @@ public class FileSystemTestCase extends ScopedTestCase {
     }
 
     public void assertNotEmpty(final File file) {
-        assertNotEquals("File empty", 0, file.length());
+        assertNotEquals(0, file.length());
     }
 
     public void assertContentEquals(final File file, final String expected) throws Exception {

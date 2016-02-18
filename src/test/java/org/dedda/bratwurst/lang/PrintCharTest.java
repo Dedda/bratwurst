@@ -1,14 +1,14 @@
 package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
-import org.junit.After;
-import org.junit.Test;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by dedda on 10/15/15.
@@ -31,7 +31,7 @@ public class PrintCharTest extends BratwurtstTestcase {
         System.setOut(new PrintStream(customOut));
     }
 
-    @After
+    @AfterTest
     public void tearDown() throws Exception {
         System.setOut(systemOut);
     }

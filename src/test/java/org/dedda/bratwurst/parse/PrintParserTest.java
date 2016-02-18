@@ -4,26 +4,21 @@ import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWInstruction;
 import org.dedda.bratwurst.lang.PrintChar;
 import org.dedda.bratwurst.lang.PrintVariable;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by dedda on 10/15/15.
  *
  * @author dedda
  */
-@RunWith(Parameterized.class)
 public class PrintParserTest extends BratwurtstTestcase {
 
-    @Parameters
+    // TODO: Fix params
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
                 {PrintChar.class, 'A', ">A<"},
@@ -32,13 +27,10 @@ public class PrintParserTest extends BratwurtstTestcase {
         });
     }
 
-    @Parameter(0)
     public Class expectedClass;
 
-    @Parameter(1)
     public Object expectedValue;
 
-    @Parameter(2)
     public String line;
 
     @Test

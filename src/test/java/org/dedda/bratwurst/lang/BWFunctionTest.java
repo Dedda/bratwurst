@@ -2,24 +2,19 @@ package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.ScopedTestCase;
 import org.dedda.bratwurst.lang.scope.Scope;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by dedda on 10/16/15.
  *
  * @author dedda
  */
-@RunWith(Parameterized.class)
 public class BWFunctionTest extends ScopedTestCase {
 
     private BWFunction function;
@@ -33,16 +28,13 @@ public class BWFunctionTest extends ScopedTestCase {
         }
     }
 
-    @Parameter(0)
     public BWInstruction[] instructions;
 
-    @Parameter(1)
     public BWObject expectedValue;
 
-    @Parameter(2)
     public BWVariable[] arguments;
 
-    @Parameters
+    // TODO: Fix params
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
                 {new BWInstruction[] {

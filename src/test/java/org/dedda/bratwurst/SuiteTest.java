@@ -1,9 +1,9 @@
 package org.dedda.bratwurst;
 
 import org.dedda.bratwurst.test.TestSuite;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-import static junit.framework.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by dedda on 1/24/16.

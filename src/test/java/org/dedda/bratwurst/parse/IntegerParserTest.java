@@ -2,28 +2,23 @@ package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWInteger;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by dedda on 10/17/15.
  *
  * @author dedda
  */
-@RunWith(Parameterized.class)
 public class IntegerParserTest extends BratwurtstTestcase {
 
     private IntegerParser parser;
 
-    @Parameters
+    // TODO: Fix params
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
                 {"0", 0},
@@ -32,10 +27,8 @@ public class IntegerParserTest extends BratwurtstTestcase {
         });
     }
 
-    @Parameter(0)
     public String data;
 
-    @Parameter(1)
     public int expectedValue;
 
     public void setUp() throws Exception {

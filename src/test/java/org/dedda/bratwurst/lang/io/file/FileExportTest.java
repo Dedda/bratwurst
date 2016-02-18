@@ -4,7 +4,7 @@ import org.dedda.bratwurst.FileSystemTestCase;
 import org.dedda.bratwurst.lang.BWString;
 import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.scope.Scope;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.io.File;
 

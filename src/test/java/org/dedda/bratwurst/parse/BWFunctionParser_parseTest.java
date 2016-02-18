@@ -2,28 +2,23 @@ package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWFunction;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by dedda on 10/17/15.
  *
  * @author dedda
  */
-@RunWith(Parameterized.class)
 public class BWFunctionParser_parseTest extends BratwurtstTestcase {
 
     private BWFunctionParser parser;
 
-    @Parameters
+    // TDOD: Fix params
     public static Collection<Object[]> getParams() {
         return Arrays.asList(new Object[][]{
                 {new String[]{
@@ -56,19 +51,14 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
         });
     }
 
-    @Parameter(0)
     public String[] lines;
 
-    @Parameter(1)
     public int begin;
 
-    @Parameter(2)
     public String expectedErrorMessage;
 
-    @Parameter(3)
     public String expectedName;
 
-    @Parameter(4)
     public int expectedInstructionsCount;
 
     public void setUp() throws Exception {
