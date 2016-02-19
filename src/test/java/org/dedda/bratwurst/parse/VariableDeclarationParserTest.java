@@ -2,6 +2,7 @@ package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.VariableDeclaration;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -16,22 +17,18 @@ import static org.testng.Assert.assertEquals;
  */
 public class VariableDeclarationParserTest extends BratwurtstTestcase {
 
-    // TODO: Fix params
-    public static Collection<Object[]> getParams() {
-        return Arrays.asList(new Object[][]{
+    @DataProvider(name = "getParams")
+    public static Object[][] getParams() {
+        return new Object[][]{
                 {"(px) <-- 65", "px"},
                 {"(abc) <-- {test} @ def <-- 13 & ghi <-- 26", "abc"},
                 {"(point) <-- [Point]", "point"},
                 {"(px) <-- point{getX}", "px"}
-        });
+        };
     }
 
-    public String data;
-
-    public String expectedName;
-
-    @Test
-    public void testParseDeclaration() throws Exception {
+    @Test(dataProvider = "getParams")
+    public void testParseDeclaration(String data, String expectedName) throws Exception {
         VariableDeclarationParser parser = new VariableDeclarationParser();
         VariableDeclaration declaration = parser.parseDeclaration(data, 0);
         assertEquals(expectedName, declaration.getVariableName());

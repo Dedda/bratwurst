@@ -2,6 +2,7 @@ package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.Calculation;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -16,28 +17,20 @@ import static org.testng.Assert.assertEquals;
  */
 public class CalculationParserTest extends BratwurtstTestcase {
 
-    // TODO: FIx params
-    public static Collection<Object[]> getParams() {
-        return Arrays.asList(new Object[][]{
+    @DataProvider(name = "getParams")
+    public static Object[][] getParams() {
+        return new Object[][]{
                 {"123 + 456", '+', 123, 456},
                 {"123 - 456", '-', 123, 456},
                 {"123 * 456", '*', 123, 456},
                 {"123 / 456", '/', 123, 456},
                 {"123 + 456 * 789", '*', null, 789},
                 {"123 / 456 * 789", '/', 123, null}
-        });
+        };
     }
 
-    public String line;
-
-    public char expectedOperator;
-
-    public Integer leftArgumentValue;
-
-    public Integer rightArgumentValue;
-
-    @Test
-    public void testParse() throws Exception {
+    @Test(dataProvider = "getParams")
+    public void testParse(String line, char expectedOperator, Integer leftArgumentValue, Integer rightArgumentValue) throws Exception {
         CalculationParser parser = new CalculationParser();
         Calculation calculation = parser.parse(line, 0);
         assertEquals(expectedOperator, calculation.getOperator());

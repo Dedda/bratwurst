@@ -3,6 +3,7 @@ package org.dedda.bratwurst.lang;
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -31,36 +32,29 @@ public class PrintVariableTest extends BratwurtstTestcase {
         }
     };
 
-    // TODO: Fix params
-    public static Collection<Object[]> getParameters() {
-        return Arrays.asList(new Object[][]{
+    @DataProvider(name = "getParams")
+    public static Object[][] getParams() {
+        return new Object[][]{
                 {"A", new BWVariable("testVar", new BWInteger('A'))},
                 {"Test", new BWVariable("testVar", new BWString("Test"))},
                 {"" + (char) 0, new BWVariable("testVar", new BWObject(BWClass.getClassForName("testClass")))}
 
-        });
+        };
     }
-
-    public String expected;
-
-    public BWVariable programVariable;
 
     public final Scope scope = new Scope(program);
-
-    public void setUp() throws Exception {
-        systemOut = System.out;
-        System.setOut(new PrintStream(customOut));
-        outputBuffer = "";
-        program.setVariables(new ArrayList<>(Arrays.asList(new BWVariable[]{programVariable})));
-    }
 
     @AfterTest
     public void tearDown() throws Exception {
         System.setOut(systemOut);
     }
 
-    @Test
-    public void testRun() throws Exception {
+    @Test(dataProvider = "getParams")
+    public void testRun(String expected, BWVariable programVariable) throws Exception {
+        systemOut = System.out;
+        System.setOut(new PrintStream(customOut));
+        outputBuffer = "";
+        program.setVariables(new ArrayList<>(Arrays.asList(new BWVariable[]{programVariable})));
         PrintVariable printVariable = new PrintVariable(0, "testVar");
         printVariable.run(scope);
         assertEquals(expected, outputBuffer);

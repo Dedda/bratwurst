@@ -2,6 +2,7 @@ package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWInteger;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -16,27 +17,19 @@ import static org.testng.Assert.assertEquals;
  */
 public class IntegerParserTest extends BratwurtstTestcase {
 
-    private IntegerParser parser;
-
     // TODO: Fix params
-    public static Collection<Object[]> getParams() {
-        return Arrays.asList(new Object[][]{
+    @DataProvider(name = "getParams")
+    public static Object[][] getParams() {
+        return new Object[][]{
                 {"0", 0},
                 {"10", 10},
                 {"-12345", -12345}
-        });
+        };
     }
 
-    public String data;
-
-    public int expectedValue;
-
-    public void setUp() throws Exception {
-        parser = new IntegerParser();
-    }
-
-    @Test
-    public void testParse() throws Exception {
+    @Test(dataProvider = "getParams")
+    public void testParse(String data, int expectedValue) throws Exception {
+        IntegerParser parser = new IntegerParser();
         BWInteger integer = parser.parse(data, 0);
         assertEquals(expectedValue, integer.getIntValue());
     }

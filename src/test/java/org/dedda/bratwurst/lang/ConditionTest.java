@@ -47,6 +47,8 @@ public class ConditionTest extends BratwurtstTestcase {
 
     @Test
     public void testRunTrue() throws Exception {
+        trueRun = false;
+        falseRun = false;
         testValue = 1;
         condition.run(null);
         assertTrue(trueRun);
@@ -55,6 +57,8 @@ public class ConditionTest extends BratwurtstTestcase {
 
     @Test
     public void testRunFalse() throws Exception {
+        trueRun = false;
+        falseRun = false;
         testValue = 0;
         condition.run(null);
         assertFalse(trueRun);

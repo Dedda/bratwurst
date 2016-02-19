@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -17,9 +18,9 @@ import static org.testng.Assert.assertTrue;
  */
 public class PatternsTest extends BratwurtstTestcase {
 
-    // TODO: Fix parameters
-    public static Collection<Object[]> getParams() {
-        return Arrays.asList(new Object[][]{
+    @DataProvider(name = "getParams")
+    public static Object[][] getParams() {
+        return new Object[][]{
                 {BEGIN, "==>", true},
                 {END, "<==", true},
                 {CLASS_BEGIN, "#[", true},
@@ -59,15 +60,11 @@ public class PatternsTest extends BratwurtstTestcase {
                 {BW_STRING, ":Here's some wrong; text!;", false},
                 {BW_STRING, ":Here's some wrong text!", false},
                 {BW_STRING, "Here's some wrong text!;", false}
-        });
+        };
     }
 
-    public String pattern;
-    public String text;
-    public boolean matches;
-
-    @Test
-    public void testPattern() {
+    @Test(dataProvider = "getParams")
+    public void testPattern(String pattern, String text, boolean matches) {
         if (matches) {
             assertTrue(text.matches(pattern));
         } else {
