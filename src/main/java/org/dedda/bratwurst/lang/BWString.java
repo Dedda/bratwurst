@@ -7,10 +7,10 @@ package org.dedda.bratwurst.lang;
  */
 public class BWString extends BWObject {
 
-    private String value;
+    private final String value;
 
     public BWString(String value) {
-        super(new BWStringClass());
+        super(BWClass.getClassForName("string"));
         this.value = value;
     }
 

@@ -1,9 +1,9 @@
 package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by dedda on 10/16/15.

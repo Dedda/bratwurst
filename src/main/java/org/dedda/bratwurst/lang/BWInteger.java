@@ -7,7 +7,7 @@ package org.dedda.bratwurst.lang;
  */
 public class BWInteger extends BWObject {
 
-    private int value;
+    private final int value;
 
     public BWInteger(int value) {
         super(BWClass.getClassForName("integer"));

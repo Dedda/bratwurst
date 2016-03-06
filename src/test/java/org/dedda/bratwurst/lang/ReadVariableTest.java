@@ -1,10 +1,10 @@
 package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.lang.scope.Scope;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by dedda on 12/17/15.
@@ -15,7 +15,7 @@ public class ReadVariableTest {
 
     private Scope scope;
 
-    @Before
+    @BeforeMethod
     public void setUp() throws Exception {
         Program program = new Program();
         scope = new Scope(program);

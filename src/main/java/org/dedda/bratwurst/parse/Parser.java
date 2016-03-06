@@ -12,12 +12,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.dedda.bratwurst.parse.Patterns.BEGIN;
-import static org.dedda.bratwurst.parse.Patterns.CLASS_BEGIN;
-import static org.dedda.bratwurst.parse.Patterns.CONDITION_HEAD;
-import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
-import static org.dedda.bratwurst.parse.Patterns.INCLUDE;
-import static org.dedda.bratwurst.parse.Patterns.LOOP_HEAD;
+import static org.dedda.bratwurst.parse.Patterns.*;
 
 /**
  * Created by dedda on 9/25/15.
@@ -27,6 +22,15 @@ import static org.dedda.bratwurst.parse.Patterns.LOOP_HEAD;
 public class Parser {
 
     private final File sourceFile;
+
+    /*
+     * Parsers:
+     */
+    private InstructionParser instructionParser = new InstructionParser();
+    private BWFunctionParser functionParser = new BWFunctionParser();
+    private BWClassParser classParser = new BWClassParser();
+    private ConditionParser conditionParser = new ConditionParser();
+    private LoopParser loopParser = new LoopParser();
 
     public Parser(File sourceFile) {
         this.sourceFile = sourceFile;
@@ -46,7 +50,7 @@ public class Parser {
             for (int i = 0; i < lines.length; i++) {
                 if (lines[i].matches(INCLUDE)) {
                     try {
-                        String[] included = getFileContents(new File(sourceFile.getParent() + '/' + lines[i].substring(1, lines[i].length()-1))).split("\n");
+                        String[] included = getFileContents(new File(sourceFile.getParent() + '/' + lines[i].substring(1, lines[i].length() - 1))).split("\n");
                         lines = insertIntoArray(lines, included, i);
                         break;
                     } catch (IOException e) {
@@ -55,17 +59,41 @@ public class Parser {
                 }
             }
         }
+        int counter = 1;
+        while (counter < lines.length) {
+            if (lines[counter].matches(BEGIN)) {
+                lines = removeFromArray(lines, counter);
+            }
+            counter++;
+        }
+        counter = 1;
+        while (counter < lines.length) {
+            boolean removed = false;
+            if (lines[counter].trim().length() == 0) {
+                removed = true;
+                lines = removeFromArray(lines, counter);
+            }
+            if (!removed) {
+                counter++;
+            }
+        }
+        counter = 1;
+        while (counter < lines.length) {
+            boolean removed = false;
+            if (lines[counter].trim().matches(COMMENT)) {
+                removed = true;
+                lines = removeFromArray(lines, counter);
+            }
+            if (!removed) {
+                counter++;
+            }
+        }
         if (!lines[0].matches(BEGIN)) {
             throw new RuntimeException("HELP! FIRST INSTRUCTION IS NOT AN ENTRY POINT! WHAT DO?!");
         }
         List<BWInstruction> instructions = new LinkedList<>();
         List<BWFunction> functions = new LinkedList<>();
         List<BWClass> classes = new LinkedList<>();
-        InstructionParser instructionParser = new InstructionParser();
-        BWFunctionParser functionParser = new BWFunctionParser();
-        BWClassParser classParser = new BWClassParser();
-        ConditionParser conditionParser = new ConditionParser();
-        LoopParser loopParser = new LoopParser();
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
             BWInstruction instruction = instructionParser.parse(line, i);
@@ -92,7 +120,6 @@ public class Parser {
                     int end = loopParser.getEnd(lines, i);
                     instructions.add(loopParser.parse(lines, i));
                     i = end;
-                    continue;
                 }
             } else {
                 instructions.add(instruction);
@@ -120,16 +147,60 @@ public class Parser {
 
     public String[] insertIntoArray(String[] array, String[] toInsert, int lineToReplace) {
         String[] newArray = new String[array.length + toInsert.length - 1];
-        for (int i = 0; i < lineToReplace; i++) {
-            newArray[i] = array[i];
-        }
-        for (int i = lineToReplace; i < lineToReplace + toInsert.length; i++) {
-            newArray[i] = toInsert[i - lineToReplace];
-        }
-        for (int i = lineToReplace + toInsert.length; i < newArray.length; i++) {
-            newArray[i] = array[i - toInsert.length + 1];
+        System.arraycopy(array, 0, newArray, 0, lineToReplace);
+        System.arraycopy(toInsert, 0, newArray, lineToReplace, toInsert.length);
+        System.arraycopy(array, lineToReplace + 1, newArray, lineToReplace + toInsert.length, newArray.length - (lineToReplace + toInsert.length));
+        return newArray;
+    }
+
+    private String[] removeFromArray(String[] array, int index) {
+        String[] newArray = new String[array.length - 1];
+        for (int i = 0, n = 0; i < array.length; i++) {
+            if (i != index) {
+                newArray[n] = array[i];
+                n++;
+            }
         }
         return newArray;
     }
 
+    public InstructionParser getInstructionParser() {
+        return instructionParser;
+    }
+
+    public void setInstructionParser(InstructionParser instructionParser) {
+        this.instructionParser = instructionParser;
+    }
+
+    public BWFunctionParser getFunctionParser() {
+        return functionParser;
+    }
+
+    public void setFunctionParser(BWFunctionParser functionParser) {
+        this.functionParser = functionParser;
+    }
+
+    public BWClassParser getClassParser() {
+        return classParser;
+    }
+
+    public void setClassParser(BWClassParser classParser) {
+        this.classParser = classParser;
+    }
+
+    public ConditionParser getConditionParser() {
+        return conditionParser;
+    }
+
+    public void setConditionParser(ConditionParser conditionParser) {
+        this.conditionParser = conditionParser;
+    }
+
+    public LoopParser getLoopParser() {
+        return loopParser;
+    }
+
+    public void setLoopParser(LoopParser loopParser) {
+        this.loopParser = loopParser;
+    }
 }

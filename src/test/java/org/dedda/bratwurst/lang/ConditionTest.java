@@ -2,10 +2,10 @@ package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.scope.Scope;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by dedda on 10/16/15.
@@ -19,7 +19,6 @@ public class ConditionTest extends BratwurtstTestcase {
     private int testValue;
     private Condition condition;
 
-    @Before
     public void setUp() throws Exception {
         BWInstruction[] trueInstructions = new BWInstruction[]{
                 new BWInstruction(0) {
@@ -48,6 +47,8 @@ public class ConditionTest extends BratwurtstTestcase {
 
     @Test
     public void testRunTrue() throws Exception {
+        trueRun = false;
+        falseRun = false;
         testValue = 1;
         condition.run(null);
         assertTrue(trueRun);
@@ -56,6 +57,8 @@ public class ConditionTest extends BratwurtstTestcase {
 
     @Test
     public void testRunFalse() throws Exception {
+        trueRun = false;
+        falseRun = false;
         testValue = 0;
         condition.run(null);
         assertFalse(trueRun);

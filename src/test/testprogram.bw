@@ -1,22 +1,17 @@
 ==>
-%testinclude.bw%
-%point.bw%
+%shapes.bw%
 ~{
     (CALL_ME_MAYBE) <-- printPoint
     (px) <-- point{getX}
     (py) <-- point{getY}
-    >P<
-    >o<
-    >i<
-    >n<
-    >t<
+    (toPrint) <-- :Point;
+    >toPrint<
     >:<
-    >x<
-    >=<
+    (toPrint) <-- : x=;
+    >toPrint<
     |px|
-    >,<
-    >y<
-    >=<
+    (toPrint) <-- :, y=;
+    >toPrint<
     |py|
     >newLine<
 }
@@ -78,4 +73,9 @@ point1 -?> Point
 (testText) <-- :Hallo Welt!;
 >testText<
 >newLine<
+(windowId) <-- `action,win-create`
+(width) <-- 400
+(height) <-- 300
+`action,win-set:attr,width:val,width:id,windowId`
+`action,win-set:attr,height:val,height:id,windowId`
 <==

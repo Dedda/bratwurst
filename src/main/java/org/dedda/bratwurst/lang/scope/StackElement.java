@@ -16,9 +16,9 @@ import java.util.Optional;
  */
 public class StackElement {
 
-    private BWObject object;
-    private BWFunction function;
-    private List<BWVariable> functionVars;
+    private final BWObject object;
+    private final BWFunction function;
+    private final List<BWVariable> functionVars;
 
     protected StackElement(BWObject object, BWFunction function, List<BWVariable> variables) {
         this.object = object;

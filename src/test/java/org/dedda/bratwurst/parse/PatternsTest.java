@@ -1,29 +1,26 @@
 package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import static org.dedda.bratwurst.parse.Patterns.*;
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by dedda on 9/28/15.
  *
  * @author dedda
  */
-@RunWith(Parameterized.class)
 public class PatternsTest extends BratwurtstTestcase {
 
-    @Parameters
-    public static Collection<Object[]> getParams() {
-        return Arrays.asList(new Object[][]{
+    @DataProvider(name = "getParams")
+    public static Object[][] getParams() {
+        return new Object[][]{
                 {BEGIN, "==>", true},
                 {END, "<==", true},
                 {CLASS_BEGIN, "#[", true},
@@ -63,18 +60,11 @@ public class PatternsTest extends BratwurtstTestcase {
                 {BW_STRING, ":Here's some wrong; text!;", false},
                 {BW_STRING, ":Here's some wrong text!", false},
                 {BW_STRING, "Here's some wrong text!;", false}
-        });
+        };
     }
 
-    @Parameter(0)
-    public String pattern;
-    @Parameter(1)
-    public String text;
-    @Parameter(2)
-    public boolean matches;
-
-    @Test
-    public void testPattern() {
+    @Test(dataProvider = "getParams")
+    public void testPattern(String pattern, String text, boolean matches) {
         if (matches) {
             assertTrue(text.matches(pattern));
         } else {

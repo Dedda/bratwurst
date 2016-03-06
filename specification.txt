@@ -1,5 +1,6 @@
 ==>                     Anfangspunkt
 <==                     Programm beenden
+{[...]}                 Assertion
 #[]                     Klasse. Der Code befindet sich innerhalb der Klammern
 ~{}                     Funktion. Der Code befindet sich innerhalb der Klammern
 (...) <--               Variable mit Wertzuweisung
@@ -12,8 +13,23 @@
 ?(...)>>...<<...|       Bedingung. Falls die Variable in den Klammern ungleich 0 evaluiert, wird der erste Block ausgeführt. Ansonsten der zweite
 /(...)...\              Wiederhole den Block so lange, bis der ausdruck nach dem '/' in der ersten Zeile zu 0 evaluiert
 + - * /                 Grundrechenarten
+... <-< ... <-< ...     String concatenation
 ... -->                 Rückgabewert einer Funktion
 >...>                   Push a variable on the global stack
 <...<                   Pop a variable from the global stack
 %...%                   Datei inkludieren. Enthaltener Code wird direkt ausgeführt
 ... -?> ...             Pendant zu instanceof. var1 -?> class1
+>|...|<                 Read file. Source file is variable value, destination is variable
+<|... > ...|>           Write file. Source data is value of first variable, destination is value of second variable
+?...?                   Check if file exists
++...+                   Create empty file
+-...-                   Remove file
+[...}...]               Get character at certain position from a string variable as new string variable
+))...))                 Get length of a string
+... = ...               Compare two variables
+... <=> ...             Compare integers
+(...) <__               Read line from terminal
+__# ...                 Char from integer value
+#__ ...                 Integer value of char
+`...,...:...,...`       Gui commands
+<(%                     Comment

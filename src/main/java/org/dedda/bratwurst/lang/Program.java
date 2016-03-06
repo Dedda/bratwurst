@@ -1,12 +1,9 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.gui.GuiContainer;
 import org.dedda.bratwurst.lang.scope.Scope;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Stack;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -22,7 +19,8 @@ public class Program {
     private BWInstruction[] instructions = new BWInstruction[0];
     private boolean stopped = false;
     private int exitCode = 0;
-    private Stack<BWObject> global = new Stack<>();
+    private final Stack<BWObject> global = new Stack<>();
+    private final GuiContainer guiContainer = new GuiContainer();
 
     public Program() {
 
@@ -30,15 +28,16 @@ public class Program {
 
     public void run() {
         Scope scope = new Scope(this);
-        for (int i = 0; i < instructions.length; i++) {
+        for (BWInstruction instruction : instructions) {
             if (stopped) {
                 return;
             }
-            instructions[i].run(scope);
+            instruction.run(scope);
         }
     }
 
     public void stop(int code) {
+        guiContainer.close();
         stopped = true;
         exitCode = code;
     }
@@ -120,5 +119,9 @@ public class Program {
 
     public Stack<BWObject> getGlobal() {
         return global;
+    }
+
+    public GuiContainer getGuiContainer() {
+        return guiContainer;
     }
 }

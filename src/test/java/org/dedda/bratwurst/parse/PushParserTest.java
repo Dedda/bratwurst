@@ -3,9 +3,9 @@ package org.dedda.bratwurst.parse;
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWInteger;
 import org.dedda.bratwurst.lang.Push;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by dedda on 12/8/15.

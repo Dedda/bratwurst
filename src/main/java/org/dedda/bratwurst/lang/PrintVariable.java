@@ -2,8 +2,6 @@ package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.lang.scope.Scope;
 
-import java.util.Arrays;
-
 /**
  * Created by dedda on 10/14/15.
  *
@@ -11,7 +9,7 @@ import java.util.Arrays;
  */
 public class PrintVariable extends BWInstruction {
 
-    private String variableName;
+    private final String variableName;
 
     public PrintVariable(int lineNumber, String variableName) {
         super(lineNumber);

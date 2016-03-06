@@ -1,0 +1,109 @@
+==>
+#[
+    (CALL_ME_MAYBE) <-- TestClass1
+]
+#[
+    (CALL_ME_MAYBE) <-- TestClass2
+]
+~{
+    (CALL_ME_MAYBE) <-- substring1
+    (length) <-- ))source))
+    (length) <-- length - 1
+    (substring) <-- {substring2} @ source <-- source & begin <-- begin & end <-- length
+    substring -->
+}
+~{
+    (CALL_ME_MAYBE) <-- substring2
+    (length) <-- ))source))
+    ?(end)>>
+    <<
+        0 -->
+    |
+    (counter) <-- begin
+    (remaining) <-- end - counter
+    (substring) <-- :;
+    /(remaining)
+        (char) <-- [source}counter]
+        (substring) <-- substring <-< char
+        (counter) <-- counter + 1
+        (remaining) <-- end - counter
+        (remaining) <-- remaining + 1
+    \
+    substring -->
+}
+~{
+    (CALL_ME_MAYBE) <-- testSubstring
+    (text) <-- :Howdy!;
+    (actual) <-- {substring2} @ source <-- text & begin <-- 1 & end <-- 3
+    (expected) <-- :owd;
+    {[actual == expected]}
+    (actual) <-- {substring1} @ source <-- text & begin <-- 2
+    (expected) <-- :wdy!;
+    {[actual == expected]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testEquals
+    (var1) <-- 12
+    (var2) <-- 12
+    (expected) <-- 1
+    (actual) <-- var1 = var2
+    {[actual == expected]}
+    (var2) <-- 13
+    (expected) <-- 0
+    (actual) <-- var1 = var2
+    {[actual == expected]}
+    (var1) <-- :TestText;
+    (var2) <-- :TestText;
+    (expected) <-- 1
+    (actual) <-- var1 = var2
+    {[actual == expected]}
+    (var2) <-- :Blablubb;
+    (expected) <-- 0
+    (actual) <-- var1 = var2
+    {[actual == expected]}
+    (var1) <-- [TestClass1]
+    (var2) <-- [TestClass1]
+    (expected) <-- 1
+    (actual) <-- var1 = var2
+    {[actual == expected]}
+    (var2) <-- [TestClass2]
+    (expected) <-- 0
+    (actual) <-- var1 = var2
+    {[actual == expected]}
+    (var2) <-- 123
+    (expected) <-- 0
+    (actual) <-- var1 = var2
+    {[actual == expected]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testCompareInt
+    (var1) <-- 123
+    (var2) <-- 123
+    (expected) <-- 0
+    (actual) <-- var1 <=> var2
+    {[actual == expected]}
+    (var2) <-- 124
+    (expected) <-- -1
+    (actual) <-- var1 <=> var2
+    {[actual == expected]}
+    (var2) <-- 122
+    (expected) <-- 1
+    (actual) <-- var1 <=> var2
+    {[actual == expected]}
+    (var2) <-- :Test;
+    (expected) <-- 0
+    (actual) <-- var1 <=> var2
+    {[actual == expected]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testCastCharAndInt
+    (var1) <-- :A;
+    (actual) <-- #__ var1
+    (expected) <-- 65
+    {[actual == expected]}
+    (var1) <-- 67
+    (actual) <-- __# var1
+    (expected) <-- :C;
+    {[actual == expected]}
+}
+<==

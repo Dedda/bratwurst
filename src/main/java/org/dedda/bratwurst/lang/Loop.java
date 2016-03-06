@@ -9,9 +9,9 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class Loop extends BWInstruction {
 
-    private BWExpression toEvaluate;
+    private final BWExpression toEvaluate;
 
-    private BWInstruction[] instructions;
+    private final BWInstruction[] instructions;
 
     public Loop(int lineNumber, BWExpression toEvaluate, BWInstruction[] instructions) {
         super(lineNumber);
@@ -32,8 +32,8 @@ public class Loop extends BWInstruction {
     }
 
     private void runInstructions(Scope scope) {
-        for (int i = 0; i < instructions.length; i++) {
-            instructions[i].run(scope);
+        for (BWInstruction instruction : instructions) {
+            instruction.run(scope);
         }
     }
 

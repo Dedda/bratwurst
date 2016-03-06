@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class BWVariable extends BWExpression {
 
-    private String name;
+    private final String name;
     private BWObject value = null;
     private BWExpression expression = null;
 

@@ -9,10 +9,10 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class Condition extends BWInstruction {
 
-    private BWExpression toEvaluate;
+    private final BWExpression toEvaluate;
 
-    private BWInstruction[] trueInstructions;
-    private BWInstruction[] falseInstructions;
+    private final BWInstruction[] trueInstructions;
+    private final BWInstruction[] falseInstructions;
 
     public Condition(int lineNumber, BWExpression toEvaluate, BWInstruction[] trueInstructions, BWInstruction[] falseInstructions) {
         super(lineNumber);
@@ -32,14 +32,14 @@ public class Condition extends BWInstruction {
     }
 
     private void runTrue(Scope scope) {
-        for (int i = 0; i < trueInstructions.length; i++) {
-            trueInstructions[i].run(scope);
+        for (BWInstruction trueInstruction : trueInstructions) {
+            trueInstruction.run(scope);
         }
     }
 
     private void runFalse(Scope scope) {
-        for (int i = 0; i < falseInstructions.length; i++) {
-            falseInstructions[i].run(scope);
+        for (BWInstruction falseInstruction : falseInstructions) {
+            falseInstruction.run(scope);
         }
     }
 

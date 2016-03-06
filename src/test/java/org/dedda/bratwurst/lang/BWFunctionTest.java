@@ -1,51 +1,30 @@
 package org.dedda.bratwurst.lang;
 
-import org.dedda.bratwurst.BratwurtstTestcase;
+import org.dedda.bratwurst.ScopedTestCase;
 import org.dedda.bratwurst.lang.scope.Scope;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by dedda on 10/16/15.
  *
  * @author dedda
  */
-@RunWith(Parameterized.class)
-public class BWFunctionTest extends BratwurtstTestcase {
+public class BWFunctionTest extends ScopedTestCase {
 
     private BWFunction function;
     private static boolean[] executed;
 
-    @Before
-    public void setUp() throws Exception {
-        function = new BWFunction("testFunction", instructions);
-        executed = new boolean[instructions.length];
-        for (int i = 0; i < executed.length; i++) {
-            executed[i] = false;
-        }
-    }
-
-    @Parameter(0)
-    public BWInstruction[] instructions;
-
-    @Parameter(1)
-    public BWObject expectedValue;
-
-    @Parameter(2)
-    public BWVariable[] arguments;
-
-    @Parameters
-    public static Collection<Object[]> getParams() {
-        return Arrays.asList(new Object[][]{
+    // TODO: Fix params
+    @DataProvider(name = "getParams")
+    public Object[][] getParams() {
+        return new Object[][]{
                 {new BWInstruction[] {
                         new BWInstruction(0) {
                             @Override
@@ -74,13 +53,18 @@ public class BWFunctionTest extends BratwurtstTestcase {
                     }
                 })
                 }, new BWInteger(1), new BWVariable[0]}
-        });
+        };
     }
 
-    @Test
-    public void testFunction() throws Exception {
+    @Test(dataProvider = "getParams")
+    public void testFunction(BWInstruction[] instructions, BWObject expectedValue, BWVariable[] arguments) throws Exception {
+        function = new BWFunction("testFunction", instructions);
+        executed = new boolean[instructions.length];
+        for (int i = 0; i < executed.length; i++) {
+            executed[i] = false;
+        }
         function.setArguments(arguments);
-        function.run(new Scope(new Program()));
+        function.run(createEmptyScope());
         assertEquals(expectedValue.getValueType(), function.getValueType());
         assertEquals(expectedValue.getIntValue(), function.getIntValue());
         for (int i = 0; i < executed.length; i++) {

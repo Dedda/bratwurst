@@ -9,9 +9,9 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class Calculation extends BWExpression {
 
-    private BWExpression leftSide;
-    private BWExpression rightSide;
-    private char operator;
+    private final BWExpression leftSide;
+    private final BWExpression rightSide;
+    private final char operator;
     private int value = 0;
 
     public Calculation(int lineNumber, BWExpression leftSide, BWExpression rightSide, char operator) {

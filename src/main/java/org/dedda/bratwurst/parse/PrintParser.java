@@ -5,11 +5,6 @@ import org.dedda.bratwurst.lang.PrintChar;
 import org.dedda.bratwurst.lang.PrintInt;
 import org.dedda.bratwurst.lang.PrintVariable;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static org.dedda.bratwurst.parse.Patterns.PRINT;
-
 /**
  * Created by dedda on 9/28/15.
  *

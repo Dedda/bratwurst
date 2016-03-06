@@ -11,8 +11,8 @@ import java.util.Arrays;
  */
 public class FunctionCall extends BWExpression {
 
+    private final String functionName;
     private String variableName = "";
-    private String functionName;
     private BWObject value = new BWInteger(0);
 
     public FunctionCall(int lineNumber, String functionName, BWVariable[] functionArguments) {

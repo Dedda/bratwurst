@@ -26,9 +26,7 @@ public class BWClass {
     }
 
     public BWObject createInstance() {
-        //TODO: init functions and variables
-        BWObject object = new BWObject(this);
-        return object;
+        return new BWObject(this);
     }
 
     public static BWClass getClassForName(String name) {

@@ -9,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope;
  */
 public class PrintChar extends BWInstruction {
 
-    private char toPrint;
+    private final char toPrint;
 
     public PrintChar(int lineNumber, char toPrint) {
         super(lineNumber);
@@ -24,4 +24,5 @@ public class PrintChar extends BWInstruction {
     public char getToPrint() {
         return toPrint;
     }
+
 }

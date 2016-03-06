@@ -1,12 +1,9 @@
 package org.dedda.bratwurst.lang.scope;
 
-import org.dedda.bratwurst.lang.BWClass;
-import org.dedda.bratwurst.lang.BWFunction;
-import org.dedda.bratwurst.lang.BWObject;
-import org.dedda.bratwurst.lang.BWVariable;
-import org.dedda.bratwurst.lang.Program;
+import org.dedda.bratwurst.lang.*;
+import org.dedda.bratwurst.test.TestFileRunner;
+import org.dedda.bratwurst.test.TestFunctionRunner;
 
-import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -19,13 +16,22 @@ import java.util.Stack;
  */
 public class Scope {
 
-    private Program program;
+    private final Program program;
 
-    private Stack<StackElement> scopeStack;
+    private final Stack<StackElement> scopeStack;
+
+    private TestFileRunner testFileRunner = null;
+    private TestFunctionRunner testFunctionRunner = null;
 
     public Scope(Program program) {
         this.program = program;
         scopeStack = new Stack<>();
+    }
+
+    public Scope(Program program, TestFileRunner testFileRunner, TestFunctionRunner testFunctionRunner) {
+        this(program);
+        this.testFileRunner = testFileRunner;
+        this.testFunctionRunner = testFunctionRunner;
     }
 
     public BWObject getCurrentObject() {
@@ -47,10 +53,6 @@ public class Scope {
 
     public boolean isInObject() {
         return getCurrentObjectR() != null;
-    }
-
-    public BWFunction getCurrentFunction() {
-        return scopeStack.peek().getFunction();
     }
 
     public BWFunction getFunction(String name) {
@@ -130,5 +132,17 @@ public class Scope {
 
     public BWObject pop() {
         return program.pop();
+    }
+
+    public TestFileRunner getTestFileRunner() {
+        return testFileRunner;
+    }
+
+    public TestFunctionRunner getTestFunctionRunner() {
+        return testFunctionRunner;
+    }
+
+    public boolean isInTest() {
+        return testFileRunner != null;
     }
 }

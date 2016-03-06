@@ -6,12 +6,7 @@ import org.dedda.bratwurst.lang.BWInstruction;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.dedda.bratwurst.parse.Patterns.CONDITION_HEAD;
-import static org.dedda.bratwurst.parse.Patterns.FUNCTION_BEGIN;
-import static org.dedda.bratwurst.parse.Patterns.FUNCTION_END;
-import static org.dedda.bratwurst.parse.Patterns.LOOP_HEAD;
-import static org.dedda.bratwurst.parse.Patterns.NAMING;
-import static org.dedda.bratwurst.parse.Patterns.RETURN;
+import static org.dedda.bratwurst.parse.Patterns.*;
 
 /**
  * Created by dedda on 10/17/15.

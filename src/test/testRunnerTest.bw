@@ -1,0 +1,125 @@
+==>
+#[
+    (CALL_ME_MAYBE) <-- TestClass1
+]
+#[
+    (CALL_ME_MAYBE) <-- TestClass2
+]
+~{
+    (CALL_ME_MAYBE) <-- testAssertEquals
+    (var1) <-- 123
+    (var2) <-- 123
+    {[var1 == var2]}
+    (var1) <-- :Hello World!;
+    (var2) <-- :Hello World!;
+    {[var1 == var2]}
+    (var1) <-- [TestClass1]
+    (var2) <-- [TestClass1]
+    {[var1 == var2]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testAssertNotEquals
+    (var1) <-- 123
+    (var2) <-- 321
+    {[var1 != var2]}
+    (var1) <-- :Hello World!;
+    (var2) <-- :!dlroW olleH;
+    {[var1 != var2]}
+    (var1) <-- [TestClass1]
+    (var2) <-- [TestClass2]
+    {[var1 != var2]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testTrueFalse
+    (var1) <-- 123
+    {[var1]}
+    (var1) <-- 0
+    {[!var1]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testBasicOperations
+    (var1) <-- 1
+    (var2) <-- 2
+    (var3) <-- var1 + var2
+    (expected) <-- 3
+    {[var3 == expected]}
+    (var3) <-- var1 - var2
+    (expected) <-- -1
+    {[var3 == expected]}
+    (var1) <-- 4
+    (var3) <-- var1 * var2
+    (expected) <-- 8
+    {[var3 == expected]}
+    (var3) <-- var1 / var2
+    (expected) <-- 2
+    {[var3 == expected]}
+    (var1) <-- [TestClass1]
+    (var2) <-- var1 -?> TestClass1
+    {[var2]}
+    (var1) <-- 123
+    >var1>
+    (var1) <-- 321
+    <var1<
+    (expected) <-- 123
+    {[var1 == expected]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testStringOperations
+    (string1) <-- :Hello ;
+    (string2) <-- :Worl;
+    (string3) <-- :d!;
+    (int1) <-- 123
+    (actual) <-- string1 <-< string2 <-< string3 <-< int1
+    (expected) <-- :Hello World!123;
+    {[actual == expected]}
+    (text) <-- :Some text here!;
+    (char) <-- [text}2]
+    (expected) <-- :m;
+    {[char == expected]}
+    (text) <-- :Some random stuff;
+    (expected) <-- 17
+    (actual) <-- ))text))
+    {[actual == expected]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testFileOperations
+    (filename) <-- :testFile.txt;
+    (fileExists) <-- ?filename?
+    ?(fileExists)>>
+    <<
+        +filename+
+    |
+    (fileExists) <-- ?filename?
+    {[fileExists]}
+    -filename-
+    (fileExists) <-- ?filename?
+    {[!fileExists]}
+    +filename+
+    (toWrite) <-- :Test content;
+    <|toWrite > filename|>
+    (fileData) <-- filename
+    >|fileData|<
+    {[toWrite == fileData]}
+    -filename-
+    (fileExists) <-- ?filename?
+    {[!fileExists]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testBlankLines
+    (actual) <-- 1
+
+    (expected) <-- 1
+
+
+    {[actual == expected]}
+}
+~{
+    (CALL_ME_MAYBE) <-- testComment
+    (actual) <-- 1
+    <(% Some comment here
+    (expected) <-- 1
+    <(% Some more
+    <(% comments here
+    {[actual == expected]}
+}
+<==
