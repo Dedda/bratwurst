@@ -1,16 +1,9 @@
 ==>
->Y<
->o<
->u<
->r<
-> <
->N<
->u<
->m<
->b<
->e<
->r<
+(div) <-- :<div id="param-out">Your Number;
+>div<
 >:<
 > <
 |testparameter|
+(div) <-- :</div>;
+>div<
 <==
