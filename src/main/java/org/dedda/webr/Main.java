@@ -34,4 +34,7 @@ public class Main {
         return config;
     }
 
+    public static void setConfig(Config config) {
+        Main.config = config;
+    }
 }

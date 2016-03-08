@@ -53,6 +53,12 @@ public class FileSystemTestCase extends ScopedTestCase {
         assertFalse("File could not be removed", file.exists());
     }
 
+    public byte[] read(final File file) throws IOException {
+        byte[] data = new byte[(int) file.length()];
+        new FileInputStream(file).read(data);
+        return data;
+    }
+
     public void assertEmpty(final File file) {
         assertEquals("File not empty", 0, file.length());
     }
@@ -62,13 +68,7 @@ public class FileSystemTestCase extends ScopedTestCase {
     }
 
     public void assertContentEquals(final File file, final String expected) throws Exception {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        String read = "";
-        String buffer;
-        while ((buffer = reader.readLine()) != null) {
-            read += buffer;
-        }
-        reader.close();
+        String read = new String(read(file));
         assertEquals("Content not equal", expected, read);
     }
 

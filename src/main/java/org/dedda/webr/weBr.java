@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import org.dedda.bratwurst.lang.BWInteger;
+import org.dedda.bratwurst.lang.BWString;
 import org.dedda.bratwurst.lang.BWVariable;
 import org.dedda.bratwurst.lang.Program;
 import org.dedda.bratwurst.parse.Parser;
@@ -18,7 +19,9 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static java.util.concurrent.Executors.newCachedThreadPool;
 
@@ -75,13 +78,19 @@ public class weBr implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         System.out.println("request: " + httpExchange.getRequestURI());
-        HashMap<String, Integer> params = new HashMap<>();
+        List<BWVariable> params = new ArrayList<>();
         String route;
         if (httpExchange.getRequestURI().toString().contains("?")) {
-            route = httpExchange.getRequestURI().toString().split("\\?")[0];
-            String attributesS[] = httpExchange.getRequestURI().toString().split("\\?")[1].split("&");
-            for (String attribute : attributesS) {
-                params.put(attribute.split("=")[0], Integer.parseInt(attribute.split("=")[1]));
+            route = httpExchange.getRequestURI().getPath();
+            String attributresS[] = httpExchange.getRequestURI().getQuery().split("&");
+            for (String attr : attributresS) {
+                String name = attr.split("=")[0];
+                String value = attr.split("=")[1];
+                if (value.matches("\\-?\\d+")) {
+                    params.add(new BWVariable(name, new BWInteger(Integer.parseInt(value))));
+                } else {
+                    params.add(new BWVariable(name, new BWString(value)));
+                }
             }
         } else {
             route = httpExchange.getRequestURI().toString();
@@ -95,7 +104,7 @@ public class weBr implements HttpHandler {
         httpExchange.getRequestBody().close();
     }
 
-    public Response call(String requestRoute, HashMap<String, Integer> parameters) throws UnsupportedEncodingException {
+    public Response call(String requestRoute, List<BWVariable> parameters) throws UnsupportedEncodingException {
         Response response = new Response();
         for (String key : staticRoutes.keySet()) {
             if (requestRoute.startsWith(key)) {
@@ -138,10 +147,8 @@ public class weBr implements HttpHandler {
         }
         Parser parser = new Parser(file);
         Program program = parser.parse();
-        for (String key : parameters.keySet()) {
-            program.registerVariable(
-                    new BWVariable(key, new BWInteger(parameters.get(key)))
-            );
+        for (BWVariable param : parameters) {
+            program.registerVariable(param);
         }
         PrintStream origOut = System.out;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -155,7 +162,11 @@ public class weBr implements HttpHandler {
         return response;
     }
 
-    private Response callStatic(String file) {
+    public void stop() {
+        this.server.stop(0);
+    }
+
+    protected Response callStatic(String file) {
         byte contents[] = new byte[(int) new File(file).length()];
         try {
             new FileInputStream(file).read(contents);
