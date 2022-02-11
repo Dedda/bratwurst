@@ -17,9 +17,7 @@ class ObjectCreation(lineNumber: Int, private val className: String) : BWExpress
         return obj.intValue
     }
 
-    override fun getValueType(): String {
-        return obj.valueType
-    }
+    override fun getValueType() = obj.valueType
 
     override fun run(scope: Scope) {
         val bwClass = BWClass.getClassForName(className)

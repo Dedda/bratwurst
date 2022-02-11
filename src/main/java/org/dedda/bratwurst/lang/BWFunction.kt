@@ -18,9 +18,7 @@ class BWFunction(val name: String, val instructions: Array<BWInstruction>) : BWE
         return value.intValue
     }
 
-    override fun getValueType(): String {
-        return value.valueType
-    }
+    override fun getValueType() = value.valueType
 
     override fun run(scope: Scope) {
         variables.addAll(listOf(*arguments))

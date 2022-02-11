@@ -30,20 +30,20 @@ public class Instanceof extends BWExpression {
     }
 
     @Override
-    public String getValueType() {
-        return null;
+    public ValueType getValueType() {
+        return ValueType.INTEGER;
     }
 
     @Override
     public void run(Scope scope) {
         expression.run(scope);
-        BWObject var = expression.getValue();
-        String type = var.getValueType();
-        if (type.equals("object")) {
+        final BWObject var = expression.getValue();
+        final ValueType type = var.getValueType();
+        if (type.equals(ValueType.OBJECT)) {
             String className = var.getBwClass().name;
             isInstance = className.equals(this.className);
         } else {
-            isInstance = type.equals(this.className);
+            isInstance = type.getValue().equals(this.className);
         }
     }
 }

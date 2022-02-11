@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang
 
+import org.dedda.bratwurst.lang.ValueType.INTEGER
 import org.dedda.bratwurst.lang.scope.Scope
 
 /**
@@ -17,9 +18,7 @@ class LengthGet(lineNumber: Int, private val varName: String) : BWExpression(lin
         return value
     }
 
-    override fun getValueType(): String {
-        return "integer"
-    }
+    override fun getValueType() = INTEGER
 
     override fun run(scope: Scope) {
         val variable = scope.getVariable(varName)

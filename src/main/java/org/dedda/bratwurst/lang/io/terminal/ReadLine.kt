@@ -3,6 +3,7 @@ package org.dedda.bratwurst.lang.io.terminal
 import org.dedda.bratwurst.lang.BWExpression
 import org.dedda.bratwurst.lang.BWObject
 import org.dedda.bratwurst.lang.BWString
+import org.dedda.bratwurst.lang.ValueType.STRING
 import org.dedda.bratwurst.lang.scope.Scope
 import java.util.*
 
@@ -12,7 +13,7 @@ import java.util.*
  * @author dedda
  */
 class ReadLine(lineNumber: Int) : BWExpression(lineNumber) {
-    private var read: String? = null
+    private var read: String = ""
     override fun getValue(): BWObject {
         return BWString(read)
     }
@@ -21,9 +22,7 @@ class ReadLine(lineNumber: Int) : BWExpression(lineNumber) {
         return value.intValue
     }
 
-    override fun getValueType(): String {
-        return "string"
-    }
+    override fun getValueType() = STRING
 
     override fun run(scope: Scope) {
         val scanner = Scanner(System.`in`)

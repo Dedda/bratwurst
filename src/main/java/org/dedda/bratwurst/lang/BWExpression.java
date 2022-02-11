@@ -13,6 +13,6 @@ public abstract class BWExpression extends BWInstruction {
 
     public abstract BWObject getValue();
     public abstract int getIntValue();
-    public abstract String getValueType();
+    public abstract ValueType getValueType();
 
 }

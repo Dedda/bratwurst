@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang
 
+import org.dedda.bratwurst.lang.ValueType.STRING
 import org.dedda.bratwurst.lang.scope.Scope
 
 /**
@@ -19,9 +20,7 @@ class StringGetChar(lineNumber: Int, private val location: String, private val v
         } else 0
     }
 
-    override fun getValueType(): String {
-        return "string"
-    }
+    override fun getValueType() = STRING
 
     override fun run(scope: Scope) {
         val location: Int

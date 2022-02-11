@@ -15,17 +15,15 @@ class FileCreate(lineNumber: Int, private val variableName: String) : BWInstruct
     override fun run(scope: Scope) {
         val variable = scope.getVariable(variableName)
         if (variable.value !is BWString) {
-            throw RuntimeException("variable not of type string!")
+            throw IllegalArgumentException("variable not of type string!")
         }
         val fileName = (variable.value as BWString).stringValue
         val file = File(fileName)
         try {
-            if (!file.exists()) {
-                file.createNewFile()
-            } else {
+            if (file.exists()) {
                 file.delete()
-                file.createNewFile()
             }
+            file.createNewFile()
         } catch (e: IOException) {
             e.printStackTrace()
         }

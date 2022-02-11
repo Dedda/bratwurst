@@ -42,13 +42,13 @@ class CalculationTest : BratwurtstTestcase() {
     fun testGetValue() {
         val calculation = Calculation(0, BWInteger(1), BWInteger(2), '+')
         calculation.run(null)
-        Assert.assertEquals("integer", calculation.value.valueType)
+        Assert.assertEquals(ValueType.INTEGER, calculation.value.valueType)
         Assert.assertEquals(3, calculation.value.intValue)
     }
 
     @Test
     @Throws(Exception::class)
     fun testGetValueType() {
-        Assert.assertEquals("integer", Calculation(0, null, null, '+').valueType)
+        Assert.assertEquals(ValueType.INTEGER, Calculation(0, null, null, '+').valueType)
     }
 }

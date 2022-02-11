@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang
 
+import org.dedda.bratwurst.lang.ValueType.STRING
 import org.dedda.bratwurst.lang.scope.Scope
 
 /**
@@ -8,7 +9,7 @@ import org.dedda.bratwurst.lang.scope.Scope
  * @author dedda
  */
 class StringConcatenation(lineNumber: Int, private val variableNames: Array<String>) : BWExpression(lineNumber) {
-    private var value: String? = ""
+    private var value: String = ""
     override fun getValue(): BWObject {
         return BWString(value)
     }
@@ -23,9 +24,7 @@ class StringConcatenation(lineNumber: Int, private val variableNames: Array<Stri
         return value
     }
 
-    override fun getValueType(): String {
-        return "string"
-    }
+    override fun getValueType() = STRING
 
     override fun run(scope: Scope) {
         val strings = arrayOfNulls<String>(variableNames.size)
@@ -39,7 +38,7 @@ class StringConcatenation(lineNumber: Int, private val variableNames: Array<Stri
                 throw RuntimeException("variable not string or integer!")
             }
         }
-        var data: String? = ""
+        var data: String = ""
         for (string in strings) {
             data += string
         }

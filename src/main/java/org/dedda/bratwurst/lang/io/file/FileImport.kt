@@ -26,7 +26,7 @@ class FileImport(lineNumber: Int, private val variableName: String) : BWInstruct
         }
         try {
             val reader = BufferedReader(FileReader(file))
-            var data: String? = ""
+            var data: String = ""
             var buffer: String?
             while (reader.readLine().also { buffer = it } != null) {
                 data += buffer

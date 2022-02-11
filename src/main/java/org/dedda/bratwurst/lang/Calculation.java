@@ -32,8 +32,8 @@ public class Calculation extends BWExpression {
     }
 
     @Override
-    public String getValueType() {
-        return "integer";
+    public ValueType getValueType() {
+        return ValueType.INTEGER;
     }
 
     @Override

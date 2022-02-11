@@ -42,8 +42,8 @@ public class BWVariable extends BWExpression {
     }
 
     @Override
-    public String getValueType() {
-        return null;
+    public ValueType getValueType() {
+        return value.getValueType();
     }
 
     @Override

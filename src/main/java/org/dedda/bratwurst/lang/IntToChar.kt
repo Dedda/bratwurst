@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang
 
+import org.dedda.bratwurst.lang.ValueType.STRING
 import org.dedda.bratwurst.lang.scope.Scope
 
 /**
@@ -17,9 +18,7 @@ class IntToChar(lineNumber: Int, private val varname: String) : BWExpression(lin
         return value.toInt()
     }
 
-    override fun getValueType(): String {
-        return "string"
-    }
+    override fun getValueType() = STRING
 
     override fun run(scope: Scope) {
         val variable = scope.getVariable(varname)

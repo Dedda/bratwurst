@@ -17,9 +17,7 @@ class ReadVariable(lineNumber: Int, private val variableName: String) : BWExpres
         return value.intValue
     }
 
-    override fun getValueType(): String {
-        return value.valueType
-    }
+    override fun getValueType() = value.valueType
 
     override fun run(scope: Scope) {
         val variable = scope.getVariable(variableName)

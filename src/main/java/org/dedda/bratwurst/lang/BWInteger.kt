@@ -1,5 +1,7 @@
 package org.dedda.bratwurst.lang
 
+import org.dedda.bratwurst.lang.ValueType.INTEGER
+
 /**
  * Created by dedda on 10/14/15.
  *
@@ -10,9 +12,7 @@ open class BWInteger(private val value: Int) : BWObject(BWClass.getClassForName(
         return value
     }
 
-    override fun getValueType(): String {
-        return "integer"
-    }
+    override fun getValueType() = INTEGER
 
     override fun equals(o: Any?): Boolean {
         if (this === o) return true

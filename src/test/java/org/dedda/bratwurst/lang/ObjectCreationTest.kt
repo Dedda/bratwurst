@@ -26,7 +26,7 @@ class ObjectCreationTest : BratwurtstTestcase() {
         val objectCreation = ObjectCreation(0, "testClass")
         objectCreation.run(scope)
         val `object` = objectCreation.value
-        Assert.assertEquals("object", `object`.valueType)
+        Assert.assertEquals(ValueType.OBJECT, `object`.valueType)
         Assert.assertEquals("testClass", `object`.bwClass.name)
     }
 }

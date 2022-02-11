@@ -63,8 +63,8 @@ public class BWObject extends BWExpression {
     }
 
     @Override
-    public String getValueType() {
-        return "object";
+    public ValueType getValueType() {
+        return ValueType.OBJECT;
     }
 
     @Override

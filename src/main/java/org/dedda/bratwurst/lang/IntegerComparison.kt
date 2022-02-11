@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang
 
+import org.dedda.bratwurst.lang.ValueType.INTEGER
 import org.dedda.bratwurst.lang.scope.Scope
 import org.dedda.bratwurst.tool.IntegerComparator
 
@@ -18,9 +19,7 @@ class IntegerComparison(lineNumber: Int, private val varName1: String, private v
         return comparison
     }
 
-    override fun getValueType(): String {
-        return "integer"
-    }
+    override fun getValueType() = INTEGER
 
     override fun run(scope: Scope) {
         val var1 = scope.getVariable(varName1)

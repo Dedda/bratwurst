@@ -4,6 +4,7 @@ import org.dedda.bratwurst.lang.BWExpression
 import org.dedda.bratwurst.lang.BWInteger
 import org.dedda.bratwurst.lang.BWObject
 import org.dedda.bratwurst.lang.BWString
+import org.dedda.bratwurst.lang.ValueType.INTEGER
 import org.dedda.bratwurst.lang.scope.Scope
 import java.io.File
 
@@ -22,9 +23,7 @@ class FileExists(lineNumber: Int, private val variableName: String) : BWExpressi
         return if (exists) 1 else 0
     }
 
-    override fun getValueType(): String {
-        return "integer"
-    }
+    override fun getValueType() = INTEGER
 
     override fun run(scope: Scope) {
         val variable = scope.getVariable(variableName)

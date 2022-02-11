@@ -31,9 +31,7 @@ class FunctionCall : BWExpression {
         return value.intValue
     }
 
-    override fun getValueType(): String {
-        return value.valueType
-    }
+    override fun getValueType() = value.valueType
 
     override fun run(scope: Scope) {
         var function: BWFunction? = null
