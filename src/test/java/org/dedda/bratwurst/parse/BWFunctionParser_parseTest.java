@@ -2,10 +2,8 @@ package org.dedda.bratwurst.parse;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.BWFunction;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.Arrays;
-import java.util.Collection;
 
 import static org.testng.Assert.assertEquals;
 
@@ -19,8 +17,9 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
     private BWFunctionParser parser;
 
     // TDOD: Fix params
-    public static Collection<Object[]> getParams() {
-        return Arrays.asList(new Object[][]{
+    @DataProvider
+    public static Object[][] getParams() {
+        return new Object[][]{
                 {new String[]{
                         "==>",
                         "~{",
@@ -48,25 +47,15 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
                         "test -->",
                         "<=="
                 }, 1, "End of method not found!", null, 0}
-        });
+        };
     }
-
-    public String[] lines;
-
-    public int begin;
-
-    public String expectedErrorMessage;
-
-    public String expectedName;
-
-    public int expectedInstructionsCount;
 
     public void setUp() throws Exception {
         parser = new BWFunctionParser();
     }
 
-    @Test
-    public void testParse() throws Exception {
+    @Test(dataProvider = "getParams")
+    public void testParse(final String[] lines, final int begin, final String expectedErrorMessage, final String expectedName, final int expectedInstructionsCount) {
         BWFunction function = null;
         try {
             function = parser.parse(lines, begin);

@@ -55,8 +55,6 @@ public class ExpressionParser {
             return new CharToIntParser();
         } else if (expression.matches(INT_TO_CHAR)) {
             return new InToCharParser();
-        } else if (expression.matches(GUI_COMMAND)) {
-            return new GuiCommandParser();
         }
         return null;
     }

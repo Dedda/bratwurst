@@ -1,6 +1,5 @@
 package org.dedda.bratwurst.lang;
 
-import org.dedda.bratwurst.gui.GuiContainer;
 import org.dedda.bratwurst.lang.scope.Scope;
 
 import java.util.*;
@@ -25,7 +24,6 @@ public class Program {
     private boolean stopped = false;
     private int exitCode = 0;
     private final Stack<BWObject> global = new Stack<>();
-    private final GuiContainer guiContainer = new GuiContainer();
 
     public Program() {
 
@@ -42,7 +40,6 @@ public class Program {
     }
 
     public void stop(int code) {
-        guiContainer.close();
         stopped = true;
         exitCode = code;
     }
@@ -124,9 +121,5 @@ public class Program {
 
     public Stack<BWObject> getGlobal() {
         return global;
-    }
-
-    public GuiContainer getGuiContainer() {
-        return guiContainer;
     }
 }

@@ -15,12 +15,6 @@ public class IntegerComparator implements Comparator<BWInteger>{
     }
 
     public int compareLge(BWInteger obj1, BWInteger obj2) {
-        if (obj1.getIntValue() > obj2.getIntValue()) {
-            return 1;
-        }
-        if (obj1.getIntValue() < obj2.getIntValue()) {
-            return -1;
-        }
-        return 0;
+        return Integer.compare(obj1.getIntValue(), obj2.getIntValue());
     }
 }

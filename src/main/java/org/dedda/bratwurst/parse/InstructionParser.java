@@ -43,8 +43,6 @@ public class InstructionParser {
             return new FileImportParser().parse(line, lineNumber);
         } else if (line.matches(FILE_EXPORT)) {
             return new FileExportParser().parse(line, lineNumber);
-        } else if (line.matches(GUI_COMMAND)) {
-            return new GuiCommandParser().parse(line, lineNumber);
         }
         return null;
     }

@@ -5,9 +5,6 @@ import org.dedda.bratwurst.lang.BWInteger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -17,7 +14,6 @@ import static org.testng.Assert.assertEquals;
  */
 public class IntegerParserTest extends BratwurtstTestcase {
 
-    // TODO: Fix params
     @DataProvider(name = "getParams")
     public static Object[][] getParams() {
         return new Object[][]{

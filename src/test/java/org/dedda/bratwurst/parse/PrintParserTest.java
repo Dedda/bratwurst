@@ -7,9 +7,6 @@ import org.dedda.bratwurst.lang.PrintVariable;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -29,7 +26,7 @@ public class PrintParserTest extends BratwurtstTestcase {
     }
 
     @Test(dataProvider = "getParams")
-    public void testParse(Class expectedClass, Object expectedValue, String line) throws Exception {
+    public void testParse(Class expectedClass, Object expectedValue, String line) {
         PrintParser parser = new PrintParser();
         BWInstruction print = parser.parse(line, 0);
         assertEquals(expectedClass, print.getClass());
