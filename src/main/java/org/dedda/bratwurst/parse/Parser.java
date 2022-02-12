@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static org.dedda.bratwurst.parse.Patterns.*;
 
@@ -22,6 +23,7 @@ import static org.dedda.bratwurst.parse.Patterns.*;
 public class Parser {
 
     private final File sourceFile;
+    private final Predicate<String> isInclude = line -> line.matches(INCLUDE);
 
     /*
      * Parsers:
@@ -40,20 +42,20 @@ public class Parser {
         String[] lines;
         try {
             lines = getFileContents(sourceFile).split("\n");
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new RuntimeException("can't load source file!", e);
         }
         for (int i = 0; i < lines.length; i++) {
             lines[i] = lines[i].trim();
         }
-        while (Arrays.stream(lines).filter(l -> l.matches(INCLUDE)).findFirst().isPresent()) {
+        while (Arrays.stream(lines).anyMatch(isInclude)) {
             for (int i = 0; i < lines.length; i++) {
-                if (lines[i].matches(INCLUDE)) {
+                if (isInclude.test(lines[i])) {
                     try {
-                        String[] included = getFileContents(new File(sourceFile.getParent() + '/' + lines[i].substring(1, lines[i].length() - 1))).split("\n");
+                        final String[] included = getFileContents(new File(sourceFile.getParent() + '/' + lines[i].substring(1, lines[i].length() - 1))).split("\n");
                         lines = insertIntoArray(lines, included, i);
                         break;
-                    } catch (IOException e) {
+                    } catch (final IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -91,9 +93,9 @@ public class Parser {
         if (!lines[0].matches(BEGIN)) {
             throw new RuntimeException("HELP! FIRST INSTRUCTION IS NOT AN ENTRY POINT! WHAT DO?!");
         }
-        List<BWInstruction> instructions = new LinkedList<>();
-        List<BWFunction> functions = new LinkedList<>();
-        List<BWClass> classes = new LinkedList<>();
+        final List<BWInstruction> instructions = new LinkedList<>();
+        final List<BWFunction> functions = new LinkedList<>();
+        final List<BWClass> classes = new LinkedList<>();
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
             BWInstruction instruction = instructionParser.parse(line, i);
@@ -125,13 +127,13 @@ public class Parser {
                 instructions.add(instruction);
             }
         }
-        BWInstruction[] instructionsArray = new BWInstruction[instructions.size()];
+        final BWInstruction[] instructionsArray = new BWInstruction[instructions.size()];
         instructions.toArray(instructionsArray);
-        BWFunction[] functionsArray = new BWFunction[functions.size()];
+        final BWFunction[] functionsArray = new BWFunction[functions.size()];
         functions.toArray(functionsArray);
-        BWClass[] classesArray = new BWClass[classes.size()];
+        final BWClass[] classesArray = new BWClass[classes.size()];
         classes.toArray(classesArray);
-        Program program = new Program();
+        final Program program = new Program();
         program.setInstructions(instructionsArray);
         program.setFunctions(functionsArray);
         program.setClasses(classesArray);
@@ -139,22 +141,22 @@ public class Parser {
     }
 
     private String getFileContents(final File file) throws IOException {
-        long size = file.length();
-        char buffer[] = new char[(int) size];
+        final long size = file.length();
+        final char[] buffer = new char[(int) size];
         new FileReader(file).read(buffer);
         return new String(buffer);
     }
 
-    public String[] insertIntoArray(String[] array, String[] toInsert, int lineToReplace) {
-        String[] newArray = new String[array.length + toInsert.length - 1];
+    public String[] insertIntoArray(final String[] array, final String[] toInsert, final int lineToReplace) {
+        final String[] newArray = new String[array.length + toInsert.length - 1];
         System.arraycopy(array, 0, newArray, 0, lineToReplace);
         System.arraycopy(toInsert, 0, newArray, lineToReplace, toInsert.length);
         System.arraycopy(array, lineToReplace + 1, newArray, lineToReplace + toInsert.length, newArray.length - (lineToReplace + toInsert.length));
         return newArray;
     }
 
-    private String[] removeFromArray(String[] array, int index) {
-        String[] newArray = new String[array.length - 1];
+    private String[] removeFromArray(final String[] array, final int index) {
+        final String[] newArray = new String[array.length - 1];
         for (int i = 0, n = 0; i < array.length; i++) {
             if (i != index) {
                 newArray[n] = array[i];
@@ -168,39 +170,7 @@ public class Parser {
         return instructionParser;
     }
 
-    public void setInstructionParser(InstructionParser instructionParser) {
+    public void setInstructionParser(final InstructionParser instructionParser) {
         this.instructionParser = instructionParser;
-    }
-
-    public BWFunctionParser getFunctionParser() {
-        return functionParser;
-    }
-
-    public void setFunctionParser(BWFunctionParser functionParser) {
-        this.functionParser = functionParser;
-    }
-
-    public BWClassParser getClassParser() {
-        return classParser;
-    }
-
-    public void setClassParser(BWClassParser classParser) {
-        this.classParser = classParser;
-    }
-
-    public ConditionParser getConditionParser() {
-        return conditionParser;
-    }
-
-    public void setConditionParser(ConditionParser conditionParser) {
-        this.conditionParser = conditionParser;
-    }
-
-    public LoopParser getLoopParser() {
-        return loopParser;
-    }
-
-    public void setLoopParser(LoopParser loopParser) {
-        this.loopParser = loopParser;
     }
 }

@@ -16,19 +16,19 @@ import static org.dedda.bratwurst.parse.Patterns.LOOP_END;
  */
 public class LoopParser {
 
-    public Loop parse(String[] lines, int begin) {
-        int end = getEnd(lines, begin);
-        BWExpression head = new ExpressionParser().parse(lines[begin].substring(2, lines[begin].length()-1), begin);
-        List<BWInstruction> instructions = new LinkedList<>();
+    public Loop parse(final String[] lines, final int begin) {
+        final int end = getEnd(lines, begin);
+        final BWExpression head = new ExpressionParser().parse(lines[begin].substring(2, lines[begin].length()-1), begin);
+        final List<BWInstruction> instructions = new LinkedList<>();
         for (int i = begin+1; i < end; i++) {
             instructions.add(new InstructionParser().parse(lines[i], i));
         }
-        BWInstruction[] instructionsArray = new BWInstruction[instructions.size()];
+        final BWInstruction[] instructionsArray = new BWInstruction[instructions.size()];
         instructions.toArray(instructionsArray);
         return new Loop(begin, head, instructionsArray);
     }
 
-    public int getEnd(String[] lines, int begin) {
+    public int getEnd(final String[] lines, final int begin) {
         for (int i = begin; i < lines.length; i++) {
             if (lines[i].matches(LOOP_END)) {
                 return i;

@@ -28,21 +28,21 @@ public class Scope {
         scopeStack = new Stack<>();
     }
 
-    public Scope(Program program, TestFileRunner testFileRunner, TestFunctionRunner testFunctionRunner) {
+    public Scope(final Program program, final TestFileRunner testFileRunner, final TestFunctionRunner testFunctionRunner) {
         this(program);
         this.testFileRunner = testFileRunner;
         this.testFunctionRunner = testFunctionRunner;
     }
 
     public BWObject getCurrentObject() {
-        return scopeStack.peek().getObject();
+        return scopeStack.peek().getObj();
     }
 
     public BWObject getCurrentObjectR() {
         BWObject object;
         int index = scopeStack.size() - 1;
         while (index >= 0) {
-            object = scopeStack.elementAt(index).getObject();
+            object = scopeStack.elementAt(index).getObj();
             if (object != null) {
                 return object;
             }
@@ -55,7 +55,7 @@ public class Scope {
         return getCurrentObjectR() != null;
     }
 
-    public BWFunction getFunction(String name) {
+    public BWFunction getFunction(final String name) {
         Optional<BWFunction> funcOpt;
         if (isInObject()) {
              funcOpt = Arrays.stream(getCurrentObjectR().getFunctions()).filter(f -> f.getName().equals(name)).findFirst();
@@ -64,42 +64,36 @@ public class Scope {
             }
         }
         funcOpt = Arrays.stream(program.getFunctions()).filter(f -> f.getName().equals(name)).findFirst();
-        if (funcOpt.isPresent()) {
-            return funcOpt.get();
-        }
-        return null;
+        return funcOpt.orElse(null);
     }
 
-    public BWFunction getFunction(String variableName, String functionName) {
+    public BWFunction getFunction(final String variableName, final String functionName) {
         BWObject object = getVariable(variableName).getValue();
         Optional<BWFunction> funcOpt = Arrays.stream(object.getFunctions()).filter(f -> f.getName().equals(functionName)).findFirst();
-        if (funcOpt.isPresent()) {
-            return funcOpt.get();
-        }
-        return null;
+        return funcOpt.orElse(null);
     }
 
-    public void registerClass(BWClass bwClass) {
+    public void registerClass(final BWClass bwClass) {
         program.registerClass(bwClass);
     }
 
-    public BWVariable getVariable(String name) {
-        BWVariable var;
+    public BWVariable getVariable(final String name) {
+        BWVariable variable;
         int index = scopeStack.size() - 1;
         while(index >= 0) {
-            var = scopeStack.elementAt(index).getVariable(name);
-            if (var != null) {
-                return var;
+            variable = scopeStack.elementAt(index).getVariable(name);
+            if (variable != null) {
+                return variable;
             }
             index--;
         }
         return program.hasVariable(name) ? program.getVariable(name) : null;
     }
 
-    public void setVariable(BWVariable variable) {
-        BWVariable var = getVariable(variable.getName());
-        if (var != null) {
-            var.setValue(variable.getValue());
+    public void setVariable(final BWVariable variable) {
+        BWVariable foundVariable = getVariable(variable.getName());
+        if (foundVariable != null) {
+            foundVariable.setValue(variable.getValue());
         } else {
             BWObject obj = getCurrentObjectR();
             if (obj != null) {
@@ -110,11 +104,11 @@ public class Scope {
         }
     }
 
-    public void enterFunction(BWFunction function, List<BWVariable> arguments) {
+    public void enterFunction(final BWFunction function, final List<BWVariable> arguments) {
         scopeStack.push(new StackElement(null, function, arguments));
     }
 
-    public void enterFunction(BWObject object, BWFunction function, List<BWVariable> arguments) {
+    public void enterFunction(final BWObject object, final BWFunction function, final List<BWVariable> arguments) {
         scopeStack.push(new StackElement(object, function, arguments));
     }
 
@@ -126,7 +120,7 @@ public class Scope {
         return program;
     }
 
-    public void push(BWObject object) {
+    public void push(final BWObject object) {
         program.push(object);
     }
 

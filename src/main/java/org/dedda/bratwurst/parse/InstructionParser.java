@@ -11,40 +11,39 @@ import static org.dedda.bratwurst.parse.Patterns.*;
  */
 public class InstructionParser {
 
-    public BWInstruction parse(String line, int lineNumber) {
-        line = line.trim();
-        if (line.matches("^" + FUNCTION_CALL)) {
-            return new FunctionCallParser().parse(line, lineNumber);
-        } else if (line.matches(VARIABLE_DECLARATION)) {
-            return new VariableDeclarationParser().parseDeclaration(line, lineNumber);
-        } else if (line.matches(PRINT)) {
-            return new PrintParser().parse(line, lineNumber);
-        } else if (line.matches(END)) {
-            return new ExitParser().parse(line, lineNumber);
-        } else if (line.matches(RETURN)) {
-            return new ReturnParser().parse(line, lineNumber);
-        } else if (line.matches(POP)) {
-            return new PopParser().parse(line, lineNumber);
-        } else if (line.matches(PUSH)) {
-            return new PushParser().parse(line, lineNumber);
-        } else if (line.matches(ASSERT_EQUALS)) {
-            return new AssertEqualsParser().parse(line, lineNumber);
-        } else if (line.matches(ASSERT_NOT_EQUALS)) {
-            return new AssertNotEqualsParser().parse(line, lineNumber);
-        } else if (line.matches(ASSERT_TRUE)) {
-            return new AssertTrueParser().parse(line, lineNumber);
-        } else if (line.matches(ASSERT_FALSE)) {
-            return new AssertFalseParser().parse(line, lineNumber);
-        } else if (line.matches(FILE_CREATE)) {
-            return new FileCreateParser().parse(line, lineNumber);
-        } else if (line.matches(FILE_REMOVE)) {
-            return new FileRemoveParser().parse(line, lineNumber);
-        } else if (line.matches(FILE_IMPORT)) {
-            return new FileImportParser().parse(line, lineNumber);
-        } else if (line.matches(FILE_EXPORT)) {
-            return new FileExportParser().parse(line, lineNumber);
+    public BWInstruction parse(final String line, final int lineNumber) {
+        final String trimmed = line.trim();
+        if (trimmed.matches("^" + FUNCTION_CALL)) {
+            return new FunctionCallParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(VARIABLE_DECLARATION)) {
+            return new VariableDeclarationParser().parseDeclaration(trimmed, lineNumber);
+        } else if (trimmed.matches(PRINT)) {
+            return new PrintParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(END)) {
+            return new ExitParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(RETURN)) {
+            return new ReturnParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(POP)) {
+            return new PopParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(PUSH)) {
+            return new PushParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(ASSERT_EQUALS)) {
+            return new AssertEqualsParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(ASSERT_NOT_EQUALS)) {
+            return new AssertNotEqualsParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(ASSERT_TRUE)) {
+            return new AssertTrueParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(ASSERT_FALSE)) {
+            return new AssertFalseParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(FILE_CREATE)) {
+            return new FileCreateParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(FILE_REMOVE)) {
+            return new FileRemoveParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(FILE_IMPORT)) {
+            return new FileImportParser().parse(trimmed, lineNumber);
+        } else if (trimmed.matches(FILE_EXPORT)) {
+            return new FileExportParser().parse(trimmed, lineNumber);
         }
         return null;
     }
-
 }

@@ -18,7 +18,7 @@ class PopParserTest : BratwurtstTestcase() {
         val lineNumber = 15
         val parser = PopParser()
         val pop = parser.parse(line, lineNumber)
-        Assert.assertEquals(variableName, pop.variableName)
+        Assert.assertEquals(variableName, pop!!.variableName)
         Assert.assertEquals(lineNumber, pop.lineNumber)
     }
 }

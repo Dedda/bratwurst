@@ -16,6 +16,6 @@ class InstanceofParserTest : BratwurtstTestcase() {
         val line = "testVar -?> testClass"
         val parser = InstanceofParser()
         val instruction = parser.parse(line, 0)
-        Assert.assertEquals("testClass", instruction.className)
+        Assert.assertEquals("testClass", instruction!!.className)
     }
 }

@@ -1,79 +1,57 @@
-package org.dedda.bratwurst.parse;
+package org.dedda.bratwurst.parse
 
 /**
  * Created by dedda on 9/28/15.
  *
  * @author dedda
  */
-public class Patterns {
-
-    public static final String COMMENT = "^<\\(%.*";
-
-    public static final String BEGIN = "^==>$";
-    public static final String END = "^<==$";
-
-    public static final String CLASS_BEGIN = "^#\\[$";
-    public static final String CLASS_END = "^\\]$";
-
-    public static final String FUNCTION_BEGIN = "^~\\{$";
-    public static final String FUNCTION_END = "^\\}$";
-
-    public static final String FUNCTION_PARAM_FIRST = "@ (\\w+) <-- (\\w+)";
-    public static final String FUNCTION_PARAM_OTHERS = "& (\\w+) <-- (\\w+)";
-    public static final String FUNCTION_CALL_BASE = "(\\w*)\\{(\\w+)\\}";
-    public static final String FUNCTION_CALL_NOT_TERMINAL = FUNCTION_CALL_BASE + "( " + FUNCTION_PARAM_FIRST + ")?( " + FUNCTION_PARAM_OTHERS + ")*";
-    public static final String FUNCTION_CALL = FUNCTION_CALL_NOT_TERMINAL + "$";
-
-    public static final String CALCULATION = "((\\-?\\d+)|(\\w+)|(" + FUNCTION_CALL_NOT_TERMINAL + ")) [\\+\\-\\*\\/] ((\\-?\\d+)|\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + "))";
-
-    public static final String LENGTH_GET = "^\\)\\)\\w+\\)\\)$";
-
-    public static final String TYPE_CHECK = "^\\w+ -\\?> \\w+$";
-    public static final String CLASS_INSTANTIATION = "\\[(\\w+)\\]$";
-    public static final String VARIABLE_DECLARATION = "^\\((\\w+)\\) <-- .*$";
-
-    public static final String NAMING = "^\\(CALL_ME_MAYBE\\) <-- \\w+$";
-
-    public static final String INCLUDE = "^%(\\w+[\\w\\.]+)%$";
-    public static final String PRINT_VAR = ">[^\\|]*<";
-    public static final String PRINT_INT = "\\|(\\w+)\\|";
-
-    public static final String PRINT = "^(" + PRINT_VAR + "|" + PRINT_INT + ")$";
-
-    public static final String RETURN = "^(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")) -->$";
-    public static final String CONDITION_HEAD = "^\\?\\((\\w+\\))>>$";
-    public static final String CONDITION_SEPARATOR = "^<<$";
-
-    public static final String CONDITION_END = "^\\|$";
-    public static final String LOOP_HEAD = "^/\\((\\w+)\\)$";
-
-    public static final String LOOP_END = "^\\\\$";
-
-    public static final String PUSH = "^>(\\w+|(" + FUNCTION_CALL_NOT_TERMINAL + ")|(" + CALCULATION + "))>$";
-    public static final String POP = "^<\\w+<$";
-
-    public static final String COMPARE = "^\\w+ = \\w+$";
-    public static final String COMPARE_INT = "^\\w+ <=> \\w+$";
-
-    public static final String BW_STRING = "^:[^:;]*;$";
-    public static final String BW_STRING_CONCAT = "^\\w+( <-< \\w+)+$";
-    public static final String BW_STRING_GET_CHAR = "^\\[\\w+\\}\\w+\\]$";
-
-    public static final String READ_LINE = "^<__$";
-
-    public static final String CHAR_TO_INT = "^#__ \\w+$";
-    public static final String INT_TO_CHAR = "^__# \\w+$";
-
-    public static final String FILE_EXISTS = "\\?\\w+\\?$";
-    public static final String FILE_CREATE = "^\\+\\w+\\+$";
-    public static final String FILE_REMOVE = "^\\-\\w+\\-$";
-
-    public static final String FILE_IMPORT = "^>\\|\\w+\\|<$";
-    public static final String FILE_EXPORT = "^<\\|\\w+ > \\w+\\|>$";
-
-    public static final String ASSERT_TRUE = "^\\{\\[(\\w+)\\]\\}$";
-    public static final String ASSERT_FALSE = "^\\{\\[!(\\w+)\\]\\}$";
-
-    public static final String ASSERT_EQUALS = "^\\{\\[(\\w+) == (\\w+)\\]\\}$";
-    public static final String ASSERT_NOT_EQUALS = "^\\{\\[(\\w+) != (\\w+)\\]\\}$";
+object Patterns {
+    const val COMMENT = "^<\\(%.*"
+    const val BEGIN = "^==>$"
+    const val END = "^<==$"
+    const val CLASS_BEGIN = "^#\\[$"
+    const val CLASS_END = "^\\]$"
+    const val FUNCTION_BEGIN = "^~\\{$"
+    const val FUNCTION_END = "^\\}$"
+    private const val FUNCTION_PARAM_FIRST = "@ (\\w+) <-- (\\w+)"
+    private const val FUNCTION_PARAM_OTHERS = "& (\\w+) <-- (\\w+)"
+    private const val FUNCTION_CALL_BASE = "(\\w*)\\{(\\w+)\\}"
+    const val FUNCTION_CALL_NOT_TERMINAL = "$FUNCTION_CALL_BASE( $FUNCTION_PARAM_FIRST)?( $FUNCTION_PARAM_OTHERS)*"
+    const val FUNCTION_CALL = "$FUNCTION_CALL_NOT_TERMINAL$"
+    private const val CALCULATION_ARGUMENT = "((\\-?\\d+)|(\\w+)|($FUNCTION_CALL_NOT_TERMINAL))"
+    const val CALCULATION = "$CALCULATION_ARGUMENT [\\+\\-\\*\\/] $CALCULATION_ARGUMENT"
+    const val LENGTH_GET = "^\\)\\)\\w+\\)\\)$"
+    const val TYPE_CHECK = "^\\w+ -\\?> \\w+$"
+    const val CLASS_INSTANTIATION = "\\[(\\w+)\\]$"
+    const val VARIABLE_DECLARATION = "^\\((\\w+)\\) <-- .*$"
+    const val NAMING = "^\\(CALL_ME_MAYBE\\) <-- \\w+$"
+    const val INCLUDE = "^%(\\w+[\\w\\.]+)%$"
+    private const val PRINT_VAR = ">[^\\|]*<"
+    private const val PRINT_INT = "\\|(\\w+)\\|"
+    const val PRINT = "^($PRINT_VAR|$PRINT_INT)$"
+    const val RETURN = "^(\\w+|($FUNCTION_CALL_NOT_TERMINAL)) -->$"
+    const val CONDITION_HEAD = "^\\?\\((\\w+\\))>>$"
+    const val CONDITION_SEPARATOR = "^<<$"
+    const val CONDITION_END = "^\\|$"
+    const val LOOP_HEAD = "^/\\((\\w+)\\)$"
+    const val LOOP_END = "^\\\\$"
+    const val PUSH = "^>(\\w+|($FUNCTION_CALL_NOT_TERMINAL)|($CALCULATION))>$"
+    const val POP = "^<\\w+<$"
+    const val COMPARE = "^\\w+ = \\w+$"
+    const val COMPARE_INT = "^\\w+ <=> \\w+$"
+    const val BW_STRING = "^:[^:;]*;$"
+    const val BW_STRING_CONCAT = "^\\w+( <-< \\w+)+$"
+    const val BW_STRING_GET_CHAR = "^\\[\\w+\\}\\w+\\]$"
+    const val READ_LINE = "^<__$"
+    const val CHAR_TO_INT = "^#__ \\w+$"
+    const val INT_TO_CHAR = "^__# \\w+$"
+    const val FILE_EXISTS = "\\?\\w+\\?$"
+    const val FILE_CREATE = "^\\+\\w+\\+$"
+    const val FILE_REMOVE = "^\\-\\w+\\-$"
+    const val FILE_IMPORT = "^>\\|\\w+\\|<$"
+    const val FILE_EXPORT = "^<\\|\\w+ > \\w+\\|>$"
+    const val ASSERT_TRUE = "^\\{\\[(\\w+)\\]\\}$"
+    const val ASSERT_FALSE = "^\\{\\[!(\\w+)\\]\\}$"
+    const val ASSERT_EQUALS = "^\\{\\[(\\w+) == (\\w+)\\]\\}$"
+    const val ASSERT_NOT_EQUALS = "^\\{\\[(\\w+) != (\\w+)\\]\\}$"
 }

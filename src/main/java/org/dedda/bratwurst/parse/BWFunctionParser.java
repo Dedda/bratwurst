@@ -21,26 +21,26 @@ public class BWFunctionParser {
      * @param begin Index of the line that indicates the beginning of the function (~{).
      * @return Parsed {@link BWFunction}
      */
-    public BWFunction parse(String[] lines, int begin) {
+    public BWFunction parse(final String[] lines, final int begin) {
         if (!lines[begin].matches(FUNCTION_BEGIN)) {
             throw new RuntimeException("invalid function begin, no head found!");
         }
-        int end = getEndOfFunction(lines, begin);
+        final int end = getEndOfFunction(lines, begin);
         String functionName = null;
-        List<BWInstruction> instructions = new LinkedList<>();
-        InstructionParser instructionParser = new InstructionParser();
-        ConditionParser conditionParser = new ConditionParser();
-        LoopParser loopParser = new LoopParser();
+        final List<BWInstruction> instructions = new LinkedList<>();
+        final InstructionParser instructionParser = new InstructionParser();
+        final ConditionParser conditionParser = new ConditionParser();
+        final LoopParser loopParser = new LoopParser();
         for (int i = begin+1; i < end; i++) {
-            String line = lines[i];
+            final String line = lines[i];
             if (line.matches(NAMING)) {
                 functionName = line.split(" ")[2];
             } else if (line.matches(CONDITION_HEAD)) {
-                int conditionEnd = conditionParser.getEnd(lines, i);
+                final int conditionEnd = conditionParser.getEnd(lines, i);
                 instructions.add(conditionParser.parse(lines, i));
                 i = conditionEnd;
             } else if (line.matches(LOOP_HEAD)) {
-                int loopEnd = loopParser.getEnd(lines, i);
+                final int loopEnd = loopParser.getEnd(lines, i);
                 instructions.add(loopParser.parse(lines, i));
                 i = loopEnd;
             } else {
@@ -50,14 +50,14 @@ public class BWFunctionParser {
         if (functionName == null) {
             throw new RuntimeException("function name not defined!");
         }
-        BWInstruction[] instructionsArray = new BWInstruction[instructions.size()];
+        final BWInstruction[] instructionsArray = new BWInstruction[instructions.size()];
         instructions.toArray(instructionsArray);
         return new BWFunction(functionName, instructionsArray);
     }
 
-    public int getEndOfFunction(String[] lines, int begin) {
+    public int getEndOfFunction(final String[] lines, final int begin) {
         for (int i = begin+1; i < lines.length; i++) {
-            String line = lines[i];
+            final String line = lines[i];
             if (line.matches(FUNCTION_END)) {
                 return i;
             }

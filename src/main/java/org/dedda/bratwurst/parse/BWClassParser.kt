@@ -13,7 +13,7 @@ class BWClassParser {
     fun parse(lines: Array<String>, begin: Int): BWClass {
         val end = getEnd(lines, begin)
         for (i in lines.indices) {
-            lines[i] = lines[i].trim { it <= ' ' }
+            lines[i] = lines[i].trim()
         }
         var className: String? = null
         val functions: MutableList<BWFunction> = LinkedList()
@@ -41,7 +41,7 @@ class BWClassParser {
 
     fun getEnd(lines: Array<String>, begin: Int): Int {
         for (i in begin until lines.size) {
-            if (lines[i].trim { it <= ' ' }.matches(Regex(Patterns.CLASS_END))) {
+            if (lines[i].trim().matches(Regex(Patterns.CLASS_END))) {
                 return i
             }
         }

@@ -13,20 +13,20 @@ import java.util.List;
  */
 public class FunctionCallParser extends ExpressionParser {
 
-    public FunctionCall parse(String line, int lineNumber) {
+    public FunctionCall parse(String line, final int lineNumber) {
         String objectName = null;
-        String functionName;
-        FunctionCall functionCall;
+        final String functionName;
+        final FunctionCall functionCall;
         List<BWVariable> arguments = new LinkedList<>();
         line = line.trim();
         if (!line.startsWith("{")) {
             objectName = line.split("\\{", 2)[0];
         }
-        functionName = line.split("\\{", 2)[1].split("\\}", 2)[0];
+        functionName = line.split("\\{", 2)[1].split("}", 2)[0];
         if (line.contains("@")) {
             arguments = parseArguments(line, lineNumber);
         }
-        BWVariable[] argumentsArray = new BWVariable[arguments.size()];
+        final BWVariable[] argumentsArray = new BWVariable[arguments.size()];
         arguments.toArray(argumentsArray);
         if (objectName == null) {
             functionCall = new FunctionCall(lineNumber, functionName, argumentsArray);
@@ -36,11 +36,11 @@ public class FunctionCallParser extends ExpressionParser {
         return functionCall;
     }
 
-    private List<BWVariable> parseArguments(String line, int lineNumber) {
-        List<BWVariable> arguments = new LinkedList<>();
+    private List<BWVariable> parseArguments(String line, final int lineNumber) {
+        final List<BWVariable> arguments = new LinkedList<>();
         line = line.split("@")[1];
-        String[] split = line.split("&");
-        for (String argumentString : split) {
+        final String[] split = line.split("&");
+        for (final String argumentString : split) {
             arguments.add(parseArgument(argumentString, lineNumber));
         }
         return arguments;
@@ -48,8 +48,8 @@ public class FunctionCallParser extends ExpressionParser {
 
     private BWVariable parseArgument(String data, int lineNumber) {
         data = data.trim();
-        BWVariable argument;
-        String split[] = data.split(" ");
+        final BWVariable argument;
+        final String split[] = data.split(" ");
         argument = new BWVariable(split[0], new ExpressionParser().parse(split[2], lineNumber));
         return argument;
     }

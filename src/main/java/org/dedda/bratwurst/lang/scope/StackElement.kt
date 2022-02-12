@@ -10,7 +10,7 @@ import java.util.*
  *
  * @author dedda
  */
-class StackElement(val `object`: BWObject?, val function: BWFunction, variables: MutableList<BWVariable>?) {
+class StackElement(val obj: BWObject?, val function: BWFunction, variables: MutableList<BWVariable>?) {
 
     private val functionVars: MutableList<BWVariable> = variables ?: ArrayList()
 
@@ -20,8 +20,8 @@ class StackElement(val `object`: BWObject?, val function: BWFunction, variables:
             return localOpt.get()
         }
         val objectOpt: Optional<BWVariable>
-        if (`object` != null) {
-            objectOpt = listOf(*`object`.variables).stream().filter { v: BWVariable -> v.name == name }.findFirst()
+        if (obj != null) {
+            objectOpt = listOf(*obj.variables).stream().filter { v: BWVariable -> v.name == name }.findFirst()
             return if (objectOpt.isPresent) objectOpt.get() else null
         }
         return null

@@ -17,27 +17,27 @@ import static org.dedda.bratwurst.parse.Patterns.CONDITION_SEPARATOR;
  */
 public class ConditionParser {
 
-    public Condition parse(String[] lines, int begin) {
-        int end = getEnd(lines, begin);
-        int separator = getSeparator(lines, begin);
-        String conditionLine = lines[begin];
-        List<BWInstruction> trueInstructions = new LinkedList<>();
-        List<BWInstruction> falseInstructions = new LinkedList<>();
+    public Condition parse(final String[] lines, final int begin) {
+        final int end = getEnd(lines, begin);
+        final int separator = getSeparator(lines, begin);
+        final String conditionLine = lines[begin];
+        final List<BWInstruction> trueInstructions = new LinkedList<>();
+        final List<BWInstruction> falseInstructions = new LinkedList<>();
         for (int i = begin+1; i < separator; i++) {
             trueInstructions.add(new InstructionParser().parse(lines[i], i));
         }
         for (int i = separator+1; i < end; i++) {
             falseInstructions.add(new InstructionParser().parse(lines[i], i));
         }
-        BWExpression condition = new ExpressionParser().parse(conditionLine.substring(2, conditionLine.length() - 3), begin);
-        BWInstruction[] trueInstructionsArray = new BWInstruction[trueInstructions.size()];
+        final BWExpression condition = new ExpressionParser().parse(conditionLine.substring(2, conditionLine.length() - 3), begin);
+        final BWInstruction[] trueInstructionsArray = new BWInstruction[trueInstructions.size()];
         trueInstructions.toArray(trueInstructionsArray);
-        BWInstruction[] falseInstructionsArray = new BWInstruction[falseInstructions.size()];
+        final BWInstruction[] falseInstructionsArray = new BWInstruction[falseInstructions.size()];
         falseInstructions.toArray(falseInstructionsArray);
         return new Condition(begin, condition, trueInstructionsArray, falseInstructionsArray);
     }
 
-    public int getEnd(String[] lines, int begin) {
+    public int getEnd(final String[] lines, final int begin) {
         for (int i = begin; i < lines.length; i++) {
             if (lines[i].matches(CONDITION_END)) {
                 return i;
@@ -46,7 +46,7 @@ public class ConditionParser {
         throw new RuntimeException("No condition end found!");
     }
 
-    private int getSeparator(String[] lines, int begin) {
+    private int getSeparator(final String[] lines, final int begin) {
         for (int i = begin; i < lines.length; i++) {
             if (lines[i].matches(CONDITION_SEPARATOR)) {
                 return i;

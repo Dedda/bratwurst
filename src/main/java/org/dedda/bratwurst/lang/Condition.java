@@ -14,7 +14,7 @@ public class Condition extends BWInstruction {
     private final BWInstruction[] trueInstructions;
     private final BWInstruction[] falseInstructions;
 
-    public Condition(int lineNumber, BWExpression toEvaluate, BWInstruction[] trueInstructions, BWInstruction[] falseInstructions) {
+    public Condition(final int lineNumber, final BWExpression toEvaluate, final BWInstruction[] trueInstructions, final BWInstruction[] falseInstructions) {
         super(lineNumber);
         this.toEvaluate = toEvaluate;
         this.trueInstructions = trueInstructions;
@@ -22,25 +22,11 @@ public class Condition extends BWInstruction {
     }
 
     @Override
-    public void run(Scope scope) {
+    public void run(final Scope scope) {
         toEvaluate.run(scope);
-        if (toEvaluate.getIntValue() != 0) {
-            runTrue(scope);
-        } else {
-            runFalse(scope);
+        final BWInstruction[] toRun = toEvaluate.getIntValue() == 0 ? falseInstructions : trueInstructions;
+        for (final BWInstruction instruction : toRun) {
+            instruction.run(scope);
         }
     }
-
-    private void runTrue(Scope scope) {
-        for (BWInstruction trueInstruction : trueInstructions) {
-            trueInstruction.run(scope);
-        }
-    }
-
-    private void runFalse(Scope scope) {
-        for (BWInstruction falseInstruction : falseInstructions) {
-            falseInstruction.run(scope);
-        }
-    }
-
 }

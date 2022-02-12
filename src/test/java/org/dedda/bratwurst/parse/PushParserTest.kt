@@ -18,7 +18,7 @@ class PushParserTest : BratwurtstTestcase() {
         val lineNumber = 12
         val parser = PushParser()
         val push = parser.parse(line, lineNumber)
-        Assert.assertEquals(BWInteger(number), push.argument)
+        Assert.assertEquals(BWInteger(number), push!!.argument)
         Assert.assertEquals(lineNumber, push.lineNumber)
     }
 }
