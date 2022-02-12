@@ -1,6 +1,8 @@
 package org.dedda.bratwurst.lang
 
 import org.dedda.bratwurst.BratwurtstTestcase
+import org.dedda.bratwurst.lang.scope.Scope
+import org.mockito.Mockito.mock
 import org.testng.Assert
 import org.testng.annotations.Test
 
@@ -16,16 +18,16 @@ class CalculationTest : BratwurtstTestcase() {
         val int1 = BWInteger(10)
         val int2 = BWInteger(2)
         var calculation = Calculation(0, int1, int2, '+')
-        calculation.run(null)
+        calculation.run(mock(Scope::class.java))
         Assert.assertEquals(12, calculation.intValue)
         calculation = Calculation(0, int1, int2, '-')
-        calculation.run(null)
+        calculation.run(mock(Scope::class.java))
         Assert.assertEquals(8, calculation.intValue)
         calculation = Calculation(0, int1, int2, '*')
-        calculation.run(null)
+        calculation.run(mock(Scope::class.java))
         Assert.assertEquals(20, calculation.intValue)
         calculation = Calculation(0, int1, int2, '/')
-        calculation.run(null)
+        calculation.run(mock(Scope::class.java))
         Assert.assertEquals(5, calculation.intValue)
     }
 
@@ -33,7 +35,7 @@ class CalculationTest : BratwurtstTestcase() {
     @Throws(Exception::class)
     fun testGetIntValue() {
         val calculation = Calculation(0, BWInteger(1), BWInteger(2), '+')
-        calculation.run(null)
+        calculation.run(mock(Scope::class.java))
         Assert.assertEquals(3, calculation.intValue)
     }
 
@@ -41,7 +43,7 @@ class CalculationTest : BratwurtstTestcase() {
     @Throws(Exception::class)
     fun testGetValue() {
         val calculation = Calculation(0, BWInteger(1), BWInteger(2), '+')
-        calculation.run(null)
+        calculation.run(mock(Scope::class.java))
         Assert.assertEquals(ValueType.INTEGER, calculation.value.valueType)
         Assert.assertEquals(3, calculation.value.intValue)
     }

@@ -2,6 +2,8 @@ package org.dedda.bratwurst.lang
 
 import org.dedda.bratwurst.BratwurtstTestcase
 import org.dedda.bratwurst.lang.classes.BWClass
+import org.dedda.bratwurst.lang.scope.Scope
+import org.mockito.Mockito.mock
 import org.testng.Assert
 import org.testng.annotations.Test
 
@@ -20,16 +22,16 @@ class InstanceofTest : BratwurtstTestcase() {
         val integer = BWInteger(12)
         val testObject = BWObject(testClass)
         var instruction = Instanceof(0, integer, integerType)
-        instruction.run(null)
+        instruction.run(mock(Scope::class.java))
         Assert.assertEquals(BWInteger(1), instruction.value)
         instruction = Instanceof(0, integer, testType)
-        instruction.run(null)
+        instruction.run(mock(Scope::class.java))
         Assert.assertEquals(BWInteger(0), instruction.value)
         instruction = Instanceof(0, testObject, testType)
-        instruction.run(null)
+        instruction.run(mock(Scope::class.java))
         Assert.assertEquals(BWInteger(1), instruction.value)
         instruction = Instanceof(0, testObject, integerType)
-        instruction.run(null)
+        instruction.run(mock(Scope::class.java))
         Assert.assertEquals(BWInteger(0), instruction.value)
     }
 }

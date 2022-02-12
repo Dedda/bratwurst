@@ -4,6 +4,7 @@ import org.dedda.bratwurst.BratwurtstTestcase;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.testng.annotations.Test;
 
+import static org.mockito.Mockito.mock;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -50,7 +51,7 @@ public class ConditionTest extends BratwurtstTestcase {
         trueRun = false;
         falseRun = false;
         testValue = 1;
-        condition.run(null);
+        condition.run(mock(Scope.class));
         assertTrue(trueRun);
         assertFalse(falseRun);
     }
@@ -60,7 +61,7 @@ public class ConditionTest extends BratwurtstTestcase {
         trueRun = false;
         falseRun = false;
         testValue = 0;
-        condition.run(null);
+        condition.run(mock(Scope.class));
         assertFalse(trueRun);
         assertTrue(falseRun);
     }

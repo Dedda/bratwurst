@@ -1,73 +1,41 @@
-package org.dedda.bratwurst.lang;
+package org.dedda.bratwurst.lang
 
-import org.dedda.bratwurst.lang.classes.BWClass;
-import org.dedda.bratwurst.lang.scope.Scope;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import org.dedda.bratwurst.lang.classes.BWClass
+import org.dedda.bratwurst.lang.scope.Scope
 
 /**
  * Created by dedda on 10/14/15.
  *
  * @author dedda
  */
-public class BWObject extends BWExpression {
+open class BWObject(val bwClass: BWClass) : BWExpression(0) {
+    val functions: Array<BWFunction> = bwClass.functions
+    private val variables: MutableList<BWVariable> = ArrayList()
 
-    private final BWClass bwClass;
-    private BWVariable[] variables = new BWVariable[0];
-    private BWFunction[] functions;
-
-    public BWObject(BWClass bwClass) {
-        super(0);
-        this.bwClass = bwClass;
-        this.functions = bwClass.getFunctions();
+    fun getVariables(): List<BWVariable> {
+        return variables
     }
 
-    public BWVariable[] getVariables() {
-        return variables;
-    }
-
-    public void addVariable(BWVariable variable) {
-        List<BWVariable> variableList = Arrays.stream(variables).collect(Collectors.toList());
-        Optional<BWVariable> variableOptional = variableList.stream().filter(v -> v.getName().equals(variable.getName())).findFirst();
-        if (variableOptional.isPresent()) {
-            variableOptional.get().setValue(variable.getValue());
+    fun addVariable(variable: BWVariable) {
+        val variableOptional = variables.stream().filter { v: BWVariable -> v.name == variable.name }.findFirst()
+        if (variableOptional.isPresent) {
+            variableOptional.get().value = variable.value
         } else {
-            variableList.add(variable);
+            variables.add(variable)
         }
-        variables = new BWVariable[variableList.size()];
-        variableList.toArray(variables);
     }
 
-    public BWFunction[] getFunctions() {
-        return functions;
+    override fun getValue(): BWObject {
+        return this
     }
 
-    public void setFunctions(BWFunction[] functions) {
-        this.functions = functions;
+    override fun getIntValue(): Int {
+        return 0
     }
 
-    public BWClass getBwClass() {
-        return bwClass;
+    override fun getValueType(): ValueType {
+        return ValueType.OBJECT
     }
 
-    @Override
-    public BWObject getValue() {
-        return this;
-    }
-
-    @Override
-    public int getIntValue() {
-        return 0;
-    }
-
-    @Override
-    public ValueType getValueType() {
-        return ValueType.OBJECT;
-    }
-
-    @Override
-    public void run(Scope scope) {}
+    override fun run(scope: Scope) {}
 }

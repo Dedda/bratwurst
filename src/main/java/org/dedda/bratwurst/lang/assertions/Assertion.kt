@@ -10,8 +10,6 @@ abstract class Assertion(lineNumber: Int): BWInstruction(lineNumber) {
         if (!scope.isInTest) {
             return
         }
-        val testFileRunner = scope.testFileRunner
-        testFileRunner.incAssertions()
         val result = doAssertion(scope)
         scope.testFunctionRunner.addAssertionResult(result)
     }

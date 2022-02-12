@@ -21,23 +21,9 @@ class StackElement(val obj: BWObject?, val function: BWFunction, variables: Muta
         }
         val objectOpt: Optional<BWVariable>
         if (obj != null) {
-            objectOpt = listOf(*obj.variables).stream().filter { v: BWVariable -> v.name == name }.findFirst()
+            objectOpt = obj.getVariables().stream().filter { v: BWVariable -> v.name == name }.findFirst()
             return if (objectOpt.isPresent) objectOpt.get() else null
         }
         return null
     }
-
-    fun setFunctionVar(variable: BWVariable) {
-        val local = getVariable(variable.name)
-        if (local == null) {
-            functionVars.add(variable)
-        } else {
-            local.value = variable.value
-        }
-    }
-
-    fun getFunctionVars(): List<BWVariable> {
-        return functionVars
-    }
-
 }
