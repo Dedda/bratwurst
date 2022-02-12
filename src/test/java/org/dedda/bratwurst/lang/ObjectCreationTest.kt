@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.lang
 
 import org.dedda.bratwurst.BratwurtstTestcase
+import org.dedda.bratwurst.lang.classes.BWClass
 import org.dedda.bratwurst.lang.scope.Scope
 import org.testng.Assert
 import org.testng.annotations.Test

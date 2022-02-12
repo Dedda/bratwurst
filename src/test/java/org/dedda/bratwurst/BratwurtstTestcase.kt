@@ -1,6 +1,6 @@
 package org.dedda.bratwurst
 
-import org.dedda.bratwurst.lang.BWClass
+import org.dedda.bratwurst.lang.classes.BWClass
 import org.testng.annotations.BeforeMethod
 
 /**

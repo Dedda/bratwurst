@@ -40,7 +40,7 @@ public class Instanceof extends BWExpression {
         final BWObject var = expression.getValue();
         final ValueType type = var.getValueType();
         if (type.equals(ValueType.OBJECT)) {
-            String className = var.getBwClass().name;
+            String className = var.getBwClass().getName();
             isInstance = className.equals(this.className);
         } else {
             isInstance = type.getValue().equals(this.className);

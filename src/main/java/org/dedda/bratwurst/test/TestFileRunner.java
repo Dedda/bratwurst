@@ -1,8 +1,8 @@
 package org.dedda.bratwurst.test;
 
-import org.dedda.bratwurst.lang.BWClass;
 import org.dedda.bratwurst.lang.BWFunction;
 import org.dedda.bratwurst.lang.Program;
+import org.dedda.bratwurst.lang.classes.BWClass;
 import org.dedda.bratwurst.parse.Parser;
 
 import java.io.File;

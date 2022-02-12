@@ -23,7 +23,7 @@ class LengthGet(lineNumber: Int, private val varName: String) : BWExpression(lin
     override fun run(scope: Scope) {
         val variable = scope.getVariable(varName)
         value = if (variable.value is BWString) {
-            (variable.value as BWString).stringValue!!.length
+            (variable.value as BWString).stringValue.length
         } else {
             throw RuntimeException("variable not of type string!")
         }

@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang;
 
+import org.dedda.bratwurst.lang.classes.BWClass;
 import org.dedda.bratwurst.lang.scope.Scope;
 
 import java.util.*;
@@ -68,8 +69,8 @@ public class Program {
 
     public void registerClass(BWClass bwClass) {
         List<BWClass> classList = Arrays.stream(classes).collect(Collectors.toList());
-        if (classList.stream().filter(c -> c.name.equals(bwClass.name)).findFirst().isPresent()) {
-            throw new RuntimeException("Class " + bwClass.name + " already registered!");
+        if (classList.stream().filter(c -> c.getName().equals(bwClass.getName())).findFirst().isPresent()) {
+            throw new RuntimeException("Class " + bwClass.getName() + " already registered!");
         }
         classList.add(bwClass);
         classList.toArray(classes);

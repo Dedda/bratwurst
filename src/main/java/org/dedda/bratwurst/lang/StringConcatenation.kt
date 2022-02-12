@@ -17,7 +17,7 @@ class StringConcatenation(lineNumber: Int, private val variableNames: Array<Stri
     override fun getIntValue(): Int {
         var value = 0
         try {
-            value = (getValue() as BWString).stringValue!!.toInt()
+            value = (getValue() as BWString).stringValue.toInt()
         } catch (e: Exception) {
             e.printStackTrace()
         }

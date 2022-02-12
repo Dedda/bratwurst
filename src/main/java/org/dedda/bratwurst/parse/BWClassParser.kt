@@ -1,7 +1,7 @@
 package org.dedda.bratwurst.parse
 
-import org.dedda.bratwurst.lang.BWClass
 import org.dedda.bratwurst.lang.BWFunction
+import org.dedda.bratwurst.lang.classes.BWClass
 import java.util.*
 
 /**

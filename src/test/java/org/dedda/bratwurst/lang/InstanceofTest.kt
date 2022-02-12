@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.lang
 
 import org.dedda.bratwurst.BratwurtstTestcase
+import org.dedda.bratwurst.lang.classes.BWClass
 import org.testng.Assert
 import org.testng.annotations.Test
 
@@ -15,7 +16,7 @@ class InstanceofTest : BratwurtstTestcase() {
     fun testRun() {
         val integerType = "integer"
         val testType = "testClass"
-        val testClass = BWClass("testClass", arrayOfNulls(0))
+        val testClass = BWClass("testClass", emptyArray())
         val integer = BWInteger(12)
         val testObject = BWObject(testClass)
         var instruction = Instanceof(0, integer, integerType)

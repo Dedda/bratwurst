@@ -26,7 +26,7 @@ class CharToInt(lineNumber: Int, private val varname: String) : BWExpression(lin
             throw RuntimeException("Variable not of type string")
         }
         val value = variable.value as BWString
-        if (value.stringValue!!.length != 1) {
+        if (value.stringValue.length != 1) {
             throw RuntimeException("String not length of 1")
         }
         this.value = value.stringValue[0].toInt()

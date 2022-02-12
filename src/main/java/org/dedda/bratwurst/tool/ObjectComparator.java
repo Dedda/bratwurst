@@ -11,6 +11,6 @@ public class ObjectComparator implements Comparator {
 
     @Override
     public boolean compare(BWObject obj1, BWObject obj2) {
-        return obj1.getBwClass().name.equals(obj2.getBwClass().name);
+        return obj1.getBwClass().getName().equals(obj2.getBwClass().getName());
     }
 }

@@ -1,5 +1,6 @@
 package org.dedda.bratwurst.lang
 
+import org.dedda.bratwurst.lang.classes.BWClass
 import org.dedda.bratwurst.lang.scope.Scope
 
 /**

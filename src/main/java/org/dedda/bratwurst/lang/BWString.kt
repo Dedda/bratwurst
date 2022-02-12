@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.lang
 
 import org.dedda.bratwurst.lang.ValueType.STRING
+import org.dedda.bratwurst.lang.classes.BWClass
 
 /**
  * Created by dedda on 10/15/15.

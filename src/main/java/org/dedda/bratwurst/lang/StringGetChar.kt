@@ -29,7 +29,7 @@ class StringGetChar(lineNumber: Int, private val location: String, private val v
         } else {
             val locVar = scope.getVariable(this.location)
             if (locVar.value is BWString) {
-                if ((locVar.value as BWString).stringValue!!.matches(NUMERIC_REGEX)) {
+                if ((locVar.value as BWString).stringValue.matches(NUMERIC_REGEX)) {
                     locVar.intValue
                 } else {
                     throw RuntimeException("location is not a number!")
@@ -49,7 +49,7 @@ class StringGetChar(lineNumber: Int, private val location: String, private val v
         } else {
             throw RuntimeException("variable not of type string or integer")
         }
-        value = "" + text!![location]
+        value = "" + text[location]
     }
 
     companion object {

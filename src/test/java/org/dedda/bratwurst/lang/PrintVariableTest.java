@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
+import org.dedda.bratwurst.lang.classes.BWClass;
 import org.dedda.bratwurst.lang.scope.Scope;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
@@ -11,7 +12,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 
 import static org.testng.Assert.assertEquals;
 

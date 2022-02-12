@@ -1,9 +1,9 @@
 package org.dedda.bratwurst.lang.assertions.equality
 
-import org.dedda.bratwurst.lang.BWClass
 import org.dedda.bratwurst.lang.BWInteger
 import org.dedda.bratwurst.lang.BWObject
 import org.dedda.bratwurst.lang.BWString
+import org.dedda.bratwurst.lang.classes.BWClass
 import org.testng.Assert
 import org.testng.annotations.Test
 
