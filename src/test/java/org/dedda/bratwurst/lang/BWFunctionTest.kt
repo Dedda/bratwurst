@@ -14,36 +14,47 @@ import java.util.*
  * @author dedda
  */
 class BWFunctionTest : ScopedTestCase() {
-    // TODO: Fix params
+
     @get:DataProvider(name = "getParams")
     val params: Array<Array<Any>>
-        get() = arrayOf(arrayOf(arrayOf(
-                object : BWInstruction(0) {
-                    override fun run(scope: Scope) {
-                        executed[0] = true
+        get() = arrayOf(
+            arrayOf(
+                listOf(
+                    object : BWInstruction(0) {
+                        override fun run(scope: Scope) {
+                            executed[0] = true
+                        }
+                    },
+                    object : BWInstruction(0) {
+                        override fun run(scope: Scope) {
+                            executed[1] = true
+                        }
                     }
-                },
-                object : BWInstruction(0) {
-                    override fun run(scope: Scope) {
-                        executed[1] = true
-                    }
-                }
-        ), BWInteger(0), arrayOfNulls<BWVariable>(0)), arrayOf(arrayOf(
-                object : BWInstruction(0) {
-                    override fun run(scope: Scope) {
-                        executed[0] = true
-                    }
-                }, Return(0, object : BWInteger(1) {
-            override fun run(scope: Scope) {
-                super.run(scope)
-                executed[1] = true
-            }
-        })
-        ), BWInteger(1), arrayOfNulls<BWVariable>(0)))
+                ),
+                BWInteger(0),
+                arrayOfNulls<BWVariable>(0)
+            ),
+            arrayOf(
+                listOf(
+                    object : BWInstruction(0) {
+                        override fun run(scope: Scope) {
+                            executed[0] = true
+                        }
+                    }, Return(0, object : BWInteger(1) {
+                        override fun run(scope: Scope) {
+                            super.run(scope)
+                            executed[1] = true
+                        }
+                    })
+                ),
+                BWInteger(1),
+                arrayOfNulls<BWVariable>(0)
+            )
+        )
 
     @Test(dataProvider = "getParams")
     @Throws(Exception::class)
-    fun testFunction(instructions: Array<BWInstruction>, expectedValue: BWObject, arguments: Array<BWVariable?>?) {
+    fun testFunction(instructions: List<BWInstruction>, expectedValue: BWObject, arguments: Array<BWVariable>) {
         val function = BWFunction("testFunction", instructions)
         executed = BooleanArray(instructions.size)
         Arrays.fill(executed, false)

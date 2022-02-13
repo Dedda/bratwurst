@@ -1,74 +1,69 @@
-package org.dedda.bratwurst.test;
+package org.dedda.bratwurst.test
 
-import org.dedda.bratwurst.lang.BWFunction;
-import org.dedda.bratwurst.lang.Program;
-import org.dedda.bratwurst.lang.classes.BWClass;
-import org.dedda.bratwurst.parse.Parser;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.dedda.bratwurst.lang.BWFunction
+import org.dedda.bratwurst.lang.Program
+import org.dedda.bratwurst.lang.classes.BWClass.Companion.unregisterAll
+import org.dedda.bratwurst.parse.Parser
+import java.io.File
+import java.util.stream.Collectors
 
 /**
  * Created by dedda on 1/23/16.
  *
  * @author dedda
  */
-public class TestFileRunner {
+class TestFileRunner(private val fileName: String) {
 
-    private final String fileName;
-    private int assertions = 0;
-    private int allAssertions = 0;
-    private boolean stop = false;
-    private boolean finished = false;
+    private var assertions = 0
+    var allAssertions = 0
+        private set
+    private var stop = false
+    private var finished = false
+    private val isTestFunction: (BWFunction) -> Boolean = { function -> function.name.startsWith("test") }
 
-    public TestFileRunner(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public void run() {
-        BWClass.unregisterAll();
-        File file = new File(fileName);
-        Parser parser = new Parser(file);
-        Program program = parser.parse();
-        BWFunction[] functions = program.getFunctions();
-        List<BWFunction> testFunctions = Arrays.stream(functions).filter(f -> f.getName().startsWith("test")).collect(Collectors.toList());
-        System.out.println("\n" + testFunctions.size() + " test functions found in file" + fileName + "\n");
-        for (BWFunction function : testFunctions) {
-            assertions = 0;
-            System.out.println("running " + function.getName() + ":");
-            new TestFunctionRunner().run(this, fileName, function.getName());
+    fun run() {
+        unregisterAll()
+        val functions = loadProgram(fileName).functions
+        val testFunctions = functions.stream()
+            .filter(isTestFunction)
+            .collect(Collectors.toList())
+        println("\n${testFunctions.size} test functions found in file$fileName\n")
+        for (function in testFunctions) {
+            assertions = 0
+            println("running " + function.name + ":")
+            TestFunctionRunner(this).run(fileName, function.name)
             if (stop) {
-                break;
+                break
             }
-            System.out.println(" [" + assertions + "] assertions.");
+            println(" [$assertions] assertions.")
         }
-        System.out.println("\n" + allAssertions + " assertions in file " + fileName);
+        println("\n$allAssertions assertions in file $fileName")
         if (stop) {
-            System.out.println("failures!");
+            println("failures!")
         }
-        System.out.println("--------------------------------------");
-        finished = true;
+        println("--------------------------------------")
+        finished = true
     }
 
-    public void incAssertions() {
-        assertions++;
-        allAssertions++;
+    fun incrementAssertions() {
+        assertions++
+        allAssertions++
     }
 
-    public void stop() {
-        stop = true;
+    fun stop() {
+        stop = true
     }
 
-    public boolean wasSuccessful() {
+    fun wasSuccessful(): Boolean {
         if (!finished) {
-            throw new RuntimeException("Test still running!");
+            throw RuntimeException("Test still running!")
         }
-        return !stop;
+        return !stop
     }
 
-    public int getAllAssertions() {
-        return allAssertions;
+    private fun loadProgram(fileName: String): Program {
+        val file = File(fileName)
+        val parser = Parser(file)
+        return parser.parse()
     }
 }

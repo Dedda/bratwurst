@@ -5,6 +5,8 @@ import org.dedda.bratwurst.lang.BWFunction;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -58,13 +60,13 @@ public class BWFunctionParser_parseTest extends BratwurtstTestcase {
     public void testParse(final String[] lines, final int begin, final String expectedErrorMessage, final String expectedName, final int expectedInstructionsCount) {
         BWFunction function = null;
         try {
-            function = parser.parse(lines, begin);
+            function = parser.parse(Arrays.asList(lines), begin);
         } catch (RuntimeException e) {
             assertEquals(expectedErrorMessage, e.getMessage());
         }
         if (function != null) {
             assertEquals(expectedName, function.getName());
-            assertEquals(expectedInstructionsCount, function.getInstructions().length);
+            assertEquals(expectedInstructionsCount, function.getInstructions().size());
         }
     }
 }

@@ -38,10 +38,6 @@ public class Scope {
         this.testFunctionRunner = testFunctionRunner;
     }
 
-    public BWObject getCurrentObject() {
-        return scopeStack.peek().getObj();
-    }
-
     public BWObject getCurrentObjectR() {
         BWObject object;
         int index = scopeStack.size() - 1;
@@ -67,14 +63,18 @@ public class Scope {
                 return funcOpt.get();
             }
         }
-        funcOpt = Arrays.stream(program.getFunctions()).filter(f -> f.getName().equals(name)).findFirst();
+        funcOpt = program.getFunctions().stream()
+                .filter(f -> f.getName().equals(name))
+                .findFirst();
         return funcOpt.orElse(null);
     }
 
     public BWFunction getFunction(final String variableName, final String functionName) {
         BWObject object = getVariable(variableName).getValue();
-        Optional<BWFunction> funcOpt = Arrays.stream(object.getFunctions()).filter(f -> f.getName().equals(functionName)).findFirst();
-        return funcOpt.orElse(null);
+        return Arrays.stream(object.getFunctions())
+                .filter(f -> f.getName().equals(functionName))
+                .findFirst()
+                .orElse(null);
     }
 
     public void registerClass(final BWClass bwClass) {
@@ -109,7 +109,7 @@ public class Scope {
     }
 
     public void enterFunction(final BWFunction function, final List<BWVariable> arguments) {
-        scopeStack.push(new StackElement(null, function, arguments));
+        enterFunction(null, function, arguments);
     }
 
     public void enterFunction(final BWObject object, final BWFunction function, final List<BWVariable> arguments) {
@@ -130,10 +130,6 @@ public class Scope {
 
     public BWObject pop() {
         return program.pop();
-    }
-
-    public TestFileRunner getTestFileRunner() {
-        return testFileRunner;
     }
 
     public TestFunctionRunner getTestFunctionRunner() {

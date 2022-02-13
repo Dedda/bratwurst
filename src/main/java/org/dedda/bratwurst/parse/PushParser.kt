@@ -8,11 +8,11 @@ import org.dedda.bratwurst.lang.Push
  * @author dedda
  */
 class PushParser : InstructionParser() {
-    override fun parse(line: String, linenumber: Int): Push? {
+    override fun parse(line: String, lineNumber: Int): Push? {
         if (line.matches(PATTERN)) {
             val expression = line.substring(1, line.length - 1)
-            val argument = ExpressionParser().parse(expression, linenumber)
-            return Push(linenumber, argument)
+            val argument = ExpressionParser().parse(expression, lineNumber)
+            return Push(lineNumber, argument)
         }
         return null
     }

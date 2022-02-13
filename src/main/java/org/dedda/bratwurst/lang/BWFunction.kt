@@ -7,9 +7,10 @@ import org.dedda.bratwurst.lang.scope.Scope
  *
  * @author dedda
  */
-class BWFunction(val name: String, val instructions: Array<BWInstruction>) : BWExpression(0) {
+class BWFunction(val name: String, val instructions: List<BWInstruction>) : BWExpression(0) {
     private val variables: MutableList<BWVariable> = ArrayList()
     private var value: BWObject = BWInteger(0)
+
     override fun getValue(): BWObject {
         return value
     }
@@ -33,9 +34,4 @@ class BWFunction(val name: String, val instructions: Array<BWInstruction>) : BWE
             }
         }
     }
-
-    fun getVariables(): List<BWVariable> {
-        return variables
-    }
-
 }

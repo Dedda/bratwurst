@@ -10,6 +10,6 @@ object AssertionSuccess : AssertionResult() {
     override fun wasSuccessful() = true
 }
 
-class AssertionError(val message: String): AssertionResult() {
+class AssertionError(val message: String) : AssertionResult() {
     override fun wasSuccessful() = false
 }

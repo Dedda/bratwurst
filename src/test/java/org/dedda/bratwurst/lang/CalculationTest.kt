@@ -51,6 +51,6 @@ class CalculationTest : BratwurtstTestcase() {
     @Test
     @Throws(Exception::class)
     fun testGetValueType() {
-        Assert.assertEquals(ValueType.INTEGER, Calculation(0, null, null, '+').valueType)
+        Assert.assertEquals(ValueType.INTEGER, Calculation(0, BWInteger(1), BWInteger(1), '+').valueType)
     }
 }

@@ -23,7 +23,7 @@ class BWFunctionParserTest : BratwurtstTestcase() {
         )
         val begin = 1
         val expectedEnd = 4
-        val end = BWFunctionParser().getEndOfFunction(lines, begin)
+        val end = BWFunctionParser().getEndOfFunction(listOf(*lines), begin)
         Assert.assertEquals(expectedEnd, end)
     }
 }

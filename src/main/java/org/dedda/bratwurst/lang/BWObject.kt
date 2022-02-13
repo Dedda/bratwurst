@@ -18,6 +18,7 @@ open class BWObject(val bwClass: BWClass) : BWExpression(0) {
 
     fun addVariable(variable: BWVariable) {
         val variableOptional = variables.stream().filter { v: BWVariable -> v.name == variable.name }.findFirst()
+        variableOptional.ifPresent { it.value = variable.value }
         if (variableOptional.isPresent) {
             variableOptional.get().value = variable.value
         } else {

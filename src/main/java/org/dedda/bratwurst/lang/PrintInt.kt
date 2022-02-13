@@ -1,28 +1,20 @@
-package org.dedda.bratwurst.lang;
+package org.dedda.bratwurst.lang
 
-import org.dedda.bratwurst.lang.scope.Scope;
+import org.dedda.bratwurst.lang.scope.Scope
 
 /**
  * Created by dedda on 10/19/15.
  *
  * @author dedda
  */
-public class PrintInt extends BWInstruction {
+class PrintInt(lineNumber: Int, private val message: String) : BWInstruction(lineNumber) {
 
-    private final String message;
-
-    public PrintInt(int lineNumber, String message) {
-        super(lineNumber);
-        this.message = message;
-    }
-
-    @Override
-    public void run(Scope scope) {
-        if (message.matches("\\-?\\d+")) {
-            System.out.print(message);
+    override fun run(scope: Scope) {
+        if (message.matches(Regex("-?\\d+"))) {
+            print(message)
         } else {
-            BWVariable variable = scope.getVariable(message);
-            System.out.print(variable.getIntValue());
+            val variable = scope.getVariable(message)
+            print(variable.intValue)
         }
     }
 }

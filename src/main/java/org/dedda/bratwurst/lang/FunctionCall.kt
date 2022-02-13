@@ -12,12 +12,12 @@ class FunctionCall : BWExpression {
     private var variableName = ""
     private var value: BWObject = BWInteger(0)
 
-    constructor(lineNumber: Int, functionName: String, functionArguments: Array<BWVariable?>?) : super(lineNumber) {
+    constructor(lineNumber: Int, functionName: String, functionArguments: Array<BWVariable>) : super(lineNumber) {
         this.functionName = functionName
         arguments = functionArguments
     }
 
-    constructor(lineNumber: Int, variableName: String, functionName: String, functionArguments: Array<BWVariable?>?) : super(lineNumber) {
+    constructor(lineNumber: Int, variableName: String, functionName: String, functionArguments: Array<BWVariable>) : super(lineNumber) {
         this.variableName = variableName
         this.functionName = functionName
         arguments = functionArguments

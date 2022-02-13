@@ -8,10 +8,10 @@ import org.dedda.bratwurst.lang.Pop
  * @author dedda
  */
 class PopParser : InstructionParser() {
-    override fun parse(line: String, linenumber: Int): Pop? {
+    override fun parse(line: String, lineNumber: Int): Pop? {
         if (line.matches(PATTERN)) {
             val name = line.substring(1, line.length - 1)
-            return Pop(linenumber, name)
+            return Pop(lineNumber, name)
         }
         return null
     }

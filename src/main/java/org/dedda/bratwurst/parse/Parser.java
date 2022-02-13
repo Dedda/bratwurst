@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static org.dedda.bratwurst.parse.Patterns.*;
 
@@ -28,32 +29,31 @@ public class Parser {
     /*
      * Parsers:
      */
-    private InstructionParser instructionParser = new InstructionParser();
-    private BWFunctionParser functionParser = new BWFunctionParser();
-    private BWClassParser classParser = new BWClassParser();
-    private ConditionParser conditionParser = new ConditionParser();
-    private LoopParser loopParser = new LoopParser();
+    private final InstructionParser instructionParser = new InstructionParser();
+    private final BWFunctionParser functionParser = new BWFunctionParser();
+    private final BWClassParser classParser = new BWClassParser();
+    private final ConditionParser conditionParser = new ConditionParser();
+    private final LoopParser loopParser = new LoopParser();
 
     public Parser(File sourceFile) {
         this.sourceFile = sourceFile;
     }
 
     public Program parse() {
-        String[] lines;
+        List<String> lines;
         try {
-            lines = getFileContents(sourceFile).split("\n");
+            lines = Arrays.asList(getFileContents(sourceFile).split("\n"));
         } catch (final IOException e) {
             throw new RuntimeException("can't load source file!", e);
         }
-        for (int i = 0; i < lines.length; i++) {
-            lines[i] = lines[i].trim();
-        }
-        while (Arrays.stream(lines).anyMatch(isInclude)) {
-            for (int i = 0; i < lines.length; i++) {
-                if (isInclude.test(lines[i])) {
+        lines = lines.stream().map(String::trim).collect(Collectors.toList());
+        while (hasIncludes(lines)) {
+            for (int i = 0; i < lines.size(); i++) {
+                if (isInclude.test(lines.get(i))) {
                     try {
-                        final String[] included = getFileContents(new File(sourceFile.getParent() + '/' + lines[i].substring(1, lines[i].length() - 1))).split("\n");
-                        lines = insertIntoArray(lines, included, i);
+                        final String[] included = getFileContents(new File(sourceFile.getParent() + '/' + lines.get(i).substring(1, lines.get(i).length() - 1))).split("\n");
+                        lines.remove(i);
+                        lines.addAll(i, Arrays.asList(included));
                         break;
                     } catch (final IOException e) {
                         e.printStackTrace();
@@ -61,43 +61,15 @@ public class Parser {
                 }
             }
         }
-        int counter = 1;
-        while (counter < lines.length) {
-            if (lines[counter].matches(BEGIN)) {
-                lines = removeFromArray(lines, counter);
-            }
-            counter++;
-        }
-        counter = 1;
-        while (counter < lines.length) {
-            boolean removed = false;
-            if (lines[counter].trim().length() == 0) {
-                removed = true;
-                lines = removeFromArray(lines, counter);
-            }
-            if (!removed) {
-                counter++;
-            }
-        }
-        counter = 1;
-        while (counter < lines.length) {
-            boolean removed = false;
-            if (lines[counter].trim().matches(COMMENT)) {
-                removed = true;
-                lines = removeFromArray(lines, counter);
-            }
-            if (!removed) {
-                counter++;
-            }
-        }
-        if (!lines[0].matches(BEGIN)) {
-            throw new RuntimeException("HELP! FIRST INSTRUCTION IS NOT AN ENTRY POINT! WHAT DO?!");
-        }
+        lines = removeComments(lines);
+        lines = removeEmptyLines(lines);
+        expectBeginLine(lines);
+        removeUnnecessaryBegins(lines);
         final List<BWInstruction> instructions = new LinkedList<>();
         final List<BWFunction> functions = new LinkedList<>();
         final List<BWClass> classes = new LinkedList<>();
-        for (int i = 0; i < lines.length; i++) {
-            String line = lines[i];
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
             BWInstruction instruction = instructionParser.parse(line, i);
             if (instruction == null) {
                 if (line.matches(CLASS_BEGIN)) {
@@ -113,7 +85,7 @@ public class Parser {
                     continue;
                 }
                 if (line.matches(CONDITION_HEAD)) {
-                    int end = conditionParser.getEnd(lines, i);
+                    int end = conditionParser.findEnd(lines, i);
                     instructions.add(conditionParser.parse(lines, i));
                     i = end;
                     continue;
@@ -127,17 +99,39 @@ public class Parser {
                 instructions.add(instruction);
             }
         }
-        final BWInstruction[] instructionsArray = new BWInstruction[instructions.size()];
-        instructions.toArray(instructionsArray);
-        final BWFunction[] functionsArray = new BWFunction[functions.size()];
-        functions.toArray(functionsArray);
-        final BWClass[] classesArray = new BWClass[classes.size()];
-        classes.toArray(classesArray);
         final Program program = new Program();
-        program.setInstructions(instructionsArray);
-        program.setFunctions(functionsArray);
-        program.setClasses(classesArray);
+        program.setInstructions(instructions);
+        program.setFunctions(functions);
+        program.setClasses(classes);
         return program;
+    }
+
+    private List<String> removeEmptyLines(final List<String> lines) {
+        return lines.stream()
+                .filter(line -> !line.trim().isEmpty())
+                .collect(Collectors.toList());
+    }
+
+    private List<String> removeComments(final List<String> lines) {
+        return lines.stream()
+                .filter(line -> !line.trim().matches(COMMENT))
+                .collect(Collectors.toList());
+    }
+
+    private void removeUnnecessaryBegins(final List<String> lines) {
+        int counter = 1;
+        while (counter < lines.size()) {
+            if (lines.get(counter).matches(BEGIN)) {
+                lines.remove(counter);
+            }
+            counter++;
+        }
+    }
+
+    private void expectBeginLine(List<String> lines) {
+        if (!lines.get(0).matches(BEGIN)) {
+            throw new RuntimeException("HELP! FIRST INSTRUCTION IS NOT AN ENTRY POINT! WHAT DO?!");
+        }
     }
 
     private String getFileContents(final File file) throws IOException {
@@ -147,30 +141,11 @@ public class Parser {
         return new String(buffer);
     }
 
-    public String[] insertIntoArray(final String[] array, final String[] toInsert, final int lineToReplace) {
-        final String[] newArray = new String[array.length + toInsert.length - 1];
-        System.arraycopy(array, 0, newArray, 0, lineToReplace);
-        System.arraycopy(toInsert, 0, newArray, lineToReplace, toInsert.length);
-        System.arraycopy(array, lineToReplace + 1, newArray, lineToReplace + toInsert.length, newArray.length - (lineToReplace + toInsert.length));
-        return newArray;
-    }
-
-    private String[] removeFromArray(final String[] array, final int index) {
-        final String[] newArray = new String[array.length - 1];
-        for (int i = 0, n = 0; i < array.length; i++) {
-            if (i != index) {
-                newArray[n] = array[i];
-                n++;
-            }
-        }
-        return newArray;
+    private boolean hasIncludes(final List<String> lines) {
+        return lines.stream().anyMatch(isInclude);
     }
 
     public InstructionParser getInstructionParser() {
         return instructionParser;
-    }
-
-    public void setInstructionParser(final InstructionParser instructionParser) {
-        this.instructionParser = instructionParser;
     }
 }

@@ -5,6 +5,7 @@ import org.dedda.bratwurst.lang.BWInstruction;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.dedda.bratwurst.parse.Patterns.*;
 
@@ -21,8 +22,8 @@ public class BWFunctionParser {
      * @param begin Index of the line that indicates the beginning of the function (~{).
      * @return Parsed {@link BWFunction}
      */
-    public BWFunction parse(final String[] lines, final int begin) {
-        if (!lines[begin].matches(FUNCTION_BEGIN)) {
+    public BWFunction parse(final List<String> lines, final int begin) {
+        if (!lines.get(begin).matches(FUNCTION_BEGIN)) {
             throw new RuntimeException("invalid function begin, no head found!");
         }
         final int end = getEndOfFunction(lines, begin);
@@ -32,11 +33,11 @@ public class BWFunctionParser {
         final ConditionParser conditionParser = new ConditionParser();
         final LoopParser loopParser = new LoopParser();
         for (int i = begin+1; i < end; i++) {
-            final String line = lines[i];
+            final String line = lines.get(i);
             if (line.matches(NAMING)) {
                 functionName = line.split(" ")[2];
             } else if (line.matches(CONDITION_HEAD)) {
-                final int conditionEnd = conditionParser.getEnd(lines, i);
+                final int conditionEnd = conditionParser.findEnd(lines, i);
                 instructions.add(conditionParser.parse(lines, i));
                 i = conditionEnd;
             } else if (line.matches(LOOP_HEAD)) {
@@ -50,19 +51,14 @@ public class BWFunctionParser {
         if (functionName == null) {
             throw new RuntimeException("function name not defined!");
         }
-        final BWInstruction[] instructionsArray = new BWInstruction[instructions.size()];
-        instructions.toArray(instructionsArray);
-        return new BWFunction(functionName, instructionsArray);
+        return new BWFunction(functionName, instructions);
     }
 
-    public int getEndOfFunction(final String[] lines, final int begin) {
-        for (int i = begin+1; i < lines.length; i++) {
-            final String line = lines[i];
-            if (line.matches(FUNCTION_END)) {
-                return i;
-            }
-        }
-        throw new RuntimeException("End of method not found!");
+    public int getEndOfFunction(final List<String> lines, final int begin) {
+        return IntStream.range(begin+1, lines.size())
+                .filter(line -> lines.get(line).matches(FUNCTION_END))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("End of method not found!"));
     }
 
 }

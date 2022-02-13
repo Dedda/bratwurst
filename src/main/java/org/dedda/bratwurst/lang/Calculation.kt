@@ -1,74 +1,34 @@
-package org.dedda.bratwurst.lang;
+package org.dedda.bratwurst.lang
 
-import org.dedda.bratwurst.lang.scope.Scope;
+import org.dedda.bratwurst.lang.calculate.operationForChar
+import org.dedda.bratwurst.lang.scope.Scope
 
 /**
  * Created by dedda on 10/15/15.
  *
  * @author dedda
  */
-public class Calculation extends BWExpression {
+class Calculation(lineNumber: Int, val leftSide: BWExpression, val rightSide: BWExpression, val operator: Char) :
+    BWExpression(lineNumber) {
 
-    private final BWExpression leftSide;
-    private final BWExpression rightSide;
-    private final char operator;
-    private int value = 0;
-
-    public Calculation(int lineNumber, BWExpression leftSide, BWExpression rightSide, char operator) {
-        super(lineNumber);
-        this.leftSide = leftSide;
-        this.rightSide = rightSide;
-        this.operator = operator;
+    private var value = 0
+    override fun getValue(): BWObject {
+        return BWInteger(value)
     }
 
-    @Override
-    public BWObject getValue() {
-        return new BWInteger(value);
+    override fun getIntValue(): Int {
+        return value
     }
 
-    @Override
-    public int getIntValue() {
-        return value;
+    override fun getValueType(): ValueType {
+        return ValueType.INTEGER
     }
 
-    @Override
-    public ValueType getValueType() {
-        return ValueType.INTEGER;
-    }
-
-    @Override
-    public void run(Scope scope) {
-        leftSide.run(scope);
-        int left = leftSide.getIntValue();
-        rightSide.run(scope);
-        int right = rightSide.getIntValue();
-        switch (operator) {
-            case '+':
-                value = left + right;
-                break;
-            case '-':
-                value = left - right;
-                break;
-            case '*':
-                value = left * right;
-                break;
-            case '/':
-                value = left / right;
-                break;
-            default:
-                throw new IllegalArgumentException(getLineNumber() + ": Operator " + operator + " not known!");
-        }
-    }
-
-    public char getOperator() {
-        return operator;
-    }
-
-    public BWExpression getLeftSide() {
-        return leftSide;
-    }
-
-    public BWExpression getRightSide() {
-        return rightSide;
+    override fun run(scope: Scope) {
+        leftSide.run(scope)
+        val left = leftSide.intValue
+        rightSide.run(scope)
+        val right = rightSide.intValue
+        value = operationForChar(operator)(left, right)
     }
 }

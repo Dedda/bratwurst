@@ -7,7 +7,7 @@ import org.dedda.bratwurst.lang.scope.Scope
  *
  * @author dedda
  */
-class Loop(lineNumber: Int, private val toEvaluate: BWExpression, private val instructions: Array<BWInstruction>) : BWInstruction(lineNumber) {
+class Loop(lineNumber: Int, private val toEvaluate: BWExpression, private val instructions: List<BWInstruction>) : BWInstruction(lineNumber) {
     override fun run(scope: Scope) {
         var run: Boolean
         toEvaluate.run(scope)

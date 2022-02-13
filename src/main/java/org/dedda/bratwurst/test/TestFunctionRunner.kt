@@ -1,45 +1,42 @@
 package org.dedda.bratwurst.test
 
-import org.dedda.bratwurst.lang.BWFunction
 import org.dedda.bratwurst.lang.classes.BWClass
 import org.dedda.bratwurst.lang.scope.Scope
 import org.dedda.bratwurst.parse.Parser
 import java.io.File
-import java.util.*
 
 /**
  * Created by dedda on 1/23/16.
  *
  * @author dedda
  */
-class TestFunctionRunner {
+class TestFunctionRunner(private val runner: TestFileRunner) {
 
-    private var runner: TestFileRunner? = null
-
-    fun run(runner: TestFileRunner?, filename: String, functionName: String) {
-        this.runner = runner
+    fun run(filename: String, functionName: String) {
         BWClass.unregisterAll()
         val parser = Parser(File(filename))
         val program = parser.parse()
-        val fopt = Arrays.stream(program.functions).filter { f: BWFunction -> f.name == functionName }.findFirst()
-        if (!fopt.isPresent) {
+        val functionOptional = program.functions.stream()
+            .filter { f -> f.name == functionName }
+            .findFirst()
+        if (!functionOptional.isPresent) {
             fail("Function " + functionName + "doesn't exist!")
         }
-        val function = fopt.get()
+        val function = functionOptional.get()
         val scope = Scope(program, runner, this)
         function.run(scope)
     }
 
     fun addAssertionResult(result: AssertionResult) {
-        runner!!.incAssertions()
+        runner.incrementAssertions()
         when (result) {
             is AssertionSuccess -> print(".")
             is AssertionError -> fail(result.message)
         }
     }
 
-    fun fail(message: String) {
+    private fun fail(message: String) {
         println(message)
-        runner!!.stop()
+        runner.stop()
     }
 }

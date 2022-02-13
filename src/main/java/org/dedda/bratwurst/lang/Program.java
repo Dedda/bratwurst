@@ -4,7 +4,6 @@ import org.dedda.bratwurst.lang.classes.BWClass;
 import org.dedda.bratwurst.lang.scope.Scope;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by dedda on 10/14/15.
@@ -12,27 +11,18 @@ import java.util.stream.Collectors;
  * @author dedda
  */
 public class Program {
-//    private static Program instance = new Program();
 
-//    public static Program getInstance() {
-//        return instance;
-//    }
-
-    private BWFunction[] functions = new BWFunction[0];
-    private BWClass[] classes = new BWClass[0];
-    private ArrayList<BWVariable> variables = new ArrayList<>();
-    private BWInstruction[] instructions = new BWInstruction[0];
+    private List<BWFunction> functions = new ArrayList<>();
+    private List<BWClass> classes = new ArrayList<>();
+    private List<BWVariable> variables = new ArrayList<>();
+    private List<BWInstruction> instructions = new ArrayList<>();
     private boolean stopped = false;
     private int exitCode = 0;
-    private final Stack<BWObject> global = new Stack<>();
-
-    public Program() {
-
-    }
+    private final Deque<BWObject> global = new ArrayDeque<>();
 
     public void run() {
         Scope scope = new Scope(this);
-        for (BWInstruction instruction : instructions) {
+        for (final BWInstruction instruction : instructions) {
             if (stopped) {
                 return;
             }
@@ -40,12 +30,12 @@ public class Program {
         }
     }
 
-    public void stop(int code) {
+    public void stop(final int code) {
         stopped = true;
         exitCode = code;
     }
 
-    public void push(BWObject object) {
+    public void push(final BWObject object) {
         global.push(object);
     }
 
@@ -57,9 +47,8 @@ public class Program {
         return exitCode;
     }
 
-    public void registerVariable(BWVariable variable) {
-        variables.stream().collect(Collectors.toList());
-        Optional<BWVariable> variableOptional = variables.stream().filter(v -> v.getName().equals(variable.getName())).findFirst();
+    public void registerVariable(final BWVariable variable) {
+        final Optional<BWVariable> variableOptional = variables.stream().filter(v -> v.getName().equals(variable.getName())).findFirst();
         if (variableOptional.isPresent()) {
             variableOptional.get().setValue(variable.getValue());
         } else {
@@ -67,60 +56,49 @@ public class Program {
         }
     }
 
-    public void registerClass(BWClass bwClass) {
-        List<BWClass> classList = Arrays.stream(classes).collect(Collectors.toList());
-        if (classList.stream().filter(c -> c.getName().equals(bwClass.getName())).findFirst().isPresent()) {
+    public void registerClass(final BWClass bwClass) {
+        if (classes.stream().anyMatch(c -> c.getName().equals(bwClass.getName()))) {
             throw new RuntimeException("Class " + bwClass.getName() + " already registered!");
         }
-        classList.add(bwClass);
-        classList.toArray(classes);
+        classes.add(bwClass);
     }
 
     public boolean isStopped() {
         return stopped;
     }
 
-    public BWFunction[] getFunctions() {
+    public List<BWFunction> getFunctions() {
         return functions;
     }
 
-    public void setFunctions(BWFunction[] functions) {
+    public void setFunctions(final List<BWFunction> functions) {
         this.functions = functions;
     }
 
-    public BWClass[] getClasses() {
+    public List<BWClass> getClasses() {
         return classes;
     }
 
-    public void setClasses(BWClass[] classes) {
+    public void setClasses(final List<BWClass> classes) {
         this.classes = classes;
     }
 
-    public void setInstructions(BWInstruction[] instructions) {
+    public void setInstructions(final List<BWInstruction> instructions) {
         this.instructions = instructions;
     }
 
-    public boolean hasVariable(String name) {
-        return variables.stream().filter(v -> v.getName().equals(name)).findFirst().isPresent();
+    public boolean hasVariable(final String name) {
+        return variables.stream().anyMatch(v -> v.getName().equals(name));
     }
 
-    public BWVariable getVariable(String name) {
-        Optional<BWVariable> variable = variables.stream().filter(v -> v.getName().equals(name)).findFirst();
-        if (variable.isPresent()) {
-            return variable.get();
-        }
-        throw new RuntimeException("Variable " + name + " does not exist!");
+    public BWVariable getVariable(final String name) {
+        return variables.stream()
+                .filter(v -> v.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Variable " + name + " does not exist!"));
     }
 
-    public ArrayList<BWVariable> getVariables() {
-        return variables;
-    }
-
-    public void setVariables(ArrayList<BWVariable> variables) {
+    public void setVariables(final List<BWVariable> variables) {
         this.variables = variables;
-    }
-
-    public Stack<BWObject> getGlobal() {
-        return global;
     }
 }

@@ -1,28 +1,15 @@
-package org.dedda.bratwurst.lang;
+package org.dedda.bratwurst.lang
 
-import org.dedda.bratwurst.lang.scope.Scope;
+import org.dedda.bratwurst.lang.scope.Scope
 
 /**
  * Created by dedda on 10/14/15.
  *
  * @author dedda
  */
-public class PrintChar extends BWInstruction {
+class PrintChar(lineNumber: Int, val toPrint: Char) : BWInstruction(lineNumber) {
 
-    private final char toPrint;
-
-    public PrintChar(int lineNumber, char toPrint) {
-        super(lineNumber);
-        this.toPrint = toPrint;
+    override fun run(scope: Scope) {
+        print(toPrint)
     }
-
-    @Override
-    public void run(Scope scope) {
-        System.out.print(toPrint);
-    }
-
-    public char getToPrint() {
-        return toPrint;
-    }
-
 }

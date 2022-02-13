@@ -1,6 +1,7 @@
 package org.dedda.bratwurst.lang;
 
 import org.dedda.bratwurst.BratwurtstTestcase;
+import org.dedda.bratwurst.lang.scope.Scope;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import static org.mockito.Mockito.mock;
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -39,7 +41,7 @@ public class PrintCharTest extends BratwurtstTestcase {
     @Test
     public void testRun() throws Exception {
         PrintChar instance = new PrintChar(0, 'A');
-        instance.run(null);
+        instance.run(mock(Scope.class));
         assertEquals(outputBuffer, "A");
     }
 }
